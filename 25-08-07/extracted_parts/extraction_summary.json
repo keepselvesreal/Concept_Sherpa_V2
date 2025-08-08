@@ -1,0 +1,29 @@
+[
+  {
+    "part_number": 1,
+    "title": "Part 1—Flexibility",
+    "filename": "Part_01_Part_1_Flexibility.md",
+    "page_range": "29-164",
+    "page_count": 136,
+    "content_length": 232902,
+    "status": "성공"
+  },
+  {
+    "part_number": 2,
+    "title": "Part 2—Scalability",
+    "filename": "Part_02_Part_2_Scalability.md",
+    "page_range": "165-272",
+    "page_count": 108,
+    "content_length": 174919,
+    "status": "성공"
+  },
+  {
+    "part_number": 3,
+    "title": "Part 3—Maintainability",
+    "filename": "Part_03_Part_3_Maintainability.md",
+    "page_range": "273-360",
+    "page_count": 88,
+    "content_length": 153974,
+    "status": "성공"
+  }
+]

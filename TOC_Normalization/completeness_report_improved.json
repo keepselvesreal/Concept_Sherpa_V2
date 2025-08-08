@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "message": "All expected Introduction items are present",
+  "summary": {
+    "status": "PASS",
+    "expected_count": 21,
+    "actual_count": 21,
+    "missing_count": 0,
+    "extra_count": 0,
+    "missing_items": [],
+    "extra_items": []
+  }
+}

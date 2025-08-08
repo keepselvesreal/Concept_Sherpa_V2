@@ -1,0 +1,31 @@
+{
+  "part_name": "Part3_Maintainability",
+  "part_title": "Maintainability",
+  "chapters_count": 4,
+  "chapters": [
+    {
+      "chapter_num": 12,
+      "title": "Advanced data validation",
+      "subtitle": "A self-made gift",
+      "page_range": "275-299"
+    },
+    {
+      "chapter_num": 13,
+      "title": "Polymorphism",
+      "subtitle": "Playing with the animals in the countryside",
+      "page_range": "300-322"
+    },
+    {
+      "chapter_num": 14,
+      "title": "Advanced data manipulation",
+      "subtitle": "Whatever is well-conceived is clearly said",
+      "page_range": "323-338"
+    },
+    {
+      "chapter_num": 15,
+      "title": "Debugging",
+      "subtitle": "Innovation at the museum",
+      "page_range": "339-380"
+    }
+  ]
+}

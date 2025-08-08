@@ -1,0 +1,26 @@
+{
+  "extraction_date": "2025-01-24",
+  "total_parts": 3,
+  "parts_summary": {
+    "Part1_Flexibility": {
+      "title": "Flexibility",
+      "planned_chapters": 6,
+      "extracted_chapters": 6,
+      "success_rate": "6/6"
+    },
+    "Part2_Scalability": {
+      "title": "Scalability",
+      "planned_chapters": 5,
+      "extracted_chapters": 5,
+      "success_rate": "5/5"
+    },
+    "Part3_Maintainability": {
+      "title": "Maintainability",
+      "planned_chapters": 4,
+      "extracted_chapters": 4,
+      "success_rate": "4/4"
+    }
+  },
+  "total_chapters_extracted": 15,
+  "total_chapters_planned": 15
+}

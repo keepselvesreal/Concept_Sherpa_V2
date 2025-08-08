@@ -1,0 +1,37 @@
+{
+  "part_name": "Part2_Scalability",
+  "part_title": "Scalability",
+  "chapters_count": 5,
+  "chapters": [
+    {
+      "chapter_num": 7,
+      "title": "Basic data validation",
+      "subtitle": "A solemn gift",
+      "page_range": "169-190"
+    },
+    {
+      "chapter_num": 8,
+      "title": "Advanced concurrency control",
+      "subtitle": "No more deadlocks!",
+      "page_range": "191-202"
+    },
+    {
+      "chapter_num": 9,
+      "title": "Persistent data structures",
+      "subtitle": "Standing on the shoulders of giants",
+      "page_range": "203-224"
+    },
+    {
+      "chapter_num": 10,
+      "title": "Database operations",
+      "subtitle": "A cloud is a cloud",
+      "page_range": "225-247"
+    },
+    {
+      "chapter_num": 11,
+      "title": "Web services",
+      "subtitle": "A faithful messenger",
+      "page_range": "248-274"
+    }
+  ]
+}

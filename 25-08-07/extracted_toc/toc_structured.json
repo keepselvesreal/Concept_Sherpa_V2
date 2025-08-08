@@ -1,0 +1,1462 @@
+{
+  "extraction_time": "2025-08-07 11:28:43 KST",
+  "method": "Page text parsing",
+  "total_items": 291,
+  "toc": [
+    {
+      "title": "=== 페이지 6 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "For online information and ordering of this and other Manning books, please visit",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "www.manning.com. The publisher offers discounts on this book when ordered in quantity.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "For more information, please contact",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Special Sales Department",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Manning Publications Co.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "20 Baldwin Road",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "PO Box",
+      "level": 0,
+      "page": 761
+    },
+    {
+      "title": "Shelter Island, NY",
+      "level": 0,
+      "page": 11964
+    },
+    {
+      "title": "Email: orders@manning.com",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "©2022 by Manning Publications Co. All rights reserved.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "any form or by means electronic, mechanical, photocopying, or otherwise, without prior written",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "permission of the publisher.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Many of the designations used by manufacturers and sellers to distinguish their products are",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "claimed as trademarks. Where those designations appear in the book, and Manning Publications",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "was aware of a trademark claim, the designations have been printed in initial caps or all caps.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Recognizing the importance of preserving what has been written, it is Manning’s policy to have",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "the books we publish printed on acid-free paper, and we exert our best efforts to that end.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Recognizing also our responsibility to conserve the resources of our planet, Manning books",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "are printed on paper that is at least 15 percent recycled and processed without the use of",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "elemental chlorine.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "The author and publisher have made every effort to ensure that the information in this book",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "was correct at press time. The author and publisher do not assume and hereby disclaim any",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "liability to any party for any loss, damage, or disruption caused by errors or omissions, whether",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "such errors or omissions result from negligence, accident, or any other cause, or from any usage",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "of the information herein.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Manning Publications Co. Development editor: Elesha Hyde",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "20 Baldwin Road Technical development editor: Marius Butuc",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "PO Box 761 Review editors: Aleksandar Dragosavljevic´",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Shelter Island, NY 11964 Production editor: Andy Marinkovich",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Copy editor: Frances Buran",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Proofreader: Keri Hales",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Technical proofreader: Karsten Strøbaek",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Typesetter: Dennis Dalinnik",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Cover designer: Marija Tudor",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "ISBN:",
+      "level": 0,
+      "page": 9781617298578
+    },
+    {
+      "title": "Printed in the United States of America",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "=== 페이지 8 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "brief contents",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "PART 1 FLEXIBILITY",
+      "level": 0,
+      "page": 1
+    },
+    {
+      "title": "1 ■ Complexity of object-orientedprogramming",
+      "level": 0,
+      "page": 3
+    },
+    {
+      "title": "2 ■ Separation between code and data",
+      "level": 0,
+      "page": 26
+    },
+    {
+      "title": "3 ■ Basic data manipulation",
+      "level": 0,
+      "page": 43
+    },
+    {
+      "title": "4 ■ State management",
+      "level": 0,
+      "page": 71
+    },
+    {
+      "title": "5 ■ Basic concurrency control",
+      "level": 0,
+      "page": 91
+    },
+    {
+      "title": "6 ■ Unit tests",
+      "level": 0,
+      "page": 110
+    },
+    {
+      "title": "PART 2 SCALABILITY",
+      "level": 0,
+      "page": 137
+    },
+    {
+      "title": "7 ■ Basic data validation",
+      "level": 0,
+      "page": 141
+    },
+    {
+      "title": "8 ■ Advanced concurrency control",
+      "level": 0,
+      "page": 163
+    },
+    {
+      "title": "9 ■ Persistent data structures",
+      "level": 0,
+      "page": 175
+    },
+    {
+      "title": "10 ■ Database operations",
+      "level": 0,
+      "page": 197
+    },
+    {
+      "title": "11 ■ Web services",
+      "level": 0,
+      "page": 220
+    },
+    {
+      "title": "vvii",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "=== 페이지 9 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "BRIEF CONTENTS vii",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "PART 3 MAINTAINABILITY",
+      "level": 0,
+      "page": 245
+    },
+    {
+      "title": "12 ■ Advanced data validation",
+      "level": 0,
+      "page": 247
+    },
+    {
+      "title": "13 ■ Polymorphism",
+      "level": 0,
+      "page": 272
+    },
+    {
+      "title": "14 ■ Advanced data manipulation",
+      "level": 0,
+      "page": 295
+    },
+    {
+      "title": "15 ■ Debugging",
+      "level": 0,
+      "page": 311
+    },
+    {
+      "title": "=== 페이지 10 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "contents",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "forewords xiii",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "preface xvii",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "acknowledgments xviii",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "about this book xx",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "about the author xxiv",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "about the cover illustration xxv",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "dramatis personae xxvi",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "PART 1 FLEXIBILITY",
+      "level": 0,
+      "page": 1
+    },
+    {
+      "title": "1 Complexity of object-oriented programming",
+      "level": 0,
+      "page": 3
+    },
+    {
+      "title": "1.1 OOP design: Classic or classical?",
+      "level": 2,
+      "page": 4
+    },
+    {
+      "title": "The design phase 4 ■ UML 101 6 ■ Explaining each piece of",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "the class diagram 9 ■ The implementation phase",
+      "level": 0,
+      "page": 12
+    },
+    {
+      "title": "1.2 Sources of complexity",
+      "level": 2,
+      "page": 13
+    },
+    {
+      "title": "Many relations between classes 14 ■ Unpredictable code",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "behavior 16 ■ Not trivial data serialization",
+      "level": 0,
+      "page": 18
+    },
+    {
+      "title": "Complex class hierarchies",
+      "level": 0,
+      "page": 20
+    },
+    {
+      "title": "2 Separation between code and data",
+      "level": 0,
+      "page": 26
+    },
+    {
+      "title": "2.1 The two parts of a DOP system",
+      "level": 2,
+      "page": 27
+    },
+    {
+      "title": "2.2 Data entities",
+      "level": 2,
+      "page": 29
+    },
+    {
+      "title": "viii",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "=== 페이지 11 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "CONTENTS ix",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "2.3 Code modules",
+      "level": 2,
+      "page": 31
+    },
+    {
+      "title": "2.4 DOP systems are easy to understand",
+      "level": 2,
+      "page": 36
+    },
+    {
+      "title": "2.5 DOP systems are flexible",
+      "level": 2,
+      "page": 38
+    },
+    {
+      "title": "3 Basic data manipulation",
+      "level": 0,
+      "page": 43
+    },
+    {
+      "title": "3.1 Designing a data model",
+      "level": 2,
+      "page": 44
+    },
+    {
+      "title": "3.2 Representing records as maps",
+      "level": 2,
+      "page": 48
+    },
+    {
+      "title": "3.3 Manipulating data with generic functions",
+      "level": 2,
+      "page": 54
+    },
+    {
+      "title": "3.4 Calculating search results",
+      "level": 2,
+      "page": 58
+    },
+    {
+      "title": "3.5 Handling records of different types",
+      "level": 2,
+      "page": 65
+    },
+    {
+      "title": "4 State management",
+      "level": 0,
+      "page": 71
+    },
+    {
+      "title": "4.1 Multiple versions of the system data",
+      "level": 2,
+      "page": 72
+    },
+    {
+      "title": "4.2 Structural sharing",
+      "level": 2,
+      "page": 74
+    },
+    {
+      "title": "4.3 Implementing structural sharing",
+      "level": 2,
+      "page": 80
+    },
+    {
+      "title": "4.4 Data safety",
+      "level": 2,
+      "page": 82
+    },
+    {
+      "title": "4.5 The commit phase of a mutation",
+      "level": 2,
+      "page": 83
+    },
+    {
+      "title": "4.6 Ensuring system state integrity",
+      "level": 2,
+      "page": 85
+    },
+    {
+      "title": "4.7 Restoring previous states",
+      "level": 2,
+      "page": 86
+    },
+    {
+      "title": "5 Basic concurrency control",
+      "level": 0,
+      "page": 91
+    },
+    {
+      "title": "5.1 Optimistic concurrency control",
+      "level": 2,
+      "page": 92
+    },
+    {
+      "title": "5.2 Reconciliation between concurrent mutations",
+      "level": 2,
+      "page": 94
+    },
+    {
+      "title": "5.3 Reducing collections",
+      "level": 2,
+      "page": 97
+    },
+    {
+      "title": "5.4 Structural difference",
+      "level": 2,
+      "page": 99
+    },
+    {
+      "title": "5.5 Implementing the reconciliation algorithm",
+      "level": 2,
+      "page": 106
+    },
+    {
+      "title": "6 Unit tests",
+      "level": 0,
+      "page": 110
+    },
+    {
+      "title": "6.1 The simplicity of data-oriented test cases",
+      "level": 2,
+      "page": 110
+    },
+    {
+      "title": "6.2 Unit tests for data manipulation code",
+      "level": 2,
+      "page": 112
+    },
+    {
+      "title": "The tree of function calls 113 ■ Unit tests for functions down",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "the tree 115 ■ Unit tests for nodes in the tree",
+      "level": 0,
+      "page": 119
+    },
+    {
+      "title": "6.3 Unit tests for queries",
+      "level": 2,
+      "page": 121
+    },
+    {
+      "title": "6.4 Unit tests for mutations",
+      "level": 2,
+      "page": 126
+    },
+    {
+      "title": "=== 페이지 12 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "x CONTENTS",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "PART 2 SCALABILITY",
+      "level": 0,
+      "page": 137
+    },
+    {
+      "title": "7 Basic data validation",
+      "level": 0,
+      "page": 141
+    },
+    {
+      "title": "7.1 Data validation in DOP",
+      "level": 2,
+      "page": 142
+    },
+    {
+      "title": "7.2 JSON Schema in a nutshell",
+      "level": 2,
+      "page": 143
+    },
+    {
+      "title": "7.3 Schema flexibility and strictness",
+      "level": 2,
+      "page": 149
+    },
+    {
+      "title": "7.4 Schema composition",
+      "level": 2,
+      "page": 154
+    },
+    {
+      "title": "7.5 Details about data validation failures",
+      "level": 2,
+      "page": 158
+    },
+    {
+      "title": "8 Advanced concurrency control",
+      "level": 0,
+      "page": 163
+    },
+    {
+      "title": "8.1 The complexity of locks",
+      "level": 2,
+      "page": 164
+    },
+    {
+      "title": "8.2 Thread-safe counter with atoms",
+      "level": 2,
+      "page": 165
+    },
+    {
+      "title": "8.3 Thread-safe cache with atoms",
+      "level": 2,
+      "page": 170
+    },
+    {
+      "title": "8.4 State management with atoms",
+      "level": 2,
+      "page": 172
+    },
+    {
+      "title": "9 Persistent data structures",
+      "level": 0,
+      "page": 175
+    },
+    {
+      "title": "9.1 The need for persistent data structures",
+      "level": 2,
+      "page": 175
+    },
+    {
+      "title": "9.2 The efficiency of persistent data structures",
+      "level": 2,
+      "page": 178
+    },
+    {
+      "title": "9.3 Persistent data structures libraries",
+      "level": 2,
+      "page": 184
+    },
+    {
+      "title": "Persistent data structures in Java 184 ■ Persistent data structures",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "in JavaScript",
+      "level": 0,
+      "page": 186
+    },
+    {
+      "title": "9.4 Persistent data structures in action",
+      "level": 2,
+      "page": 188
+    },
+    {
+      "title": "Writing queries with persistent data structures 188 ■ Writing",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "mutations with persistent data structures 191 ■ Serialization and",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "deserialization 192 ■ Structural diff",
+      "level": 0,
+      "page": 193
+    },
+    {
+      "title": "10 Database operations",
+      "level": 0,
+      "page": 197
+    },
+    {
+      "title": "10.1 Fetching data from the database",
+      "level": 2,
+      "page": 198
+    },
+    {
+      "title": "10.2 Storing data in the database",
+      "level": 2,
+      "page": 204
+    },
+    {
+      "title": "10.3 Simple data manipulation",
+      "level": 2,
+      "page": 207
+    },
+    {
+      "title": "10.4 Advanced data manipulation",
+      "level": 2,
+      "page": 211
+    },
+    {
+      "title": "11 Web services",
+      "level": 0,
+      "page": 220
+    },
+    {
+      "title": "11.1 Another feature request",
+      "level": 2,
+      "page": 221
+    },
+    {
+      "title": "11.2 Building the insides like the outsides",
+      "level": 2,
+      "page": 222
+    },
+    {
+      "title": "11.3 Representing a client request as a map",
+      "level": 2,
+      "page": 225
+    },
+    {
+      "title": "=== 페이지 13 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "CONTENTS xi",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "11.4 Representing a server response as a map",
+      "level": 2,
+      "page": 227
+    },
+    {
+      "title": "11.5 Passing information forward",
+      "level": 2,
+      "page": 231
+    },
+    {
+      "title": "11.6 Search result enrichment in action",
+      "level": 2,
+      "page": 234
+    },
+    {
+      "title": "PART 3 MAINTAINABILITY",
+      "level": 0,
+      "page": 245
+    },
+    {
+      "title": "12 Advanced data validation",
+      "level": 0,
+      "page": 247
+    },
+    {
+      "title": "12.1 Function arguments validation",
+      "level": 2,
+      "page": 248
+    },
+    {
+      "title": "12.2 Return value validation",
+      "level": 2,
+      "page": 255
+    },
+    {
+      "title": "12.3 Advanced data validation",
+      "level": 2,
+      "page": 257
+    },
+    {
+      "title": "12.4 Automatic generation of data model diagrams",
+      "level": 2,
+      "page": 260
+    },
+    {
+      "title": "12.5 Automatic generation of schema-based unit tests",
+      "level": 2,
+      "page": 262
+    },
+    {
+      "title": "12.6 A new gift",
+      "level": 2,
+      "page": 269
+    },
+    {
+      "title": "13 Polymorphism",
+      "level": 0,
+      "page": 272
+    },
+    {
+      "title": "13.1 The essence of polymorphism",
+      "level": 2,
+      "page": 273
+    },
+    {
+      "title": "13.2 Multimethods with single dispatch",
+      "level": 2,
+      "page": 277
+    },
+    {
+      "title": "13.3 Multimethods with multiple dispatch",
+      "level": 2,
+      "page": 281
+    },
+    {
+      "title": "13.4 Multimethods with dynamic dispatch",
+      "level": 2,
+      "page": 286
+    },
+    {
+      "title": "13.5 Integrating multimethods in a production system",
+      "level": 2,
+      "page": 289
+    },
+    {
+      "title": "14 Advanced data manipulation",
+      "level": 0,
+      "page": 295
+    },
+    {
+      "title": "14.1 Updating a value in a map with eloquence",
+      "level": 2,
+      "page": 296
+    },
+    {
+      "title": "14.2 Manipulating nested data",
+      "level": 2,
+      "page": 299
+    },
+    {
+      "title": "14.3 Using the best tool for the job",
+      "level": 2,
+      "page": 301
+    },
+    {
+      "title": "14.4 Unwinding at ease",
+      "level": 2,
+      "page": 305
+    },
+    {
+      "title": "15 Debugging",
+      "level": 0,
+      "page": 311
+    },
+    {
+      "title": "15.1 Determinism in programming",
+      "level": 2,
+      "page": 312
+    },
+    {
+      "title": "15.2 Reproducibility with numbers and strings",
+      "level": 2,
+      "page": 314
+    },
+    {
+      "title": "15.3 Reproducibility with any data",
+      "level": 2,
+      "page": 318
+    },
+    {
+      "title": "15.4 Unit tests",
+      "level": 2,
+      "page": 321
+    },
+    {
+      "title": "15.5 Dealing with external data sources",
+      "level": 2,
+      "page": 329
+    },
+    {
+      "title": "=== 페이지 14 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "xii CONTENTS",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "appendix A Principles of data-oriented programming",
+      "level": 0,
+      "page": 333
+    },
+    {
+      "title": "appendix B Generic data access in statically-typed languages",
+      "level": 0,
+      "page": 364
+    },
+    {
+      "title": "appendix C Data-oriented programming: A link in the chain of programming",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "paradigms",
+      "level": 0,
+      "page": 381
+    },
+    {
+      "title": "appendix D Lodash reference",
+      "level": 0,
+      "page": 387
+    },
+    {
+      "title": "index",
+      "level": 0,
+      "page": 391
+    },
+    {
+      "title": "=== 페이지 15 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "forewords",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Every programming principle, every design method, every architecture style, and even",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "most language features are about organizing complexity while allowing adaptation.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Two characteristics—immutable data and turning parts of the program into data",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "inside the program itself—drew me to Clojure in 2009 and more recently to Yehona-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "than Sharvit’s Data-Oriented Programming.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "In 2005, I worked on one of my favorite projects with some of my favorite people.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "It was a Java project, but we did two things that were not common practice in the Java",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "world at that time. First, we made our core data values immutable. It wasn’t easy but it",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "worked extraordinarily well. We hand-rolled clone and deepClone methods in many",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "classes. The payoff was huge. Just as one example, suppose you need template docu-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "ments for users to instantiate. When you can make copies of entire object trees, the",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "objects themselves don’t need to “know” whether they are template data or instance",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "data. That decision is up to whatever object holds the reference. Another big benefit",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "came from comparison: when values are immutable, equality of identity indicates",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "equality of value. This can make for very fast equality checks.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Our second technique was to take advantage of generic data—though not to the",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "extent Yehonathan will show you in this book. Where one layer had a hierarchy of",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "classes, its adjoining layer would represent those as instances of a more general class.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "What would be a member variable in one layer would be described by a field in a map",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "in another layer. I am certain this style was influenced by the several small talkers on",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "our team. It also paid off immediately, as we were able to compose and recompose",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "objects in different configurations.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "xiii",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "=== 페이지 17 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "FOREWORDS xv",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "This book hit me at just the right time. I had been building web apps for nearly",
+      "level": 0,
+      "page": 20
+    },
+    {
+      "title": "years in an object-oriented framework. I never considered myself an expert program-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "mer, but I knew my tools well enough to look at a typical business problem, sketch out",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "a data model, and build an MVC-style app to get the job done.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Projects were thrilling at the start. I loved the feeling of plugging pieces together",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "and seeing the app come to life. But once I got it working, I ran into problems. I",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "couldn’t change one part without keeping all the other models in mind. I knew I",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "should write tests, but I had to set up so much state to test things that it didn’t feel",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "worth it—I didn’t want to write more code that would be hard to change. Even run-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "ning bits of code in the console was tedious because I had to create database state to",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "call the method. I thought I was probably doing it wrong, but the solutions I knew",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "about, such as sophisticated testing frameworks, seemed to add to the complexity",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "instead of making things easier.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Then one day, I saw a talk on YouTube by Rich Hickey, the creator of Clojure. He",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "was explaining functional programming and contrasting it with OO, which he deri-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "sively called “place-oriented programming.” I wasn’t sure if he was right, but I heard a",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "hidden message that intrigued me: “It’s not you, it’s your language.” I watched all the",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "videos I could find and started to think Clojure might be the answer.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Years went by. I kept watching Clojure videos and trying to apply functional princi-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "ples when I could. But whenever it was time to start on a new project, I fell back on my",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "familiar framework. Changing to another language with a totally different ecosystem",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "of libraries was too big of a leap.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Then, just as I was about to start work on a new product, I found this book. The",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "words “Data-Oriented” in the title rang a bell. I heard programmers in those Clojure",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "videos use the words before, but I hadn’t really understood what they meant. Some-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "thing about how it’s easier to build systems that manipulate data literals (like maps",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "and arrays) instead of custom objects. The languages I knew had good support for",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "data literals, so I thought I might learn something to hold me over until that magical",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "day when I might switch to Clojure.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "My first a-ha moment came right in the introduction. In the first few pages, Yehona-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "than explains that, though he’s written Clojure for 10 years, the book isn’t language-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "specific, and the examples will be in JavaScript. Wait!—I thought. Could it really be",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "that I don’t have to change languages to deeply improve the way I write programs?",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "I was so excited by this prospect that I devoured the book in one sitting. My eyes",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "opened to something that had been right in front of me all along. Of course my code",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "was hard to test! Because of the ORM I used, all my functionality was written in objects",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "that assumed a bunch of database state! When I saw it spelled out with examples in the",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "book, I couldn’t unsee it. I didn’t need a new language, I just needed to approach pro-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "gramming differently!",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "The designers I consider great all point to the same thing: good design is about",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "pulling things apart. It’s not just about getting the code to work, no matter how ugly.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "=== 페이지 18 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "xvi FOREWORDS",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "It’s about untangling the parts from each other so you can change one thing without",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "breaking everything else.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "This book pulls apart code and data, with surprising and exciting results. For me, it",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "also went further. It pulled apart a way of programming from a specific language. I might",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "never make that switch to Clojure, and I don’t feel like I have to anymore. Data-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Oriented Programming helped me see new possibilities in the languages I know and the",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "multitude of new frameworks appearing every day.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "—RYAN SINGER",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "author of Shape Up: Stop Running",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "in Circles and Ship Work that Matters",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "=== 페이지 20 ===",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "acknowledgments",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "First and foremost, I want to thank my beloved, Karine. You believed in me since the",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "beginning of this project. You always manage to see the light, even when it hides",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "behind several layers of darkness. To my wonderful children, Odaya, Orel, Advah,",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Nehoray, and Yair, who were the first audience for the stories I invented when I was a",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "young daddy. You are the most beautiful story I ever wrote!",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "There are numerous other folks to whom I want to also extend my thanks, includ-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "ing Joel Klein, for all the fascinating and enriching discussions on the art and the soul;",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "to Meir Armon for helping me clarify what content should not be included in the",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "book; to Rich Hickey for inventing Clojure, such a beautiful language, which embraced",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "data-oriented programming before it even had a name; to Christophe Grand, whose",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "precious advice helped me to distill the first three principles of data-oriented pro-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "gramming; to Mark Champine, for reviewing the manuscript so carefully and provid-",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "ing many valuable suggestions; to Eric Normand, for your encouragement and, in",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "particular, your advice on the application of data-oriented programming in Java; to",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Bert Bates, for teaching me the secrets of writing a good book; and to Ben Button, for",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "reviewing the chapters that deal with JSON Schema.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "My thanks to all the folks at Manning Publications, especially Mike Stephens, for",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "agreeing to continue working with me despite the failure of my first book; Elesha",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "Hyde, for your availability and your attention to the smallest details; Marius Butuc, for",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "your enthusiastic positive feedback from reading the first chapter; Linda Kotlyarsky,",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "for formulating the chapter descriptions in such a fun way; and to Frances Buran for",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "improving the clarity of the text and the flow of the story.",
+      "level": 0,
+      "page": null
+    },
+    {
+      "title": "xviii",
+      "level": 0,
+      "page": null
+    }
+  ]
+}

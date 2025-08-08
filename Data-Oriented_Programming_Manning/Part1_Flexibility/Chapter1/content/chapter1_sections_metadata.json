@@ -1,0 +1,92 @@
+{
+  "extraction_timestamp": "2025-07-24T16:02:39.464728",
+  "source_file": "/home/nadle/projects/Knowledge_Sherpa/v2/Data-Oriented_Programming_Manning/Part1_Flexibility/Chapter1/original_text.md",
+  "total_sections": 12,
+  "extractor": "Chapter1SectionSplitter",
+  "sections": {
+    "chapter_intro": {
+      "title": "Chapter Introduction",
+      "type": "intro",
+      "description": "챕터 도입부 (31-32페이지 초반)",
+      "page_range": "31-32",
+      "content_length": 1501
+    },
+    "section_1_1_intro": {
+      "title": "Section 1.1 Introduction - OOP design: Classic or classical?",
+      "type": "section_intro",
+      "description": "1.1 도입부",
+      "page_range": "",
+      "content_length": 892
+    },
+    "section_1_1_1": {
+      "title": "1.1.1 The design phase",
+      "type": "subsection",
+      "description": "1.1.1 The design phase",
+      "page_range": "33-34",
+      "content_length": 4039
+    },
+    "section_1_1_2": {
+      "title": "1.1.2 UML 101",
+      "type": "subsection",
+      "description": "1.1.2 UML 101",
+      "page_range": "35-37",
+      "content_length": 4011
+    },
+    "section_1_1_3": {
+      "title": "1.1.3 Explaining each piece of the class diagram",
+      "type": "subsection",
+      "description": "1.1.3 Explaining each piece",
+      "page_range": "38-40",
+      "content_length": 4734
+    },
+    "section_1_1_4": {
+      "title": "1.1.4 The implementation phase",
+      "type": "subsection",
+      "description": "1.1.4 Implementation phase",
+      "page_range": "41-41",
+      "content_length": 678
+    },
+    "section_1_2_intro": {
+      "title": "Section 1.2 Introduction - Sources of complexity",
+      "type": "section_intro",
+      "description": "1.2 도입부",
+      "page_range": "42-42",
+      "content_length": 3153
+    },
+    "section_1_2_1": {
+      "title": "1.2.1 Many relations between classes",
+      "type": "subsection",
+      "description": "1.2.1 Many relations",
+      "page_range": "43-44",
+      "content_length": 3144
+    },
+    "section_1_2_2": {
+      "title": "1.2.2 Unpredictable code behavior",
+      "type": "subsection",
+      "description": "1.2.2 Unpredictable behavior",
+      "page_range": "45-46",
+      "content_length": 3047
+    },
+    "section_1_2_3": {
+      "title": "1.2.3 Not trivial data serialization",
+      "type": "subsection",
+      "description": "1.2.3 Data serialization",
+      "page_range": "47-48",
+      "content_length": 4430
+    },
+    "section_1_2_4": {
+      "title": "1.2.4 Complex class hierarchies",
+      "type": "subsection",
+      "description": "1.2.4 Complex hierarchies",
+      "page_range": "49-52",
+      "content_length": 7838
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "summary",
+      "description": "Summary 섹션",
+      "page_range": "53-53",
+      "content_length": 2768
+    }
+  }
+}

@@ -1,0 +1,183 @@
+# 14.3 Using the best tool for the job
+
+**메타데이터:**
+- ID: 135
+- 레벨: 2
+- 페이지: 329-332
+- 페이지 수: 4
+- 부모 ID: 131
+- 텍스트 길이: 7315 문자
+
+---
+
+est tool for the job 301
+Listing14.9 Retrieving the author IDs as an array of strings using flatMap
+function authorIdsInBooks(books) {
+return flatMap(books, "authorIds");
+}
+Theo What implementation do you prefer, the one with flatten and map (in listing
+14.7) or the one with flatMap (in listing 14.9)?
+Dave I don’t know. To me, they look quite similar.
+Theo Right, but which implementation is more readable?
+Dave Well, assuming I know what flatMap does, I would say the implementation
+with flatMap. Because it’s more concise, it is a bit more readable.
+Theo Again, it’s not about the size of the code. It’s about the clarity of intent and the
+power of naming things.
+Dave I don’t get that.
+Theo Let me give you an example from our day-to-day language.
+Dave OK.
+Theo Could you pass me that thing on your desk that’s used for writing?
+It takes Dave a few seconds to get that Theo has asked him to pass the pen on the desk.
+After he passes Theo the pen, he asks:
+Dave Why didn’t you simply ask for the pen?
+Theo I wanted you to experience how it feels when we use descriptions instead of
+names to convey our intent.
+Dave Oh, I see. You mean that once we use a name for the operation that maps and
+flattens, the code becomes clearer.
+Theo Exactly.
+Dave Let’s move on to the second admin feature: calculating the book lending ratio.
+Theo Before that, I think we deserve a short period for rest and refreshments, where
+we drink a beverage made by percolation from roasted and ground seeds.
+Dave A coffee break!
+14.3 Using the best tool for the job
+After the coffee break, Dave shows Theo his implementation of the book lending ratio cal-
+culation. This time, he seems to like the code he wrote.
+Dave I’m quite proud of the code I wrote to calculate the book lending ratio.
+Theo Show me the money!
+Dave My function receives a list of books from the database like this.
+Listing14.10 A list of two books with bookItems
+[
+{
+"isbn": "978-1779501127",
+
+302 CHAPTER 14 Advanced data manipulation
+"title": "Watchmen",
+"bookItems": [
+{
+"id": "book-item-1",
+"libId": "nyc-central-lib",
+"isLent": true
+}
+]
+},
+{
+"isbn": "978-1982137274",
+"title": "7 Habits of Highly Effective People",
+"bookItems": [
+{
+"id": "book-item-123",
+"libId": "hudson-park-lib",
+"isLent": true
+},
+{
+"id": "book-item-17",
+"libId": "nyc-central-lib",
+"isLent": false
+}
+]
+}
+]
+Theo Quite a nested piece of data!
+Dave Yeah, but now that I’m using flatMap, calculating the lending ratio is quite
+easy. I’m going over all the book items with forEach and incrementing either
+the lent or the notLent counter. At the end, I return the ratio between lent
+and (lent + notLent). Here’s how I do that.
+Listing14.11 Calculating the book lending ratio using forEach
+function lendingRatio(books) {
+var bookItems = flatMap(books, "bookItems");
+var lent = 0;
+var notLent = 0;
+_.forEach(bookItems, function(item) {
+if(_.get(item, "isLent")) {
+lent = lent + 1;
+} else {
+notLent = notLent + 1;
+}
+});
+return lent/(lent + notLent);
+}
+Theo Would you allow me to tell you frankly what I think of your code?
+Dave If you are asking this question, it means that you don’t like it. Right?
+Theo It’s nothing against you; I don’t like any piece of code with forEach.
+
+14.3 Using the best tool for the job 303
+Dave What’s wrong with forEach?
+Theo It’s too generic!
+Dave I thought that genericity was a positive thing in programming.
+Theo It is when we build a utility function, but when we use a utility function, we
+should use the least generic function that solves our problem.
+Dave Why?
+Theo Because we ought to choose the right tool for the job, like in the real life.
+Dave What do you mean?
+Theo Let me give you an example. Yesterday, I had to clean my drone from the
+inside. Do you think that I used a screwdriver or a Swiss army knife to unscrew
+the drone cover?
+Dave A screwdriver, of course! It’s much more convenient to manipulate.
+Theo Right. Also, imagine that someone looks at me using a screwdriver. It’s quite
+clear to them that I am turning a screw. It conveys my intent clearly.
+Dave Are you saying that forEach is like the Swiss army knife of data manipulation?
+Theo That’s a good way to put it.
+TIP Pick the least generic utility function that solves your problem.
+Dave What function should I use then, to iterate over the book item collection?
+Theo You could use _.reduce.
+Dave I thought reduce was about returning data from a collection. Here, I don’t
+need to return data; I need to update two variables, lent and notLent.
+Theo You could represent those two values in a map with two keys.
+Dave Can you show me how to rewrite my lendingRatio function using reduce?
+Theo Sure. The initial value passed to reduce is the map, {"lent": 0, "notLent": 0},
+and inside each iteration, we update one of the two keys, like this.
+Listing14.12 Calculating the book lending ratio using reduce
+function lendingRatio(books) {
+var bookItems = flatMap(books, "bookItems");
+var stats = _.reduce(bookItems, function(res, item) {
+if(_.get(item, "isLent")) {
+res.lent = res.lent + 1;
+} else {
+res.notLent = res.notLent + 1;
+}
+return res;
+}, {notLent: 0, lent:0});
+return stats.lent/(stats.lent + stats.notLent);
+}
+Dave Instead of updating the variables lent and notLent, now we are updating lent
+and notLent map fields. What’s the difference?
+
+304 CHAPTER 14 Advanced data manipulation
+Theo Dealing with map fields instead of variables allows us to get rid of reduce in
+our business logic code.
+Dave How could you iterate over a collection without forEach and without reduce?
+Theo I can’t avoid the iteration over a collection, but I can hide reduce behind a
+utility function. Take a look at the way reduce is used inside the code of
+lendingRatio. What is the meaning of the reduce call?
+Dave looks at the code in listing 14.12. He thinks for a long moment before he answers.
+Dave I think it’s counting the number of times isLent is true and false.
+Theo Right. Now, let’s use Joe’s advice about building our own data manipulation
+tool.
+Dave How exactly?
+Theo I suggest that you write a countByBoolField utility function that counts the
+number of times a field is true and false.
+Dave OK, but before implementing this function, let me first rewrite the code of
+lendingRatio, assuming this function already exists.
+Theo You are definitely a fast learner, Dave!
+Dave Thanks! I think that by using countByBoolField, the code for calculating the
+lending ratio using a custom utility function would be something like this.
+Listing14.13 Calculating the book lending ratio
+function lendingRatio(books) {
+var bookItems = flatMap(books, "bookItems");
+var stats = countByBoolField(bookItems, "isLent", "lent", "notLent");
+return stats.lent/(stats.lent + stats.notLent);
+}
+TIP Don’t use _.reduce or any other low-level data manipulation function inside
+code that deals with business logic. Instead, write a utility function—with a proper
+name—that hides _.reduce.
+Theo Perfect. Don’t you think that this code is clearer than the code using _.reduce?
+Dave I do! The code is both more concise and the intent is clearer. Let me see if I
+can implement countByBoolField now.
+Theo I suggest that you write a unit test first.
+Dave Good idea.
+Dave types for a bit. When he’s satisfied, he shows Theo the result.
+Listing14.14 A unit test for countByBoolField
+var input = [
+{"a": true},
+{"a": false},
+{"a": true},

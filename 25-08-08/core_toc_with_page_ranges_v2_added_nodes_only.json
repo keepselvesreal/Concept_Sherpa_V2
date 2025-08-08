@@ -1,0 +1,298 @@
+[
+  {
+    "title": "Part 1 Introduction",
+    "level": 1,
+    "start_page": 29,
+    "end_page": 31,
+    "page_count": 3,
+    "is_added_node": true
+  },
+  {
+    "title": "1 Introduction",
+    "level": 2,
+    "start_page": 31,
+    "end_page": 32,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "1.1 Introduction",
+    "level": 3,
+    "start_page": 32,
+    "end_page": 33,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "1.2 Introduction",
+    "level": 3,
+    "start_page": 41,
+    "end_page": 42,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "2 Introduction",
+    "level": 2,
+    "start_page": 54,
+    "end_page": 55,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "3 Introduction",
+    "level": 2,
+    "start_page": 71,
+    "end_page": 72,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "4 Introduction",
+    "level": 2,
+    "start_page": 99,
+    "end_page": 100,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "5 Introduction",
+    "level": 2,
+    "start_page": 119,
+    "end_page": 120,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "6 Introduction",
+    "level": 2,
+    "start_page": 138,
+    "end_page": 139,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "6.2 Introduction",
+    "level": 3,
+    "start_page": 140,
+    "end_page": 141,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "Part 2 Introduction",
+    "level": 1,
+    "start_page": 165,
+    "end_page": 169,
+    "page_count": 5,
+    "is_added_node": true
+  },
+  {
+    "title": "7 Introduction",
+    "level": 2,
+    "start_page": 169,
+    "end_page": 170,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "8 Introduction",
+    "level": 2,
+    "start_page": 191,
+    "end_page": 192,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "9 Introduction",
+    "level": 2,
+    "start_page": 203,
+    "end_page": 204,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "9.3 Introduction",
+    "level": 3,
+    "start_page": 212,
+    "end_page": 213,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "9.4 Introduction",
+    "level": 3,
+    "start_page": 216,
+    "end_page": 217,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "10 Introduction",
+    "level": 2,
+    "start_page": 225,
+    "end_page": 226,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "11 Introduction",
+    "level": 2,
+    "start_page": 248,
+    "end_page": 249,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "Part 3 Introduction",
+    "level": 1,
+    "start_page": 273,
+    "end_page": 275,
+    "page_count": 3,
+    "is_added_node": true
+  },
+  {
+    "title": "12 Introduction",
+    "level": 2,
+    "start_page": 275,
+    "end_page": 276,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "13 Introduction",
+    "level": 2,
+    "start_page": 300,
+    "end_page": 301,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "14 Introduction",
+    "level": 2,
+    "start_page": 323,
+    "end_page": 324,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "15 Introduction",
+    "level": 2,
+    "start_page": 339,
+    "end_page": 340,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "Appendix A Introduction",
+    "level": 1,
+    "start_page": 361,
+    "end_page": 363,
+    "page_count": 3,
+    "is_added_node": true
+  },
+  {
+    "title": "A.1 Introduction",
+    "level": 2,
+    "start_page": 363,
+    "end_page": 364,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "A.2 Introduction",
+    "level": 2,
+    "start_page": 373,
+    "end_page": 374,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "A.3 Introduction",
+    "level": 2,
+    "start_page": 379,
+    "end_page": 380,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "A.4 Introduction",
+    "level": 2,
+    "start_page": 383,
+    "end_page": 384,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "Appendix B Introduction",
+    "level": 1,
+    "start_page": 392,
+    "end_page": 393,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "B.1 Introduction",
+    "level": 2,
+    "start_page": 392,
+    "end_page": 393,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "B.2 Introduction",
+    "level": 2,
+    "start_page": 395,
+    "end_page": 396,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "B.3 Introduction",
+    "level": 2,
+    "start_page": 398,
+    "end_page": 399,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "B.4 Introduction",
+    "level": 2,
+    "start_page": 401,
+    "end_page": 402,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "Appendix C Introduction",
+    "level": 1,
+    "start_page": 409,
+    "end_page": 410,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "C.1 Introduction",
+    "level": 2,
+    "start_page": 409,
+    "end_page": 410,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "C.2 Introduction",
+    "level": 2,
+    "start_page": 412,
+    "end_page": 413,
+    "page_count": 2,
+    "is_added_node": true
+  },
+  {
+    "title": "C.3 Introduction",
+    "level": 2,
+    "start_page": 413,
+    "end_page": 414,
+    "page_count": 2,
+    "is_added_node": true
+  }
+]

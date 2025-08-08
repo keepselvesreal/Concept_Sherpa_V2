@@ -1,0 +1,738 @@
+{
+  "analysis_summary": {
+    "total_pairs_analyzed": 138,
+    "pairs_with_content": 81,
+    "expected_introduction_count": 81
+  },
+  "expected_introductions": [
+    {
+      "parent_number": "1",
+      "parent_title": "Flexibility",
+      "child_number": "1.1",
+      "child_title": "OOP design: Classic or classical?",
+      "intro_number": "1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 9
+    },
+    {
+      "parent_number": "1",
+      "parent_title": "Flexibility",
+      "child_number": "1.2",
+      "child_title": "Sources of complexity",
+      "intro_number": "1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "1",
+      "parent_title": "Complexity of object-oriented programming",
+      "child_number": "1.1",
+      "child_title": "OOP design: Classic or classical?",
+      "intro_number": "1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 9
+    },
+    {
+      "parent_number": "1",
+      "parent_title": "Complexity of object-oriented programming",
+      "child_number": "1.2",
+      "child_title": "Sources of complexity",
+      "intro_number": "1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.1",
+      "child_title": "The two parts of a DOP system",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.2",
+      "child_title": "Data entities",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.3",
+      "child_title": "Code modules",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.4",
+      "child_title": "DOP systems are easy to understand",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.5",
+      "child_title": "DOP systems are flexible",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.1",
+      "child_title": "The two parts of a DOP system",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.2",
+      "child_title": "Data entities",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.3",
+      "child_title": "Code modules",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.4",
+      "child_title": "DOP systems are easy to understand",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.5",
+      "child_title": "DOP systems are flexible",
+      "intro_number": "2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 13
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.1",
+      "child_title": "Designing a data model",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.2",
+      "child_title": "Representing records as maps",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.3",
+      "child_title": "Manipulating data with generic functions",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.4",
+      "child_title": "Calculating search results",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.5",
+      "child_title": "Handling records of different types",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.1",
+      "child_title": "Designing a data model",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.2",
+      "child_title": "Representing records as maps",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.3",
+      "child_title": "Manipulating data with generic functions",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.4",
+      "child_title": "Calculating search results",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.5",
+      "child_title": "Handling records of different types",
+      "intro_number": "3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 11
+    },
+    {
+      "parent_number": "6",
+      "parent_title": "Unit tests",
+      "child_number": "6.3",
+      "child_title": "Unit tests for queries",
+      "intro_number": "6.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 2
+    },
+    {
+      "parent_number": "6",
+      "parent_title": "Unit tests",
+      "child_number": "6.4",
+      "child_title": "Unit tests for mutations",
+      "intro_number": "6.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 2
+    },
+    {
+      "parent_number": "9",
+      "parent_title": "Persistent data structures",
+      "child_number": "9.4",
+      "child_title": "Persistent data structures in action",
+      "intro_number": "9.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 2
+    },
+    {
+      "parent_number": "1.1",
+      "parent_title": "OOP design: Classic or classical?",
+      "child_number": "1.1.1",
+      "child_title": "The design phase",
+      "intro_number": "1.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 421
+    },
+    {
+      "parent_number": "1.1",
+      "parent_title": "OOP design: Classic or classical?",
+      "child_number": "1.1.2",
+      "child_title": "UML 101",
+      "intro_number": "1.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 484
+    },
+    {
+      "parent_number": "1.1",
+      "parent_title": "OOP design: Classic or classical?",
+      "child_number": "1.1.3",
+      "child_title": "Explaining each piece of the class diagram",
+      "intro_number": "1.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 550
+    },
+    {
+      "parent_number": "1.1",
+      "parent_title": "OOP design: Classic or classical?",
+      "child_number": "1.1.4",
+      "child_title": "The implementation phase",
+      "intro_number": "1.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 641
+    },
+    {
+      "parent_number": "1.2",
+      "parent_title": "Sources of complexity",
+      "child_number": "1.2.1",
+      "child_title": "Many relations between classes",
+      "intro_number": "1.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 693
+    },
+    {
+      "parent_number": "1.2",
+      "parent_title": "Sources of complexity",
+      "child_number": "1.2.2",
+      "child_title": "Unpredictable code behavior",
+      "intro_number": "1.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 749
+    },
+    {
+      "parent_number": "1.2",
+      "parent_title": "Sources of complexity",
+      "child_number": "1.2.3",
+      "child_title": "Not trivial data serialization",
+      "intro_number": "1.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 793
+    },
+    {
+      "parent_number": "1.2",
+      "parent_title": "Sources of complexity",
+      "child_number": "1.2.4",
+      "child_title": "Complex class hierarchies",
+      "intro_number": "1.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 860
+    },
+    {
+      "parent_number": "6.2",
+      "parent_title": "Unit tests for data manipulation code",
+      "child_number": "6.2.1",
+      "child_title": "The tree of function calls",
+      "intro_number": "6.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 3565
+    },
+    {
+      "parent_number": "6.2",
+      "parent_title": "Unit tests for data manipulation code",
+      "child_number": "6.2.2",
+      "child_title": "Unit tests for functions down the tree",
+      "intro_number": "6.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 3604
+    },
+    {
+      "parent_number": "6.2",
+      "parent_title": "Unit tests for data manipulation code",
+      "child_number": "6.2.3",
+      "child_title": "Unit tests for nodes in the tree",
+      "intro_number": "6.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 3719
+    },
+    {
+      "parent_number": "9.3",
+      "parent_title": "Persistent data structures libraries",
+      "child_number": "9.3.1",
+      "child_title": "Persistent data structures in Java",
+      "intro_number": "9.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 5558
+    },
+    {
+      "parent_number": "9.3",
+      "parent_title": "Persistent data structures libraries",
+      "child_number": "9.3.2",
+      "child_title": "Persistent data structures in JavaScript",
+      "intro_number": "9.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 5601
+    },
+    {
+      "parent_number": "9.4",
+      "parent_title": "Persistent data structures in action",
+      "child_number": "9.4.1",
+      "child_title": "Writing queries with persistent data structures",
+      "intro_number": "9.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 5671
+    },
+    {
+      "parent_number": "9.4",
+      "parent_title": "Persistent data structures in action",
+      "child_number": "9.4.2",
+      "child_title": "Writing mutations with persistent data structures",
+      "intro_number": "9.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 5750
+    },
+    {
+      "parent_number": "9.4",
+      "parent_title": "Persistent data structures in action",
+      "child_number": "9.4.3",
+      "child_title": "Serialization and deserialization",
+      "intro_number": "9.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 5785
+    },
+    {
+      "parent_number": "9.4",
+      "parent_title": "Persistent data structures in action",
+      "child_number": "9.4.4",
+      "child_title": "Structural diff",
+      "intro_number": "9.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 5812
+    },
+    {
+      "parent_number": "A.1",
+      "parent_title": "Principle #1: Separate code from data",
+      "child_number": "A.1.1",
+      "child_title": "Illustration of Principle #1",
+      "intro_number": "A.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 21
+    },
+    {
+      "parent_number": "A.1",
+      "parent_title": "Principle #1: Separate code from data",
+      "child_number": "A.1.2",
+      "child_title": "Benefits of Principle #1",
+      "intro_number": "A.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 86
+    },
+    {
+      "parent_number": "A.1",
+      "parent_title": "Principle #1: Separate code from data",
+      "child_number": "A.1.3",
+      "child_title": "Cost for Principle #1",
+      "intro_number": "A.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 247
+    },
+    {
+      "parent_number": "A.1",
+      "parent_title": "Principle #1: Separate code from data",
+      "child_number": "A.1.4",
+      "child_title": "Summary of Principle #1",
+      "intro_number": "A.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 284
+    },
+    {
+      "parent_number": "A.2",
+      "parent_title": "Principle #2: Represent data with generic data structures",
+      "child_number": "A.2.1",
+      "child_title": "Illustration of Principle #2",
+      "intro_number": "A.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 266
+    },
+    {
+      "parent_number": "A.2",
+      "parent_title": "Principle #2: Represent data with generic data structures",
+      "child_number": "A.2.2",
+      "child_title": "Benefits of Principle #2",
+      "intro_number": "A.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 296
+    },
+    {
+      "parent_number": "A.2",
+      "parent_title": "Principle #2: Represent data with generic data structures",
+      "child_number": "A.2.3",
+      "child_title": "Cost for Principle #2",
+      "intro_number": "A.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 344
+    },
+    {
+      "parent_number": "A.2",
+      "parent_title": "Principle #2: Represent data with generic data structures",
+      "child_number": "A.2.4",
+      "child_title": "Summary of Principle #2",
+      "intro_number": "A.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 428
+    },
+    {
+      "parent_number": "A.3",
+      "parent_title": "Principle #3: Data is immutable",
+      "child_number": "A.3.1",
+      "child_title": "Illustration of Principle #3",
+      "intro_number": "A.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 445
+    },
+    {
+      "parent_number": "A.3",
+      "parent_title": "Principle #3: Data is immutable",
+      "child_number": "A.3.2",
+      "child_title": "Benefits of Principle #3",
+      "intro_number": "A.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 489
+    },
+    {
+      "parent_number": "A.3",
+      "parent_title": "Principle #3: Data is immutable",
+      "child_number": "A.3.3",
+      "child_title": "Cost for Principle #3",
+      "intro_number": "A.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 539
+    },
+    {
+      "parent_number": "A.3",
+      "parent_title": "Principle #3: Data is immutable",
+      "child_number": "A.3.4",
+      "child_title": "Summary of Principle #3",
+      "intro_number": "A.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 557
+    },
+    {
+      "parent_number": "A.4",
+      "parent_title": "Principle #4: Separate data schema from data representation",
+      "child_number": "A.4.1",
+      "child_title": "Illustration of Principle #4",
+      "intro_number": "A.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 560
+    },
+    {
+      "parent_number": "A.4",
+      "parent_title": "Principle #4: Separate data schema from data representation",
+      "child_number": "A.4.2",
+      "child_title": "Benefits of Principle #4",
+      "intro_number": "A.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 622
+    },
+    {
+      "parent_number": "A.4",
+      "parent_title": "Principle #4: Separate data schema from data representation",
+      "child_number": "A.4.3",
+      "child_title": "Cost for Principle #4",
+      "intro_number": "A.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 775
+    },
+    {
+      "parent_number": "A.4",
+      "parent_title": "Principle #4: Separate data schema from data representation",
+      "child_number": "A.4.4",
+      "child_title": "Summary of Principle #4",
+      "intro_number": "A.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 793
+    },
+    {
+      "parent_number": "B.1",
+      "parent_title": "Dynamic getters for string maps",
+      "child_number": "B.1.1",
+      "child_title": "Accessing non-nested map fields with dynamic getters",
+      "intro_number": "B.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 5
+    },
+    {
+      "parent_number": "B.1",
+      "parent_title": "Dynamic getters for string maps",
+      "child_number": "B.1.2",
+      "child_title": "Accessing nested map fields with dynamic getters",
+      "intro_number": "B.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 47
+    },
+    {
+      "parent_number": "B.2",
+      "parent_title": "Value getters for maps",
+      "child_number": "B.2.1",
+      "child_title": "Accessing non-nested map fields with value getters",
+      "intro_number": "B.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 58
+    },
+    {
+      "parent_number": "B.2",
+      "parent_title": "Value getters for maps",
+      "child_number": "B.2.2",
+      "child_title": "Accessing nested map fields with value getters",
+      "intro_number": "B.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 94
+    },
+    {
+      "parent_number": "B.3",
+      "parent_title": "Typed getters for maps",
+      "child_number": "B.3.1",
+      "child_title": "Accessing non-nested map fields with typed getters",
+      "intro_number": "B.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 127
+    },
+    {
+      "parent_number": "B.3",
+      "parent_title": "Typed getters for maps",
+      "child_number": "B.3.2",
+      "child_title": "Accessing nested map fields with typed getters",
+      "intro_number": "B.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 170
+    },
+    {
+      "parent_number": "B.4",
+      "parent_title": "Generic access to class members",
+      "child_number": "B.4.1",
+      "child_title": "Generic access to non-nested class members",
+      "intro_number": "B.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 211
+    },
+    {
+      "parent_number": "B.4",
+      "parent_title": "Generic access to class members",
+      "child_number": "B.4.2",
+      "child_title": "Generic access to nested class members",
+      "intro_number": "B.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 305
+    },
+    {
+      "parent_number": "B.4",
+      "parent_title": "Generic access to class members",
+      "child_number": "B.4.3",
+      "child_title": "Automatic JSON serialization of objects",
+      "intro_number": "B.4.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 371
+    },
+    {
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.2",
+      "child_title": "1981: Values and objects",
+      "intro_number": "C.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 35
+    },
+    {
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.3",
+      "child_title": "2000: Ideal hash trees",
+      "intro_number": "C.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 46
+    },
+    {
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.4",
+      "child_title": "2006: Out of the Tar Pit",
+      "intro_number": "C.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 51
+    },
+    {
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.5",
+      "child_title": "2007: Clojure",
+      "intro_number": "C.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 60
+    },
+    {
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.6",
+      "child_title": "2009: Immutability for all",
+      "intro_number": "C.1.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 68
+    },
+    {
+      "parent_number": "C.2",
+      "parent_title": "DOP principles as best practices",
+      "child_number": "C.2.1",
+      "child_title": "Principle #1: Separate code from data",
+      "intro_number": "C.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 33
+    },
+    {
+      "parent_number": "C.2",
+      "parent_title": "DOP principles as best practices",
+      "child_number": "C.2.2",
+      "child_title": "Principle #2: Represent data with generic data structures",
+      "intro_number": "C.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 40
+    },
+    {
+      "parent_number": "C.2",
+      "parent_title": "DOP principles as best practices",
+      "child_number": "C.2.3",
+      "child_title": "Principle #3: Data is immutable",
+      "intro_number": "C.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 47
+    },
+    {
+      "parent_number": "C.2",
+      "parent_title": "DOP principles as best practices",
+      "child_number": "C.2.4",
+      "child_title": "Principle #4: Separate data schema from data representation",
+      "intro_number": "C.2.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 75
+    },
+    {
+      "parent_number": "C.3",
+      "parent_title": "DOP and other data-related paradigms",
+      "child_number": "C.3.1",
+      "child_title": "Data-oriented design",
+      "intro_number": "C.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 31
+    },
+    {
+      "parent_number": "C.3",
+      "parent_title": "DOP and other data-related paradigms",
+      "child_number": "C.3.2",
+      "child_title": "Data-driven programming",
+      "intro_number": "C.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 37
+    },
+    {
+      "parent_number": "C.3",
+      "parent_title": "DOP and other data-related paradigms",
+      "child_number": "C.3.3",
+      "child_title": "Data-oriented programming (DOP)",
+      "intro_number": "C.3.0",
+      "intro_title": "Introduction (사용자 추가)",
+      "content_lines": 42
+    }
+  ]
+}

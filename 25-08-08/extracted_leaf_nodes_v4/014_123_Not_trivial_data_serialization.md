@@ -1,0 +1,75 @@
+#### 1.2.3 Not trivial data serialization
+
+Theo is really tired, and he falls asleep at his desk. He’s having dream. In his dream, Nancy
+asks him to make Klafim’s Library Management System accessible via a REST API using
+JSON as a transport layer. Theo has to implement a /search endpoint that receives a
+query in JSON format and returns the results in JSON format. Listing 1.3 shows an input
+example of the /search endpoint, and listing 1.4 shows an output example of the /search
+endpoint.
+Listing1.3 A JSON input of the /search endpoint
+{
+"searchCriteria": "author",
+"query": "albert"
+}
+Listing1.4 A JSON output of the /search endpoint
+[
+{
+"title": "The world as I see it",
+"authors": [
+{
+"fullName": "Albert Einstein"
+}
+]
+},
+{
+"title": "The Stranger",
+"authors": [
+{
+"fullName": "Albert Camus"
+}
+]
+}
+]
+
+## 페이지 47
+
+1.2 Sources of complexity 19
+Theo would probably implement the /search endpoint by creating three classes simi-
+larly to what is shown in the following list and in figure 1.14. (Not surprisingly, every-
+thing in OOP has to be wrapped in a class. Right?)
+ SearchController is responsible for handling the query.
+ SearchQuery converts the JSON query string into data.
+ SearchResult converts the search result data into a JSON string.
+C SearchController
+String handle(searchQuery: String)
+C SearchQuery
+C SearchResult
+C Catalog
+searchCriteria: String
+SearchResult(books: List<Book>)
+List<Book> search(searchCriteria, queryStr) query: String
+String toJSON()
+SearchQuery(jsonString: String)
+* *
+C Book
+id : String
+title : String
+Figure 1.14 The class diagram for SearchController
+The SearchController (see figure 1.14) would have a single handle method with the
+following flow:
+ Creates a SearchQuery object from the JSON query string.
+ Retrieves searchCriteria and queryStr from the SearchQuery object.
+ Calls the search method of the catalog:Catalog with searchCriteria and
+queryStr and receives books:List<Book>.
+ Creates a SearchResult object with books.
+ Converts the SearchResult object to a JSON string.
+What about other endpoints, for instance, those allowing librarians to add book items
+through /add-book-item? Theo would have to repeat the exact same process and cre-
+ate three classes:
+ AddBookItemController to handle the query
+ BookItemQuery to convert the JSON query string into data
+ BookItemResult to convert the search result data into a JSON string
+The code that deals with JSON deserialization that Theo wrote previously in Search-
+Query would have to be rewritten in BookItemQuery. Same thing for the code that
+deals with JSON serialization he wrote previously in SearchResult; it would have to be
+rewritten in BookItemResult.

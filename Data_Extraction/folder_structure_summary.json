@@ -1,0 +1,1279 @@
+{
+  "root_folder": "Data-Oriented Programming",
+  "total_nodes": 239,
+  "internal_nodes": 168,
+  "leaf_nodes": 71,
+  "folder_structure": {
+    "title": "Data-Oriented Programming",
+    "type": "node0",
+    "is_leaf": false,
+    "children": [
+      {
+        "title": "Part 1—Flexibility",
+        "type": "node1",
+        "is_leaf": false,
+        "children": [
+          {
+            "title": "1.0 Introduction (사용자 추가)",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "1 Complexity of object-oriented programming",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "1.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "1.1 OOP design: Classic or classical?",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "1.1.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "1.1.1 The design phase",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "1.1.2 UML 101",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "1.1.3 Explaining each piece of the class diagram",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "1.1.4 The implementation phase",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "1.2 Sources of complexity",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "1.2.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "1.2.1 Many relations between classes",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "1.2.2 Unpredictable code behavior",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "1.2.3 Not trivial data serialization",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "1.2.4 Complex class hierarchies",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "2 Separation between code and data",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "2.1 The two parts of a DOP system",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "2.2 Data entities",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "2.3 Code modules",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "2.4 DOP systems are easy to understand",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "2.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "2.5 DOP systems are flexible",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "3 Basic data manipulation",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "3.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "3.1 Designing a data model",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "3.2 Representing records as maps",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "3.3 Manipulating data with generic functions",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "3.4 Calculating search results",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "3.5 Handling records of different types",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "4 State management",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "4.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "4.1 Multiple versions of the system data",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "4.2 Structural sharing",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "4.3 Implementing structural sharing",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "4.4 Data safety",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "4.5 The commit phase of a mutation",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "4.6 Ensuring system state integrity",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "4.7 Restoring previous states",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "5 Basic concurrency control",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "5.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "5.1 Optimistic concurrency control",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "5.2 Reconciliation between concurrent mutations",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "5.3 Reducing collections",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "5.4 Structural difference",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "5.5 Implementing the reconciliation algorithm",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "6 Unit tests",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "6.1 The simplicity of data-oriented test cases",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "6.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "6.2 Unit tests for data manipulation code",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "6.2.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "6.2.1 The tree of function calls",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "6.2.2 Unit tests for functions down the tree",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "6.2.3 Unit tests for nodes in the tree",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "6.3 Unit tests for queries",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "6.4 Unit tests for mutations",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Moving forward",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part 2—Scalability",
+        "type": "node1",
+        "is_leaf": false,
+        "children": [
+          {
+            "title": "2.0 Introduction (사용자 추가)",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "7 Basic data validation",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "7.1 Data validation in DOP",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "7.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "7.2 JSON Schema in a nutshell",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "7.3 Schema flexibility and strictness",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "7.4 Schema composition",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "7.5 Details about data validation failures",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "8 Advanced concurrency control",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "8.1 The complexity of locks",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "8.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "8.2 Thread-safe counter with atoms",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "8.3 Thread-safe cache with atoms",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "8.4 State management with atoms",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "9 Persistent data structures",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "9.1 The need for persistent data structures",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "9.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "9.2 The efficiency of persistent data structures",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "9.3 Persistent data structures libraries",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "9.3.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "9.3.1 Persistent data structures in Java",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "9.3.2 Persistent data structures in JavaScript",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "9.4 Persistent data structures in action",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "9.4.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "9.4.1 Writing queries with persistent data structures",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "9.4.2 Writing mutations with persistent data structures",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "9.4.3 Serialization and deserialization",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "9.4.4 Structural diff",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "10 Database operations",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "10.1 Fetching data from the database",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "10.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "10.2 Storing data in the database",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "10.3 Simple data manipulation",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "10.4 Advanced data manipulation",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "11 Web services",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "11.1 Another feature request",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "11.2 Building the insides like the outsides",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "11.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "11.3 Representing a client request as a map",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "11.4 Representing a server response as a map",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "11.5 Passing information forward",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "11.6 Search result enrichment in action",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Delivering on time",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Part 3—Maintainability",
+        "type": "node1",
+        "is_leaf": false,
+        "children": [
+          {
+            "title": "3.0 Introduction (사용자 추가)",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "12 Advanced data validation",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "12.1 Function arguments validation",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "12.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "12.2 Return value validation",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "12.3 Advanced data validation",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "12.4 Automatic generation of data model diagrams",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "12.5 Automatic generation of schema-based unit tests",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "12.6 A new gift",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "13 Polymorphism",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "13.1 The essence of polymorphism",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "13.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "13.2 Multimethods with single dispatch",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "13.3 Multimethods with multiple dispatch",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "13.4 Multimethods with dynamic dispatch",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "13.5 Integrating multimethods in a production system",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "14 Advanced data manipulation",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "14.1 Updating a value in a map with eloquence",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "14.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "14.2 Manipulating nested data",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "14.3 Using the best tool for the job",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "14.4 Unwinding at ease",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "15 Debugging",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "15.1 Determinism in programming",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "15.0 Introduction (사용자 추가)",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "15.2 Reproducibility with numbers and strings",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "15.3 Reproducibility with any data",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "15.4 Unit tests",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "15.5 Dealing with external data sources",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Farewell",
+                "type": "node3",
+                "is_leaf": false
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Appendices",
+        "type": "node1",
+        "is_leaf": false,
+        "children": [
+          {
+            "title": "Appendix A—Principles of data-oriented programming",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "A.1 Principle #1: Separate code from data",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "A.1.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.1.1 Illustration of Principle #1",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.1.2 Benefits of Principle #1",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.1.3 Cost for Principle #1",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.1.4 Summary of Principle #1",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "A.2 Principle #2: Represent data with generic data structures",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "A.2.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.2.1 Illustration of Principle #2",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.2.2 Benefits of Principle #2",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.2.3 Cost for Principle #2",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.2.4 Summary of Principle #2",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "A.3 Principle #3: Data is immutable",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "A.3.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.3.1 Illustration of Principle #3",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.3.2 Benefits of Principle #3",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.3.3 Cost for Principle #3",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.3.4 Summary of Principle #3",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "A.4 Principle #4: Separate data schema from data representation",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "A.4.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.4.1 Illustration of Principle #4",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.4.2 Benefits of Principle #4",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.4.3 Cost for Principle #4",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "A.4.4 Summary of Principle #4",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "Conclusion",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "Appendix B—Generic data access in statically-typed languages",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "B.1 Dynamic getters for string maps",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "B.1.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.1.1 Accessing non-nested map fields with dynamic getters",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.1.2 Accessing nested map fields with dynamic getters",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "B.2 Value getters for maps",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "B.2.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.2.1 Accessing non-nested map fields with value getters",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.2.2 Accessing nested map fields with value getters",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "B.3 Typed getters for maps",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "B.3.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.3.1 Accessing non-nested map fields with typed getters",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.3.2 Accessing nested map fields with typed getters",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "B.4 Generic access to class members",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "B.4.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.4.1 Generic access to non-nested class members",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.4.2 Generic access to nested class members",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "B.4.3 Automatic JSON serialization of objects",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "Appendix C—Data-oriented programming: A link in the chain of programming paradigms",
+            "type": "node2",
+            "is_leaf": false,
+            "children": [
+              {
+                "title": "C.1 Time line",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "C.1.1 1958: Lisp",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.1.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.1.2 1981: Values and objects",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.1.3 2000: Ideal hash trees",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.1.4 2006: Out of the Tar Pit",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.1.5 2007: Clojure",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.1.6 2009: Immutability for all",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "C.2 DOP principles as best practices",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "C.2.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.2.1 Principle #1: Separate code from data",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.2.2 Principle #2: Represent data with generic data structures",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.2.3 Principle #3: Data is immutable",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.2.4 Principle #4: Separate data schema from data representation",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "C.3 DOP and other data-related paradigms",
+                "type": "node3",
+                "is_leaf": false,
+                "children": [
+                  {
+                    "title": "C.3.0 Introduction (사용자 추가)",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.3.1 Data-oriented design",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.3.2 Data-driven programming",
+                    "type": "node4",
+                    "is_leaf": true
+                  },
+                  {
+                    "title": "C.3.3 Data-oriented programming (DOP)",
+                    "type": "node4",
+                    "is_leaf": true
+                  }
+                ]
+              },
+              {
+                "title": "Summary",
+                "type": "node3",
+                "is_leaf": false
+              }
+            ]
+          },
+          {
+            "title": "Appendix D—Lodash reference",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "A",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "B",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "C",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "D",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "E",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "F",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "G",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "H",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "I",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "J",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "K",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "L",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "M",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "N",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "O",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "P",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "Q",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "R",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "S",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "T",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "U",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "V",
+            "type": "node2",
+            "is_leaf": false
+          },
+          {
+            "title": "W",
+            "type": "node2",
+            "is_leaf": false
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,305 @@
+# PDF 페이지에서 추출한 목차
+추출 시간: 2025-08-07 11:28:43 KST
+
+=== 페이지 6 ===
+For online information and ordering of this and other Manning books, please visit
+www.manning.com. The publisher offers discounts on this book when ordered in quantity.
+For more information, please contact
+Special Sales Department
+Manning Publications Co.
+20 Baldwin Road
+PO Box 761
+Shelter Island, NY 11964
+Email: orders@manning.com
+©2022 by Manning Publications Co. All rights reserved.
+No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in
+any form or by means electronic, mechanical, photocopying, or otherwise, without prior written
+permission of the publisher.
+Many of the designations used by manufacturers and sellers to distinguish their products are
+claimed as trademarks. Where those designations appear in the book, and Manning Publications
+was aware of a trademark claim, the designations have been printed in initial caps or all caps.
+Recognizing the importance of preserving what has been written, it is Manning’s policy to have
+the books we publish printed on acid-free paper, and we exert our best efforts to that end.
+Recognizing also our responsibility to conserve the resources of our planet, Manning books
+are printed on paper that is at least 15 percent recycled and processed without the use of
+elemental chlorine.
+The author and publisher have made every effort to ensure that the information in this book
+was correct at press time. The author and publisher do not assume and hereby disclaim any
+liability to any party for any loss, damage, or disruption caused by errors or omissions, whether
+such errors or omissions result from negligence, accident, or any other cause, or from any usage
+of the information herein.
+Manning Publications Co. Development editor: Elesha Hyde
+20 Baldwin Road Technical development editor: Marius Butuc
+PO Box 761 Review editors: Aleksandar Dragosavljevic´
+Shelter Island, NY 11964 Production editor: Andy Marinkovich
+Copy editor: Frances Buran
+Proofreader: Keri Hales
+Technical proofreader: Karsten Strøbaek
+Typesetter: Dennis Dalinnik
+Cover designer: Marija Tudor
+ISBN: 9781617298578
+Printed in the United States of America
+
+=== 페이지 8 ===
+brief contents
+PART 1 FLEXIBILITY..................................................................1
+1 ■ Complexity of object-orientedprogramming 3
+2 ■ Separation between code and data 26
+3 ■ Basic data manipulation 43
+4 ■ State management 71
+5 ■ Basic concurrency control 91
+6 ■ Unit tests 110
+PART 2 SCALABILITY .............................................................137
+7 ■ Basic data validation 141
+8 ■ Advanced concurrency control 163
+9 ■ Persistent data structures 175
+10 ■ Database operations 197
+11 ■ Web services 220
+vvii
+
+=== 페이지 9 ===
+BRIEF CONTENTS vii
+PART 3 MAINTAINABILITY......................................................245
+12 ■ Advanced data validation 247
+13 ■ Polymorphism 272
+14 ■ Advanced data manipulation 295
+15 ■ Debugging 311
+
+=== 페이지 10 ===
+contents
+forewords xiii
+preface xvii
+acknowledgments xviii
+about this book xx
+about the author xxiv
+about the cover illustration xxv
+dramatis personae xxvi
+PART 1 FLEXIBILITY........................................................1
+1 Complexity of object-oriented programming 3
+1.1 OOP design: Classic or classical? 4
+The design phase 4 ■ UML 101 6 ■ Explaining each piece of
+the class diagram 9 ■ The implementation phase 12
+1.2 Sources of complexity 13
+Many relations between classes 14 ■ Unpredictable code
+behavior 16 ■ Not trivial data serialization 18
+Complex class hierarchies 20
+2 Separation between code and data 26
+2.1 The two parts of a DOP system 27
+2.2 Data entities 29
+viii
+
+=== 페이지 11 ===
+CONTENTS ix
+2.3 Code modules 31
+2.4 DOP systems are easy to understand 36
+2.5 DOP systems are flexible 38
+3 Basic data manipulation 43
+3.1 Designing a data model 44
+3.2 Representing records as maps 48
+3.3 Manipulating data with generic functions 54
+3.4 Calculating search results 58
+3.5 Handling records of different types 65
+4 State management 71
+4.1 Multiple versions of the system data 72
+4.2 Structural sharing 74
+4.3 Implementing structural sharing 80
+4.4 Data safety 82
+4.5 The commit phase of a mutation 83
+4.6 Ensuring system state integrity 85
+4.7 Restoring previous states 86
+5 Basic concurrency control 91
+5.1 Optimistic concurrency control 92
+5.2 Reconciliation between concurrent mutations 94
+5.3 Reducing collections 97
+5.4 Structural difference 99
+5.5 Implementing the reconciliation algorithm 106
+6 Unit tests 110
+6.1 The simplicity of data-oriented test cases 110
+6.2 Unit tests for data manipulation code 112
+The tree of function calls 113 ■ Unit tests for functions down
+the tree 115 ■ Unit tests for nodes in the tree 119
+6.3 Unit tests for queries 121
+6.4 Unit tests for mutations 126
+
+=== 페이지 12 ===
+x CONTENTS
+PART 2 SCALABILITY....................................................137
+7 Basic data validation 141
+7.1 Data validation in DOP 142
+7.2 JSON Schema in a nutshell 143
+7.3 Schema flexibility and strictness 149
+7.4 Schema composition 154
+7.5 Details about data validation failures 158
+8 Advanced concurrency control 163
+8.1 The complexity of locks 164
+8.2 Thread-safe counter with atoms 165
+8.3 Thread-safe cache with atoms 170
+8.4 State management with atoms 172
+9 Persistent data structures 175
+9.1 The need for persistent data structures 175
+9.2 The efficiency of persistent data structures 178
+9.3 Persistent data structures libraries 184
+Persistent data structures in Java 184 ■ Persistent data structures
+in JavaScript 186
+9.4 Persistent data structures in action 188
+Writing queries with persistent data structures 188 ■ Writing
+mutations with persistent data structures 191 ■ Serialization and
+deserialization 192 ■ Structural diff 193
+10 Database operations 197
+10.1 Fetching data from the database 198
+10.2 Storing data in the database 204
+10.3 Simple data manipulation 207
+10.4 Advanced data manipulation 211
+11 Web services 220
+11.1 Another feature request 221
+11.2 Building the insides like the outsides 222
+11.3 Representing a client request as a map 225
+
+=== 페이지 13 ===
+CONTENTS xi
+11.4 Representing a server response as a map 227
+11.5 Passing information forward 231
+11.6 Search result enrichment in action 234
+PART 3 MAINTAINABILITY............................................245
+12 Advanced data validation 247
+12.1 Function arguments validation 248
+12.2 Return value validation 255
+12.3 Advanced data validation 257
+12.4 Automatic generation of data model diagrams 260
+12.5 Automatic generation of schema-based unit tests 262
+12.6 A new gift 269
+13 Polymorphism 272
+13.1 The essence of polymorphism 273
+13.2 Multimethods with single dispatch 277
+13.3 Multimethods with multiple dispatch 281
+13.4 Multimethods with dynamic dispatch 286
+13.5 Integrating multimethods in a production system 289
+14 Advanced data manipulation 295
+14.1 Updating a value in a map with eloquence 296
+14.2 Manipulating nested data 299
+14.3 Using the best tool for the job 301
+14.4 Unwinding at ease 305
+15 Debugging 311
+15.1 Determinism in programming 312
+15.2 Reproducibility with numbers and strings 314
+15.3 Reproducibility with any data 318
+15.4 Unit tests 321
+15.5 Dealing with external data sources 329
+
+=== 페이지 14 ===
+xii CONTENTS
+appendix A Principles of data-oriented programming 333
+appendix B Generic data access in statically-typed languages 364
+appendix C Data-oriented programming: A link in the chain of programming
+paradigms 381
+appendix D Lodash reference 387
+index 391
+
+=== 페이지 15 ===
+forewords
+Every programming principle, every design method, every architecture style, and even
+most language features are about organizing complexity while allowing adaptation.
+Two characteristics—immutable data and turning parts of the program into data
+inside the program itself—drew me to Clojure in 2009 and more recently to Yehona-
+than Sharvit’s Data-Oriented Programming.
+In 2005, I worked on one of my favorite projects with some of my favorite people.
+It was a Java project, but we did two things that were not common practice in the Java
+world at that time. First, we made our core data values immutable. It wasn’t easy but it
+worked extraordinarily well. We hand-rolled clone and deepClone methods in many
+classes. The payoff was huge. Just as one example, suppose you need template docu-
+ments for users to instantiate. When you can make copies of entire object trees, the
+objects themselves don’t need to “know” whether they are template data or instance
+data. That decision is up to whatever object holds the reference. Another big benefit
+came from comparison: when values are immutable, equality of identity indicates
+equality of value. This can make for very fast equality checks.
+Our second technique was to take advantage of generic data—though not to the
+extent Yehonathan will show you in this book. Where one layer had a hierarchy of
+classes, its adjoining layer would represent those as instances of a more general class.
+What would be a member variable in one layer would be described by a field in a map
+in another layer. I am certain this style was influenced by the several small talkers on
+our team. It also paid off immediately, as we were able to compose and recompose
+objects in different configurations.
+xiii
+
+=== 페이지 17 ===
+FOREWORDS xv
+This book hit me at just the right time. I had been building web apps for nearly 20
+years in an object-oriented framework. I never considered myself an expert program-
+mer, but I knew my tools well enough to look at a typical business problem, sketch out
+a data model, and build an MVC-style app to get the job done.
+Projects were thrilling at the start. I loved the feeling of plugging pieces together
+and seeing the app come to life. But once I got it working, I ran into problems. I
+couldn’t change one part without keeping all the other models in mind. I knew I
+should write tests, but I had to set up so much state to test things that it didn’t feel
+worth it—I didn’t want to write more code that would be hard to change. Even run-
+ning bits of code in the console was tedious because I had to create database state to
+call the method. I thought I was probably doing it wrong, but the solutions I knew
+about, such as sophisticated testing frameworks, seemed to add to the complexity
+instead of making things easier.
+Then one day, I saw a talk on YouTube by Rich Hickey, the creator of Clojure. He
+was explaining functional programming and contrasting it with OO, which he deri-
+sively called “place-oriented programming.” I wasn’t sure if he was right, but I heard a
+hidden message that intrigued me: “It’s not you, it’s your language.” I watched all the
+videos I could find and started to think Clojure might be the answer.
+Years went by. I kept watching Clojure videos and trying to apply functional princi-
+ples when I could. But whenever it was time to start on a new project, I fell back on my
+familiar framework. Changing to another language with a totally different ecosystem
+of libraries was too big of a leap.
+Then, just as I was about to start work on a new product, I found this book. The
+words “Data-Oriented” in the title rang a bell. I heard programmers in those Clojure
+videos use the words before, but I hadn’t really understood what they meant. Some-
+thing about how it’s easier to build systems that manipulate data literals (like maps
+and arrays) instead of custom objects. The languages I knew had good support for
+data literals, so I thought I might learn something to hold me over until that magical
+day when I might switch to Clojure.
+My first a-ha moment came right in the introduction. In the first few pages, Yehona-
+than explains that, though he’s written Clojure for 10 years, the book isn’t language-
+specific, and the examples will be in JavaScript. Wait!—I thought. Could it really be
+that I don’t have to change languages to deeply improve the way I write programs?
+I was so excited by this prospect that I devoured the book in one sitting. My eyes
+opened to something that had been right in front of me all along. Of course my code
+was hard to test! Because of the ORM I used, all my functionality was written in objects
+that assumed a bunch of database state! When I saw it spelled out with examples in the
+book, I couldn’t unsee it. I didn’t need a new language, I just needed to approach pro-
+gramming differently!
+The designers I consider great all point to the same thing: good design is about
+pulling things apart. It’s not just about getting the code to work, no matter how ugly.
+
+=== 페이지 18 ===
+xvi FOREWORDS
+It’s about untangling the parts from each other so you can change one thing without
+breaking everything else.
+This book pulls apart code and data, with surprising and exciting results. For me, it
+also went further. It pulled apart a way of programming from a specific language. I might
+never make that switch to Clojure, and I don’t feel like I have to anymore. Data-
+Oriented Programming helped me see new possibilities in the languages I know and the
+multitude of new frameworks appearing every day.
+—RYAN SINGER
+author of Shape Up: Stop Running
+in Circles and Ship Work that Matters
+
+=== 페이지 20 ===
+acknowledgments
+First and foremost, I want to thank my beloved, Karine. You believed in me since the
+beginning of this project. You always manage to see the light, even when it hides
+behind several layers of darkness. To my wonderful children, Odaya, Orel, Advah,
+Nehoray, and Yair, who were the first audience for the stories I invented when I was a
+young daddy. You are the most beautiful story I ever wrote!
+There are numerous other folks to whom I want to also extend my thanks, includ-
+ing Joel Klein, for all the fascinating and enriching discussions on the art and the soul;
+to Meir Armon for helping me clarify what content should not be included in the
+book; to Rich Hickey for inventing Clojure, such a beautiful language, which embraced
+data-oriented programming before it even had a name; to Christophe Grand, whose
+precious advice helped me to distill the first three principles of data-oriented pro-
+gramming; to Mark Champine, for reviewing the manuscript so carefully and provid-
+ing many valuable suggestions; to Eric Normand, for your encouragement and, in
+particular, your advice on the application of data-oriented programming in Java; to
+Bert Bates, for teaching me the secrets of writing a good book; and to Ben Button, for
+reviewing the chapters that deal with JSON Schema.
+My thanks to all the folks at Manning Publications, especially Mike Stephens, for
+agreeing to continue working with me despite the failure of my first book; Elesha
+Hyde, for your availability and your attention to the smallest details; Marius Butuc, for
+your enthusiastic positive feedback from reading the first chapter; Linda Kotlyarsky,
+for formulating the chapter descriptions in such a fun way; and to Frances Buran for
+improving the clarity of the text and the flow of the story.
+xviii

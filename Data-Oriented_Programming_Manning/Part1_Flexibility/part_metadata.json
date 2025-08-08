@@ -1,0 +1,43 @@
+{
+  "part_name": "Part1_Flexibility",
+  "part_title": "Flexibility",
+  "chapters_count": 6,
+  "chapters": [
+    {
+      "chapter_num": 1,
+      "title": "Complexity of object-oriented programming",
+      "subtitle": "A capricious entrepreneur",
+      "page_range": "31-53"
+    },
+    {
+      "chapter_num": 2,
+      "title": "Separation between code and data",
+      "subtitle": "A whole new world",
+      "page_range": "54-70"
+    },
+    {
+      "chapter_num": 3,
+      "title": "Basic data manipulation",
+      "subtitle": "Meditation and programming",
+      "page_range": "71-98"
+    },
+    {
+      "chapter_num": 4,
+      "title": "State management",
+      "subtitle": "Time travel",
+      "page_range": "99-118"
+    },
+    {
+      "chapter_num": 5,
+      "title": "Basic concurrency control",
+      "subtitle": "Conflicts at home",
+      "page_range": "119-137"
+    },
+    {
+      "chapter_num": 6,
+      "title": "Unit tests",
+      "subtitle": "Programming at a coffee shop",
+      "page_range": "138-168"
+    }
+  ]
+}
