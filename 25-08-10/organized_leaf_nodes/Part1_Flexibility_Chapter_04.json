@@ -1,0 +1,58 @@
+[
+  {
+    "id": 34,
+    "title": "4 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 35,
+    "title": "4.1 Multiple versions of the system data",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 36,
+    "title": "4.2 Structural sharing",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 37,
+    "title": "4.3 Implementing structural sharing",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 38,
+    "title": "4.4 Data safety",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 39,
+    "title": "4.5 The commit phase of a mutation",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 40,
+    "title": "4.6 Ensuring system state integrity",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 41,
+    "title": "4.7 Restoring previous states",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

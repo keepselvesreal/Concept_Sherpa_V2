@@ -1,0 +1,37 @@
+[
+  {
+    "id": 66,
+    "title": "7 Introduction",
+    "level": 2
+  },
+  {
+    "id": 67,
+    "title": "7.1 Data validation in DOP",
+    "level": 2
+  },
+  {
+    "id": 68,
+    "title": "7.2 JSON Schema in a nutshell",
+    "level": 2
+  },
+  {
+    "id": 69,
+    "title": "7.3 Schema flexibility and strictness",
+    "level": 2
+  },
+  {
+    "id": 70,
+    "title": "7.4 Schema composition",
+    "level": 2
+  },
+  {
+    "id": 71,
+    "title": "7.5 Details about data validation failures",
+    "level": 2
+  },
+  {
+    "id": 72,
+    "title": "Summary",
+    "level": 2
+  }
+]

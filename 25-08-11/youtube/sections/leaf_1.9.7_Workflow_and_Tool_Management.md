@@ -1,0 +1,7 @@
+### 1.9.7 Workflow and Tool Management
+
+**Question**: I got a couple questions. When it comes to vibe coding I have two different workflows. I have one where I'm in my terminal and then I have one when I'm in VS Code or Cursor. Which workflow do you use and if you're using Claude Code in the terminal how often do you compact? Because what I find is my functions will get a new name as the longer I vibe code or things kind of go off the rails the longer I go and if I compact it still happens if I create a document to kind of guide it I still have to get it back on track.
+
+**Eric**: Yeah. Great question. I do both. I often code with Claude Code open in my terminal and VS Code. And I'd say that Claude Code is doing most of the editing and I'm reviewing the code as I go in VS Code, which is not true vibe coding in the sense here. Or maybe I'm reviewing just the tests from it.
+
+I like to compact or just start a new session whenever I get Claude to a good stopping point where it feels like, okay, as a human programmer, when would I stop and take a break and maybe go get lunch and then come back. If I feel like I'm at that stage, that's a good time to compact. So maybe I'll start off with having Claude find all the relevant files and make a plan and then I'll say okay write all this into a document and then I'll compact and that gets rid of 100k tokens that it took to create that plan and find all these files and boils it down to a few thousand tokens.

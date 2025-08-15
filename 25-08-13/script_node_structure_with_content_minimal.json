@@ -1,0 +1,86 @@
+[
+  {
+    "id": 2,
+    "title": "Introduction and Overview"
+  },
+  {
+    "id": 3,
+    "title": "Core Questions"
+  },
+  {
+    "id": 4,
+    "title": "Beyond Benchmark Regurgitation"
+  },
+  {
+    "id": 5,
+    "title": "Model Evaluation Framework"
+  },
+  {
+    "id": 6,
+    "title": "Why Agents Matter"
+  },
+  {
+    "id": 7,
+    "title": "Initial Surprising Results"
+  },
+  {
+    "id": 8,
+    "title": "Testing Scenarios and Results"
+  },
+  {
+    "id": 9,
+    "title": "Multi-Model Evaluation System"
+  },
+  {
+    "id": 10,
+    "title": "Prompt Orchestration Technique"
+  },
+  {
+    "id": 11,
+    "title": "Technical Implementation Details"
+  },
+  {
+    "id": 12,
+    "title": "Command Structure"
+  },
+  {
+    "id": 13,
+    "title": "Grading System"
+  },
+  {
+    "id": 14,
+    "title": "Real-Time Results Processing"
+  },
+  {
+    "id": 15,
+    "title": "On-Device Model Performance"
+  },
+  {
+    "id": 16,
+    "title": "Local Model Capabilities"
+  },
+  {
+    "id": 17,
+    "title": "Detailed Test Results"
+  },
+  {
+    "id": 18,
+    "title": "File Operations Test"
+  },
+  {
+    "id": 20,
+    "title": "Performance Analysis"
+  },
+  {
+    "id": 21,
+    "title": "Breakthrough Week Assessment"
+  },
+  {
+    "id": 22,
+    "title": "Key Insights"
+  },
+  {
+    "id": 23,
+    "title": "Future Outlook"
+  }
+]

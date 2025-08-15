@@ -1,0 +1,373 @@
+[
+  {
+    "id": 1,
+    "title": "Part 1 Introduction",
+    "level": 1,
+    "start_text": "Part 1\nFlexibility",
+    "end_text": "Complexity of object-\noriented programming"
+  },
+  {
+    "id": 3,
+    "title": "1 Introduction",
+    "level": 2,
+    "start_text": "Complexity of object-\noriented programming",
+    "end_text": "1.1 OOP design: Classic or classical?"
+  },
+  {
+    "id": 5,
+    "title": "1.1 Introduction",
+    "level": 3,
+    "start_text": "1.1 OOP design: Classic or classical?",
+    "end_text": "1.1.1 The design phase"
+  },
+  {
+    "id": 6,
+    "title": "1.1.1 The design phase",
+    "level": 3,
+    "start_text": "1.1.1 The design phase",
+    "end_text": "1.1.2 UML 101"
+  },
+  {
+    "id": 7,
+    "title": "1.1.2 UML 101",
+    "level": 3,
+    "start_text": "1.1.2 UML 101",
+    "end_text": "1.1.3 Explaining each piece of the class diagram"
+  },
+  {
+    "id": 8,
+    "title": "1.1.3 Explaining each piece of the class diagram",
+    "level": 3,
+    "start_text": "1.1.3 Explaining each piece of the class diagram",
+    "end_text": "1.1.4 The implementation phase"
+  },
+  {
+    "id": 9,
+    "title": "1.1.4 The implementation phase",
+    "level": 3,
+    "start_text": "1.1.4 The implementation phase",
+    "end_text": "1.2 Sources of complexity"
+  },
+  {
+    "id": 11,
+    "title": "1.2 Introduction",
+    "level": 3,
+    "start_text": "1.2 Sources of complexity",
+    "end_text": "1.2.1 Many relations between classes"
+  },
+  {
+    "id": 12,
+    "title": "1.2.1 Many relations between classes",
+    "level": 3,
+    "start_text": "1.2.1 Many relations between classes",
+    "end_text": "1.2.2 Unpredictable code behavior"
+  },
+  {
+    "id": 13,
+    "title": "1.2.2 Unpredictable code behavior",
+    "level": 3,
+    "start_text": "1.2.2 Unpredictable code behavior",
+    "end_text": "1.2.3 Not trivial data serialization"
+  },
+  {
+    "id": 14,
+    "title": "1.2.3 Not trivial data serialization",
+    "level": 3,
+    "start_text": "1.2.3 Not trivial data serialization",
+    "end_text": "1.2.4 Complex class hierarchies"
+  },
+  {
+    "id": 15,
+    "title": "1.2.4 Complex class hierarchies",
+    "level": 3,
+    "start_text": "1.2.4 Complex class hierarchies",
+    "end_text": "Summary"
+  },
+  {
+    "id": 16,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "Summary",
+    "end_text": "2 Separation between code and data"
+  },
+  {
+    "id": 18,
+    "title": "2 Introduction",
+    "level": 2,
+    "start_text": "2 Separation between code and data",
+    "end_text": "2.1 The two parts of a DOP system"
+  },
+  {
+    "id": 19,
+    "title": "2.1 The two parts of a DOP system",
+    "level": 2,
+    "start_text": "2.1 The two parts of a DOP system",
+    "end_text": "2.2 Data entities"
+  },
+  {
+    "id": 20,
+    "title": "2.2 Data entities",
+    "level": 2,
+    "start_text": "2.2 Data entities",
+    "end_text": "2.3 Code modules"
+  },
+  {
+    "id": 21,
+    "title": "2.3 Code modules",
+    "level": 2,
+    "start_text": "2.3 Code modules",
+    "end_text": "2.4 DOP systems are easy to understand"
+  },
+  {
+    "id": 22,
+    "title": "2.4 DOP systems are easy to understand",
+    "level": 2,
+    "start_text": "2.4 DOP systems are easy to understand",
+    "end_text": "2.5 DOP systems are flexible"
+  },
+  {
+    "id": 23,
+    "title": "2.5 DOP systems are flexible",
+    "level": 2,
+    "start_text": "2.5 DOP systems are flexible",
+    "end_text": "Summary"
+  },
+  {
+    "id": 24,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "Summary",
+    "end_text": "3 Basic data manipulation"
+  },
+  {
+    "id": 26,
+    "title": "3 Introduction",
+    "level": 2,
+    "start_text": "3 Basic data manipulation",
+    "end_text": "3.1 Designing a data model"
+  },
+  {
+    "id": 27,
+    "title": "3.1 Designing a data model",
+    "level": 2,
+    "start_text": "3.1 Designing a data model",
+    "end_text": "3.2 Representing records as maps"
+  },
+  {
+    "id": 28,
+    "title": "3.2 Representing records as maps",
+    "level": 2,
+    "start_text": "3.2 Representing records as maps",
+    "end_text": "3.3 Manipulating data with generic functions"
+  },
+  {
+    "id": 29,
+    "title": "3.3 Manipulating data with generic functions",
+    "level": 2,
+    "start_text": "3.3 Manipulating data with generic functions",
+    "end_text": "3.4 Calculating search results"
+  },
+  {
+    "id": 30,
+    "title": "3.4 Calculating search results",
+    "level": 2,
+    "start_text": "3.4 Calculating search results",
+    "end_text": "3.5 Handling records of different types"
+  },
+  {
+    "id": 31,
+    "title": "3.5 Handling records of different types",
+    "level": 2,
+    "start_text": "3.5 Handling records of different types",
+    "end_text": "Summary"
+  },
+  {
+    "id": 32,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "Summary",
+    "end_text": "4 State management"
+  },
+  {
+    "id": 34,
+    "title": "4 Introduction",
+    "level": 2,
+    "start_text": "4 State management",
+    "end_text": "4.1 Multiple versions of the system data"
+  },
+  {
+    "id": 35,
+    "title": "4.1 Multiple versions of the system data",
+    "level": 2,
+    "start_text": "4.1 Multiple versions of the system data",
+    "end_text": "4.2 Structural sharing"
+  },
+  {
+    "id": 36,
+    "title": "4.2 Structural sharing",
+    "level": 2,
+    "start_text": "4.2 Structural sharing",
+    "end_text": "4.3 Implementing structural sharing"
+  },
+  {
+    "id": 37,
+    "title": "4.3 Implementing structural sharing",
+    "level": 2,
+    "start_text": "4.3 Implementing structural sharing",
+    "end_text": "4.4 Data safety"
+  },
+  {
+    "id": 38,
+    "title": "4.4 Data safety",
+    "level": 2,
+    "start_text": "4.4 Data safety",
+    "end_text": "4.5 The commit phase of a mutation"
+  },
+  {
+    "id": 39,
+    "title": "4.5 The commit phase of a mutation",
+    "level": 2,
+    "start_text": "4.5 The commit phase of a mutation",
+    "end_text": "4.6 Ensuring system state integrity"
+  },
+  {
+    "id": 40,
+    "title": "4.6 Ensuring system state integrity",
+    "level": 2,
+    "start_text": "4.6 Ensuring system state integrity",
+    "end_text": "4.7 Restoring previous states"
+  },
+  {
+    "id": 41,
+    "title": "4.7 Restoring previous states",
+    "level": 2,
+    "start_text": "4.7 Restoring previous states",
+    "end_text": "Summary"
+  },
+  {
+    "id": 42,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "Summary",
+    "end_text": "5 Basic concurrency control"
+  },
+  {
+    "id": 44,
+    "title": "5 Introduction",
+    "level": 2,
+    "start_text": "5 Basic concurrency control",
+    "end_text": "5.1 Optimistic concurrency control"
+  },
+  {
+    "id": 45,
+    "title": "5.1 Optimistic concurrency control",
+    "level": 2,
+    "start_text": "5.1 Optimistic concurrency control",
+    "end_text": "5.2 Reconciliation between concurrent mutations"
+  },
+  {
+    "id": 46,
+    "title": "5.2 Reconciliation between concurrent mutations",
+    "level": 2,
+    "start_text": "5.2 Reconciliation between concurrent mutations",
+    "end_text": "5.3 Reducing collections"
+  },
+  {
+    "id": 47,
+    "title": "5.3 Reducing collections",
+    "level": 2,
+    "start_text": "5.3 Reducing collections",
+    "end_text": "5.4 Structural difference"
+  },
+  {
+    "id": 48,
+    "title": "5.4 Structural difference",
+    "level": 2,
+    "start_text": "5.4 Structural difference",
+    "end_text": "5.5 Implementing the reconciliation algorithm"
+  },
+  {
+    "id": 49,
+    "title": "5.5 Implementing the reconciliation algorithm",
+    "level": 2,
+    "start_text": "5.5 Implementing the reconciliation algorithm",
+    "end_text": "Summary"
+  },
+  {
+    "id": 50,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "Summary",
+    "end_text": "6 Unit tests"
+  },
+  {
+    "id": 52,
+    "title": "6 Introduction",
+    "level": 2,
+    "start_text": "6 Unit tests",
+    "end_text": "6.1 The simplicity of data-oriented test cases"
+  },
+  {
+    "id": 53,
+    "title": "6.1 The simplicity of data-oriented test cases",
+    "level": 2,
+    "start_text": "6.1 The simplicity of data-oriented test cases",
+    "end_text": "6.2 Unit tests for data manipulation code"
+  },
+  {
+    "id": 55,
+    "title": "6.2 Introduction",
+    "level": 3,
+    "start_text": "6.2 Unit tests for data manipulation code",
+    "end_text": "6.2.1 The tree of function calls"
+  },
+  {
+    "id": 56,
+    "title": "6.2.1 The tree of function calls",
+    "level": 3,
+    "start_text": "6.2.1 The tree of function calls",
+    "end_text": "6.2.2 Unit tests for functions down the tree"
+  },
+  {
+    "id": 57,
+    "title": "6.2.2 Unit tests for functions down the tree",
+    "level": 3,
+    "start_text": "6.2.2 Unit tests for functions down the tree",
+    "end_text": "6.2.3 Unit tests for nodes in the tree"
+  },
+  {
+    "id": 58,
+    "title": "6.2.3 Unit tests for nodes in the tree",
+    "level": 3,
+    "start_text": "6.2.3 Unit tests for nodes in the tree",
+    "end_text": "6.3 Unit tests for queries"
+  },
+  {
+    "id": 59,
+    "title": "6.3 Unit tests for queries",
+    "level": 2,
+    "start_text": "6.3 Unit tests for queries",
+    "end_text": "6.4 Unit tests for mutations"
+  },
+  {
+    "id": 60,
+    "title": "6.4 Unit tests for mutations",
+    "level": 2,
+    "start_text": "6.4 Unit tests for mutations",
+    "end_text": "Moving forward"
+  },
+  {
+    "id": 61,
+    "title": "Moving forward",
+    "level": 2,
+    "start_text": "Moving forward",
+    "end_text": "Summary"
+  },
+  {
+    "id": 62,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "Summary",
+    "end_text": "Part 2—Scalability"
+  }
+]

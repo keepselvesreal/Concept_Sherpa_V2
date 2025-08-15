@@ -1,0 +1,37 @@
+[
+  {
+    "id": 18,
+    "title": "2 Introduction",
+    "level": 2
+  },
+  {
+    "id": 19,
+    "title": "2.1 The two parts of a DOP system",
+    "level": 2
+  },
+  {
+    "id": 20,
+    "title": "2.2 Data entities",
+    "level": 2
+  },
+  {
+    "id": 21,
+    "title": "2.3 Code modules",
+    "level": 2
+  },
+  {
+    "id": 22,
+    "title": "2.4 DOP systems are easy to understand",
+    "level": 2
+  },
+  {
+    "id": 23,
+    "title": "2.5 DOP systems are flexible",
+    "level": 2
+  },
+  {
+    "id": 24,
+    "title": "Summary",
+    "level": 2
+  }
+]

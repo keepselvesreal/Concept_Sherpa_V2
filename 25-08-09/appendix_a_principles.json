@@ -1,0 +1,330 @@
+[
+  {
+    "title": "Appendix A—Principles of data-oriented programming",
+    "level": 0,
+    "start_page": 361,
+    "end_page": 391,
+    "page_count": 31,
+    "id": 147,
+    "parent_id": null,
+    "children_ids": [
+      148,
+      149,
+      155,
+      161,
+      167,
+      173
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "Appendix A Introduction",
+    "level": 1,
+    "start_page": 361,
+    "end_page": 363,
+    "page_count": 3,
+    "id": 148,
+    "parent_id": 147,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "A.1 Principle #1: Separate code from data",
+    "level": 1,
+    "start_page": 363,
+    "end_page": 372,
+    "page_count": 10,
+    "id": 149,
+    "parent_id": 147,
+    "children_ids": [
+      150,
+      151,
+      152,
+      153,
+      154
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "A.1 Introduction",
+    "level": 2,
+    "start_page": 363,
+    "end_page": 364,
+    "page_count": 2,
+    "id": 150,
+    "parent_id": 149,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "A.1.1 Illustration of Principle #1",
+    "level": 2,
+    "start_page": 363,
+    "end_page": 364,
+    "page_count": 2,
+    "id": 151,
+    "parent_id": 149,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.1.2 Benefits of Principle #1",
+    "level": 2,
+    "start_page": 365,
+    "end_page": 370,
+    "page_count": 6,
+    "id": 152,
+    "parent_id": 149,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.1.3 Cost for Principle #1",
+    "level": 2,
+    "start_page": 371,
+    "end_page": 371,
+    "page_count": 1,
+    "id": 153,
+    "parent_id": 149,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.1.4 Summary of Principle #1",
+    "level": 2,
+    "start_page": 372,
+    "end_page": 372,
+    "page_count": 1,
+    "id": 154,
+    "parent_id": 149,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.2 Principle #2: Represent data with generic data structures",
+    "level": 1,
+    "start_page": 373,
+    "end_page": 378,
+    "page_count": 6,
+    "id": 155,
+    "parent_id": 147,
+    "children_ids": [
+      156,
+      157,
+      158,
+      159,
+      160
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "A.2 Introduction",
+    "level": 2,
+    "start_page": 373,
+    "end_page": 374,
+    "page_count": 2,
+    "id": 156,
+    "parent_id": 155,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "A.2.1 Illustration of Principle #2",
+    "level": 2,
+    "start_page": 373,
+    "end_page": 373,
+    "page_count": 1,
+    "id": 157,
+    "parent_id": 155,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.2.2 Benefits of Principle #2",
+    "level": 2,
+    "start_page": 374,
+    "end_page": 374,
+    "page_count": 1,
+    "id": 158,
+    "parent_id": 155,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.2.3 Cost for Principle #2",
+    "level": 2,
+    "start_page": 375,
+    "end_page": 377,
+    "page_count": 3,
+    "id": 159,
+    "parent_id": 155,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.2.4 Summary of Principle #2",
+    "level": 2,
+    "start_page": 378,
+    "end_page": 378,
+    "page_count": 1,
+    "id": 160,
+    "parent_id": 155,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.3 Principle #3: Data is immutable",
+    "level": 1,
+    "start_page": 379,
+    "end_page": 382,
+    "page_count": 4,
+    "id": 161,
+    "parent_id": 147,
+    "children_ids": [
+      162,
+      163,
+      164,
+      165,
+      166
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "A.3 Introduction",
+    "level": 2,
+    "start_page": 379,
+    "end_page": 380,
+    "page_count": 2,
+    "id": 162,
+    "parent_id": 161,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "A.3.1 Illustration of Principle #3",
+    "level": 2,
+    "start_page": 379,
+    "end_page": 379,
+    "page_count": 1,
+    "id": 163,
+    "parent_id": 161,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.3.2 Benefits of Principle #3",
+    "level": 2,
+    "start_page": 380,
+    "end_page": 381,
+    "page_count": 2,
+    "id": 164,
+    "parent_id": 161,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.3.3 Cost for Principle #3",
+    "level": 2,
+    "start_page": 382,
+    "end_page": 381,
+    "page_count": 0,
+    "id": 165,
+    "parent_id": 161,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.3.4 Summary of Principle #3",
+    "level": 2,
+    "start_page": 382,
+    "end_page": 382,
+    "page_count": 1,
+    "id": 166,
+    "parent_id": 161,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.4 Principle #4: Separate data schema from data representation",
+    "level": 1,
+    "start_page": 383,
+    "end_page": 390,
+    "page_count": 8,
+    "id": 167,
+    "parent_id": 147,
+    "children_ids": [
+      168,
+      169,
+      170,
+      171,
+      172
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "A.4 Introduction",
+    "level": 2,
+    "start_page": 383,
+    "end_page": 384,
+    "page_count": 2,
+    "id": 168,
+    "parent_id": 167,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "A.4.1 Illustration of Principle #4",
+    "level": 2,
+    "start_page": 383,
+    "end_page": 384,
+    "page_count": 2,
+    "id": 169,
+    "parent_id": 167,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.4.2 Benefits of Principle #4",
+    "level": 2,
+    "start_page": 385,
+    "end_page": 388,
+    "page_count": 4,
+    "id": 170,
+    "parent_id": 167,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.4.3 Cost for Principle #4",
+    "level": 2,
+    "start_page": 389,
+    "end_page": 389,
+    "page_count": 1,
+    "id": 171,
+    "parent_id": 167,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "A.4.4 Summary of Principle #4",
+    "level": 2,
+    "start_page": 390,
+    "end_page": 390,
+    "page_count": 1,
+    "id": 172,
+    "parent_id": 167,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "Conclusion",
+    "level": 1,
+    "start_page": 391,
+    "end_page": 391,
+    "page_count": 1,
+    "id": 173,
+    "parent_id": 147,
+    "children_ids": [],
+    "is_added_node": false
+  }
+]

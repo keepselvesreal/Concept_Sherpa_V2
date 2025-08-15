@@ -1,0 +1,212 @@
+[
+  {
+    "id": 113,
+    "title": "Part 3 Introduction",
+    "level": 1,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 115,
+    "title": "12 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 116,
+    "title": "12.1 Function arguments validation",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 117,
+    "title": "12.2 Return value validation",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 118,
+    "title": "12.3 Advanced data validation",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 119,
+    "title": "12.4 Automatic generation of data model diagrams",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 120,
+    "title": "12.5 Automatic generation of schema-based unit tests",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 121,
+    "title": "12.6 A new gift",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 122,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 124,
+    "title": "13 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 125,
+    "title": "13.1 The essence of polymorphism",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 126,
+    "title": "13.2 Multimethods with single dispatch",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 127,
+    "title": "13.3 Multimethods with multiple dispatch",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 128,
+    "title": "13.4 Multimethods with dynamic dispatch",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 129,
+    "title": "13.5 Integrating multimethods in a production system",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 130,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 132,
+    "title": "14 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 133,
+    "title": "14.1 Updating a value in a map with eloquence",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 134,
+    "title": "14.2 Manipulating nested data",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 135,
+    "title": "14.3 Using the best tool for the job",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 136,
+    "title": "14.4 Unwinding at ease",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 137,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 139,
+    "title": "15 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 140,
+    "title": "15.1 Determinism in programming",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 141,
+    "title": "15.2 Reproducibility with numbers and strings",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 142,
+    "title": "15.3 Reproducibility with any data",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 143,
+    "title": "15.4 Unit tests",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 144,
+    "title": "15.5 Dealing with external data sources",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 145,
+    "title": "Farewell",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 146,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

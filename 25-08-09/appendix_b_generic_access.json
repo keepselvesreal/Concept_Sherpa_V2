@@ -1,0 +1,246 @@
+[
+  {
+    "title": "Appendix B—Generic data access in statically-typed languages",
+    "level": 0,
+    "start_page": 392,
+    "end_page": 408,
+    "page_count": 17,
+    "id": 174,
+    "parent_id": null,
+    "children_ids": [
+      175,
+      176,
+      180,
+      184,
+      188,
+      193
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "Appendix B Introduction",
+    "level": 1,
+    "start_page": 392,
+    "end_page": 393,
+    "page_count": 2,
+    "id": 175,
+    "parent_id": 174,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "B.1 Dynamic getters for string maps",
+    "level": 1,
+    "start_page": 392,
+    "end_page": 394,
+    "page_count": 3,
+    "id": 176,
+    "parent_id": 174,
+    "children_ids": [
+      177,
+      178,
+      179
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "B.1 Introduction",
+    "level": 2,
+    "start_page": 392,
+    "end_page": 393,
+    "page_count": 2,
+    "id": 177,
+    "parent_id": 176,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "B.1.1 Accessing non-nested map fields with dynamic getters",
+    "level": 2,
+    "start_page": 393,
+    "end_page": 393,
+    "page_count": 1,
+    "id": 178,
+    "parent_id": 176,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "B.1.2 Accessing nested map fields with dynamic getters",
+    "level": 2,
+    "start_page": 394,
+    "end_page": 394,
+    "page_count": 1,
+    "id": 179,
+    "parent_id": 176,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "B.2 Value getters for maps",
+    "level": 1,
+    "start_page": 395,
+    "end_page": 397,
+    "page_count": 3,
+    "id": 180,
+    "parent_id": 174,
+    "children_ids": [
+      181,
+      182,
+      183
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "B.2 Introduction",
+    "level": 2,
+    "start_page": 395,
+    "end_page": 396,
+    "page_count": 2,
+    "id": 181,
+    "parent_id": 180,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "B.2.1 Accessing non-nested map fields with value getters",
+    "level": 2,
+    "start_page": 395,
+    "end_page": 395,
+    "page_count": 1,
+    "id": 182,
+    "parent_id": 180,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "B.2.2 Accessing nested map fields with value getters",
+    "level": 2,
+    "start_page": 396,
+    "end_page": 397,
+    "page_count": 2,
+    "id": 183,
+    "parent_id": 180,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "B.3 Typed getters for maps",
+    "level": 1,
+    "start_page": 398,
+    "end_page": 400,
+    "page_count": 3,
+    "id": 184,
+    "parent_id": 174,
+    "children_ids": [
+      185,
+      186,
+      187
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "B.3 Introduction",
+    "level": 2,
+    "start_page": 398,
+    "end_page": 399,
+    "page_count": 2,
+    "id": 185,
+    "parent_id": 184,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "B.3.1 Accessing non-nested map fields with typed getters",
+    "level": 2,
+    "start_page": 398,
+    "end_page": 398,
+    "page_count": 1,
+    "id": 186,
+    "parent_id": 184,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "B.3.2 Accessing nested map fields with typed getters",
+    "level": 2,
+    "start_page": 399,
+    "end_page": 400,
+    "page_count": 2,
+    "id": 187,
+    "parent_id": 184,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "B.4 Generic access to class members",
+    "level": 1,
+    "start_page": 401,
+    "end_page": 407,
+    "page_count": 7,
+    "id": 188,
+    "parent_id": 174,
+    "children_ids": [
+      189,
+      190,
+      191,
+      192
+    ],
+    "is_added_node": false
+  },
+  {
+    "title": "B.4 Introduction",
+    "level": 2,
+    "start_page": 401,
+    "end_page": 402,
+    "page_count": 2,
+    "id": 189,
+    "parent_id": 188,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "B.4.1 Generic access to non-nested class members",
+    "level": 2,
+    "start_page": 401,
+    "end_page": 403,
+    "page_count": 3,
+    "id": 190,
+    "parent_id": 188,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "B.4.2 Generic access to nested class members",
+    "level": 2,
+    "start_page": 404,
+    "end_page": 405,
+    "page_count": 2,
+    "id": 191,
+    "parent_id": 188,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "B.4.3 Automatic JSON serialization of objects",
+    "level": 2,
+    "start_page": 406,
+    "end_page": 407,
+    "page_count": 2,
+    "id": 192,
+    "parent_id": 188,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "Summary",
+    "level": 1,
+    "start_page": 408,
+    "end_page": 408,
+    "page_count": 1,
+    "id": 193,
+    "parent_id": 174,
+    "children_ids": [],
+    "is_added_node": false
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 96,
+    "title": "10 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 97,
+    "title": "10.1 Fetching data from the database",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 98,
+    "title": "10.2 Storing data in the database",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 99,
+    "title": "10.3 Simple data manipulation",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 100,
+    "title": "10.4 Advanced data manipulation",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

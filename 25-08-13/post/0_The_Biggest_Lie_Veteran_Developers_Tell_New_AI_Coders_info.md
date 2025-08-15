@@ -1,0 +1,17 @@
+# 속성
+process_status:
+
+# 추출
+
+
+# 내용
+## The Biggest Lie Veteran Developers Tell New AI Coders
+
+# 구성
+1_When_Experience_Becomes_a_Handicap_info.md
+1_Why_Senior_Developers_Default_to_Risk_Scaling_and_Frameworks_info.md
+1_Be_Nice_To_Your_Formal_Self_info.md
+1_The_Old_Workflow_Is_the_Wrong_Workflow_info.md
+1_Why_Juniors_Sometimes_Win_info.md
+1_The_Thing_I_Respect_About_You_As_A_Senior_Engineer_Now_info.md
+1_Juniors_just_keep_putting_the_reps_in_info.md

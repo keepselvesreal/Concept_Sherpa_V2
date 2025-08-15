@@ -1,0 +1,192 @@
+[
+  {
+    "id": 1,
+    "title": "GPT-5 Agentic Coding with Claude Code",
+    "level": 0,
+    "parent_id": null,
+    "children_ids": [
+      2,
+      5,
+      8,
+      11,
+      15,
+      19
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Introduction and Overview",
+    "level": 1,
+    "parent_id": 1,
+    "children_ids": [
+      3,
+      4
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Core Questions",
+    "level": 2,
+    "parent_id": 2,
+    "children_ids": []
+  },
+  {
+    "id": 4,
+    "title": "Beyond Benchmark Regurgitation",
+    "level": 2,
+    "parent_id": 2,
+    "children_ids": []
+  },
+  {
+    "id": 5,
+    "title": "Model Evaluation Framework",
+    "level": 1,
+    "parent_id": 1,
+    "children_ids": [
+      6,
+      7
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Why Agents Matter",
+    "level": 2,
+    "parent_id": 5,
+    "children_ids": []
+  },
+  {
+    "id": 7,
+    "title": "Initial Surprising Results",
+    "level": 2,
+    "parent_id": 5,
+    "children_ids": []
+  },
+  {
+    "id": 8,
+    "title": "Testing Scenarios and Results",
+    "level": 1,
+    "parent_id": 1,
+    "children_ids": [
+      9,
+      10
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Multi-Model Evaluation System",
+    "level": 2,
+    "parent_id": 8,
+    "children_ids": []
+  },
+  {
+    "id": 10,
+    "title": "Prompt Orchestration Technique",
+    "level": 2,
+    "parent_id": 8,
+    "children_ids": []
+  },
+  {
+    "id": 11,
+    "title": "Technical Implementation Details",
+    "level": 1,
+    "parent_id": 1,
+    "children_ids": [
+      12,
+      13,
+      14
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Command Structure",
+    "level": 2,
+    "parent_id": 11,
+    "children_ids": []
+  },
+  {
+    "id": 13,
+    "title": "Grading System",
+    "level": 2,
+    "parent_id": 11,
+    "children_ids": []
+  },
+  {
+    "id": 14,
+    "title": "Real-Time Results Processing",
+    "level": 2,
+    "parent_id": 11,
+    "children_ids": []
+  },
+  {
+    "id": 15,
+    "title": "On-Device Model Performance",
+    "level": 1,
+    "parent_id": 1,
+    "children_ids": [
+      16,
+      17,
+      18
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Local Model Capabilities",
+    "level": 2,
+    "parent_id": 15,
+    "children_ids": []
+  },
+  {
+    "id": 17,
+    "title": "Detailed Test Results",
+    "level": 2,
+    "parent_id": 15,
+    "children_ids": []
+  },
+  {
+    "id": 18,
+    "title": "File Operations Test",
+    "level": 2,
+    "parent_id": 15,
+    "children_ids": []
+  },
+  {
+    "id": 19,
+    "title": "Future Implications and Conclusions",
+    "level": 1,
+    "parent_id": 1,
+    "children_ids": [
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Performance Analysis",
+    "level": 2,
+    "parent_id": 19,
+    "children_ids": []
+  },
+  {
+    "id": 21,
+    "title": "Breakthrough Week Assessment",
+    "level": 2,
+    "parent_id": 19,
+    "children_ids": []
+  },
+  {
+    "id": 22,
+    "title": "Key Insights",
+    "level": 2,
+    "parent_id": 19,
+    "children_ids": []
+  },
+  {
+    "id": 23,
+    "title": "Future Outlook",
+    "level": 2,
+    "parent_id": 19,
+    "children_ids": []
+  }
+]

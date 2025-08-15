@@ -1,0 +1,27 @@
+{
+  "source_file": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-08/enhanced_toc_with_relationships.json",
+  "timestamp": "2024-08-11T15:40:00+09:00",
+  "total_upper_level": 10,
+  "total_chapters": 18,
+  "chapter_details": {
+    "chapter_01": 12,
+    "chapter_02": 7,
+    "chapter_03": 7,
+    "chapter_04": 9,
+    "chapter_05": 7,
+    "chapter_06": 10,
+    "chapter_07": 7,
+    "chapter_08": 6,
+    "chapter_09": 12,
+    "chapter_10": 6,
+    "chapter_11": 9,
+    "chapter_12": 8,
+    "chapter_13": 7,
+    "chapter_14": 6,
+    "chapter_15": 8,
+    "appendix_a": 20,
+    "appendix_b": 13,
+    "appendix_c": 16
+  },
+  "total_chapter_nodes": 170
+}

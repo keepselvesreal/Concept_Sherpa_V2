@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "level": 1,
+    "title": "Introduction and Overview"
+  },
+  {
+    "id": 2,
+    "level": 1,
+    "title": "Model Evaluation Framework"
+  },
+  {
+    "id": 3,
+    "level": 1,
+    "title": "Testing Scenarios and Results"
+  },
+  {
+    "id": 4,
+    "level": 1,
+    "title": "Technical Implementation Details"
+  },
+  {
+    "id": 5,
+    "level": 1,
+    "title": "On-Device Model Performance"
+  },
+  {
+    "id": 6,
+    "level": 1,
+    "title": "Future Implications and Conclusions"
+  }
+]

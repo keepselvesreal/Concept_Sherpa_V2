@@ -1,0 +1,44 @@
+[
+  {
+    "id": 132,
+    "title": "14 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 133,
+    "title": "14.1 Updating a value in a map with eloquence",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 134,
+    "title": "14.2 Manipulating nested data",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 135,
+    "title": "14.3 Using the best tool for the job",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 136,
+    "title": "14.4 Unwinding at ease",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 137,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "title": "Part 1 Introduction",
+    "level": 1
+  },
+  {
+    "id": 64,
+    "title": "Part 2 Introduction",
+    "level": 1
+  },
+  {
+    "id": 113,
+    "title": "Part 3 Introduction",
+    "level": 1
+  },
+  {
+    "id": 148,
+    "title": "Appendix A Introduction",
+    "level": 1
+  },
+  {
+    "id": 173,
+    "title": "Conclusion",
+    "level": 1
+  },
+  {
+    "id": 175,
+    "title": "Appendix B Introduction",
+    "level": 1
+  },
+  {
+    "id": 195,
+    "title": "Appendix C Introduction",
+    "level": 1
+  },
+  {
+    "id": 193,
+    "title": "Summary",
+    "level": 1
+  },
+  {
+    "id": 215,
+    "title": "Summary",
+    "level": 1
+  },
+  {
+    "id": 216,
+    "title": "Appendix D—Lodash reference",
+    "level": 0
+  }
+]

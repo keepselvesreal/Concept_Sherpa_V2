@@ -1,0 +1,44 @@
+[
+  {
+    "id": 26,
+    "title": "3 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 27,
+    "title": "3.1 Designing a data model",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 28,
+    "title": "3.2 Representing records as maps",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 29,
+    "title": "3.3 Manipulating data with generic functions",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 30,
+    "title": "3.4 Calculating search results",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 31,
+    "title": "3.5 Handling records of different types",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

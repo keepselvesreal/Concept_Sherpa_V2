@@ -1,0 +1,289 @@
+[
+  {
+    "id": 64,
+    "title": "Part 2 Introduction",
+    "level": 1,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 66,
+    "title": "7 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 67,
+    "title": "7.1 Data validation in DOP",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 68,
+    "title": "7.2 JSON Schema in a nutshell",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 69,
+    "title": "7.3 Schema flexibility and strictness",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 70,
+    "title": "7.4 Schema composition",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 71,
+    "title": "7.5 Details about data validation failures",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 72,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 74,
+    "title": "8 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 75,
+    "title": "8.1 The complexity of locks",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 76,
+    "title": "8.2 Thread-safe counter with atoms",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 77,
+    "title": "8.3 Thread-safe cache with atoms",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 78,
+    "title": "8.4 State management with atoms",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 79,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 81,
+    "title": "9 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 82,
+    "title": "9.1 The need for persistent data structures",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 83,
+    "title": "9.2 The efficiency of persistent data structures",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 85,
+    "title": "9.3 Introduction",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 86,
+    "title": "9.3.1 Persistent data structures in Java",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 87,
+    "title": "9.3.2 Persistent data structures in JavaScript",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 89,
+    "title": "9.4 Introduction",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 90,
+    "title": "9.4.1 Writing queries with persistent data structures",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 91,
+    "title": "9.4.2 Writing mutations with persistent data structures",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 92,
+    "title": "9.4.3 Serialization and deserialization",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 93,
+    "title": "9.4.4 Structural diff",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 94,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 96,
+    "title": "10 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 97,
+    "title": "10.1 Fetching data from the database",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 98,
+    "title": "10.2 Storing data in the database",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 99,
+    "title": "10.3 Simple data manipulation",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 100,
+    "title": "10.4 Advanced data manipulation",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 101,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 103,
+    "title": "11 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 104,
+    "title": "11.1 Another feature request",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 105,
+    "title": "11.2 Building the insides like the outsides",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 106,
+    "title": "11.3 Representing a client request as a map",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 107,
+    "title": "11.4 Representing a server response as a map",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 108,
+    "title": "11.5 Passing information forward",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 109,
+    "title": "11.6 Search result enrichment in action",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 110,
+    "title": "Delivering on time",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 111,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

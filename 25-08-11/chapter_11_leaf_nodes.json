@@ -1,0 +1,47 @@
+[
+  {
+    "id": 103,
+    "title": "11 Introduction",
+    "level": 2
+  },
+  {
+    "id": 104,
+    "title": "11.1 Another feature request",
+    "level": 2
+  },
+  {
+    "id": 105,
+    "title": "11.2 Building the insides like the outsides",
+    "level": 2
+  },
+  {
+    "id": 106,
+    "title": "11.3 Representing a client request as a map",
+    "level": 2
+  },
+  {
+    "id": 107,
+    "title": "11.4 Representing a server response as a map",
+    "level": 2
+  },
+  {
+    "id": 108,
+    "title": "11.5 Passing information forward",
+    "level": 2
+  },
+  {
+    "id": 109,
+    "title": "11.6 Search result enrichment in action",
+    "level": 2
+  },
+  {
+    "id": 110,
+    "title": "Delivering on time",
+    "level": 2
+  },
+  {
+    "id": 111,
+    "title": "Summary",
+    "level": 2
+  }
+]

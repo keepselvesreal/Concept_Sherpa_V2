@@ -1,0 +1,5 @@
+### 1.4.2 Historical Management Precedents
+
+And one thing I really want to emphasize is that this is not a new problem. How does a CTO manage an expert in a domain where the CTO is not themselves an expert? How does a PM review an engineering feature when they themselves can't read all the code that went into it? Or how does a CEO check the accountant's work when they themselves are not an expert in financial accounting?
+
+And these are all problems that have existed for hundreds or thousands of years and we have solutions to them. A CTO can still write acceptance tests for an expert that works for them even if they don't understand the implementation under the hood. They can see that these acceptance tests pass and that the work is high quality. A product manager can use the product that their engineering team built and make sure that it works the way they expected even if they're not writing the code. And a CEO can spot check key facts that they do understand and slices of the data so that they can build confidence in the overall financial model even though they themselves might not be an expert in how the entire thing flows.
