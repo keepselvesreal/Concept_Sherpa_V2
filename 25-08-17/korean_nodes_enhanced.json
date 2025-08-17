@@ -1,0 +1,74 @@
+[
+  {
+    "id": 0,
+    "title": "Retrieval Agents가 AI 코딩의 가장 큰 문제를 실제로 해결했다",
+    "level": 0,
+    "parent_id": null,
+    "children_ids": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "has_content": false
+  },
+  {
+    "id": 1,
+    "title": "AI 코딩의 현재 한계와 문제점",
+    "level": 1,
+    "parent_id": 0,
+    "children_ids": [],
+    "has_content": true
+  },
+  {
+    "id": 2,
+    "title": "Archon: 혁신적인 지식 베이스 솔루션",
+    "level": 1,
+    "parent_id": 0,
+    "children_ids": [],
+    "has_content": true
+  },
+  {
+    "id": 3,
+    "title": "작업 관리와 지식 베이스 통합",
+    "level": 1,
+    "parent_id": 0,
+    "children_ids": [],
+    "has_content": true
+  },
+  {
+    "id": 4,
+    "title": "강력한 RAG 시스템과 웹 크롤링",
+    "level": 1,
+    "parent_id": 0,
+    "children_ids": [],
+    "has_content": true
+  },
+  {
+    "id": 5,
+    "title": "실제 사용 예시와 설정 과정",
+    "level": 1,
+    "parent_id": 0,
+    "children_ids": [],
+    "has_content": true
+  },
+  {
+    "id": 6,
+    "title": "설치 및 설정 가이드",
+    "level": 1,
+    "parent_id": 0,
+    "children_ids": [],
+    "has_content": true
+  },
+  {
+    "id": 7,
+    "title": "실제 개발 과정과 결과",
+    "level": 1,
+    "parent_id": 0,
+    "children_ids": [],
+    "has_content": true
+  }
+]
