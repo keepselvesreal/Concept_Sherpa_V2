@@ -1,0 +1,10 @@
+{
+  "_instructions": {
+    "source_type": "선택 가능: book, post, docs, youtube",
+    "structure_type": "선택 가능: component, standalone",
+    "document_language": "선택 가능: korean, english, mixed, japanese, chinese"
+  },
+  "source_type": "",
+  "structure_type": "",
+  "document_language": ""
+}

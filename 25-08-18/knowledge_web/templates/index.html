@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Sherpa</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <h1>🧠 Knowledge Sherpa</h1>
+            <p>YouTube 대본 추출 및 파일 처리 도구</p>
+        </header>
+
+        <main class="main-content">
+            <!-- YouTube 섹션 -->
+            <section class="section youtube-section">
+                <div class="section-header">
+                    <h2>🎥 YouTube 대본 추출</h2>
+                    <p>YouTube URL을 입력하면 대본을 추출하여 마크다운 파일로 저장합니다.</p>
+                </div>
+                
+                <form id="youtube-form" class="form">
+                    <div class="input-group">
+                        <label for="youtube-url">YouTube URL</label>
+                        <input 
+                            type="url" 
+                            id="youtube-url" 
+                            name="url" 
+                            placeholder="https://www.youtube.com/watch?v=..." 
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="youtube-btn">
+                        <span>대본 추출</span>
+                        <div class="loading" style="display: none;"></div>
+                    </button>
+                </form>
+            </section>
+
+            <!-- 파일 업로드 섹션 -->
+            <section class="section file-section">
+                <div class="section-header">
+                    <h2>📁 파일 처리</h2>
+                    <p>파일을 선택하면 파일 경로가 처리 스크립트로 전달됩니다.</p>
+                </div>
+                
+                <form id="file-form" class="form" enctype="multipart/form-data">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="file-input" name="file" accept="*/*">
+                        <label for="file-input" class="file-input-label">
+                            <span>📎 파일 선택...</span>
+                        </label>
+                        <div class="file-info" id="file-info"></div>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" id="file-btn" disabled>
+                        <span>파일 처리</span>
+                        <div class="loading" style="display: none;"></div>
+                    </button>
+                </form>
+            </section>
+
+            <!-- 결과 섹션 -->
+            <section class="section result-section">
+                <div class="section-header">
+                    <h2>📄 처리 결과</h2>
+                    <button id="clear-results" class="btn btn-small">결과 지우기</button>
+                </div>
+                
+                <div id="results" class="results">
+                    <div class="result-item">
+                        <div class="result-timestamp">시작 시간: <span id="start-time"></span></div>
+                        <div class="result-content">
+                            처리 결과가 여기에 표시됩니다.<br>
+                            YouTube URL 입력 또는 파일을 선택하고 처리 버튼을 클릭하세요.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+    <script>
+        // 페이지 로드 시 시작 시간 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('start-time').textContent = new Date().toLocaleString('ko-KR');
+        });
+    </script>
+</body>
+</html>
