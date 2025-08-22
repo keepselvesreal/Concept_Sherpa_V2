@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보 입력</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .result.success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .result.error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .metadata-section {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .metadata-header {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .metadata-header:hover {
+            background-color: #e9ecef;
+        }
+        .metadata-header .toggle-icon {
+            font-size: 12px;
+            transition: transform 0.3s;
+        }
+        .metadata-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .metadata-content {
+            padding: 15px;
+            background-color: white;
+            max-height: 200px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .metadata-content.collapsed {
+            max-height: 0;
+            padding: 0 15px;
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .radio-option:hover {
+            background-color: #f8f9fa;
+            border-color: #007bff;
+        }
+        .radio-option input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #007bff;
+        }
+        .radio-option.selected {
+            background-color: #e3f2fd;
+            border-color: #007bff;
+            font-weight: 500;
+        }
+        
+        /* URL 목록 관리 스타일 */
+        .url-management {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .url-header {
+            background-color: #f8f9fa;
+            padding: 12px 15px;
+            font-weight: bold;
+            color: #555;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .url-input-section {
+            padding: 15px;
+            background-color: white;
+        }
+        
+        .url-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .url-input-group input {
+            flex: 1;
+        }
+        
+        .save-url-btn {
+            width: auto;
+            padding: 12px 20px;
+            background-color: #28a745;
+            white-space: nowrap;
+        }
+        
+        .save-url-btn:hover {
+            background-color: #218838;
+        }
+        
+        .url-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        
+        .url-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: white;
+        }
+        
+        .url-item:last-child {
+            border-bottom: none;
+        }
+        
+        .url-text {
+            flex: 1;
+            margin-right: 10px;
+            word-break: break-all;
+            font-size: 14px;
+        }
+        
+        .delete-url-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            width: auto;
+        }
+        
+        .delete-url-btn:hover {
+            background-color: #c82333;
+        }
+        
+        .send-list-btn {
+            background-color: #ffc107;
+            color: #212529;
+            margin-bottom: 10px;
+        }
+        
+        .send-list-btn:hover {
+            background-color: #e0a800;
+        }
+        
+        .url-count {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>정보 입력</h1>
+        
+        <!-- URL 목록 관리 섹션 -->
+        <div class="url-management">
+            <div class="url-header">
+                📋 URL 목록 관리
+            </div>
+            <div class="url-input-section">
+                <div class="url-input-group">
+                    <input type="text" id="urlInput" placeholder="URL을 입력하세요">
+                    <button type="button" id="saveUrlBtn" class="save-url-btn">저장</button>
+                </div>
+                
+                <div class="url-count" id="urlCount">저장된 URL: 0개</div>
+                
+                <div class="url-list" id="urlList">
+                    <div style="padding: 20px; text-align: center; color: #666;">
+                        저장된 URL이 없습니다
+                    </div>
+                </div>
+                
+                <button type="button" id="sendListBtn" class="send-list-btn" style="display: none;" disabled>
+                    📤 목록 전송 (저장된 URL들 일괄 처리)
+                </button>
+            </div>
+        </div>
+        
+        <form id="uploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="textInput">입력창 (URL 또는 파일명 표시)</label>
+                <input type="text" id="textInput" name="text_data" placeholder="URL이나 텍스트를 입력하세요">
+            </div>
+            
+            <div class="form-group">
+                <label for="fileInput">첨부파일</label>
+                <input type="file" id="fileInput" name="file">
+            </div>
+            
+            <!-- 메타정보 선택 섹션 -->
+            <div class="form-group">
+                <label>메타정보 설정</label>
+                
+                <!-- Source Type -->
+                <div class="metadata-section">
+                    <div class="metadata-header" data-target="sourceType">
+                        <span>Source Type</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="metadata-content" id="sourceType">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="source_type" value="book">
+                                <span>Book</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="source_type" value="post">
+                                <span>Post</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="source_type" value="youtube" checked>
+                                <span>YouTube</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Source Language -->
+                <div class="metadata-section">
+                    <div class="metadata-header" data-target="sourceLanguage">
+                        <span>Source Language</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="metadata-content" id="sourceLanguage">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="source_language" value="korean" checked>
+                                <span>Korean</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="source_language" value="english">
+                                <span>English</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="source_language" value="other">
+                                <span>Other</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Structure Type -->
+                <div class="metadata-section">
+                    <div class="metadata-header" data-target="structureType">
+                        <span>Structure Type</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="metadata-content" id="structureType">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="structure_type" value="standalone" checked>
+                                <span>Standalone</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="structure_type" value="component">
+                                <span>Component</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Processing -->
+                <div class="metadata-section">
+                    <div class="metadata-header" data-target="contentProcessing">
+                        <span>Content Processing</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="metadata-content" id="contentProcessing">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="content_processing" value="unified" checked>
+                                <span>Unified</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="content_processing" value="segmented">
+                                <span>Segmented</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <button type="submit">전송</button>
+            </div>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const textInput = document.getElementById('textInput');
+        const uploadForm = document.getElementById('uploadForm');
+        const result = document.getElementById('result');
+        
+        // URL 관리 요소들
+        const urlInput = document.getElementById('urlInput');
+        const saveUrlBtn = document.getElementById('saveUrlBtn');
+        const sendListBtn = document.getElementById('sendListBtn');
+        const urlList = document.getElementById('urlList');
+        const urlCount = document.getElementById('urlCount');
+        
+        // 로컬 스토리지 키
+        const STORAGE_KEY = 'saved_urls';
+        
+        // 저장된 URL 목록
+        let savedUrls = [];
+        
+        // URL 관리 함수들
+        function loadUrlsFromStorage() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                savedUrls = JSON.parse(stored);
+            }
+            updateUrlDisplay();
+        }
+        
+        function saveUrlsToStorage() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(savedUrls));
+        }
+        
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
+        
+        function addUrl() {
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('URL을 입력해주세요.');
+                return;
+            }
+            
+            if (!isValidUrl(url)) {
+                alert('올바른 URL 형식이 아닙니다.');
+                return;
+            }
+            
+            if (savedUrls.includes(url)) {
+                alert('이미 저장된 URL입니다.');
+                return;
+            }
+            
+            savedUrls.push(url);
+            saveUrlsToStorage();
+            updateUrlDisplay();
+            urlInput.value = '';
+        }
+        
+        function removeUrl(index) {
+            if (confirm('이 URL을 삭제하시겠습니까?')) {
+                savedUrls.splice(index, 1);
+                saveUrlsToStorage();
+                updateUrlDisplay();
+            }
+        }
+        
+        function updateUrlDisplay() {
+            urlCount.textContent = `저장된 URL: ${savedUrls.length}개`;
+            
+            if (savedUrls.length === 0) {
+                urlList.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">저장된 URL이 없습니다</div>';
+                sendListBtn.style.display = 'none';
+                sendListBtn.disabled = true;
+            } else {
+                const urlItems = savedUrls.map((url, index) => `
+                    <div class="url-item">
+                        <div class="url-text">${url}</div>
+                        <button class="delete-url-btn" onclick="removeUrl(${index})">삭제</button>
+                    </div>
+                `).join('');
+                
+                urlList.innerHTML = urlItems;
+                sendListBtn.style.display = 'block';
+                sendListBtn.disabled = false;
+            }
+        }
+        
+        async function sendUrlList() {
+            if (savedUrls.length === 0) {
+                alert('전송할 URL이 없습니다.');
+                return;
+            }
+            
+            if (!confirm(`${savedUrls.length}개의 URL을 일괄 처리하시겠습니까?`)) {
+                return;
+            }
+            
+            sendListBtn.disabled = true;
+            sendListBtn.textContent = '처리 중...';
+            
+            try {
+                // 각 URL을 순차적으로 처리
+                for (let i = 0; i < savedUrls.length; i++) {
+                    const url = savedUrls[i];
+                    
+                    // 결과 영역 업데이트
+                    result.className = 'result';
+                    result.style.display = 'block';
+                    result.innerHTML = `
+                        <h3>📤 URL 목록 처리 중...</h3>
+                        <p>진행률: ${i + 1}/${savedUrls.length}</p>
+                        <p>현재 처리: ${url}</p>
+                    `;
+                    
+                    // FormData 생성
+                    const formData = new FormData();
+                    formData.append('text_data', url);
+                    
+                    // 메타정보 추가
+                    const sourceType = document.querySelector('input[name="source_type"]:checked').value;
+                    const sourceLanguage = document.querySelector('input[name="source_language"]:checked').value;
+                    const structureType = document.querySelector('input[name="structure_type"]:checked').value;
+                    const contentProcessing = document.querySelector('input[name="content_processing"]:checked').value;
+                    
+                    formData.append('source_type', sourceType);
+                    formData.append('source_language', sourceLanguage);
+                    formData.append('structure_type', structureType);
+                    formData.append('content_processing', contentProcessing);
+                    
+                    // 서버에 전송
+                    const response = await fetch('/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const responseData = await response.json();
+                    
+                    // 실패한 경우 처리 중단 여부 확인
+                    if (!response.ok) {
+                        const continueProcessing = confirm(`URL "${url}" 처리 실패. 계속 진행하시겠습니까?\n\n오류: ${responseData.message || '알 수 없는 오류'}`);
+                        if (!continueProcessing) {
+                            break;
+                        }
+                    }
+                    
+                    // 잠시 대기 (서버 부하 방지)
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+                
+                // 완료 메시지
+                result.className = 'result success';
+                result.innerHTML = `
+                    <h3>✅ URL 목록 처리 완료!</h3>
+                    <p>총 ${savedUrls.length}개의 URL을 처리했습니다.</p>
+                    <p>각 URL의 처리 결과는 서버 로그를 확인해주세요.</p>
+                `;
+                
+                // 처리 완료 후 URL 목록 초기화 여부 확인
+                if (confirm('처리가 완료되었습니다. 저장된 URL 목록을 비우시겠습니까?')) {
+                    savedUrls = [];
+                    saveUrlsToStorage();
+                    updateUrlDisplay();
+                }
+                
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `<p>오류가 발생했습니다: ${error.message}</p>`;
+            } finally {
+                sendListBtn.disabled = false;
+                sendListBtn.textContent = '📤 목록 전송 (저장된 URL들 일괄 처리)';
+            }
+        }
+        
+        // 이벤트 리스너 등록
+        saveUrlBtn.addEventListener('click', addUrl);
+        sendListBtn.addEventListener('click', sendUrlList);
+        
+        // Enter 키로 URL 저장
+        urlInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addUrl();
+            }
+        });
+        
+        // 페이지 로드 시 저장된 URL 목록 불러오기
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUrlsFromStorage();
+        });
+
+        // 아코디언 토글 기능
+        document.querySelectorAll('.metadata-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const content = document.getElementById(targetId);
+                const icon = this.querySelector('.toggle-icon');
+                
+                // 토글 상태 변경
+                content.classList.toggle('collapsed');
+                this.classList.toggle('collapsed');
+                
+                // 아이콘 변경
+                if (content.classList.contains('collapsed')) {
+                    icon.textContent = '▶';
+                } else {
+                    icon.textContent = '▼';
+                }
+            });
+        });
+
+        // 라디오 버튼 선택 시 스타일 변경
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // 같은 name 그룹의 모든 라디오 옵션에서 selected 클래스 제거
+                document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                    r.closest('.radio-option').classList.remove('selected');
+                });
+                
+                // 선택된 옵션에 selected 클래스 추가
+                this.closest('.radio-option').classList.add('selected');
+            });
+        });
+
+        // 페이지 로드 시 기본 선택된 항목들에 selected 클래스 추가
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                radio.closest('.radio-option').classList.add('selected');
+            });
+        });
+
+        // 파일 선택 시 이벤트
+        fileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                textInput.value = file.name;
+                textInput.readOnly = true;
+                textInput.style.backgroundColor = '#e9ecef';
+            } else {
+                textInput.value = '';
+                textInput.readOnly = false;
+                textInput.style.backgroundColor = '#fff';
+                textInput.placeholder = 'URL이나 텍스트를 입력하세요';
+            }
+        });
+
+        // 폼 제출 시 이벤트
+        uploadForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            
+            // 파일이 선택된 경우
+            const file = fileInput.files[0];
+            if (file) {
+                formData.append('file', file);
+            }
+            
+            // 텍스트 데이터가 있는 경우
+            const textValue = textInput.value.trim();
+            if (textValue) {
+                formData.append('text_data', textValue);
+            }
+            
+            // 메타정보 추가
+            const sourceType = document.querySelector('input[name="source_type"]:checked').value;
+            const sourceLanguage = document.querySelector('input[name="source_language"]:checked').value;
+            const structureType = document.querySelector('input[name="structure_type"]:checked').value;
+            const contentProcessing = document.querySelector('input[name="content_processing"]:checked').value;
+            
+            formData.append('source_type', sourceType);
+            formData.append('source_language', sourceLanguage);
+            formData.append('structure_type', structureType);
+            formData.append('content_processing', contentProcessing);
+            
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const responseData = await response.json();
+                
+                // 결과 표시
+                result.className = 'result success';
+                result.style.display = 'block';
+                
+                if (responseData.file_info) {
+                    result.innerHTML = `
+                        <h3>파일 업로드 성공!</h3>
+                        <p><strong>파일명:</strong> ${responseData.file_info.filename}</p>
+                        <p><strong>크기:</strong> ${responseData.file_info.size} bytes</p>
+                        <p><strong>타입:</strong> ${responseData.file_info.content_type}</p>
+                        <p><strong>저장 위치:</strong> ${responseData.file_info.saved_path}</p>
+                    `;
+                } else if (responseData.type === 'pipeline_complete') {
+                    const jsonData = responseData.json_creation;
+                    const youtubeData = responseData.youtube_extraction;
+                    const transcriptData = responseData.transcript_improvement;
+                    const nodesData = responseData.node_generation;
+                    result.innerHTML = `
+                        <h3>🎉 전체 파이프라인 완료!</h3>
+                        <h4>📄 1단계 - 메타정보 생성:</h4>
+                        <p><strong>폴더:</strong> ${jsonData.folder_path}</p>
+                        <p><strong>JSON 파일:</strong> ${jsonData.json_path}</p>
+                        <h4>🎥 2단계 - 스크립트 추출:</h4>
+                        <p><strong>영상 제목:</strong> ${youtubeData.video_info.title}</p>
+                        <p><strong>언어:</strong> ${youtubeData.video_info.language}</p>
+                        <p><strong>대본 수:</strong> ${youtubeData.video_info.transcript_count}개</p>
+                        <p><strong>원본 파일:</strong> ${youtubeData.file_info.filename}</p>
+                        <h4>✨ 3단계 - 스크립트 개선:</h4>
+                        <p><strong>개선된 파일:</strong> ${transcriptData.filename}</p>
+                        <h4>🌐 4단계 - 노드 생성:</h4>
+                        <p><strong>노드 파일:</strong> ${nodesData.filename}</p>
+                        <p><strong>노드 수:</strong> ${nodesData.node_count}개</p>
+                    `;
+                } else if (responseData.type === 'pipeline_partial_nodes') {
+                    const jsonData = responseData.json_creation;
+                    const youtubeData = responseData.youtube_extraction;
+                    const transcriptData = responseData.transcript_improvement;
+                    const nodesData = responseData.node_generation;
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <h3>⚠️ 파이프라인 부분 완료 (노드 생성 실패)</h3>
+                        <h4>✅ 1-3단계 성공:</h4>
+                        <p><strong>메타정보:</strong> ${jsonData.json_path}</p>
+                        <p><strong>원본 스크립트:</strong> ${youtubeData.file_info.filename}</p>
+                        <p><strong>개선된 스크립트:</strong> ${transcriptData.filename}</p>
+                        <h4>❌ 4단계 - 노드 생성 실패:</h4>
+                        <p><strong>오류:</strong> ${nodesData.error}</p>
+                    `;
+                } else if (responseData.type === 'pipeline_partial_transcript') {
+                    const jsonData = responseData.json_creation;
+                    const youtubeData = responseData.youtube_extraction;
+                    const transcriptData = responseData.transcript_improvement;
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <h3>⚠️ 파이프라인 부분 완료 (스크립트 개선 실패)</h3>
+                        <h4>✅ 1-2단계 성공:</h4>
+                        <p><strong>메타정보:</strong> ${jsonData.json_path}</p>
+                        <p><strong>원본 스크립트:</strong> ${youtubeData.file_info.filename}</p>
+                        <h4>❌ 3단계 - 스크립트 개선 실패:</h4>
+                        <p><strong>오류:</strong> ${transcriptData.error}</p>
+                    `;
+                } else if (responseData.type === 'youtube_complete') {
+                    const jsonData = responseData.json_creation;
+                    const youtubeData = responseData.youtube_extraction;
+                    result.innerHTML = `
+                        <h3>✅ YouTube 처리 완료!</h3>
+                        <h4>📄 메타정보 생성:</h4>
+                        <p><strong>폴더:</strong> ${jsonData.folder_path}</p>
+                        <p><strong>JSON 파일:</strong> ${jsonData.json_path}</p>
+                        <h4>🎥 스크립트 추출:</h4>
+                        <p><strong>영상 제목:</strong> ${youtubeData.video_info.title}</p>
+                        <p><strong>언어:</strong> ${youtubeData.video_info.language}</p>
+                        <p><strong>대본 수:</strong> ${youtubeData.video_info.transcript_count}개</p>
+                        <p><strong>파일명:</strong> ${youtubeData.file_info.filename}</p>
+                        <p><strong>파일 크기:</strong> ${youtubeData.file_info.size} bytes</p>
+                    `;
+                } else if (responseData.type === 'youtube_partial') {
+                    const jsonData = responseData.json_creation;
+                    const youtubeData = responseData.youtube_extraction;
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <h3>⚠️ YouTube 부분 처리</h3>
+                        <h4>✅ 메타정보 생성 성공:</h4>
+                        <p><strong>폴더:</strong> ${jsonData.folder_path}</p>
+                        <p><strong>JSON 파일:</strong> ${jsonData.json_path}</p>
+                        <h4>❌ 스크립트 추출 실패:</h4>
+                        <p><strong>오류 메시지:</strong> ${youtubeData.message}</p>
+                    `;
+                } else if (responseData.type === 'youtube_metadata_error') {
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <h3>❌ YouTube 메타정보 생성 실패</h3>
+                        <p><strong>오류 메시지:</strong> ${responseData.json_creation.error}</p>
+                    `;
+                } else if (responseData.type === 'youtube') {
+                    const youtubeData = responseData.youtube_extraction;
+                    result.innerHTML = `
+                        <h3>🎥 YouTube 스크립트 추출 성공!</h3>
+                        <p><strong>영상 제목:</strong> ${youtubeData.video_info.title}</p>
+                        <p><strong>Video ID:</strong> ${youtubeData.video_info.video_id}</p>
+                        <p><strong>언어:</strong> ${youtubeData.video_info.language}</p>
+                        <p><strong>대본 수:</strong> ${youtubeData.video_info.transcript_count}개</p>
+                        <p><strong>저장 폴더:</strong> ${youtubeData.file_info.folder}</p>
+                        <p><strong>파일명:</strong> ${youtubeData.file_info.filename}</p>
+                        <p><strong>파일 크기:</strong> ${youtubeData.file_info.size} bytes</p>
+                    `;
+                } else if (responseData.type === 'youtube_error') {
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <h3>❌ YouTube 스크립트 추출 실패</h3>
+                        <p><strong>오류 메시지:</strong> ${responseData.youtube_extraction.message}</p>
+                    `;
+                } else if (responseData.text_data) {
+                    result.innerHTML = `
+                        <h3>텍스트 전송 성공!</h3>
+                        <p><strong>전송된 내용:</strong> ${responseData.text_data}</p>
+                    `;
+                } else {
+                    result.innerHTML = `<p>${responseData.message}</p>`;
+                }
+                
+            } catch (error) {
+                result.className = 'result error';
+                result.style.display = 'block';
+                result.innerHTML = `<p>오류가 발생했습니다: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

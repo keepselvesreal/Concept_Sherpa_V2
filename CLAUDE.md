@@ -17,5 +17,5 @@
     - 참조: 파일 수정 시 이 파일이 수정한 원본 파일 이름을 명시
 
 # Notes
-- Python package management: Using `uv`
-- 클로드 코드 도구를 MCP 보다 우선 사용
+- 클로드 코드 도구들을 MCP보다 우선 사용
+- All Python dependencies should be managed through `uv`

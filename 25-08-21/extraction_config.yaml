@@ -1,0 +1,41 @@
+# 추출 설정 파일
+extraction:
+  ai_provider: "claude"  # claude, gemini, openai
+  
+  fallback:
+    max_attempts: 3
+    retry_delay_base: 1.0  # 지수 백오프 기본값 (초)
+    timeout_seconds: 30
+    default_language: "korean"  # source_language 감지 실패 시 기본값
+  
+  tasks:
+    core_content:
+      enabled: true
+      max_sentences: 3
+    detailed_core_content:
+      enabled: true
+      max_words: 300
+    detailed_content:
+      enabled: true
+      # max_words 제한 없음 - 자유로운 상세 내용 추출
+    main_topics:
+      enabled: true
+      max_items: 5
+    sub_topics:
+      enabled: true
+      max_items: 5
+
+# AI 모델별 설정
+providers:
+  claude:
+    max_turns: 1
+    temperature: 0.7
+    allowed_tools: []
+  gemini:
+    api_key_env: "GEMINI_API_KEY"
+    model: "gemini-pro"
+    temperature: 0.7
+  openai:
+    api_key_env: "OPENAI_API_KEY" 
+    model: "gpt-4"
+    temperature: 0.7
