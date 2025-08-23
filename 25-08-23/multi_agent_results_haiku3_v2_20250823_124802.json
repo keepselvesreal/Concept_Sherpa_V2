@@ -1,0 +1,31 @@
+{
+  "model_used": "claude-3-haiku-20240307",
+  "results": [
+    {
+      "agent_name": "code_reviewer_haiku3",
+      "model": "claude-3-haiku-20240307",
+      "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"max_tokens: 8192 > 4096, which is the maximum allowed number of output tokens for claude-3-haiku-20240307\"},\"request_id\":\"req_011CSPxUk4MUsimY6dPdiYTU\"}",
+      "cost": 0,
+      "timestamp": "2025-08-23T12:48:02.228470",
+      "status": "success"
+    },
+    {
+      "agent_name": "test_writer_haiku3",
+      "model": "claude-3-haiku-20240307",
+      "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"max_tokens: 8192 > 4096, which is the maximum allowed number of output tokens for claude-3-haiku-20240307\"},\"request_id\":\"req_011CSPxUkE2PKukLJgoDGX83\"}",
+      "cost": 0,
+      "timestamp": "2025-08-23T12:48:02.277885",
+      "status": "success"
+    },
+    {
+      "agent_name": "documentation_writer_haiku3",
+      "model": "claude-3-haiku-20240307",
+      "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"max_tokens: 8192 > 4096, which is the maximum allowed number of output tokens for claude-3-haiku-20240307\"},\"request_id\":\"req_011CSPxUk75u9XaXF3h7H2Ho\"}",
+      "cost": 0,
+      "timestamp": "2025-08-23T12:48:02.235079",
+      "status": "success"
+    }
+  ],
+  "total_agents": 3,
+  "execution_time": "2025-08-23T12:48:02.310796"
+}

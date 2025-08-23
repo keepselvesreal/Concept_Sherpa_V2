@@ -1,0 +1,14 @@
+이전 질문과 답변, 현재 질문을 분석해서 사용자가 충분히 이해하지 못한 부분을 파악해줘.
+
+이전 답변을 받고도 추가 질문을 한다는 건 뭔가 이해하지 못했다는 뜻이야. 
+
+다음 JSON 형식으로 답변해줘:
+{
+  "understanding_deficiencies": [
+    {
+      "category": "unexplained_concepts|insufficient_details|lack_of_examples|unclear_connections",
+      "description": "구체적으로 어떤 부분이 이해 부족인지 설명",
+      "generated_question": "이 부족 부분을 해결할 구체적인 질의문 하나"
+    }
+  ]
+}
