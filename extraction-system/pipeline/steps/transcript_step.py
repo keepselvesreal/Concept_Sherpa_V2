@@ -42,9 +42,10 @@ class TranscriptImprovementStep(PipelineStep):
             if not improved_content:
                 return StepResult.error_result("스크립트 개선 실패")
             
-            # 개선된 내용 저장 (비동기화)
+            # 개선된 내용을 개별 폴더 내에 저장 (기존 방식: VtmBevBcDzI/content.md)
             script_path = Path(script_file_path)
-            content_file = script_path.parent / "content.md"
+            video_folder = script_path.parent
+            content_file = video_folder / "content.md"
             
             await self._run_sync_function(self._save_content, content_file, improved_content)
             

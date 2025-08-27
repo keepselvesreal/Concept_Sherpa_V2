@@ -39,9 +39,8 @@ def create_node_info_docs(video_folder: str) -> Dict[str, Any]:
             with open(metadata_file, 'r', encoding='utf-8') as f:
                 metadata = json.load(f)
         
-        # 3. 출력 디렉토리 생성
-        output_dir = os.path.join(video_folder, "node_info_docs")
-        os.makedirs(output_dir, exist_ok=True)
+        # 3. 출력 디렉토리 = 비디오 폴더 자체 (node_info_docs 폴더 생성하지 않음)
+        output_dir = video_folder
         
         # 4. 각 노드별 정보 파일 생성
         created_files = []
@@ -105,29 +104,47 @@ def create_info_file(node: Dict[str, Any], node_index: int, output_dir: str, met
     try:
         title = node.get('title', f'노드_{node_index}')
         content = node.get('content', '')
-        node_type = node.get('type', 'unknown')
+        level = node.get('level', 0)
         
-        # 파일명 생성
+        # 파일명 생성 (기존 방식: 00_lev0_title_info.md)
         safe_title = sanitize_title(title)
-        filename = f"{node_index:03d}_{safe_title}_{node_type}_info.md"
+        filename = f"{node_index:02d}_lev{level}_{safe_title}_info.md"
         filepath = os.path.join(output_dir, filename)
         
-        # 정보 파일 내용 생성
-        info_content = f"""# {title}
+        # 기존 방식의 정보 파일 내용 생성 (속성 섹션 포함)
+        info_content = f"""# 속성
+---
+process_status: false
+source: {metadata.get('source', 'N/A')}
+source_type: {metadata.get('source_type', 'youtube')}
+source_language: {metadata.get('source_language', 'english')}
+structure_type: {metadata.get('structure_type', 'standalone')}
+content_processing: {metadata.get('content_processing', 'unified')}
+created_at: {datetime.now().isoformat()}
 
-## 기본 정보
-- **노드 인덱스**: {node_index}
-- **제목**: {title}
-- **타입**: {node_type}
-- **생성 시간**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+# 추출
+---
+## 핵심 내용
+핵심 내용 추출 대기 중
 
-## 내용
+## 상세 핵심 내용
+상세 핵심 내용 추출 대기 중
+
+## 상세 내용
+상세 내용 추출 대기 중
+
+## 주요 화제
+주요 화제들이 추출됨
+
+## 부차 화제
+부차 화제들이 추출됨
+
+# 내용
+---
 {content}
 
-## 메타정보
-- **비디오 제목**: {metadata.get('title', 'N/A')}
-- **언어**: {metadata.get('language', 'N/A')}
-- **처리 날짜**: {metadata.get('processed_date', 'N/A')}
+# 구성
+---
 """
         
         # 파일 저장

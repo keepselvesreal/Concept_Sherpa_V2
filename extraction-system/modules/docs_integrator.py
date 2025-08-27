@@ -16,7 +16,7 @@ from typing import Dict, Any, Optional
 
 
 def integrate_node_documents(video_folder: str) -> Dict[str, Any]:
-    """노드 문서 통합 (subprocess 제거된 버전)"""
+    """노드 문서 통합 - 리팩토링 전 방식 적용 (개별 노드 문서에 content.md 내용 통합)"""
     try:
         if not os.path.exists(video_folder):
             return {"success": False, "error": f"비디오 폴더가 존재하지 않습니다: {video_folder}"}
@@ -24,112 +24,122 @@ def integrate_node_documents(video_folder: str) -> Dict[str, Any]:
         print("🔗 노드 문서 통합 시작")
         print(f"📁 처리 폴더: {os.path.abspath(video_folder)}")
         
-        # 1. content.md 파일 확인
-        content_file = os.path.join(video_folder, "content.md")
-        if not os.path.exists(content_file):
-            return {"success": False, "error": f"content.md 파일이 없습니다: {content_file}"}
-        
-        # 2. 기존 content.md 읽기
-        with open(content_file, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        # 3. 메타데이터 로드
+        # 1. 메타데이터 로드
         metadata_file = os.path.join(video_folder, "metadata.json")
         metadata = {}
         if os.path.exists(metadata_file):
             with open(metadata_file, 'r', encoding='utf-8') as f:
                 metadata = json.load(f)
+            print(f"✅ 메타데이터 로드 완료: {len(metadata)}개 필드")
         
-        # 4. 메타데이터 섹션 통합
-        integrated_content = integrate_metadata(content, metadata)
+        # 2. content.md 파일 로드
+        content_file = os.path.join(video_folder, "content.md")
+        content = None
+        if os.path.exists(content_file):
+            with open(content_file, 'r', encoding='utf-8') as f:
+                content = f.read().strip()
+            print(f"📖 내용 로드 완료: {len(content)} 문자")
+        else:
+            print("ℹ️ content.md 파일이 없음")
         
-        # 5. 노드 정보 문서들 통합
-        docs_dir = os.path.join(video_folder, "node_info_docs")
-        if os.path.exists(docs_dir):
-            integrated_content = integrate_content(integrated_content, docs_dir)
+        # 3. 노드 정보 문서 파일 찾기 (*_info.md)
+        info_files = []
+        for file in os.listdir(video_folder):
+            if file.endswith('_info.md'):
+                info_files.append(os.path.join(video_folder, file))
         
-        # 6. 통합된 내용을 content.md에 저장
-        with open(content_file, 'w', encoding='utf-8') as f:
-            f.write(integrated_content)
+        if not info_files:
+            return {"success": False, "error": "노드 정보 문서를 찾을 수 없습니다 (*_info.md)"}
+        
+        print(f"📁 발견된 노드 정보 문서: {len(info_files)}개")
+        
+        # 4. 각 파일별 통합 처리
+        processed_count = 0
+        for info_file in info_files:
+            print(f"📄 처리 중: {os.path.basename(info_file)}")
+            success = True
+            
+            # 메타데이터 통합
+            if metadata and integrate_metadata_to_node(info_file, metadata):
+                print(f"   ✅ 메타데이터 통합 완료")
+            elif metadata:
+                print(f"   ⚠️ 메타데이터 통합 실패")
+                success = False
+            
+            # 내용 통합 (level 0 파일만)
+            if '_lev0_' in os.path.basename(info_file) and content:
+                if integrate_content_to_node(info_file, content):
+                    print(f"   ✅ 내용 통합 완료")
+                else:
+                    print(f"   ⚠️ 내용 통합 실패")
+                    success = False
+            elif '_lev0_' in os.path.basename(info_file):
+                print(f"   ℹ️ 내용 파일이 없음")
+            else:
+                print(f"   ℹ️ level 0이 아니므로 내용 통합 건너뜀")
+            
+            if success:
+                processed_count += 1
         
         print("=" * 50)
         print("🎉 노드 문서 통합 완료")
-        print(f"📄 업데이트된 파일: {content_file}")
+        print(f"📂 처리된 파일: {processed_count}개")
         
         return {
             "success": True,
-            "updated_file": content_file,
-            "integrated_sections": ["metadata", "node_docs"]
+            "updated_file": f"{processed_count}개 노드 문서",
+            "integrated_sections": ["metadata", "content"]
         }
         
     except Exception as e:
         return {"success": False, "error": str(e)}
 
 
-def integrate_metadata(content: str, metadata: Dict[str, Any]) -> str:
-    """메타데이터 속성 섹션 통합"""
+def integrate_metadata_to_node(info_file: str, metadata: Dict) -> bool:
+    """메타데이터를 노드 정보 문서의 속성 섹션에 통합 (process_status만 false로 변경)"""
     try:
-        # 메타데이터 섹션 생성
-        metadata_section = """
-## 📊 비디오 메타정보
-
-- **제목**: {title}
-- **언어**: {language}  
-- **소스**: {source_url}
-- **처리 날짜**: {processed_date}
-- **구조 유형**: {structure_type}
-- **처리 방식**: {content_processing}
-
----
-
-""".format(
-            title=metadata.get('title', 'N/A'),
-            language=metadata.get('language', 'N/A'),
-            source_url=metadata.get('source_url', 'N/A'),
-            processed_date=metadata.get('processed_date', 'N/A'),
-            structure_type=metadata.get('structure_type', 'N/A'),
-            content_processing=metadata.get('content_processing', 'N/A')
+        with open(info_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # process_status: true -> false로 변경
+        updated_content = re.sub(
+            r'process_status: true', 
+            'process_status: false', 
+            content
         )
         
-        # 기존 내용에 메타데이터 섹션 추가
-        return metadata_section + content
+        with open(info_file, 'w', encoding='utf-8') as f:
+            f.write(updated_content)
         
+        return True
     except Exception as e:
-        print(f"⚠️ 메타데이터 통합 중 오류: {e}")
-        return content
+        print(f"❌ 메타데이터 통합 실패: {e}")
+        return False
 
 
-def integrate_content(content: str, docs_dir: str) -> str:
-    """노드 정보 문서들을 내용에 통합"""
+def integrate_content_to_node(info_file: str, content: str) -> bool:
+    """내용을 노드 정보 문서의 내용 섹션에 통합"""
     try:
-        # node_info_docs 디렉토리의 모든 .md 파일 찾기
-        docs_path = Path(docs_dir)
-        info_files = list(docs_path.glob("*_info.md"))
+        with open(info_file, 'r', encoding='utf-8') as f:
+            doc_content = f.read()
         
-        if not info_files:
-            print("⚠️ 통합할 노드 정보 문서가 없습니다")
-            return content
+        # 내용 섹션 찾기 및 교체 (# 내용 --- 부터 # 구성 --- 까지)
+        pattern = r'(# 내용\n---\n)(.*?)(# 구성\n---)'
         
-        # 파일명으로 정렬
-        info_files.sort(key=lambda x: x.name)
+        # 제목 추가 (파일명에서 추출)
+        filename = os.path.basename(info_file)
+        title_match = re.search(r'_lev\d+_(.+?)_info\.md', filename)
+        title = title_match.group(1).replace('_', ' ') if title_match else "Content"
         
-        # 노드 정보 섹션 생성
-        nodes_section = "\n\n## 🌐 노드 상세 정보\n\n"
+        new_content_section = f"# {title}\n\n{content}\n\n"
         
-        for info_file in info_files:
-            try:
-                with open(info_file, 'r', encoding='utf-8') as f:
-                    file_content = f.read()
-                
-                nodes_section += f"### {info_file.name}\n\n"
-                nodes_section += file_content + "\n\n---\n\n"
-                
-            except Exception as e:
-                print(f"⚠️ 파일 {info_file.name} 읽기 실패: {e}")
+        replacement = rf'\1{new_content_section}\3'
+        updated_content = re.sub(pattern, replacement, doc_content, flags=re.DOTALL)
         
-        # 기존 내용에 노드 섹션 추가
-        return content + nodes_section
+        with open(info_file, 'w', encoding='utf-8') as f:
+            f.write(updated_content)
         
+        return True
     except Exception as e:
-        print(f"⚠️ 노드 문서 통합 중 오류: {e}")
-        return content
+        print(f"❌ 내용 통합 실패: {e}")
+        return False

@@ -36,9 +36,20 @@ class YouTubeExtractionStep(PipelineStep):
             
             if result["success"]:
                 self._log_step_success()
+                
+                # 실제 metadata.json 경로 업데이트 (비디오 ID 폴더 안에 생성됨)
+                script_file_path = result["file_info"]["full_path"]
+                from pathlib import Path
+                video_folder = Path(script_file_path).parent
+                actual_json_path = video_folder / "metadata.json"
+                
+                print(f"🔍 업데이트된 metadata.json 경로: {actual_json_path}")
+                
                 return StepResult.success_result({
-                    "script_file_path": result["file_info"]["full_path"],
-                    "video_info": result["video_info"]
+                    "script_file_path": script_file_path,
+                    "video_info": result["video_info"],
+                    "json_path": str(actual_json_path),  # 올바른 경로로 업데이트
+                    "video_folder_path": str(video_folder)  # 비디오 폴더 경로 추가
                 })
             else:
                 self._log_step_error(result.get("message", "Unknown error"))

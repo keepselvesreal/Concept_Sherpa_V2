@@ -24,7 +24,8 @@ class NodeDocsIntegrationStep(PipelineStep):
         self._log_step_start()
         
         try:
-            folder_path = context.get("folder_path")
+            # 비디오 폴더 경로 우선 사용, 없으면 기본 folder_path 사용
+            folder_path = context.get("video_folder_path") or context.get("folder_path")
             if not folder_path:
                 return StepResult.error_result("폴더 경로가 없습니다")
             

@@ -32,18 +32,21 @@ class NodeGenerationStep(PipelineStep):
             if not json_path or not script_file_path:
                 return StepResult.error_result("JSON 경로 또는 스크립트 파일 경로가 없습니다")
             
-            # 메타데이터 로드 (비동기화)
-            metadata = await self._run_sync_function(load_metadata, Path(json_path))
+            # 메타데이터 로드 (절대 경로로 변환)
+            abs_json_path = Path(json_path).resolve()
+            print(f"🔍 메타데이터 파일 경로: {abs_json_path}")
+            metadata = await self._run_sync_function(load_metadata, abs_json_path)
             if not metadata:
                 return StepResult.error_result("메타데이터 로드 실패")
             
-            # 스크립트 내용 읽기 및 헤더 추출 (비동기화)
-            content = await self._run_sync_function(self._read_script_content, script_file_path)
+            # 스크립트 내용 읽기 및 헤더 추출 (절대 경로 사용)
+            abs_script_path = Path(script_file_path).resolve()
+            print(f"🔍 스크립트 파일 경로: {abs_script_path}")
+            content = await self._run_sync_function(self._read_script_content, str(abs_script_path))
             nodes = await self._run_sync_function(extract_headers_by_type, content, metadata)
             
-            # 노드 파일 저장 (비동기화)
-            script_path = Path(script_file_path)
-            nodes_file = script_path.parent / "nodes.json"
+            # 노드 파일 저장 (절대 경로 사용)
+            nodes_file = abs_script_path.parent / "nodes.json"
             await self._run_sync_function(self._save_nodes, nodes_file, nodes)
             
             self._log_step_success()

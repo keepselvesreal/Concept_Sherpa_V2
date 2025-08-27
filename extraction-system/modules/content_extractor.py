@@ -40,29 +40,17 @@ def extract_enhanced_node_content(video_folder: str) -> Dict[str, Any]:
             if node_data:
                 processed_nodes.append(node_data)
         
-        # 3. 추출된 정보를 JSON으로 저장
-        output_file = os.path.join(video_folder, "extracted_nodes.json")
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(processed_nodes, f, ensure_ascii=False, indent=2)
-        
-        # 4. 핵심 인사이트 추출
-        insights = extract_key_insights(processed_nodes)
-        insights_file = os.path.join(video_folder, "key_insights.json")
-        with open(insights_file, 'w', encoding='utf-8') as f:
-            json.dump(insights, f, ensure_ascii=False, indent=2)
+        # 기존 방식에서는 이런 파일들을 생성하지 않음
+        # extracted_nodes.json과 key_insights.json 생성 로직 제거
         
         print("=" * 50)
-        print(f"🎉 노드 정보 추출 완료")
-        print(f"📄 추출된 노드: {len(processed_nodes)}개")
-        print(f"📄 출력 파일: {output_file}")
-        print(f"💡 인사이트 파일: {insights_file}")
+        print(f"🎉 노드 정보 처리 완료")
+        print(f"📄 처리된 노드: {len(processed_nodes)}개")
         
         return {
             "success": True,
-            "output_file": output_file,
-            "insights_file": insights_file,
             "processed_count": len(processed_nodes),
-            "insights_count": len(insights.get("insights", []))
+            "processed_nodes": processed_nodes
         }
         
     except Exception as e:

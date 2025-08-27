@@ -20,6 +20,7 @@ from .steps.node_step import NodeGenerationStep
 from .steps.docs_creation_step import NodeDocsCreationStep
 from .steps.docs_integration_step import NodeDocsIntegrationStep
 from .steps.content_extraction_step import NodeContentExtractionStep
+from .steps.content_analysis_step import ContentAnalysisStep
 
 
 class YouTubePipeline:
@@ -130,9 +131,10 @@ class YouTubePipeline:
             YouTubeExtractionStep(),          # 2단계: YouTube 스크립트 추출
             TranscriptImprovementStep(),      # 3단계: 스크립트 개선
             NodeGenerationStep(),             # 4단계: 노드 생성
-            NodeDocsCreationStep(),           # 5단계: 노드 문서 생성 (개선됨)
-            NodeDocsIntegrationStep(),        # 6단계: 노드 문서 통합 (개선됨)
-            NodeContentExtractionStep()       # 7단계: 노드 정보 추출 (개선됨)
+            NodeDocsCreationStep(),           # 5단계: 노드 문서 생성 (빈 템플릿)
+            NodeDocsIntegrationStep(),        # 6단계: 노드 문서 통합 (메타데이터+내용)
+            ContentAnalysisStep()             # 7단계: 콘텐츠 분석 (통합된 노드 문서 분석)
+            # NodeContentExtractionStep()     # 더 이상 사용하지 않음 (ContentAnalysisStep으로 대체)
         ]
     
     def get_progress(self) -> Dict[str, Any]:
