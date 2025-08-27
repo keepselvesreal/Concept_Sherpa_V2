@@ -48,17 +48,14 @@ async def analyze_supplementary_context(current_query: str, session_id: str = No
             # 매개변수로 받은 정보 사용
             logger.info(f"매개변수 사용: session_id={session_id[:20]}..., query_number={query_number}")
             
-            # 세션 폴더 직접 찾기
-            current_dir = Path.cwd()
-            session_prefix = session_id.split('-')[0]
-            pattern = f"session_{session_prefix}_*"
-            matching_folders = list(current_dir.glob(pattern))
-            
-            if not matching_folders:
-                logger.error(f"세션 폴더를 찾을 수 없습니다: {pattern}")
+            # 공통 유틸리티 함수로 세션 폴더 찾기
+            try:
+                from common_utils import find_session_folder
+                session_folder = find_session_folder(session_id, config, __file__)
+            except FileNotFoundError as e:
+                logger.error(str(e))
                 return {'success': False, 'error': f"세션 폴더를 찾을 수 없습니다: {session_id}"}
                 
-            session_folder = max(matching_folders, key=lambda x: x.name.split('_')[-1])
             current_query_number = query_number
             
         else:

@@ -319,3 +319,116 @@ def safe_file_write(file_path: Union[str, Path], content: str, encoding: str = '
     except Exception as e:
         logging.getLogger(__name__).error(f"파일 쓰기 실패: {file_path} - {str(e)}")
         return False
+
+
+# === 세션 경로 관리 유틸리티 ===
+
+def find_session_folder(session_id: str, config: Dict[str, Any], 
+                       script_path: Union[str, Path] = None) -> Path:
+    """
+    config 기반으로 세션 폴더 찾기 - 실행 위치와 무관한 범용적 해결책
+    
+    Args:
+        session_id: 세션 ID (예: '3d1f50b8-4e4d-445b-...')
+        config: 설정 딕셔너리
+        script_path: 스크립트 경로 (None이면 자동 감지)
+    
+    Returns:
+        Path: 찾은 세션 폴더 경로
+        
+    Raises:
+        FileNotFoundError: 세션 폴더를 찾을 수 없는 경우
+    """
+    # 스크립트 디렉토리 기준점 설정
+    if script_path is None:
+        # 이 함수를 호출한 스크립트의 위치를 기준으로 함
+        import inspect
+        caller_frame = inspect.currentframe().f_back
+        caller_file = caller_frame.f_globals['__file__']
+        script_dir = Path(caller_file).parent
+    else:
+        script_dir = Path(script_path).parent
+    
+    # 세션 ID에서 prefix 추출
+    session_prefix = session_id.split('-')[0]
+    
+    # config에서 세션 기본 경로 읽기
+    session_config = config.get('session', {})
+    base_folder = session_config.get('base_folder', '.')
+    
+    # 검색 기준 경로 설정
+    search_base = script_dir / base_folder
+    pattern = f"session_{session_prefix}_*"
+    
+    # 패턴 매칭으로 세션 폴더 찾기
+    matching_folders = list(search_base.glob(pattern))
+    
+    if not matching_folders:
+        raise FileNotFoundError(f"세션 폴더를 찾을 수 없습니다: {pattern} (검색 경로: {search_base})")
+    
+    # 가장 최신 폴더 반환 (timestamp 기준)
+    latest_folder = max(matching_folders, key=lambda x: x.name.split('_')[-1])
+    return latest_folder
+
+
+def get_session_folder_path(session_id: str, config: Dict[str, Any], 
+                           script_path: Union[str, Path] = None) -> str:
+    """
+    세션 폴더 경로를 문자열로 반환하는 편의 함수
+    
+    Args:
+        session_id: 세션 ID
+        config: 설정 딕셔너리  
+        script_path: 스크립트 경로
+    
+    Returns:
+        str: 세션 폴더 경로 문자열
+    """
+    try:
+        folder_path = find_session_folder(session_id, config, script_path)
+        return str(folder_path)
+    except FileNotFoundError as e:
+        logging.getLogger(__name__).error(str(e))
+        raise
+
+
+def ensure_session_folder_exists(session_id: str, config: Dict[str, Any],
+                                script_path: Union[str, Path] = None) -> Path:
+    """
+    세션 폴더가 존재하지 않으면 생성하고 경로 반환
+    
+    Args:
+        session_id: 세션 ID
+        config: 설정 딕셔너리
+        script_path: 스크립트 경로
+    
+    Returns:
+        Path: 세션 폴더 경로 (생성됨)
+    """
+    try:
+        # 기존 폴더 찾기 시도
+        return find_session_folder(session_id, config, script_path)
+    except FileNotFoundError:
+        # 폴더가 없으면 새로 생성
+        if script_path is None:
+            import inspect
+            caller_frame = inspect.currentframe().f_back
+            caller_file = caller_frame.f_globals['__file__']
+            script_dir = Path(caller_file).parent
+        else:
+            script_dir = Path(script_path).parent
+        
+        session_config = config.get('session', {})
+        base_folder = session_config.get('base_folder', '.')
+        
+        # 새 폴더 생성 (timestamp 기반)
+        from datetime import datetime
+        timestamp = datetime.now().strftime('%H%M')
+        session_prefix = session_id.split('-')[0]
+        folder_name = f"session_{session_prefix}_{timestamp}"
+        
+        new_folder_path = script_dir / base_folder / folder_name
+        new_folder_path.mkdir(parents=True, exist_ok=True)
+        
+        logging.getLogger(__name__).info(f"새 세션 폴더 생성: {new_folder_path}")
+        return new_folder_path

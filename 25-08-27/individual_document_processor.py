@@ -22,6 +22,8 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple
 from dataclasses import dataclass
 
+from common_utils import find_session_folder
+
 try:
     from claude_code_sdk import ClaudeCodeOptions, query as claude_query
 except ImportError as e:
@@ -97,7 +99,7 @@ class IndividualDocumentProcessor:
             print(f"📋 매개변수 사용: 세션 ID={session_id[:20]}..., 질의 번호={query_number}")
             
             # 2. 세션 폴더 찾기
-            session_folder = self.cache_loader.find_session_folder(current_session_id)
+            session_folder = find_session_folder(current_session_id, self.config, __file__)
             if not session_folder:
                 raise ValueError(f"세션 폴더를 찾을 수 없습니다: {current_session_id}")
             
@@ -320,26 +322,6 @@ class SessionCacheLoader:
             print(f"❌ 예상치 못한 캐시 로드 오류: {e}")
             return None
     
-    def find_session_folder(self, session_id: str) -> Optional[Path]:
-        """세션 ID로 기존 세션 폴더 찾기"""
-        try:
-            # session_id에서 prefix 추출 (첫 번째 - 앞 부분)
-            session_prefix = session_id.split('-')[0]
-            pattern = f"session_{session_prefix}_*"
-            
-            matching_folders = list(self.script_dir.glob(pattern))
-            if matching_folders:
-                # 가장 최신 폴더 반환
-                latest_folder = max(matching_folders, key=lambda x: x.name.split('_')[-1])
-                print(f"✅ 세션 폴더 찾음: {latest_folder.name}")
-                return latest_folder
-            
-            print(f"❌ 세션 폴더를 찾을 수 없습니다: {pattern}")
-            return None
-            
-        except Exception as e:
-            print(f"❌ 세션 폴더 검색 오류: {e}")
-            return None
 
 class DocumentProcessor:
     """개별 문서 처리 클래스"""

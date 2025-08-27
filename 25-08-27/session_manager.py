@@ -17,6 +17,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 
+from common_utils import find_session_folder as common_find_session_folder
+
 
 class SessionCacheManager:
     """세션 캐시 파일 관리 클래스 - CRUD 작업 전담"""
@@ -172,16 +174,7 @@ class SessionManager:
     def find_session_folder(self, session_id: str) -> Optional[Path]:
         """기존 세션 폴더 찾기 (session ID의 첫 번째 - 앞 부분으로 매칭)"""
         try:
-            session_prefix = self.get_session_prefix(session_id)
-            pattern = f"session_{session_prefix}_*"
-            
-            matching_folders = list(self.script_dir.glob(pattern))
-            if matching_folders:
-                # 가장 최신 폴더 반환 (타임스탬프 기준)
-                return max(matching_folders, key=lambda x: x.name.split('_')[-1])
-            
-            return None
-            
+            return common_find_session_folder(session_id, self.config, __file__)
         except Exception as e:
             self.logger.error(f"세션 폴더 검색 오류: {e}")
             return None
@@ -283,19 +276,10 @@ def load_session_cache(script_dir: Path = None) -> Optional[Dict[str, Any]]:
 
 
 def find_session_folder(session_id: str, script_dir: Path = None) -> Optional[Path]:
-    """세션 폴더 찾기 편의 함수"""
-    if script_dir is None:
-        script_dir = Path.cwd()
-    
+    """세션 폴더 찾기 편의 함수 - common_utils로 위임"""
     try:
-        session_prefix = session_id.split('-')[0]
-        pattern = f"session_{session_prefix}_*"
-        
-        matching_folders = list(script_dir.glob(pattern))
-        if matching_folders:
-            return max(matching_folders, key=lambda x: x.name.split('_')[-1])
-        
-        return None
-        
+        # config가 없는 경우 기본 설정 생성
+        default_config = {'session': {'base_folder': '.'}}
+        return common_find_session_folder(session_id, default_config, script_dir)
     except Exception:
         return None
