@@ -1,13 +1,14 @@
-# 생성 시간: 2025-08-27 17:38 KST
-# 핵심 내용: MD 파일 콘텐츠 처리 단계
+# 생성 시간: 2025-08-27 17:38 KST → 2025-08-27 20:09 KST 수정
+# 핵심 내용: MD 파일 콘텐츠 처리 단계 (## Excerpt 이후 콘텐츠만 추출)
 # 상세 내용:
-#   - MDContentProcessingStep (라인 15-85): MD 파일 헤더 정리 및 content.md 생성
-#   - execute() (라인 20-65): header_cleaner.py 로직을 파이프라인에 통합
-#   - _find_first_header() (라인 67-80): 첫 번째 # 헤더 위치 탐지
-#   - _clean_markdown_content() (라인 82-105): 마크다운 내용 정리
+#   - MDContentProcessingStep (라인 15-85): MD 파일 ## Excerpt 이후 내용만 추출하여 content.md 생성
+#   - execute() (라인 20-65): ## Excerpt 섹션의 --- 이후 부분만 추출
+#   - _find_first_header() (라인 67-80): 첫 번째 # 헤더 위치 탐지 (대안용)
+#   - _clean_markdown_content() (라인 79-107): ## Excerpt --- 이후 콘텐츠 추출
+#   - _find_content_after_excerpt() (라인 109-131): ## Excerpt 섹션의 --- 이후 위치 탐지
 # 상태: active
-# 주소: pipeline/steps/md_content_step
-# 참조: header_cleaner.py → 파이프라인 단계로 변환
+# 주소: pipeline/steps/md_content_step/excerpt_filtered
+# 참조: header_cleaner.py → ## Excerpt 필터링으로 개선
 
 import re
 from pathlib import Path
@@ -77,23 +78,55 @@ class MDContentProcessingStep(PipelineStep):
         return None
     
     def _clean_markdown_content(self, md_content: str) -> Tuple[str, int]:
-        """마크다운 내용 정리 (첫 번째 헤더 이전 내용 제거)"""
+        """마크다운 내용 정리 (## Excerpt 섹션의 --- 이후 부분만 추출)"""
         lines = md_content.splitlines(keepends=True)
         
-        # 첫 번째 헤더 위치 찾기
-        header_line_index = self._find_first_header(lines)
+        # ## Excerpt 섹션의 --- 이후 위치 찾기
+        content_start_index = self._find_content_after_excerpt(lines)
         
-        if header_line_index is None:
-            print("⚠️ # 헤더를 찾을 수 없습니다. 파일을 그대로 사용합니다.")
-            cleaned_lines = lines
-            removed_lines = 0
+        if content_start_index is None:
+            print("⚠️ ## Excerpt 섹션 또는 --- 구분선을 찾을 수 없습니다. 첫 번째 헤더부터 사용합니다.")
+            # 대안: 첫 번째 헤더 찾기
+            header_line_index = self._find_first_header(lines)
+            if header_line_index is not None:
+                cleaned_lines = lines[header_line_index:]
+                removed_lines = header_line_index
+                print(f"🎯 첫 번째 헤더 위치: {header_line_index + 1}번째 줄")
+            else:
+                print("⚠️ 헤더도 찾을 수 없습니다. 파일을 그대로 사용합니다.")
+                cleaned_lines = lines
+                removed_lines = 0
         else:
-            print(f"🎯 첫 번째 헤더 위치: {header_line_index + 1}번째 줄")
-            # 헤더부터 끝까지 추출
-            cleaned_lines = lines[header_line_index:]
-            removed_lines = header_line_index
+            print(f"🎯 ## Excerpt 이후 콘텐츠 시작 위치: {content_start_index + 1}번째 줄")
+            # --- 이후부터 끝까지 추출
+            cleaned_lines = lines[content_start_index:]
+            removed_lines = content_start_index
         
         # 문자열로 결합
         cleaned_content = ''.join(cleaned_lines)
         
         return cleaned_content, removed_lines
+    
+    def _find_content_after_excerpt(self, lines: List[str]) -> Optional[int]:
+        """## Excerpt 섹션의 --- 이후 위치 탐지"""
+        excerpt_found = False
+        
+        for i, line in enumerate(lines):
+            stripped_line = line.strip()
+            
+            # > ## Excerpt 패턴 찾기
+            if not excerpt_found and '## Excerpt' in stripped_line:
+                excerpt_found = True
+                print(f"🔍 ## Excerpt 섹션 발견: {i + 1}번째 줄")
+                continue
+            
+            # Excerpt 발견 후 첫 번째 --- 찾기
+            if excerpt_found and stripped_line == '---':
+                print(f"🔍 --- 구분선 발견: {i + 1}번째 줄")
+                # --- 다음 줄부터 반환 (빈 줄 건너뛰기)
+                for j in range(i + 1, len(lines)):
+                    if lines[j].strip():  # 비어있지 않은 첫 번째 줄
+                        return j
+                return i + 1  # 빈 줄만 있는 경우 --- 바로 다음부터
+        
+        return None
