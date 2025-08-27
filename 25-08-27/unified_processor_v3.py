@@ -515,32 +515,42 @@ async def main():
         description="간소화된 통합 질의응답 처리 시스템 v3 - SessionQueryProcessor 제거 및 세션 관리 통합",
         epilog="""
 사용 예시:
-  첫 번째 질의: python unified_processor_v2.py "데이터 지향 프로그래밍의 특징은?"
-  자동 재개:   python unified_processor_v2.py "더 자세한 예시를 들어줘"
-  새 세션:     python unified_processor_v2.py "새로운 주제로 시작" --new-session
-  수동 재개:   python unified_processor_v2.py "질문" --session-id abc123-def456
+  기본 질의:       ask 데이터 지향 프로그래밍의 특징은?
+  따옴표 사용:     ask "더 자세한 예시를 들어줘"  
+  새 세션:         ask -n 새로운 주제로 시작
+  세션 재개:       ask -s abc123-def456 질문
+  긴 옵션:         ask --new-session --session-id abc123 질문
 
-주요 변경사항:
-  - SessionQueryProcessor 제거
-  - IndividualDocumentProcessor에서 세션 관리 통합 처리
-  - 개별 문서별 응답 생성 + 보충 분석 (쿼리 번호 >= 2)
+단축 옵션:
+  -n, --new-session    새 세션 시작
+  -s, --session-id     세션 ID 지정
+  
+주요 개선사항:
+  - 따옴표 없이 질의 가능: ask 질의내용
+  - 단축 옵션 추가: -n, -s  
+  - CLI 사용성 향상
         """,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     
-    parser.add_argument('query', help='처리할 질의문')
-    parser.add_argument('--session-id', help='재개할 세션 ID (수동 지정)')
-    parser.add_argument('--new-session', action='store_true', help='강제로 새 세션 시작')
+    parser.add_argument('query', nargs='*', help='처리할 질의문 (따옴표 없이 입력 가능)')
+    parser.add_argument('-s', '--session-id', help='재개할 세션 ID (수동 지정)')
+    parser.add_argument('-n', '--new-session', action='store_true', help='강제로 새 세션 시작')
     parser.add_argument('--config', default='./config.yaml', help='설정 파일 경로')
     
     args = parser.parse_args()
+    
+    # query를 문자열로 변환 (리스트 → 공백으로 연결된 문자열)
+    if not args.query:
+        parser.error("질의문을 입력해주세요")
+    query_text = ' '.join(args.query)
     
     try:
         # UnifiedProcessor v3 초기화 및 실행
         processor = UnifiedProcessor(args.config)
         
         result = await processor.process_query(
-            query=args.query,
+            query=query_text,
             force_new_session=args.new_session,
             session_id=args.session_id
         )
