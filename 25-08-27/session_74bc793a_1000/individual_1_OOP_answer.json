@@ -1,0 +1,10 @@
+{
+  "query_number": 1,
+  "query": "DOP가 뭔지 알려줘",
+  "model_response": "태수야, 참조 문서에서는 OOP(객체 지향 프로그래밍)에 대해 설명하고 있는데, 네가 묻고 있는 DOP에 대한 정보는 없어. OOP.md 문서로는 DOP가 뭔지 답변할 수 없다. \n\nDOP가 무엇인지 정확히 알려면 다른 자료가 필요할 것 같은데, 혹시 구체적으로 어떤 맥락에서의 DOP를 궁금해하는지 알려줄 수 있을까? 프로그래밍에서 DOP라고 하면 Data-Oriented Programming이나 Domain-Oriented Programming 같은 용어들이 있긴 한데, 정확한 답변을 위해서는 더 구체적인 정보나 자료가 필요해.",
+  "has_relevant_content": false,
+  "elapsed_time": 14.675436973571777,
+  "timestamp": "2025-08-27T10:00:59.310386",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-27/references/OOP.md",
+  "success": true
+}
