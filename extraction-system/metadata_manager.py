@@ -8,6 +8,7 @@
 
 import os
 import json
+import re
 from datetime import datetime
 from typing import Dict, Any, Optional
 
@@ -30,6 +31,9 @@ def create_metadata_json(metadata_info: Dict[str, str], youtube_url: str) -> Dic
         folder_path = os.path.join(".", folder_name)
         os.makedirs(folder_path, exist_ok=True)
         
+        # YouTube video ID 추출
+        youtube_id = _extract_youtube_id(youtube_url)
+        
         # 메타정보 JSON 구조 생성
         metadata = {
             "source": youtube_url,
@@ -37,6 +41,7 @@ def create_metadata_json(metadata_info: Dict[str, str], youtube_url: str) -> Dic
             "source_language": metadata_info.get("source_language", "korean"),
             "structure_type": metadata_info.get("structure_type", "standalone"),
             "content_processing": metadata_info.get("content_processing", "unified"),
+            "folder_name": youtube_id,  # YouTube ID를 folder_name으로 사용
             "created_at": datetime.now().isoformat()
         }
         
@@ -73,6 +78,31 @@ def get_existing_folder() -> Optional[str]:
     if os.path.exists(folder_path):
         return folder_path
     return None
+
+
+def _extract_youtube_id(youtube_url: str) -> str:
+    """
+    YouTube URL에서 video ID를 추출합니다.
+    
+    Args:
+        youtube_url: YouTube URL
+        
+    Returns:
+        Video ID (추출 실패 시 빈 문자열)
+    """
+    patterns = [
+        r'(?:youtube\.com/watch\?v=)([^&\n?#]+)',
+        r'(?:youtube\.com/embed/)([^&\n?#]+)', 
+        r'(?:youtu\.be/)([^&\n?#]+)',
+        r'(?:youtube\.com/v/)([^&\n?#]+)'
+    ]
+    
+    for pattern in patterns:
+        match = re.search(pattern, youtube_url)
+        if match:
+            return match.group(1)
+    
+    return ""  # ID를 찾을 수 없는 경우
 
 
 def _generate_folder_name() -> str:

@@ -28,18 +28,18 @@ class ContentAnalysisStep(PipelineStep):
         self._log_step_start()
         
         try:
-            # 비디오 폴더 경로에서 통합된 노드 문서들 찾기
-            video_folder_path = context.get("video_folder_path")
-            if not video_folder_path or not os.path.exists(video_folder_path):
-                return StepResult.error_result("비디오 폴더를 찾을 수 없습니다")
+            # 메타데이터에서 source_type과 folder_name으로 대상 폴더 찾기
+            target_folder_path = self._find_target_folder(context)
+            if not target_folder_path:
+                return StepResult.error_result("대상 폴더를 찾을 수 없습니다")
             
-            print(f"📁 비디오 폴더: {video_folder_path}")
+            print(f"📁 대상 폴더: {target_folder_path}")
             
             # *_info.md 파일들 찾기
             info_files = []
-            for file in os.listdir(video_folder_path):
+            for file in os.listdir(target_folder_path):
                 if file.endswith('_info.md'):
-                    info_files.append(os.path.join(video_folder_path, file))
+                    info_files.append(os.path.join(target_folder_path, file))
             
             if not info_files:
                 return StepResult.error_result("노드 정보 문서를 찾을 수 없습니다 (*_info.md)")
@@ -138,3 +138,68 @@ class ContentAnalysisStep(PipelineStep):
                 
         except Exception as e:
             print(f"❌ process_status 업데이트 실패: {e}")
+    
+    def _find_target_folder(self, context: Dict[str, Any]) -> str:
+        """메타데이터의 source_type과 folder_name으로 대상 폴더 찾기"""
+        try:
+            # 컨텍스트에서 메타데이터 추출 (여러 가능성 고려)
+            metadata = None
+            
+            # MD 파이프라인에서 온 경우 - 직접 folder_path 사용
+            if 'folder_path' in context:
+                return context['folder_path']
+            
+            # YouTube 파이프라인에서 온 경우 - video_folder_path 사용
+            if 'video_folder_path' in context:
+                return context['video_folder_path']
+            
+            # metadata에서 직접 추출하는 경우
+            if 'metadata' in context:
+                metadata = context['metadata']
+            elif 'metadata_file' in context:
+                import json
+                from pathlib import Path
+                metadata_file = Path(context['metadata_file'])
+                if metadata_file.exists():
+                    with open(metadata_file, 'r', encoding='utf-8') as f:
+                        metadata = json.load(f)
+            
+            if not metadata:
+                print("❌ 메타데이터를 찾을 수 없습니다")
+                return None
+            
+            source_type = metadata.get('source_type', '')
+            folder_name = metadata.get('folder_name', '')
+            
+            if not source_type or not folder_name:
+                print(f"❌ source_type 또는 folder_name이 없습니다: {source_type}, {folder_name}")
+                return None
+            
+            # source_type에 따라 폴더 경로 구성
+            if source_type == 'youtube':
+                # YouTube_{날짜}/{folder_name} 형식으로 찾기
+                from datetime import datetime
+                current_date = datetime.now().strftime("%y%m%d")
+                youtube_folder = f"YouTube_{current_date}"
+                target_folder = os.path.join(".", youtube_folder, folder_name)
+                
+            elif source_type == 'markdown':
+                # Post_{날짜}/{folder_name} 형식으로 찾기  
+                from datetime import datetime
+                current_date = datetime.now().strftime("%y%m%d")
+                post_folder = f"Post_{current_date}"
+                target_folder = os.path.join(".", post_folder, folder_name)
+            
+            else:
+                print(f"❌ 지원되지 않는 source_type: {source_type}")
+                return None
+            
+            if os.path.exists(target_folder):
+                return target_folder
+            else:
+                print(f"❌ 대상 폴더가 존재하지 않습니다: {target_folder}")
+                return None
+                
+        except Exception as e:
+            print(f"❌ 대상 폴더 찾기 오류: {str(e)}")
+            return None

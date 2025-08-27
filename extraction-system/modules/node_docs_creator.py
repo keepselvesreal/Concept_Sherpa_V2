@@ -120,6 +120,7 @@ source_type: {metadata.get('source_type', 'youtube')}
 source_language: {metadata.get('source_language', 'english')}
 structure_type: {metadata.get('structure_type', 'standalone')}
 content_processing: {metadata.get('content_processing', 'unified')}
+folder_name: {metadata.get('folder_name', 'N/A')}
 created_at: {datetime.now().isoformat()}
 
 # 추출
