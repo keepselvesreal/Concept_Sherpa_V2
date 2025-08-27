@@ -1,0 +1,13 @@
+{
+  "session_id": "edfbd00c-056a-4cdf-b5ee-10003a4cb1a7",
+  "created_at": "2025-08-25T16:11:28+0900",
+  "conversations": [
+    {
+      "query_number": 1,
+      "timestamp": "2025-08-25T16:11:28+0900",
+      "query": "다음 참고 문서를 바탕으로 질의에 대해 간결하고 정확하게 답변해주세요.\n\n참고 문서:\n# 객체 지향 프로그래밍(Object-Oriented Programming)\n\n## 🎯 객체 지향 프로그래밍 (OOP) 핵심\n\n### 기본 개념\n**현실 세계의 사물을 객체로 모델링**하여 프로그램을 설계하는 방식\n\n### 4가지 핵심 원리\n\n**1. 캡슐화 (Encapsulation)**\n- 데이터와 메서드를 하나로 묶음\n- 외부에서 직접 접근 제한\n\n**2. 상속 (Inheritance)**\n- 기존 클래스의 특성을 물려받아 새 클래스 생성\n- 코드 재사용성 향상\n\n**3. 다형성 (Polymorphism)**\n- 같은 인터페이스로 다른 동작 수행\n- 하나의 메서드가 여러 형태로 동작\n\n**4. 추상화 (Abstraction)**\n- 복잡한 구현을 숨기고 필요한 기능만 노출\n- 인터페이스로 본질만 표현\n\n## 💡 간단한 예시\n```python\nclass Animal:  # 부모 클래스\n    def speak(self):\n        pass\n\nclass Dog(Animal):  # 상속\n    def speak(self):\n        return \"멍멍\"  # 다형성\n\nclass Cat(Animal):\n    def speak(self):\n        return \"야옹\"  # 다형성\n```\n\n## 🏆 장점\n- **재사용성**: 코드 중복 최소화\n- **유지보수**: 모듈화된 구조\n- **확장성**: 새 기능 추가 용이\n- **직관성**: 현실 세계와 유사한 구조\n\n질의: 주요 프로그래밍 패러다임의 특징은?",
+      "answer": "태수야, 주요 프로그래밍 패러다임들의 특징을 정리해줄게.\n\n## 📋 주요 프로그래밍 패러다임\n\n### 1. **절차적 프로그래밍 (Procedural)**\n- 함수 중심의 구조화된 접근\n- 순차적 실행, top-down 방식\n- 예: C, Pascal\n\n### 2. **객체지향 프로그래밍 (OOP)**\n- 현실 세계 객체 모델링\n- 캡슐화, 상속, 다형성, 추상화\n- 예: Java, C++, Python\n\n### 3. **함수형 프로그래밍 (Functional)**\n- 함수를 일급 객체로 취급\n- 불변성, 순수 함수 중심\n- 예: Haskell, Lisp, Clojure\n\n### 4. **선언형 프로그래밍 (Declarative)**\n- \"무엇을\" 할지에 집중 (vs 명령형의 \"어떻게\")\n- SQL, HTML이 대표적\n\n### 5. **이벤트 기반 프로그래밍**\n- 이벤트 발생에 반응하는 구조\n- GUI 프로그래밍에 주로 사용\n\n각 패러다임은 문제 도메인에 따라 장단점이 있으니, 상황에 맞게 선택하는 게 중요해.",
+      "response_timestamp": "2025-08-25T16:11:40+0900"
+    }
+  ]
+}

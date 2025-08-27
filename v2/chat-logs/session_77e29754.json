@@ -1,0 +1,12 @@
+{
+  "session_id": "77e29754-2d6c-4330-9e6c-610acc0ca013",
+  "created_at": "2025-08-25T17:38:13+0900",
+  "conversations": [
+    {
+      "query_number": 1,
+      "timestamp": "2025-08-25T17:38:13+0900",
+      "query": "/get_extra_info 주요 프로그래밍 패러다임의 특징이 뭐야? ",
+      "answer": null
+    }
+  ]
+}

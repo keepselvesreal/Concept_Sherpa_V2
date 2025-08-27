@@ -1,0 +1,23 @@
+{
+  "query_number": 5,
+  "outputs": {
+    "relevance_analysis": {
+      "is_relevant": true,
+      "description": "현재 질의는 직전 대화와 매우 높은 연관성을 보입니다. 사용자는 순수 함수의 '부작용 없음' 조건에 대해 더 깊이 이해하려 하고 있으며, 특히 '예상 가능한 변화'라는 표현을 통해 순수 함수의 결정론적 특성과 부작용의 경계에 대한 혼란을 드러내고 있습니다. 직전 답변에서 '외부 상태 변경 금지'를 강조했는데, 사용자가 이를 '예상 가능한 변화는 허용'으로 오해하고 있는 상황입니다.",
+      "generated_query": "순수 함수에서 '예상 가능한 변화'와 '부작용'의 차이점을 명확히 구분해주고, 함수형 프로그래밍에서 외부 상태를 다루는 올바른 방법(불변성, 새로운 상태 반환 등)에 대한 구체적인 예시를 보여줄 수 있나요? 특히 실제 개발에서 순수 함수를 유지하면서도 상태 변경이 필요한 상황을 어떻게 처리하는지 궁금합니다."
+    },
+    "supplementary_response": {
+      "query": "순수 함수에서 '예상 가능한 변화'와 '부작용'의 차이점을 명확히 구분해주고, 함수형 프로그래밍에서 외부 상태를 다루는 올바른 방법(불변성, 새로운 상태 반환 등)에 대한 구체적인 예시를 보여줄 수 있나요? 특히 실제 개발에서 순수 함수를 유지하면서도 상태 변경이 필요한 상황을 어떻게 처리하는지 궁금합니다.",
+      "response": "태수야, 좋은 질문이네! 순수 함수의 '예상 가능한 변화'와 '부작용'의 차이는 함수형 프로그래밍에서 정말 중요한 개념이야.\n\n## 예상 가능한 변화 vs 부작용\n\n**예상 가능한 변화**는 함수의 **명시적인 목적**이고, **부작용**은 **의도하지 않은 외부 영향**이야.\n\n```python\n# ✅ 예상 가능한 변화 (순수 함수)\ndef calculate_tax(price, tax_rate):\n    return price * (1 + tax_rate)  # 명확한 목적: 세금 계산\n\n# ❌ 부작용이 있는 함수\ntotal_sales = 0  # 전역 변수\n\ndef process_sale(price):\n    global total_sales\n    total_sales += price  # 부작용: 전역 상태 변경\n    print(f\"Sale processed: {price}\")  # 부작용: 콘솔 출력\n    return price * 1.1\n```\n\n## 실제 상황에서의 순수 함수 유지 방법\n\n### 1. 상태를 명시적으로 전달하고 반환하기\n\n```python\n# ❌ 부작용이 있는 방식\nclass ShoppingCart:\n    def __init__(self):\n        self.items = []\n    \n    def add_item(self, item):\n        self.items.append(item)  # 내부 상태 변경\n\n# ✅ 순수 함수 방식\ndef add_item_to_cart(cart, item):\n    return cart + [item]  # 새로운 리스트 반환\n\n# 사용\ncart = [\"사과\", \"바나나\"]\nnew_cart = add_item_to_cart(cart, \"오렌지\")\nprint(cart)      # [\"사과\", \"바나나\"] (원본 유지)\nprint(new_cart)  # [\"사과\", \"바나나\", \"오렌지\"]\n```\n\n### 2. 복잡한 상태 변경 시 딕셔너리 활용\n\n```python\n# 사용자 정보 업데이트 (DOP 스타일)\ndef update_user_profile(user_data, updates):\n    \"\"\"기존 사용자 데이터를 변경하지 않고 새로운 데이터 반환\"\"\"\n    return {**user_data, **updates}\n\n# 사용\nuser = {\"name\": \"태수\", \"age\": 25, \"city\": \"서울\"}\nupdated_user = update_user_profile(user, {\"age\": 26, \"email\": \"taesu@example.com\"})\n\nprint(user)          # 원본 유지\nprint(updated_user)  # 새로운 데이터\n```\n\n### 3. 상태 변경이 필요한 실제 시나리오\n\n**데이터베이스 업데이트 같은 필수 부작용**은 어떻게 처리할까?\n\n```python\n# ✅ 부작용을 격리하는 방법\ndef calculate_order_total(items, tax_rate, discount_rate):\n    \"\"\"순수 함수: 계산만 담당\"\"\"\n    subtotal = sum(item[\"price\"] * item[\"quantity\"] for item in items)\n    tax = subtotal * tax_rate\n    discount = subtotal * discount_rate\n    return {\n        \"subtotal\": subtotal,\n        \"tax\": tax,\n        \"discount\": discount,\n        \"total\": subtotal + tax - discount\n    }\n\ndef save_order_to_db(order_data):\n    \"\"\"부작용 함수: DB 저장만 담당\"\"\"\n    # 데이터베이스 저장 로직\n    pass\n\ndef process_order(items, tax_rate, discount_rate):\n    \"\"\"순수 함수와 부작용 함수를 조합\"\"\"\n    # 1. 순수 함수로 계산\n    order_total = calculate_order_total(items, tax_rate, discount_rate)\n    \n    # 2. 부작용이 필요한 부분만 분리\n    order_data = {\n        \"items\": items,\n        **order_total,\n        \"timestamp\": \"2024-01-01\"  # 현재 시간도 부작용이지만 필요\n    }\n    \n    # 3. 부작용 실행\n    save_order_to_db(order_data)\n    \n    return order_data\n```\n\n### 4. 함수형 스타일의 상태 관리 패턴\n\n```python\n# Redux 스타일 상태 관리\ndef shopping_cart_reducer(state, action):\n    \"\"\"상태 변화를 순수 함수로 표현\"\"\"\n    if action[\"type\"] == \"ADD_ITEM\":\n        return {\n            **state,\n            \"items\": state[\"items\"] + [action[\"payload\"]],\n            \"total\": state[\"total\"] + action[\"payload\"][\"price\"]\n        }\n    elif action[\"type\"] == \"REMOVE_ITEM\":\n        items = [item for item in state[\"items\"] \n                if item[\"id\"] != action[\"payload\"][\"id\"]]\n        return {\n            **state,\n            \"items\": items,\n            \"total\": sum(item[\"price\"] for item in items)\n        }\n    return state\n\n# 사용\ninitial_state = {\"items\": [], \"total\": 0}\naction = {\"type\": \"ADD_ITEM\", \"payload\": {\"id\": 1, \"name\": \"커피\", \"price\": 3000}}\nnew_state = shopping_cart_reducer(initial_state, action)\n```\n\n## 핵심 포인트\n\n1. **순수 함수는 계산과 로직에 집중**하고, 부작용은 최소한으로 격리해라\n2. **불변성을 지키면서도 새로운 데이터 구조를 반환**하는 방식으로 상태 변화를 표현해라\n3. **부작용이 필요한 부분(DB, API 호출 등)은 별도 함수로 분리**해서 테스트 가능성을 높여라\n\n이런 식으로 접근하면 코드의 예측 가능성과 테스트 용이성을 크게 높일 수 있어. 실제 프로젝트에서도 이 패턴들을 점진적으로 도입해보는 걸 추천해!",
+      "has_relevant_content": true,
+      "elapsed_time": 37.61,
+      "timestamp": "2025-08-26T12:26:07.210675+00:00",
+      "document_paths": [
+        "references/OOP.md",
+        "references/FP.md",
+        "references/DOP.md"
+      ],
+      "success": true
+    }
+  }
+}

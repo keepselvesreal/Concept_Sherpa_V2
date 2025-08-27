@@ -1,0 +1,10 @@
+{
+  "query_number": 2,
+  "query": "두 번째 질의입니다",
+  "model_response": "제공된 참조 문서는 '성능 최적화 관점에서의 데이터 지향 프로그래밍'에 대한 구체적인 기술 내용을 다루고 있어. 캐시 친화적 설계, 벡터화, 메모리 최적화 등의 전문적인 내용이 담겨있지만, 네가 제시한 '두 번째 질의입니다'라는 질문은 너무 모호해서 이 문서와 연결해서 답변하기 어려워. 구체적으로 데이터 지향 프로그래밍의 어떤 측면에 대해 알고 싶은지, 성능 최적화의 어떤 부분이 궁금한지 명확하게 질문해줘야 제대로 된 답변을 줄 수 있을 것 같아.",
+  "has_relevant_content": false,
+  "elapsed_time": 23.522383213043213,
+  "timestamp": "2025-08-26T16:46:53.757342",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/sample_doc3.txt",
+  "success": true
+}

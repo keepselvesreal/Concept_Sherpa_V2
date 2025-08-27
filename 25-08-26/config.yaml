@@ -1,0 +1,116 @@
+# 생성 시간: 2025-08-26 10:28:15 KST
+# 핵심 내용: 세션 기반 질의응답 시스템의 설정 파일
+# 상세 내용:
+#   - references: 참조 문서 폴더 경로 설정
+#   - session: 세션 관련 설정 (폴더, 접두어 등)
+#   - logging: 로깅 시스템 설정
+#   - query: 질의 처리 관련 설정
+# 상태: active
+# 주소: config
+# 참조: 없음
+
+# === 참조 문서 설정 ===
+references:
+  # 참조 문서가 위치한 폴더 경로 (상대경로 또는 절대경로)
+  folder_path: "./references"
+  
+  # 읽을 파일 확장자 목록
+  supported_extensions:
+    - ".md"
+    - ".txt"
+    - ".json"
+    - ".py"
+    - ".yaml"
+    - ".yml"
+  
+  # 제외할 파일/폴더 패턴
+  exclude_patterns:
+    - ".*"  # 숨김 파일
+    - "__pycache__"
+    - "*.pyc"
+    - "*.log"
+
+# === 세션 관리 설정 ===
+session:
+  # 세션 폴더 생성 패턴: session_{session_id_prefix}_{timestamp}
+  folder_pattern: "session_{prefix}_{timestamp}"
+  
+  # 저장 파일 접두어: collective_{query_number}_answer
+  file_prefix: "collective"
+  
+  # 세션 ID에서 prefix 추출 시 구분자 (session_id.split(separator)[0])
+  id_separator: "-"
+  
+  # 질의 번호 시작값
+  initial_query_number: 1
+
+# === 로깅 설정 ===
+logging:
+  # 로그 파일 경로
+  file_path: "./logs/session_query_processor.log"
+  
+  # 로그 레벨 (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: "INFO"
+  
+  # 로그 포맷
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 로그 파일 최대 크기 (MB)
+  max_size_mb: 10
+  
+  # 백업 파일 개수
+  backup_count: 5
+
+# === 질의 처리 설정 ===
+query:
+  # Claude SDK 관련 설정
+  claude:
+    # 최대 재시도 횟수
+    max_retries: 3
+    
+    # 재시도 대기 시간 (초)
+    retry_delay: 1.0
+    
+    # 요청 타임아웃 (초)
+    timeout: 60.0
+  
+  # 응답 처리 설정
+  response:
+    # 응답 내용 최대 길이 제한 (문자 수, 0은 무제한)
+    max_length: 0
+    
+    # 응답 품질 검증 활성화 여부
+    enable_validation: true
+
+# === 출력 설정 ===
+output:
+  # 터미널 출력 활성화 여부
+  enable_console: true
+  
+  # 컬러 출력 활성화 여부
+  enable_colors: true
+  
+  # 진행 상황 표시 활성화 여부
+  enable_progress: true
+  
+  # 세부 정보 출력 레벨 (0: 최소, 1: 기본, 2: 상세)
+  verbosity_level: 1
+
+# === 에러 핸들링 설정 ===
+error_handling:
+  # 에러 발생 시 중단 여부 (false면 계속 진행)
+  stop_on_error: false
+  
+  # 에러 발생 시 자동 재시도 여부
+  auto_retry: true
+  
+  # 에러 정보 상세 출력 여부
+  detailed_errors: true
+
+# === 보충 분석 설정 ===
+supplementary_analysis:
+  # 최대 컨텍스트 길이 (문자 수)
+  max_context_length: 10000
+  
+  # 참조 문서 폴더 경로 (기본값은 references 섹션의 folder_path 사용)
+  references_folder: "references"

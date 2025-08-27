@@ -1,0 +1,13 @@
+{
+  "session_id": "750c79ad-d708-4d3d-ad11-dbec2905b1d7",
+  "created_at": "2025-08-26T10:13:16+0900",
+  "conversations": [
+    {
+      "query_number": 1,
+      "timestamp": "2025-08-26T10:13:16+0900",
+      "query": "아까 낸 곱셈 문제 기억해? 답에 2를 곱하면?",
+      "answer": "응, 기억해! 7 × 9 = 63이었지.\n\n63 × 2 = 126",
+      "response_timestamp": "2025-08-26T10:13:25+0900"
+    }
+  ]
+}

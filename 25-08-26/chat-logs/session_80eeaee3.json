@@ -1,0 +1,13 @@
+{
+  "session_id": "80eeaee3-6509-48f6-9dc5-0e48ed7993c5",
+  "created_at": "2025-08-26T10:22:28+0900",
+  "conversations": [
+    {
+      "query_number": 1,
+      "timestamp": "2025-08-26T10:22:28+0900",
+      "query": "내 이름이 뭐였지? 그리고 방금 계산 결과에 10을 더하면?",
+      "answer": "너 이름은 태수고, 56에 10 더하면 66이야.",
+      "response_timestamp": "2025-08-26T10:22:36+0900"
+    }
+  ]
+}

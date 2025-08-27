@@ -1,0 +1,10 @@
+{
+  "query_number": 3,
+  "query": "테스트 질의: 논리적 세션 통합이 제대로 작동하는지 확인해봐",
+  "model_response": "태수야, 제공된 OOP.md 문서로는 '논리적 세션 통합'에 대해 답변할 수 없어. 이 문서는 객체지향 프로그래밍의 기본 개념(캡슐화, 상속, 다형성, 추상화)만 다루고 있고, 세션 관리나 통합 기능과는 전혀 관련이 없거든. 논리적 세션 통합을 확인하려면 세션 관리, 데이터베이스 연결, 또는 시스템 아키텍처 관련 문서가 필요할 것 같은데?",
+  "has_relevant_content": false,
+  "elapsed_time": 21.271819829940796,
+  "timestamp": "2025-08-26T17:54:20.046485",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/OOP.md",
+  "success": true
+}

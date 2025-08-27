@@ -1,0 +1,17 @@
+{
+  "created_at": "2025-08-26T10:12:24.430385",
+  "method1": {
+    "session_id": "client_session_unknown",
+    "last_query": "안녕! 내 이름은 태수야. 간단한 덧셈 문제 하나 내줘.",
+    "responses": [
+      "[TextBlock(text='안녕 태수야! 간단한 덧셈 문제 하나 줄게.\\n\\n**47 + 29 = ?**\\n\\n답은 얼마일까?')]"
+    ]
+  },
+  "method2": {
+    "session_id": "b25e8320-6950-4058-b3c6-88296baa3a9d",
+    "last_query": "안녕! 내 이름은 태수야. 간단한 곱셈 문제 하나 내줘.",
+    "responses": [
+      "[TextBlock(text='안녕 태수야! 간단한 곱셈 문제 하나 내줄게.\\n\\n**7 × 9 = ?**\\n\\n답을 말해봐!')]"
+    ]
+  }
+}

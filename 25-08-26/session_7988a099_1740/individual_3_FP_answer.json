@@ -1,0 +1,10 @@
+{
+  "query_number": 3,
+  "query": "테스트 질의: 논리적 세션 통합이 제대로 작동하는지 확인해봐",
+  "model_response": "태수야, 제공된 FP.md 문서는 함수형 프로그래밍의 기본 개념과 원리를 설명하는 내용이고, '논리적 세션 통합'에 대한 내용은 포함되어 있지 않아. 논리적 세션 통합이 뭔지, 어떤 시스템에서 어떻게 작동해야 하는지에 대한 정보가 이 문서에는 없다. 테스트하려면 먼저 해당 기능이 구현된 코드나 관련 문서를 확인해야 할 것 같은데?",
+  "has_relevant_content": false,
+  "elapsed_time": 22.078227281570435,
+  "timestamp": "2025-08-26T17:54:20.856138",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/FP.md",
+  "success": true
+}

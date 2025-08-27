@@ -1,0 +1,10 @@
+{
+  "query_number": 6,
+  "query": "외부에 아무 변화를 일으키지 않고, 출력도 상수 즉 미리 예상한 값이 항상 나오는 구조니 출력의 측면에서도 변화의 여지가 사라지는 거네?",
+  "model_response": "태수야, 제공된 OOP.md 문서로는 네 질문에 답변하기 어려워. 이 문서는 객체지향 프로그래밍의 기본 개념들(캡슐화, 상속, 다형성, 추상화)만 다루고 있는데, 네가 말하는 '외부 변화 없음'과 '상수 출력' 개념은 함수형 프로그래밍의 순수함수(pure function) 특성에 더 가까운 얘기거든.\n\n네가 언급한 건 아마 함수형 프로그래밍에서 말하는 '부작용 없음(no side effects)'과 '참조 투명성(referential transparency)' 개념인 것 같아. 순수함수는 같은 입력에 대해 항상 같은 출력을 보장하고, 외부 상태를 변경하지 않으니까.\n\n이 주제에 대해 제대로 답변하려면 함수형 프로그래밍이나 순수함수에 대한 자료가 필요해.",
+  "has_relevant_content": false,
+  "elapsed_time": 16.963276147842407,
+  "timestamp": "2025-08-26T21:30:30.290895",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/OOP.md",
+  "success": true
+}

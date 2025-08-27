@@ -1,0 +1,10 @@
+{
+  "query_number": 2,
+  "query": "실제 프로젝트에서의 구체적인 예시를 보여줘",
+  "model_response": "세션 재개 질의 처리 중 오류가 발생했습니다: Command failed with exit code 1 (exit code: 1)\nError output: No conversation found with session ID: f890a8c0-5b27-4822-b57f-c57c1c029a0e",
+  "has_relevant_content": false,
+  "elapsed_time": 10.008455276489258,
+  "timestamp": "2025-08-26T17:34:56.696485",
+  "success": false,
+  "error": "Command failed with exit code 1 (exit code: 1)\nError output: No conversation found with session ID: f890a8c0-5b27-4822-b57f-c57c1c029a0e"
+}

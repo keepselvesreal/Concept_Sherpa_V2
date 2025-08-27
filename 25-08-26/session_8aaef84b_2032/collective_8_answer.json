@@ -1,0 +1,10 @@
+{
+  "query_number": 8,
+  "query": "순수 함수가 아닌 함수를 순수 함수로 바꾸는 방법은?",
+  "model_response": "세션 재개 질의 처리 중 오류가 발생했습니다: Command failed with exit code 1 (exit code: 1)\nError output: No conversation found with session ID: 8aaef84b-4b4c-4d12-b5d5-a0662a0b5044",
+  "has_relevant_content": false,
+  "elapsed_time": 5.875167608261108,
+  "timestamp": "2025-08-26T21:53:12.013234",
+  "success": false,
+  "error": "Command failed with exit code 1 (exit code: 1)\nError output: No conversation found with session ID: 8aaef84b-4b4c-4d12-b5d5-a0662a0b5044"
+}
