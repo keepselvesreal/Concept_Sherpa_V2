@@ -33,6 +33,7 @@ class UnifiedProcessor:
     """간소화된 통합 질의응답 처리 시스템 v3 - SessionQueryProcessor 제거 및 세션 관리 통합"""
     
     def __init__(self, config_path: str = "./config.yaml"):
+        self.config_path = config_path
         self.config = self._load_config(config_path)
         self.script_dir = Path(__file__).parent
         
@@ -47,7 +48,7 @@ class UnifiedProcessor:
         
         # IndividualDocumentProcessor에 세션 관리 통합
         self.individual_processor = IndividualDocumentProcessor(
-            config_path=str(self.script_dir / "config.yaml")
+            config_path=config_path
         )
         
         self.logger.info("UnifiedProcessor v3 초기화 완료 - SessionQueryProcessor 제거, 세션 관리 통합")
@@ -259,7 +260,7 @@ class UnifiedProcessor:
                 current_query=query,
                 session_id=session_id,
                 query_number=query_number,
-                config_path=str(self.script_dir / "config.yaml"),
+                config_path=self.config_path,
                 verbose=False
             )
             result['elapsed_time'] = time.time() - start_time

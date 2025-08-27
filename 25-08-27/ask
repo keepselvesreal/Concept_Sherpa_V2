@@ -1,0 +1,30 @@
+#!/bin/bash
+# 목차
+# 생성 시간: 2025-08-27 11:07:57 KST
+# 핵심 내용: Knowledge Sherpa v2 통합 질의응답 시스템을 위한 간편 실행 스크립트
+# 상세 내용:
+#   - PROJECT_ROOT (7): 프로젝트 루트 디렉토리 경로 설정
+#   - CONFIG_PATH (8): config.yaml 파일 경로 설정
+#   - PROCESSOR_SCRIPT (9): unified_processor_v3.py 스크립트 경로 설정
+#   - 환경 및 경로 설정 (11-15): 작업 디렉토리 변경 및 uv 환경 활성화
+#   - 스크립트 실행 (17-23): uv run python으로 unified_processor_v3.py 실행
+# 상태: active
+# 주소: ask
+# 참조: /home/nadle/projects/Knowledge_Sherpa/v2/25-08-27/unified_processor_v3.py
+
+PROJECT_ROOT="/home/nadle/projects/Knowledge_Sherpa/v2"
+CONFIG_PATH="$PROJECT_ROOT/25-08-26/config.yaml"
+PROCESSOR_SCRIPT="$PROJECT_ROOT/25-08-27/unified_processor_v3.py"
+
+# 프로젝트 디렉토리로 이동
+cd "$PROJECT_ROOT" || {
+    echo "❌ 프로젝트 디렉토리를 찾을 수 없습니다: $PROJECT_ROOT"
+    exit 1
+}
+
+# uv 환경에서 unified_processor_v3.py 실행
+uv run python "$PROCESSOR_SCRIPT" --config "$CONFIG_PATH" "$@"
+exit_code=$?
+
+# 원래 디렉토리로 복귀 (필요시)
+exit $exit_code
