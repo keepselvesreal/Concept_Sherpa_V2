@@ -32,6 +32,9 @@ references:
 
 # === 세션 관리 설정 ===
 session:
+  # 세션 폴더 생성 위치 (스크립트 디렉토리 기준 상대경로)
+  base_folder: "."
+  
   # 세션 폴더 생성 패턴: session_{session_id_prefix}_{timestamp}
   folder_pattern: "session_{prefix}_{timestamp}"
   

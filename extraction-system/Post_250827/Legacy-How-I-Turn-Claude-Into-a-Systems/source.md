@@ -1,3 +1,16 @@
+---
+created: 2025-08-27T17:33:44 (UTC +09:00)
+tags: []
+source: https://medium.com/vibe-coding/how-i-turn-claude-into-a-systems-engineering-genius-with-one-prompt-d342af0f517c
+author: Alex Dunlop
+---
+
+# How I Turn Claude Into a Systems Engineering Genius With One Prompt | Vibe Coding
+
+> ## Excerpt
+> Learn modular architecture principles that scale. Turn tangled React code into replaceable components using AI prompts from a legendary C programmer.
+
+---
 Press enter or click to view image in full size
 
 ![](https://miro.medium.com/v2/resize:fit:1050/1*UlwN36mKsWn1Hj1G-ihWSw.png)
