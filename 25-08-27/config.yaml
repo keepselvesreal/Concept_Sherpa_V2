@@ -12,7 +12,7 @@
 # === 참조 문서 설정 ===
 references:
   # 참조 문서가 위치한 폴더 경로 (상대경로 또는 절대경로)
-  folder_path: "./references"
+  folder_path: "../extraction-system/references"
   
   # 읽을 파일 확장자 목록
   supported_extensions:
@@ -116,4 +116,4 @@ supplementary_analysis:
   max_context_length: 10000
   
   # 참조 문서 폴더 경로 (기본값은 references 섹션의 folder_path 사용)
-  references_folder: "references"
+  references_folder: "../extraction-system/references"

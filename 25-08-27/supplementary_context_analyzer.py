@@ -454,6 +454,11 @@ def load_reference_documents(config: Dict, logger: logging.Logger) -> Tuple[str,
         supported_extensions = references_config.get('supported_extensions', ['.md', '.txt'])
         exclude_patterns = references_config.get('exclude_patterns', ['.*'])
         
+        # 상대 경로인 경우 스크립트 디렉토리 기준으로 절대 경로 계산
+        if not folder_path.is_absolute():
+            script_dir = Path(__file__).parent
+            folder_path = script_dir / folder_path
+        
         if not folder_path.exists():
             logger.warning(f"참조 문서 폴더가 존재하지 않습니다: {folder_path}")
             return "", []
