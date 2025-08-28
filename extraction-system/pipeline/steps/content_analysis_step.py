@@ -48,6 +48,7 @@ class ContentAnalysisStep(PipelineStep):
             
             # 각 노드 문서의 "내용" 섹션을 분석하여 "추출" 섹션 업데이트
             processed_count = 0
+            
             for info_file in info_files:
                 print(f"📄 분석 중: {os.path.basename(info_file)}")
                 
@@ -71,10 +72,18 @@ class ContentAnalysisStep(PipelineStep):
                     print(f"❌ {os.path.basename(info_file)}: 분석 실패")
             
             self._log_step_success()
-            return StepResult.success_result({
+            
+            # 6단계의 integration_updated_file 보존 (동일한 파일을 수정했으므로 경로는 동일)
+            result_data = {
                 "processed_files": processed_count,
                 "total_files": len(info_files)
-            })
+            }
+            
+            # 6단계 결과 보존 (8단계에서 사용)
+            if "integration_updated_file" in context:
+                result_data["integration_updated_file"] = context["integration_updated_file"]
+                
+            return StepResult.success_result(result_data)
             
         except Exception as e:
             error_msg = f"콘텐츠 분석 중 오류: {str(e)}"

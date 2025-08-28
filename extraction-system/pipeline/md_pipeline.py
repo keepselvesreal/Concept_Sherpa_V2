@@ -17,10 +17,11 @@ from pipeline.steps.base import PipelineStep
 from pipeline.steps.docs_creation_step import NodeDocsCreationStep
 from pipeline.steps.docs_integration_step import NodeDocsIntegrationStep
 from pipeline.steps.content_analysis_step import ContentAnalysisStep
+from pipeline.steps.line_number_step import LineNumberStep
 
 
 class MDPipeline:
-    """마크다운 파일 처리 파이프라인 (4단계 MD + 3단계 공통)"""
+    """마크다운 파일 처리 파이프라인 (4단계 MD + 4단계 공통)"""
     
     def __init__(self):
         self.md_steps: List[PipelineStep] = []
@@ -31,7 +32,7 @@ class MDPipeline:
         self._setup_youtube_steps()
     
     async def execute(self, md_file_path: str, metadata_info: Dict[str, str]) -> PipelineResult:
-        """전체 MD 파이프라인 실행 (4단계 MD + 3단계 공통)"""
+        """전체 MD 파이프라인 실행 (4단계 MD + 4단계 공통)"""
         print("🚀 마크다운 파이프라인 시작")
         print("=" * 60)
         
@@ -47,7 +48,7 @@ class MDPipeline:
             for i, step in enumerate(self.md_steps):
                 self.current_step_index = i + 1
                 
-                print(f"🔄 {self.current_step_index}/7단계: {step.name}")
+                print(f"🔄 {self.current_step_index}/8단계: {step.name}")
                 
                 step_result = await step.execute(self.context)
                 
@@ -58,12 +59,12 @@ class MDPipeline:
                 print(f"✅ {step.name} 완료")
                 print("-" * 40)
             
-            # 5-7단계: 유튜브 파이프라인 공통 단계 재사용
-            print("🔗 5-7단계: 공통 처리 단계")
+            # 5-8단계: 유튜브 파이프라인 공통 단계 재사용 + 라인 번호 추가
+            print("🔗 5-8단계: 공통 처리 단계 + 라인 번호 추가")
             for i, step in enumerate(self.youtube_steps):
                 self.current_step_index = len(self.md_steps) + i + 1
                 
-                print(f"🔄 {self.current_step_index}/7단계: {step.name}")
+                print(f"🔄 {self.current_step_index}/8단계: {step.name}")
                 
                 step_result = await step.execute(self.context)
                 
@@ -157,11 +158,12 @@ class MDPipeline:
         ]
     
     def _setup_youtube_steps(self):
-        """유튜브 파이프라인 공통 단계 초기화 (5-7단계)"""
+        """유튜브 파이프라인 공통 단계 초기화 (5-8단계)"""
         self.youtube_steps = [
             NodeDocsCreationStep(),          # 5단계: 노드 문서 생성 (빈 템플릿)
             NodeDocsIntegrationStep(),       # 6단계: 노드 문서 통합 (메타데이터+내용)
-            ContentAnalysisStep()            # 7단계: 콘텐츠 분석 (통합된 노드 문서 분석)
+            ContentAnalysisStep(),           # 7단계: 콘텐츠 분석 (통합된 노드 문서 분석)
+            LineNumberStep()                 # 8단계: 라인 번호 추가 (content.md에 Line X: 형식 추가)
         ]
     
     def get_progress(self) -> Dict[str, Any]:

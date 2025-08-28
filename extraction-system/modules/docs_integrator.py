@@ -55,6 +55,8 @@ def integrate_node_documents(video_folder: str) -> Dict[str, Any]:
         
         # 4. 각 파일별 통합 처리
         processed_count = 0
+        updated_file_path = None  # 실제 파일 경로를 저장할 변수
+        
         for info_file in info_files:
             print(f"📄 처리 중: {os.path.basename(info_file)}")
             success = True
@@ -80,6 +82,9 @@ def integrate_node_documents(video_folder: str) -> Dict[str, Any]:
             
             if success:
                 processed_count += 1
+                # 첫 번째 성공한 파일의 경로를 저장 (8단계에서 사용)
+                if updated_file_path is None:
+                    updated_file_path = info_file
         
         print("=" * 50)
         print("🎉 노드 문서 통합 완료")
@@ -87,7 +92,7 @@ def integrate_node_documents(video_folder: str) -> Dict[str, Any]:
         
         return {
             "success": True,
-            "updated_file": f"{processed_count}개 노드 문서",
+            "updated_file": updated_file_path if updated_file_path else f"{processed_count}개 노드 문서",
             "integrated_sections": ["metadata", "content"]
         }
         
