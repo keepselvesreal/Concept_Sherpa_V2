@@ -196,26 +196,19 @@ class UnifiedNodeProcessor:
             self.logger.info(f"✅ {stage_name}: 처리할 노드 없음")
             return
         
-        # 병렬 처리
-        semaphore = asyncio.Semaphore(self.config.get('parallel', {}).get('max_concurrent', 5))
-        
-        async def process_single_node(node: NodeInfo):
-            async with semaphore:
-                return await self._process_single_node(node)
-        
-        tasks = [process_single_node(node) for node in pending_nodes]
-        results = await asyncio.gather(*tasks, return_exceptions=True)
-        
-        # 결과 처리
+        # 순차 처리
         processed_nodes = []
-        for i, result in enumerate(results):
-            node = pending_nodes[i]
-            if isinstance(result, Exception):
-                self.logger.error(f"❌ 노드 처리 실패: {node.title} - {result}")
-                self.progress.mark_failed(node.title, str(result))
-            else:
-                self.progress.mark_completed(node.title)
-                processed_nodes.append(node.title)
+        for node in pending_nodes:
+            try:
+                result = await self._process_single_node(node)
+                if result:
+                    self.progress.mark_completed(node.title)
+                    processed_nodes.append(node.title)
+                else:
+                    self.progress.mark_failed(node.title, "처리 실패")
+            except Exception as e:
+                self.logger.error(f"❌ 노드 처리 실패: {node.title} - {e}")
+                self.progress.mark_failed(node.title, str(e))
         
         self.logger.info(f"✅ {stage_name} 완료: {len(processed_nodes)}개 처리됨")
     
@@ -726,6 +719,131 @@ class NodeDocumentManager:
                 extractions.append("")
         
         return extractions
+    
+    async def load_node_document_content(self, node: NodeInfo) -> str:
+        """노드 문서 전체 내용 로드"""
+        try:
+            if not node.document_path or not Path(node.document_path).exists():
+                self.logger.warning(f"문서 파일 없음: {node.title}")
+                return ""
+            
+            with open(node.document_path, 'r', encoding='utf-8') as f:
+                return f.read()
+                
+        except Exception as e:
+            self.logger.error(f"문서 로드 실패: {node.title} - {e}")
+            return ""
+    
+    def parse_extraction_section(self, content: str) -> Dict[str, str]:
+        """문서에서 추출 섹션 파싱"""
+        sections = {}
+        
+        # # 추출 섹션 찾기
+        extraction_start = content.find('# 추출\n---\n')
+        if extraction_start == -1:
+            return sections
+        
+        # # 내용 섹션 시작점 찾기
+        content_start = content.find('# 내용\n---', extraction_start)
+        if content_start == -1:
+            extraction_content = content[extraction_start + len('# 추출\n---\n'):]
+        else:
+            extraction_content = content[extraction_start + len('# 추출\n---\n'):content_start]
+        
+        # 추출 섹션 내용 파싱
+        current_section = None
+        current_content = []
+        
+        for line in extraction_content.split('\n'):
+            line = line.strip()
+            if line.startswith('### 핵심 내용'):
+                if current_section:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = 'core_content'
+                current_content = []
+            elif line.startswith('### 상세 핵심 내용'):
+                if current_section:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = 'detailed_core_content'
+                current_content = []
+            elif line.startswith('### 상세 정보'):
+                if current_section:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = 'detailed_content'
+                current_content = []
+            elif line.startswith('### 주요 화제'):
+                if current_section:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = 'main_topics'
+                current_content = []
+            elif line.startswith('### 부차 화제'):
+                if current_section:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = 'sub_topics'
+                current_content = []
+            elif current_section and line:
+                current_content.append(line)
+        
+        # 마지막 섹션 처리
+        if current_section:
+            sections[current_section] = '\n'.join(current_content).strip()
+        
+        return sections
+    
+    async def update_node_section(self, node: NodeInfo, section_type: str, new_content: str):
+        """노드 문서의 특정 섹션 업데이트"""
+        try:
+            if not node.document_path or not Path(node.document_path).exists():
+                self.logger.warning(f"문서 파일 없음: {node.title}")
+                return
+            
+            # 현재 문서 내용 로드
+            with open(node.document_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # 추출 섹션 파싱
+            sections = self.parse_extraction_section(content)
+            
+            # 해당 섹션 업데이트
+            sections[section_type] = new_content
+            
+            # 업데이트된 추출 섹션 재구성
+            section_names = {
+                'core_content': '### 핵심 내용',
+                'detailed_core_content': '### 상세 핵심 내용',
+                'detailed_content': '### 상세 정보',
+                'main_topics': '### 주요 화제',
+                'sub_topics': '### 부차 화제'
+            }
+            
+            updated_sections = []
+            for key in ['core_content', 'detailed_core_content', 'detailed_content', 'main_topics', 'sub_topics']:
+                if key in sections and sections[key]:
+                    updated_sections.append(f"{section_names[key]}\n{sections[key]}")
+            
+            new_extraction_content = '\n\n'.join(updated_sections)
+            
+            # 문서에서 추출 섹션 교체
+            extraction_start = content.find('# 추출\n---\n')
+            content_start = content.find('# 내용\n---', extraction_start)
+            
+            if extraction_start != -1 and content_start != -1:
+                new_content_full = (
+                    content[:extraction_start + len('# 추출\n---\n')] + 
+                    '\n' + new_extraction_content + '\n\n' +
+                    content[content_start:]
+                )
+                
+                # 파일 저장
+                with open(node.document_path, 'w', encoding='utf-8') as f:
+                    f.write(new_content_full)
+                
+                self.logger.info(f"✅ {section_type} 섹션 업데이트: {node.title}")
+            else:
+                self.logger.warning(f"추출 섹션을 찾을 수 없음: {node.title}")
+                
+        except Exception as e:
+            self.logger.error(f"섹션 업데이트 실패: {node.title} - {e}")
 
 
 class ExtractionEngine:
@@ -961,17 +1079,151 @@ class UpdateEngine:
     async def update_children_extractions(self, parent_node: NodeInfo, 
                                         updated_parent_extraction: str, 
                                         doc_manager: 'NodeDocumentManager'):
-        """자식 노드들의 추출 섹션 업데이트"""
-        self.logger.info(f"🔄 자식들 업데이트: {parent_node.title}")
+        """자식 노드들의 추출 섹션 배치 업데이트"""
+        self.logger.info(f"🔄 자식들 배치 업데이트: {parent_node.title}")
         
-        # 핵심 내용, 상세 핵심 내용, 상세 정보만 업데이트 (주요/부차 화제 제외)
-        for child_id in parent_node.children_ids:
-            try:
-                # TODO: 실제 자식 노드 정보 로드 및 업데이트 구현
-                # 지금은 로그만 출력
-                self.logger.info(f"🔄 자식 노드 {child_id} 업데이트 예정")
-            except Exception as e:
-                self.logger.error(f"자식 노드 업데이트 실패: child_id={child_id} - {e}")
+        if not parent_node.children_ids:
+            self.logger.info("🔄 자식 노드 없음 - 업데이트 스킵")
+            return
+        
+        try:
+            # 1. 모든 자식 노드 정보 로드
+            all_nodes = await doc_manager.load_nodes_info()
+            children_nodes = [node for node in all_nodes if node.id in parent_node.children_ids]
+            
+            if not children_nodes:
+                self.logger.warning("⚠️ 자식 노드를 찾을 수 없음")
+                return
+            
+            # 2. 부모 노드의 업데이트된 추출 섹션 파싱
+            parent_sections = self._parse_parent_extraction_sections(updated_parent_extraction)
+            
+            # 3. 모든 자식 노드의 현재 추출 섹션 로드
+            children_sections = {}
+            for child in children_nodes:
+                child_doc_content = await doc_manager.load_node_document_content(child)
+                children_sections[child.id] = {
+                    'node': child,
+                    'sections': doc_manager.parse_extraction_section(child_doc_content)
+                }
+            
+            # 4. 3개 정보 타입별로 배치 업데이트 (핵심 내용, 상세 핵심 내용, 상세 정보)
+            update_sections = ['core_content', 'detailed_core_content', 'detailed_content']
+            
+            for section_type in update_sections:
+                updated_children = await self._batch_update_children_section(
+                    section_type, parent_sections.get(section_type, ''), children_sections
+                )
+                
+                # 5. 각 자식 노드 문서에 업데이트 결과 반영
+                for child_id, updated_content in updated_children.items():
+                    child_node = children_sections[child_id]['node']
+                    await doc_manager.update_node_section(child_node, section_type, updated_content)
+                    
+                self.logger.info(f"✅ {section_type} 배치 업데이트 완료: {len(updated_children)}개 자식")
+            
+            self.logger.info(f"✅ 모든 자식 노드 배치 업데이트 완료: {len(children_nodes)}개")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 자식 노드 배치 업데이트 실패: {e}")
+            raise
+    
+    def _parse_parent_extraction_sections(self, extraction: str) -> Dict[str, str]:
+        """부모 노드 추출 섹션을 정보 타입별로 파싱"""
+        sections = {}
+        current_section = None
+        current_content = []
+        
+        for line in extraction.split('\n'):
+            line = line.strip()
+            if line.startswith('### 핵심 내용'):
+                if current_section:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = 'core_content'
+                current_content = []
+            elif line.startswith('### 상세 핵심 내용'):
+                if current_section:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = 'detailed_core_content'
+                current_content = []
+            elif line.startswith('### 상세 정보'):
+                if current_section:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = 'detailed_content'
+                current_content = []
+            elif line.startswith('### 주요 화제') or line.startswith('### 부차 화제'):
+                # 주요/부차 화제는 자식 업데이트에서 제외
+                if current_section and current_section in ['core_content', 'detailed_core_content', 'detailed_content']:
+                    sections[current_section] = '\n'.join(current_content).strip()
+                current_section = None
+                current_content = []
+            elif current_section:
+                current_content.append(line)
+        
+        # 마지막 섹션 처리
+        if current_section and current_section in ['core_content', 'detailed_core_content', 'detailed_content']:
+            sections[current_section] = '\n'.join(current_content).strip()
+        
+        return sections
+    
+    async def _batch_update_children_section(self, section_type: str, parent_section: str,
+                                           children_sections: Dict[int, Dict]) -> Dict[int, str]:
+        """특정 정보 타입에 대해 모든 자식 노드를 배치 업데이트"""
+        section_names = {
+            'core_content': '핵심 내용',
+            'detailed_core_content': '상세 핵심 내용', 
+            'detailed_content': '상세 정보'
+        }
+        
+        section_name = section_names.get(section_type, section_type)
+        
+        # 프롬프트 구성: 부모 섹션 + 모든 자식 섹션들
+        children_info = []
+        for child_id, data in children_sections.items():
+            child_node = data['node']
+            child_section = data['sections'].get(section_type, '없음')
+            children_info.append(f"자식{child_id}({child_node.title}): {child_section}")
+        
+        prompt = f"""다음은 부모 노드의 업데이트된 {section_name}을 바탕으로 자식 노드들의 {section_name}을 개선하는 작업입니다.
+
+**부모 노드 {section_name} (업데이트됨):**
+{parent_section}
+
+**자식 노드들의 현재 {section_name}:**
+{chr(10).join(children_info)}
+
+부모 노드의 업데이트된 {section_name}을 반영하여 각 자식 노드의 {section_name}을 개선해주세요.
+각 자식의 고유한 특성은 유지하되, 부모와의 일관성과 연결성을 반영해주세요.
+
+다음 형식으로 답변해주세요:
+자식[ID]: [개선된 {section_name}]
+자식[ID]: [개선된 {section_name}]
+..."""
+
+        provider = self.ai_factory.get_provider()
+        result = await provider.generate_text(
+            prompt,
+            f"문서 전문가. 부모-자식 관계를 고려하여 {section_name}의 일관성을 유지하면서 각 자식의 특성을 살려 개선하세요."
+        )
+        
+        # 결과 파싱하여 딕셔너리로 변환
+        updated_children = {}
+        for line in result.split('\n'):
+            line = line.strip()
+            if line.startswith('자식') and ':' in line:
+                try:
+                    # "자식3: 내용" 형식에서 ID와 내용 추출
+                    parts = line.split(':', 1)
+                    child_id_part = parts[0].replace('자식', '').strip()
+                    content = parts[1].strip()
+                    
+                    child_id = int(child_id_part)
+                    if child_id in children_sections:
+                        updated_children[child_id] = content
+                except (ValueError, IndexError) as e:
+                    self.logger.warning(f"결과 파싱 오류: {line} - {e}")
+        
+        return updated_children
 
 
 class NodeTraverser:
