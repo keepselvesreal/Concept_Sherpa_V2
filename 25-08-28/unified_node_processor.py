@@ -555,14 +555,18 @@ class NodeDocumentManager:
             if not node.children_ids:
                 return current_content
             
+            # 부모 노드의 구성 섹션에서 자식 파일명들 읽기
+            child_filenames = await self._read_composition_section(node)
+            
             # 자식 노드들의 내용 섹션 결합
             combined = current_content
-            for child_id in node.children_ids:
-                child_node = NodeInfo(id=child_id, title="", level=0, parent_id=None, children_ids=[])
-                child_node.document_path = self._get_child_doc_path(node, child_id)
+            for i, child_filename in enumerate(child_filenames, 1):
+                child_path = str(self.node_docs_dir / child_filename)
+                child_node = NodeInfo(id=i, title="", level=0, parent_id=None, children_ids=[], has_content=True)
+                child_node.document_path = child_path
                 child_content = await self._read_content_section(child_node)
                 if child_content:
-                    combined += f"\n\n=== 구성 노드 {child_id} ===\n{child_content}"
+                    combined += f"\n\n=== 구성 노드 {i} ===\n{child_content}"
             
             return combined
             
@@ -570,8 +574,38 @@ class NodeDocumentManager:
             self.logger.error(f"결합 내용 생성 실패: {node.title} - {e}")
             return ""
     
+    async def _read_composition_section(self, node: NodeInfo) -> List[str]:
+        """노드 문서의 구성 섹션에서 자식 파일명들 읽기"""
+        try:
+            if not node.document_path or not Path(node.document_path).exists():
+                return []
+            
+            with open(node.document_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # "# 구성" 섹션 찾기
+            composition_start = content.find('\n# 구성\n---\n')
+            if composition_start == -1:
+                return []
+            
+            composition_start += len('\n# 구성\n---\n')
+            composition_content = content[composition_start:].strip()
+            
+            # 파일명들 추출 (줄별로 분할하여 .md 파일만)
+            filenames = []
+            for line in composition_content.split('\n'):
+                line = line.strip()
+                if line and line.endswith('_info.md') and not line.startswith('#'):
+                    filenames.append(line)
+            
+            return filenames
+            
+        except Exception as e:
+            self.logger.error(f"구성 섹션 읽기 실패: {node.title} - {e}")
+            return []
+    
     def _get_child_doc_path(self, parent_node: NodeInfo, child_id: int) -> str:
-        """자식 노드 문서 경로 생성"""
+        """자식 노드 문서 경로 생성 (deprecated - _read_composition_section 사용)"""
         # nodes.json에서 자식 정보를 가져와야 하지만, 간단히 패턴으로 추정
         return str(self.node_docs_dir / f"{child_id:02d}_lev{parent_node.level+1}_*_info.md")
     
