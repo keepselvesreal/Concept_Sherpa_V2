@@ -1,0 +1,18 @@
+# AI 제공자 설정
+ai_provider:
+  type: "gemini"  # claude (CLI 인증) 또는 gemini (API 키)
+
+# 모델 설정
+models:
+  claude: "claude-3-sonnet-20240229"  # CLI 인증 (Max Plan)
+  gemini: "gemini-2.0-flash-exp"      # API 키 (.env에서 GEMINI_API_KEY)
+
+# 로깅 설정
+logging:
+  level: "INFO"
+  save_logs: true
+
+# 출력 설정
+output:
+  directory: "chapters"
+  clean_before_run: true
