@@ -1,0 +1,242 @@
+[SYSTEM_PROMPT]
+텍스트 분석 전문가. 7.5 Details about data validation failures의 상세한 내용을 체계적이고 포괄적으로 정리하세요.
+
+[PROMPT]
+다음은 "7.5 Details about data validation failures"의 내용입니다:
+
+## 7.5 Details about data validation failures
+
+7.5 Details about data validation failures
+Joe So far, we've treated JSON Schema validation as though it were binary: either a
+piece of data is valid or it isn't.
+Theo Right...
+Joe But, in fact, when a piece of data is not valid, we can get details about the
+reason of the invalidity.
+Theo Like when a required field is missing, can we get the name of the missing field?
+Joe Yes. When a piece of data is not of the expected type, we can get information
+about that also.
+Theo That sounds very useful!
+Joe Indeed. Let me show you how it works. Until now, we used a generic validate
+function, but when we deal with validation failures, we need to be more specific.
+Theo Why?
+Joe Because each data validator library has its own way of exposing the details of
+ data validation failure. For instance, in JavaScript Ajv, the errors from the
+last data validation are stored as an array inside the validator instance.
+Theo Why an array?
+Joe Because there could be several failures. But let's start with the case of a single
+failure. Imagine we encounter a search book request where the title field is
+named myTitle instead of title. Take a look at this example. As you can see,
+we first instantiate a validator instance.
+Listing7.20 Accessing validation errors in Ajv
+var searchBooksRequestSchema = {
+"type": "object",
+"properties": {
+"title": {"type": "string"},
+"fields": {
+"type": "array",
+"items": {"type": "string"}
+}
+},
+"required": ["title", "fields"]
+};
+var invalidSearchBooksRequest = {
+"myTitle": "habit",
+"fields": ["title", "weight", "number_of_pages"]
+};
+Instantiates a
+var ajv = new Ajv(); validator instance
+ajv.validate(searchBooksRequestSchema, invalidSearchBooksRequest);
+ajv.errors
+Displays the
+validation errors
+
+=== 페이지 187 ===
+7.5 Details about data validation failures 159
+Theo And what does the information inside the errors array look like?
+Joe Execute the code snippet. You'll see.
+When Theo executes the code snippets from listing 7.20, he can hardly believe his eyes. He
+looks at the details, finding the results hard to digest.
+Listing7.21 Details for a single data validation failure in an array format
+[
+{
+"instancePath": "",
+"schemaPath": "#/required",
+"keyword": "required",
+"params": {
+"missingProperty":"title"
+},
+"message": "must have required property 'title'"
+}
+]
+Theo I find the contents of the errors array a bit hard to understand.
+Joe Me too. Fortunately, Ajv provides a errorsText utility function to convert the
+errors array in a human readable format. See, for instance, what is returned
+when you call errorsText.
+Listing7.22 Displaying the errors in human readable format
+ajv.errorsText(ajv.errors);
+// → "data must have required property 'title'"
+Theo Let me see what happens when there are more than one validation failure in
+the data.
+Joe By default, Ajv catches only one validation error.
+TIP By default, Ajv catches only the first validation failure.
+Theo I guess that's for performance reasons. Once the validator encounters an
+error, it doesn't continue the data parsing.
+Joe Probably. Anyway, in order to catch more than one validation failure, you need
+to pass the allErrors options to the Ajv constructor. Check out this code.
+Listing7.23 Catching multiple validation failures
+var searchBooksRequestSchema = {
+"type": "object",
+"properties": {
+"title": {"type": "string"},
+"fields": {
+"type": "array",
+"items": {"type": "string"}
+
+=== 페이지 188 ===
+160 CHAPTER 7 Basic data validation
+}
+},
+"required": ["title", "fields"]
+};
+A request with
+three failures
+var invalidSearchBooksRequest = {
+"myTitle": "habit",
+"fields": [1, 2]
+}; Instantiates the Ajv constructor
+with allErrors: true in order to
+catch more than one failure
+var ajv = new Ajv({allErrors: true});
+ajv.validate(searchBooksRequestSchema,
+invalidSearchBooksRequest); Converts the
+errors to a human
+readable format
+ajv.errorsText(ajv.errors);
+// → "data must have required property 'title',
+// → data/fields/0 must be string,
+// → data/fields/1 must be string"
+Joe We validate a search request with myTitle instead of title and numbers
+instead of strings in the fields array. As you can see in the output of the code
+snippet, three errors are returned.
+Theo Great! I think I have all that I need in order to add data validation to the
+boundaries of my system when Nancy asks me to make the Library Manage-
+ment System into a web server.
+Joe Would you allow me to give you a small gift as a token of our friendship?
+Theo I'd be honored.
+Joe takes a small package out of his bag, wrapped in a light-green ribbon. He hands Theo
+the package with a solemn gesture.
+When Theo undoes the ribbon, he discovers an elegant piece of paper decorated with
+pretty little designs. In the center of the paper, Theo manages to read the inscription
+"JSON Schema cheat sheet." He smiles while browsing the cheat sheet. It's exactly what he
+needs.
+Listing7.24 JSON Schema cheat sheet
+{ At the root level,
+data is an array.
+"type": "array",
+"items": { Each element of the
+array is a map.
+"type": "object",
+myNumber "properties": {
+The properties of
+is a number. "myNumber": {"type": "number"},
+each field in the map
+"myString": {"type": "string"},
+myString is
+"myEnum": {"enum": ["myVal", "yourVal"]},
+a string. myEnum is a
+"myBool": {"type": "boolean"}
+enumeration
+myBool is a }, value with two
+boolean. "required": ["myNumber", "myString"], possibilities:
+The mandatory fields in the map "myVal" and
+are myNumber and myString; "yourVal".
+other fields are optional.
+
+=== 페이지 189 ===
+Summary 161
+"additionalProperties": false
+We don't allow fields that
+}
+are not explicitly mentioned
+}
+in the schema.
+Then, Theo turns the paper over to find that the back is also filled with drawings. In the
+center of the paper, he reads the inscription, "An example of valid data."
+Listing7.25 An example of valid data
+[
+{
+This map is valid
+"myNumber": 42,
+because all its
+"myString": "Hello",
+fields are valid.
+"myEnum": "myVal",
+"myBool": true
+},
+{
+This map is valid
+"myNumber": 54,
+because it contains all
+"myString": "Happy"
+the required fields.
+}
+]
+
+이 내용의 상세 핵심 내용을 체계적으로 정리해주세요.
+헤더를 사용할 경우 ### 3레벨부터 사용하고, 응답에 '상세 핵심 내용'이라는 헤더는 포함하지 마세요.
+
+[추출 결과]
+## 7.5 Details about data validation failures
+
+이 섹션은 JSON Schema 유효성 검사 실패 시 얻을 수 있는 상세 정보와 관련된 내용을 다룹니다.
+
+### 데이터 유효성 검사 실패의 중요성
+
+*   JSON Schema 유효성 검사는 단순한 이진 검사(유효/무효)를 넘어 실패 이유에 대한 상세 정보를 제공합니다.
+*   예를 들어, 필수 필드가 누락된 경우 누락된 필드의 이름을, 데이터 유형이 예상과 다른 경우 해당 정보를 얻을 수 있습니다.
+
+### 데이터 유효성 검사 실패 정보 접근 방법
+
+*   각 데이터 검사기 라이브러리(예: Ajv)는 유효성 검사 실패에 대한 정보를 노출하는 자체 방식을 가지고 있습니다.
+*   Ajv의 경우, 마지막 데이터 유효성 검사에서 발생한 오류가 validator 인스턴스 내의 배열로 저장됩니다.
+
+### 단일 실패의 경우
+
+*   **예시:** "title" 필드 대신 "myTitle"을 사용하는 검색 도서 요청.
+*   **Ajv에서의 오류 정보:** `ajv.errors` 배열에 저장됩니다.
+*   **오류 정보의 형식 (Listing 7.21):**
+    ```json
+    [
+      {
+        "instancePath": "",
+        "schemaPath": "#/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty":"title"
+        },
+        "message": "must have required property 'title'"
+      }
+    ]
+    ```
+    *   `instancePath`: 오류가 발생한 데이터 내의 경로.
+    *   `schemaPath`: 오류와 관련된 스키마의 경로.
+    *   `keyword`: 오류를 발생시킨 JSON Schema 키워드.
+    *   `params`: 오류와 관련된 추가 정보 (예: 누락된 속성).
+    *   `message`: 오류에 대한 설명.
+*   **Ajv의 `errorsText` 유틸리티 함수:** 오류 배열을 사람이 읽을 수 있는 형식으로 변환합니다.
+
+### 다중 실패의 경우
+
+*   **Ajv의 기본 동작:** 첫 번째 유효성 검사 오류만 감지합니다 (성능상의 이유).
+*   **다중 오류 감지 활성화:** `Ajv` 생성자에 `allErrors: true` 옵션을 전달해야 합니다.
+*   **예시 (Listing 7.23):**
+    ```javascript
+    var ajv = new Ajv({allErrors: true});
+    ```
+    *   `invalidSearchBooksRequest`가 "title" 필드를 누락하고, "fields" 배열에 문자열 대신 숫자를 포함하는 경우, 세 개의 오류가 반환됩니다.
+    *   `errorsText`를 사용하면 "data must have required property 'title', data/fields/0 must be string, data/fields/1 must be string"과 같은 사람이 읽을 수 있는 형식으로 오류를 확인할 수 있습니다.
+
+### 요약
+
+*   데이터 유효성 검사 실패 시 상세 정보를 활용하면 시스템의 경계를 개선하고 오류를 보다 효과적으로 처리할 수 있습니다.
+*   JSON Schema의 사용은 웹 서버를 구축하고, 라이브러리 관리 시스템을 구축하는데 유용합니다.

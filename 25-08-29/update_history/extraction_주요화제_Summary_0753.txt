@@ -1,0 +1,58 @@
+[SYSTEM_PROMPT]
+텍스트 분석 전문가. Summary에서 다루는 주요 화제를 체계적으로 식별하고 정리하세요.
+
+[PROMPT]
+다음은 "Summary"의 내용입니다:
+
+## Summary
+
+Summary
+ DOP Principle #4 is to separate data schema and data representation.
+ The boundaries of a system are defined to be the areas where the system
+exchanges data.
+ Some examples of data validation at the boundaries of the system are validation
+of client requests and responses, and validation of data that comes from exter-
+nal sources.
+ Data validation in DOP means checking whether a piece of data conforms to a
+schema.
+ When a piece of data is not valid, we get information about the validation fail-
+ures and send this information back to the client in a human readable format.
+ When data at system boundaries is valid, it's not critical to validate data again
+inside the system.
+ JSON Schema is a language that allows us to separate data validation from data
+representation.
+ JSON Schema syntax is a bit verbose.
+ The expressive power of JSON Schema is high.
+ JSON Schemas are just maps and, as so, we are free to manipulate them like any
+other maps in our programs.
+ We can store a schema definition in a variable and use this variable in another
+schema.
+ In JSON Schema, map fields are optional by default.
+ It's good practice to validate data that comes from an external data source.
+
+=== 페이지 190 ===
+162 CHAPTER 7 Basic data validation
+ It's good practice to be strict regarding data that you send and to be flexible
+regarding data that you receive.
+ Ajv is a JSON Schema library in JavaScript.
+ By default, Ajv catches only the first validation failure.
+ Advanced validation is covered in chapter 12.
+
+이 내용에서 다루는 주요 화제들을 추출해주세요.
+다음 형식으로 답변해주세요 (- 기호로 시작):
+- 주요 화제1(구체적인 주제명): 이 화제에 대해 다루는 내용
+- 주요 화제2(구체적인 주제명): 이 화제에 대해 다루는 내용
+
+반드시 - 기호로 시작하는 목록 형태로만 답변해주세요.
+
+[추출 결과]
+- **DOP 원칙 #4 (데이터 스키마와 데이터 표현 분리):** DOP 원칙 #4가 무엇인지, 시스템 경계에서 데이터 교환이 어떻게 이루어지는지 설명합니다.
+- **시스템 경계에서의 데이터 유효성 검사:** 시스템 경계에서 데이터 유효성 검사가 왜 중요한지, 클라이언트 요청/응답, 외부 데이터 소스에서 오는 데이터 유효성 검사의 예시를 제시합니다.
+- **DOP에서의 데이터 유효성 검사 (스키마 기반):** 데이터 유효성 검사가 스키마를 기반으로 어떻게 이루어지는지, 유효성 검사 실패 시 처리 방법 (오류 정보 반환)을 설명합니다.
+- **내부 데이터 유효성 검사 필요성:** 시스템 경계에서 데이터가 유효할 경우, 내부에서 재검증하는 것이 중요하지 않다는 점을 언급합니다.
+- **JSON Schema 소개:** JSON Schema가 데이터 유효성 검사를 데이터 표현과 분리하는 데 사용되는 언어임을 설명하고, JSON Schema의 특징 (높은 표현력, 맵 기반, 필드의 기본 옵션)을 언급합니다.
+- **JSON Schema 활용 팁:** JSON Schema를 프로그램 내에서 맵처럼 조작하고, 변수로 저장하여 재사용할 수 있다는 점을 제시합니다.
+- **외부 데이터 소스의 데이터 검증:** 외부 데이터 소스로부터 얻은 데이터는 유효성을 검사하는 것이 좋다는 점을 강조합니다.
+- **데이터 송수신 시 유연성/엄격성:** 데이터를 보낼 때는 엄격하게, 받을 때는 유연하게 처리하는 것이 좋다는 점을 제시합니다.
+- **Ajv (JSON Schema 라이브러리):** JavaScript에서 사용되는 JSON Schema 라이브러리인 Ajv를 소개하고, Ajv의 기본 동작 (첫 번째 유효성 검사 실패만 감지)을 설명합니다.
+- **고급 유효성 검사 (챕터 12):** 고급 유효성 검사는 언급된 챕터 12에서 다룬다는 것을 언급합니다.

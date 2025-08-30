@@ -794,7 +794,7 @@ class NodeDocumentManager:
                     child_doc_content = await doc_manager.load_node_document_content(child)
                     parsed_sections = doc_manager.parse_extraction_section(child_doc_content)
                     
-                    # 추출 섹션을 하나의 문자열로 합치기 (기존 format과 동일하게)
+                    # 추출 섹션을 하나의 문자열로 합치기 (모든 5개 정보 유형 포함)
                     extraction_parts = []
                     if parsed_sections.get('core_content'):
                         extraction_parts.append(f"## 핵심 내용\n{parsed_sections['core_content']}")
@@ -802,6 +802,10 @@ class NodeDocumentManager:
                         extraction_parts.append(f"## 상세 핵심 내용\n{parsed_sections['detailed_core_content']}")
                     if parsed_sections.get('detailed_content'):
                         extraction_parts.append(f"## 상세 정보\n{parsed_sections['detailed_content']}")
+                    if parsed_sections.get('main_topics'):
+                        extraction_parts.append(f"## 주요 화제\n{parsed_sections['main_topics']}")
+                    if parsed_sections.get('sub_topics'):
+                        extraction_parts.append(f"## 부차 화제\n{parsed_sections['sub_topics']}")
                     
                     extraction_section = '\n\n'.join(extraction_parts)
                     
@@ -1845,22 +1849,28 @@ class UpdateEngine:
                 "composition_update"
             )
         
-        # 결과 파싱하여 딕셔너리로 변환
+        # 결과 파싱하여 딕셔너리로 변환 (다중 라인 내용 지원)
         updated_composition = {}
-        for line in result.split('\n'):
-            line = line.strip()
-            if line.startswith('구성노드') and ':' in line:
+        
+        # 구성노드별로 분할하여 다중 라인 내용 처리
+        import re
+        
+        # "구성노드N:" 패턴으로 분할
+        node_pattern = r'\n구성노드(\d+):\s*'
+        parts = re.split(node_pattern, result)
+        
+        # parts[0]은 첫 부분(보통 빈 문자열 또는 설명), 이후 [node_id, content, node_id, content, ...] 패턴
+        for i in range(1, len(parts), 2):
+            if i + 1 < len(parts):
                 try:
-                    # "구성노드3: 내용" 형식에서 ID와 내용 추출
-                    parts = line.split(':', 1)
-                    child_id_part = parts[0].replace('구성노드', '').strip()
-                    content = parts[1].strip()
+                    child_id = int(parts[i])
+                    content = parts[i + 1].strip()
                     
-                    child_id = int(child_id_part)
-                    if child_id in composition_sections:
+                    if child_id in composition_sections and content:
                         updated_composition[child_id] = content
+                        self.logger.debug(f"✅ 구성노드{child_id} 내용 파싱 완료: {len(content)} 문자")
                 except (ValueError, IndexError) as e:
-                    self.logger.warning(f"결과 파싱 오류: {line} - {e}")
+                    self.logger.warning(f"결과 파싱 오류: 구성노드{parts[i] if i < len(parts) else 'Unknown'} - {e}")
         
         return updated_composition
 
