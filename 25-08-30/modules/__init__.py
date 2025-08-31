@@ -3,7 +3,7 @@
 
 from .core import ProcessingMode, AIProvider, NodeInfo, ExtractionResult, ProcessingStatus, UpdateLogEntry
 from .ai_providers import AIProviderFactory
-from .strategies import ProcessingStrategy, ProcessingStrategyV1, ProcessingStrategyV2, ProcessingStrategyV3
+from .strategies import ProcessingStrategy, ProcessingStrategyV1, ProcessingStrategyV2, ProcessingStrategyV3, ProcessingStrategyV5
 from .managers import NodeDocumentManager, DebugManager, UpdateLogger
 from .engines import ExtractionEngine, UpdateEngine
 from .utils import NodeTraverser, ProgressTracker
@@ -11,7 +11,7 @@ from .utils import NodeTraverser, ProgressTracker
 __all__ = [
     'ProcessingMode', 'AIProvider', 'NodeInfo', 'ExtractionResult', 'ProcessingStatus', 'UpdateLogEntry',
     'AIProviderFactory', 'UpdateLogger',
-    'ProcessingStrategy', 'ProcessingStrategyV1', 'ProcessingStrategyV2', 'ProcessingStrategyV3',
+    'ProcessingStrategy', 'ProcessingStrategyV1', 'ProcessingStrategyV2', 'ProcessingStrategyV3', 'ProcessingStrategyV5',
     'NodeDocumentManager', 'DebugManager',
     'ExtractionEngine', 'UpdateEngine',
     'NodeTraverser', 'ProgressTracker'

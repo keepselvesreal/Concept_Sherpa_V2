@@ -21,6 +21,7 @@ class ProcessingMode(Enum):
     V1 = "v1"
     V2 = "v2" 
     V3 = "v3"  # 추출→업데이트 방식
+    V5 = "v5"  # API 호출 최적화 방식
 
 
 class AIProvider(Enum):
