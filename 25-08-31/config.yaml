@@ -11,6 +11,11 @@ script_configs:
   extract_chapters_v2:
     ai_provider: 'gemini'  # 이 스크립트는 Gemini 사용
     temperature: 0.7
+  section_extractor:
+    ai_provider: 'claude'  # 섹션 추출은 Claude 사용
+    temperature: 0.3
+    batch_size: 4
+    output_directory: './sections'
 nodes_json_path: '../25-08-31/ch1/1 Complexity of object- oriented programming.json'
 node_docs_dir: '../25-08-31/node_docs'
 debug_dir: '../25-08-31'
