@@ -1,0 +1,86 @@
+[
+  {
+    "id": 68,
+    "title": "7_Basic_data_validation",
+    "level": 1,
+    "page": 169,
+    "parent_id": 67,
+    "children_ids": [
+      69,
+      70,
+      71,
+      72,
+      73,
+      74
+    ],
+    "start_page": 169,
+    "end_page": 190,
+    "page_count": 22
+  },
+  {
+    "id": 69,
+    "title": "7.1_Data_validation_in_DOP",
+    "level": 2,
+    "page": 170,
+    "parent_id": 68,
+    "children_ids": [],
+    "start_page": 170,
+    "end_page": 170,
+    "page_count": 1
+  },
+  {
+    "id": 70,
+    "title": "7.2_JSON_Schema_in_a_nutshell",
+    "level": 2,
+    "page": 171,
+    "parent_id": 68,
+    "children_ids": [],
+    "start_page": 171,
+    "end_page": 176,
+    "page_count": 6
+  },
+  {
+    "id": 71,
+    "title": "7.3_Schema_flexibility_and_strictness",
+    "level": 2,
+    "page": 177,
+    "parent_id": 68,
+    "children_ids": [],
+    "start_page": 177,
+    "end_page": 181,
+    "page_count": 5
+  },
+  {
+    "id": 72,
+    "title": "7.4_Schema_composition",
+    "level": 2,
+    "page": 182,
+    "parent_id": 68,
+    "children_ids": [],
+    "start_page": 182,
+    "end_page": 185,
+    "page_count": 4
+  },
+  {
+    "id": 73,
+    "title": "7.5_Details_about_data_validation_failures",
+    "level": 2,
+    "page": 186,
+    "parent_id": 68,
+    "children_ids": [],
+    "start_page": 186,
+    "end_page": 188,
+    "page_count": 3
+  },
+  {
+    "id": 74,
+    "title": "Summary",
+    "level": 2,
+    "page": 189,
+    "parent_id": 68,
+    "children_ids": [],
+    "start_page": 189,
+    "end_page": 190,
+    "page_count": 2
+  }
+]
