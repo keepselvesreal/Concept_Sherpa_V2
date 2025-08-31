@@ -38,10 +38,22 @@ class UnifiedNodeProcessor:
         
         # 컴포넌트 초기화
         self.ai_factory = AIProviderFactory(self.config, self.logger)
-        self.doc_manager = NodeDocumentManager(self.config, self.logger)
+        self.debug_manager = DebugManager(Path(self.config['debug_dir']), self.logger)
+        
+        # UpdateLogger 초기화 (NodeDocumentManager보다 먼저)
+        update_logger = UpdateLogger(Path(self.config['debug_dir']))
+        
+        # NodeDocumentManager 초기화 (올바른 인수들과 함께)
+        self.doc_manager = NodeDocumentManager(
+            Path(self.config['node_docs_dir']),
+            self.ai_factory, 
+            self.debug_manager,
+            update_logger,
+            self.logger,
+            Path(self.config['nodes_json_path'])
+        )
         self.traverser = NodeTraverser(self.logger)
         self.tracker = ProgressTracker(self.logger)
-        self.debug_manager = DebugManager(Path(self.config['debug_dir']), self.logger)
         
         # 처리 전략 초기화
         self.strategy = self._create_strategy()

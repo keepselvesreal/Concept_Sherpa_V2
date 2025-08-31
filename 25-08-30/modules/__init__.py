@@ -2,9 +2,9 @@
 # 모든 모듈에서 필요한 클래스들을 쉽게 import할 수 있도록 함
 
 from .core import ProcessingMode, AIProvider, NodeInfo, ExtractionResult, ProcessingStatus, UpdateLogEntry
-from .ai_providers import AIProviderFactory, UpdateLogger
+from .ai_providers import AIProviderFactory
 from .strategies import ProcessingStrategy, ProcessingStrategyV1, ProcessingStrategyV2, ProcessingStrategyV3
-from .managers import NodeDocumentManager, DebugManager
+from .managers import NodeDocumentManager, DebugManager, UpdateLogger
 from .engines import ExtractionEngine, UpdateEngine
 from .utils import NodeTraverser, ProgressTracker
 

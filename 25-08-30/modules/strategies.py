@@ -13,12 +13,12 @@ import logging
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
-from core import NodeInfo
+from .core import NodeInfo
 
 if TYPE_CHECKING:
-    from ai_providers import AIProviderFactory, UpdateLogger
-    from managers import NodeDocumentManager, DebugManager
-    from engines import ExtractionEngine, UpdateEngine
+    from .ai_providers import AIProviderFactory, UpdateLogger
+    from .managers import NodeDocumentManager, DebugManager
+    from .engines import ExtractionEngine, UpdateEngine
 
 
 class ProcessingStrategy(ABC):
@@ -63,7 +63,7 @@ class ProcessingStrategyV3(ProcessingStrategy):
     def __init__(self, ai_factory: 'AIProviderFactory', logger: logging.Logger):
         super().__init__(ai_factory, logger)
         # 순환 임포트 방지를 위해 런타임에 임포트
-        from engines import ExtractionEngine, UpdateEngine
+        from .engines import ExtractionEngine, UpdateEngine
         self.extraction_engine = ExtractionEngine(ai_factory, logger)
         self.update_engine = UpdateEngine(ai_factory, logger)
     

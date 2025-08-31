@@ -15,8 +15,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Set, Any
 
-from core import NodeInfo, ExtractionResult, UpdateLogEntry
-from ai_providers import AIProviderFactory
+from .core import NodeInfo, ExtractionResult, UpdateLogEntry
+from .ai_providers import AIProviderFactory
 
 
 class UpdateLogger:
@@ -58,8 +58,9 @@ class NodeDocumentManager:
     
     def __init__(self, node_docs_dir: Path, ai_factory: AIProviderFactory,
                  debug_manager: 'DebugManager', update_logger: UpdateLogger,
-                 logger: logging.Logger):
+                 logger: logging.Logger, nodes_json_path: Optional[Path] = None):
         self.node_docs_dir = node_docs_dir
+        self.nodes_json_path = nodes_json_path
         self.ai_factory = ai_factory
         self.debug_manager = debug_manager
         self.update_logger = update_logger
@@ -73,13 +74,16 @@ class NodeDocumentManager:
             return self._nodes_cache
         
         try:
-            # nodes.json 또는 nodes_updated.json 파일 찾기
+            # 설정된 nodes_json_path 우선 사용, 없으면 기본 경로에서 찾기
             nodes_json_path = None
-            for filename in ['nodes_updated.json', 'nodes.json']:
-                potential_path = self.node_docs_dir.parent / filename
-                if potential_path.exists():
-                    nodes_json_path = potential_path
-                    break
+            if self.nodes_json_path and self.nodes_json_path.exists():
+                nodes_json_path = self.nodes_json_path
+            else:
+                for filename in ['nodes_updated.json', 'nodes.json']:
+                    potential_path = self.node_docs_dir.parent / filename
+                    if potential_path.exists():
+                        nodes_json_path = potential_path
+                        break
             
             if not nodes_json_path:
                 raise FileNotFoundError("nodes.json 또는 nodes_updated.json 파일을 찾을 수 없습니다")

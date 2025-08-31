@@ -11,9 +11,9 @@ import asyncio
 import logging
 from typing import List
 
-from core import NodeInfo, ExtractionResult
-from ai_providers import AIProviderFactory
-from managers import UpdateLogger, NodeDocumentManager
+from .core import NodeInfo, ExtractionResult
+from .ai_providers import AIProviderFactory
+from .managers import UpdateLogger, NodeDocumentManager
 
 
 class ExtractionEngine:

@@ -17,7 +17,7 @@ import logging
 import os
 from typing import Dict, Any, Tuple
 
-from core import UpdateLogEntry
+from .core import UpdateLogEntry
 
 # .env 파일 로딩
 try:
@@ -126,7 +126,22 @@ class AIProviderFactory:
     async def _generate_gemini(self, prompt: str, system_prompt: str = "") -> Tuple[str, int, int]:
         """Gemini로 내용 생성"""
         try:
-            model_name = self.model_config.get('gemini', 'gemini-2.0-flash-exp')
+            # 디버깅을 위한 타입 체크
+            if not isinstance(prompt, str):
+                self.logger.error(f"prompt이 문자열이 아님: {type(prompt)} - {prompt}")
+                return "", 0, 0
+            if not isinstance(system_prompt, str):
+                self.logger.error(f"system_prompt가 문자열이 아님: {type(system_prompt)} - {system_prompt}")
+                return "", 0, 0
+            
+            # model_config에서 gemini 설정 가져오기 (딕셔너리일 수 있음)
+            gemini_config = self.model_config.get('gemini', {})
+            if isinstance(gemini_config, dict):
+                model_name = gemini_config.get('model', 'gemini-2.0-flash-exp')
+            else:
+                model_name = gemini_config or 'gemini-2.0-flash-exp'
+            self.logger.debug(f"Gemini model_name: {model_name} (type: {type(model_name)})")
+            self.logger.debug(f"system_prompt: {system_prompt} (type: {type(system_prompt)})")
             model = genai.GenerativeModel(model_name, system_instruction=system_prompt)
             
             response = await model.generate_content_async(prompt)
