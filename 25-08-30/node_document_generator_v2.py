@@ -130,10 +130,9 @@ def main():
     if args.output_dir:
         output_docs_dir = args.output_dir
     else:
-        # JSON 파일과 같은 디렉토리에 자동 생성
+        # JSON 파일과 같은 디렉토리에 node_info_docs 폴더 생성
         json_dir = os.path.dirname(args.json_file)
-        json_name = Path(args.json_file).stem  # 확장자 제외한 파일명
-        output_docs_dir = os.path.join(json_dir, f"{json_name}_docs")
+        output_docs_dir = os.path.join(json_dir, "node_info_docs")
     
     print(f"📁 출력 디렉토리: {output_docs_dir}")
     
