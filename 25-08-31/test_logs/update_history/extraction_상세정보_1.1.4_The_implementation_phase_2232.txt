@@ -1,0 +1,73 @@
+[SYSTEM_PROMPT]
+문서 정리 전문가. 상세하고 체계적으로 정보를 정리하세요.
+
+[PROMPT]
+다음 문서의 상세 정보를 체계적으로 정리해주세요.
+
+문서 제목: 1.1.4_The_implementation_phase
+문서 내용:
+### 1.1.4_The_implementation_phase
+
+1.1.4
+The implementation phase
+After this detailed investigation of Theo's diagrams, Dave lets it sink in as he slowly sips his
+coffee. He then expresses his admiration to Theo.
+Dave
+Wow! That's amazing!
+Theo
+Thank you.
+Dave
+I didn't realize people were really spending the time to write down their design
+in such detail before coding.
+Theo
+I always do that. It saves me lot of time during the coding phase.
+Dave
+When will you start coding?
+Theo
+When I finish my latte.
+Theo grabs his coffee mug and notices that his hot latte has become an iced latte. He was
+so excited to show his class diagram to Dave that he forgot to drink it!
+
+--- 페이지 41 ---
+
+문서의 모든 중요한 정보를 빠뜨리지 않고 체계적으로 정리해주세요.
+
+[추출 결과]
+## 문서 정보 정리
+
+**1. 문서 기본 정보**
+
+*   **문서 제목:** 1.1.4_The_implementation_phase
+*   **섹션 번호:** 1.1.4
+*   **섹션 제목:** The implementation phase
+*   **페이지 번호:** 41
+
+**2. 문서 내용 상세 분석**
+
+*   **주요 내용:** Theo의 다이어그램 (구체적으로 클래스 다이어그램)에 대한 Dave의 감탄과 그에 대한 Theo의 답변을 담고 있습니다. 대화는 소프트웨어 개발 프로세스 중 구현 단계(coding phase)에 들어가기 전 설계의 중요성에 대한 인식을 보여줍니다.
+
+*   **등장인물:**
+    *   **Dave:** Theo의 다이어그램을 보고 감탄하는 인물. 코딩 전에 상세 설계를 작성하는 것에 대해 놀라움을 표합니다.
+    *   **Theo:** 상세한 클래스 다이어그램을 작성하는 인물. 코딩 전 설계의 중요성을 강조하며, 설계 덕분에 코딩 시간을 절약한다고 말합니다.
+
+*   **핵심 대화:**
+    *   **Dave:** "Wow! That's amazing! I didn't realize people were really spending the time to write down their design in such detail before coding."
+    *   **Theo:** "I always do that. It saves me lot of time during the coding phase."
+
+*   **문서 내용 요약:** Theo가 작성한 상세한 클래스 다이어그램을 Dave가 칭찬하며, 코딩 전에 설계를 얼마나 상세하게 하는지에 대한 놀라움을 표현합니다. Theo는 설계 덕분에 코딩 시간을 절약할 수 있다고 답합니다. 이 대화는 소프트웨어 개발 과정에서 구현 단계 전 설계의 중요성을 강조합니다. Theo는 너무 열정적으로 설명한 나머지 커피가 식어버린 것을 깨닫습니다.
+
+**3. 중요 키워드:**
+
+*   Implementation Phase (구현 단계)
+*   Class Diagram (클래스 다이어그램)
+*   Design (설계)
+*   Coding Phase (코딩 단계)
+*   시간 절약
+*   소프트웨어 개발 프로세스
+
+**4. 시사점:**
+
+*   이 문서는 소프트웨어 개발 방법론, 특히 설계 단계를 얼마나 상세하게 수행해야 하는지에 대한 간략한 인사이트를 제공합니다.
+*   상세한 설계가 실제 코딩 시간을 절약하고 효율성을 높일 수 있다는 점을 강조합니다.
+
+이 정보들을 통해 문서의 내용을 더 쉽고 빠르게 이해하고 활용할 수 있습니다.

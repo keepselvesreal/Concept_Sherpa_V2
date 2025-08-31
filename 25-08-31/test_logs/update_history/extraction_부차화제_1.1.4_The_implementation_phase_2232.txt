@@ -1,0 +1,40 @@
+[SYSTEM_PROMPT]
+주제 분석 전문가. 부차적이지만 의미있는 주제들을 파악하세요.
+
+[PROMPT]
+다음 문서의 부차적인 화제들을 추출해주세요.
+
+문서 제목: 1.1.4_The_implementation_phase
+문서 내용:
+### 1.1.4_The_implementation_phase
+
+1.1.4
+The implementation phase
+After this detailed investigation of Theo's diagrams, Dave lets it sink in as he slowly sips his
+coffee. He then expresses his admiration to Theo.
+Dave
+Wow! That's amazing!
+Theo
+Thank you.
+Dave
+I didn't realize people were really spending the time to write down their design
+in such detail before coding.
+Theo
+I always do that. It saves me lot of time during the coding phase.
+Dave
+When will you start coding?
+Theo
+When I finish my latte.
+Theo grabs his coffee mug and notices that his hot latte has become an iced latte. He was
+so excited to show his class diagram to Dave that he forgot to drink it!
+
+--- 페이지 41 ---
+
+주요 주제 외에 언급되는 부차적인 주제들을 불렛 포인트로 나열해주세요.
+
+[추출 결과]
+문서에서 파악된 부차적인 주제들은 다음과 같습니다:
+
+*   **커피:** 데이브와 테오가 커피를 마시는 행위 (테오의 라떼가 식은 것을 언급하는 부분 포함).
+*   **설계의 중요성:** 데이브가 코딩 전에 설계를 자세히 기록하는 것에 대한 놀라움을 표현하고, 테오가 설계가 코딩 시간을 절약해준다고 말하는 부분.
+*   **칭찬:** 데이브가 테오의 다이어그램에 대한 감탄을 표현하는 부분.

@@ -16,9 +16,15 @@ script_configs:
     temperature: 0.3
     batch_size: 4
     output_directory: './sections'
-nodes_json_path: '../25-08-31/ch1/1 Complexity of object- oriented programming.json'
-node_docs_dir: '../25-08-31/node_docs'
-debug_dir: '../25-08-31'
+  process_content:
+    ai_provider: 'gemini'  # 노드 처리는 Gemini 사용
+    temperature: 0.7
+    model: 'models/gemini-2.0-flash'  # 지정된 모델 사용
+    batch_size: 3
+    max_retries: 2
+nodes_json_path: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/1_Complexity_of_object_oriented_programming/1_Complexity_of_object_oriented_programming_toc.json'
+node_docs_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/1_Complexity_of_object_oriented_programming/node_info_docs copy 2'
+debug_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/test_logs'
 
 # 병렬 처리 설정
 parallel:
@@ -38,7 +44,7 @@ models:
 # 프로바이더별 상세 설정 (기존 방식 호환)
 providers:
   gemini:
-    model: 'models/gemini-2.0-flash-lite'
+    model: 'models/gemini-2.0-flash'
     temperature: 0.7
   claude:
     model: 'claude-3-sonnet'
