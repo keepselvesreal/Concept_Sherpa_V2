@@ -20,37 +20,112 @@ from .ai_providers import AIProviderFactory
 
 
 class UpdateLogger:
-    """업데이트 로그 관리"""
+    """업데이트 로그 관리 - 개별 프롬프트 파일 저장 방식"""
     def __init__(self, debug_dir: Path):
-        self.debug_dir = debug_dir
-        self.log_entries: List[UpdateLogEntry] = []
+        # update_history 서브디렉토리 생성
+        self.log_dir = debug_dir / "update_history"
+        self.log_dir.mkdir(parents=True, exist_ok=True)
+        self.logger = logging.getLogger(f"{__name__}.UpdateLogger")
     
-    def add_entry(self, entry: UpdateLogEntry):
-        """로그 엔트리 추가"""
-        self.log_entries.append(entry)
+    def _sanitize_filename(self, filename: str) -> str:
+        """파일명에서 특수문자 제거"""
+        import re
+        # 파일명에 사용할 수 없는 문자들을 언더스코어로 대체
+        safe_name = re.sub(r'[<>:"/\\|?*]', '_', filename)
+        # 연속된 언더스코어 제거 및 공백을 언더스코어로 변경
+        safe_name = re.sub(r'_+', '_', safe_name.replace(' ', '_'))
+        # 최대 50자로 제한
+        return safe_name[:50]
+    
+    def _format_simple_extraction_log(self, system_prompt: str, prompt: str, result: str) -> str:
+        """간단한 추출 로그 형식 생성 - 프롬프트와 결과만"""
+        return f"""[SYSTEM_PROMPT]
+{system_prompt}
+
+[PROMPT]
+{prompt}
+
+[추출 결과]
+{result}"""
+    
+    def _format_simple_update_log(self, system_prompt: str, prompt: str, update_content: str) -> str:
+        """간단한 업데이트 로그 형식 생성 - 프롬프트와 결과만"""
+        return f"""[SYSTEM_PROMPT]
+{system_prompt}
+
+[PROMPT]
+{prompt}
+
+[업데이트 결과]
+{update_content}"""
+    
+    async def log_extraction_with_prompt(self, node_title: str, info_type: str,
+                                        prompt: str, system_prompt: str, 
+                                        extraction_result: str):
+        """추출 작업 시 프롬프트와 결과 저장"""
+        try:
+            # 시간 형식: HHMM
+            time_stamp = datetime.now().strftime('%H%M')
+            
+            # 파일명 생성: extraction_{정보유형}_{title}_{HHMM}.txt
+            safe_title = self._sanitize_filename(node_title)
+            filename = f"extraction_{info_type}_{safe_title}_{time_stamp}.txt"
+            log_file = self.log_dir / filename
+            
+            # 로그 내용 구성
+            log_content = self._format_simple_extraction_log(
+                system_prompt, prompt, extraction_result
+            )
+            
+            # 파일 저장
+            with open(log_file, 'w', encoding='utf-8') as f:
+                f.write(log_content)
+            
+            self.logger.info(f"📝 정보 유형별 추출 히스토리 저장: {filename}")
+            return str(log_file)
+            
+        except Exception as e:
+            self.logger.error(f"❌ 정보 유형별 추출 히스토리 저장 실패: {e}")
+            return None
+    
+    async def log_update_with_prompt(self, node_title: str, info_type: str,
+                                    prompt: str, system_prompt: str, 
+                                    update_content: str,
+                                    operation_type: str = "update"):
+        """업데이트 작업 시 프롬프트와 결과 저장"""
+        try:
+            # 시간 형식: HHMM
+            time_stamp = datetime.now().strftime('%H%M')
+            
+            # 파일명 생성: update_{정보유형}_{title}_{HHMM}.txt
+            safe_title = self._sanitize_filename(node_title)
+            filename = f"update_{info_type}_{safe_title}_{time_stamp}.txt"
+            log_file = self.log_dir / filename
+            
+            # 로그 내용 구성
+            log_content = self._format_simple_update_log(
+                system_prompt, prompt, update_content
+            )
+            
+            # 파일 저장
+            with open(log_file, 'w', encoding='utf-8') as f:
+                f.write(log_content)
+            
+            self.logger.info(f"📝 업데이트 히스토리 저장: {filename}")
+            return str(log_file)
+            
+        except Exception as e:
+            self.logger.error(f"❌ 업데이트 히스토리 저장 실패: {e}")
+            return None
+    
+    # 기존 JSON 방식 메서드들은 더 이상 사용하지 않음
+    def add_entry(self, entry):
+        """더 이상 사용하지 않음 - 개별 파일 저장 방식으로 변경"""
+        pass
     
     def save_logs(self):
-        """로그를 파일로 저장"""
-        if not self.log_entries:
-            return
-        
-        log_file = self.debug_dir / f"update_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        
-        log_data = []
-        for entry in self.log_entries:
-            log_data.append({
-                'timestamp': entry.timestamp,
-                'node_title': entry.node_title,
-                'section_type': entry.section_type,
-                'before_length': len(entry.before_content),
-                'after_length': len(entry.after_content),
-                'ai_model': entry.ai_model,
-                'prompt_tokens': entry.prompt_tokens,
-                'response_tokens': entry.response_tokens
-            })
-        
-        with open(log_file, 'w', encoding='utf-8') as f:
-            json.dump(log_data, f, ensure_ascii=False, indent=2)
+        """더 이상 사용하지 않음 - 개별 파일 저장 방식으로 변경"""
+        pass
 
 
 class NodeDocumentManager:
@@ -92,12 +167,22 @@ class NodeDocumentManager:
                 nodes_data = json.load(f)
             
             nodes = []
+            has_content_nodes = []  # has_content가 True인 노드들 추적
+            missing_documents = []  # 누락된 문서들 추적
+            
             for node_data in nodes_data:
                 # 문서 경로 설정
                 document_path = None
                 if node_data.get('has_content', False):
-                    doc_filename = f"{node_data['id']}_{node_data['title']}_info.md"
+                    # 실제 파일명 형식: {id:02d}_lev{level}_{title}_info.md (공백과 하이픈을 언더스코어로 치환)
+                    title_safe = node_data['title'].replace(' ', '_').replace('-', '').replace(':', '').replace('?', '')
+                    doc_filename = f"{node_data['id']:02d}_lev{node_data['level']}_{title_safe}_info.md"
                     document_path = str(self.node_docs_dir / doc_filename)
+                    has_content_nodes.append((node_data['id'], node_data['title'], doc_filename))
+                    
+                    # 문서 파일 존재 여부 확인
+                    if not Path(document_path).exists():
+                        missing_documents.append(doc_filename)
                 
                 # process_status 읽기
                 process_status = False
@@ -115,6 +200,20 @@ class NodeDocumentManager:
                     process_status=process_status
                 )
                 nodes.append(node)
+            
+            # 처리할 노드 문서가 없으면 명확한 오류 발생
+            if has_content_nodes and missing_documents:
+                error_msg = f"❌ 처리할 노드 문서 {len(missing_documents)}개가 누락되었습니다!"
+                error_msg += f"\n📁 노드 문서 디렉토리: {self.node_docs_dir}"
+                error_msg += f"\n📋 전체 has_content 노드: {len(has_content_nodes)}개"
+                error_msg += f"\n❌ 누락된 문서: {missing_documents[:5]}"  # 처음 5개만 표시
+                if len(missing_documents) > 5:
+                    error_msg += f" ... (총 {len(missing_documents)}개)"
+                self.logger.error(error_msg)
+                raise FileNotFoundError(error_msg)
+            
+            if has_content_nodes and not missing_documents:
+                self.logger.info(f"✅ 모든 노드 문서 확인 완료: {len(has_content_nodes)}개 문서")
             
             self._nodes_cache = nodes
             self._nodes_dict_cache = {node.id: node for node in nodes}
@@ -224,12 +323,140 @@ class NodeDocumentManager:
     
     async def update_extraction_section(self, node: NodeInfo, result: ExtractionResult,
                                        update_logger: UpdateLogger = None):
-        """추출 섹션 업데이트"""
+        """추출 섹션 업데이트 - 개별 정보 타입별로 업데이트"""
         try:
-            extraction_content = self._format_extraction_section(result)
-            await self.save_extraction_section(node, extraction_content, update_logger)
+            print(f"🐛 update_extraction_section 호출: {node.title}")
+            print(f"🐛 추출 결과:")
+            print(f"  - core_content: {bool(result.core_content)} ({len(result.core_content) if result.core_content else 0} 문자)")
+            print(f"  - detailed_core_content: {bool(result.detailed_core_content)} ({len(result.detailed_core_content) if result.detailed_core_content else 0} 문자)")
+            print(f"  - detailed_content: {bool(result.detailed_content)} ({len(result.detailed_content) if result.detailed_content else 0} 문자)")
+            print(f"  - main_topics: {bool(result.main_topics)} ({len(result.main_topics) if result.main_topics else 0} 문자)")
+            print(f"  - sub_topics: {bool(result.sub_topics)} ({len(result.sub_topics) if result.sub_topics else 0} 문자)")
+            
+            # 각 정보 타입별로 개별 업데이트
+            if result.core_content:
+                print(f"🐛 핵심 내용 업데이트 호출")
+                try:
+                    await self.update_node_section(node, "핵심 내용", result.core_content, update_logger)
+                    print(f"🐛 핵심 내용 업데이트 완료")
+                except Exception as e:
+                    print(f"🐛 핵심 내용 업데이트 실패: {e}")
+            else:
+                print(f"🐛 핵심 내용 건너뜀 - 값: {repr(result.core_content)}")
+                
+            if result.detailed_core_content:
+                await self.update_node_section(node, "상세 핵심 내용", result.detailed_core_content, update_logger)
+                
+            if result.detailed_content:
+                await self.update_node_section(node, "상세 정보", result.detailed_content, update_logger)
+                
+            if result.main_topics:
+                await self.update_node_section(node, "주요 화제", result.main_topics, update_logger)
+                
+            if result.sub_topics:
+                await self.update_node_section(node, "부차 화제", result.sub_topics, update_logger)
+                
+            print(f"🐛 update_extraction_section 완료: {node.title}")
         except Exception as e:
             self.logger.error(f"추출 섹션 업데이트 실패: {node.title} - {e}")
+            raise
+    
+    async def update_node_section(self, node: NodeInfo, section_name: str, new_content: str,
+                                update_logger: UpdateLogger = None):
+        """특정 정보 타입 섹션만 업데이트"""
+        try:
+            if not node.document_path:
+                return
+                
+            doc_path = Path(node.document_path)
+            if not doc_path.exists():
+                return
+            
+            print(f"🐛 update_node_section 호출: {node.title} - {section_name}")
+            print(f"🐛 새 내용 길이: {len(new_content)} 문자")
+            print(f"🐛 새 내용 미리보기: {new_content[:100]}...")
+            
+            # 파일 읽기
+            with open(doc_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            print(f"🐛 원본 파일 내용 라인 수: {len(content.splitlines())}")
+            print(f"🐛 원본 파일에서 '# 추출' 포함 여부: {'# 추출' in content}")
+            
+            # 해당 섹션 찾기 (예: ## 핵심 내용)
+            section_header = f"## {section_name}"
+            section_start = content.find(section_header)
+            
+            if section_start == -1:
+                print(f"🐛 섹션을 찾을 수 없음: {section_name}")
+                return
+            
+            print(f"🐛 섹션 시작 위치: {section_start}")
+            
+            # 섹션 헤더 라인의 끝 찾기 (헤더 다음 줄부터 내용 시작)
+            header_end = content.find('\n', section_start)
+            if header_end == -1:
+                header_end = len(content)
+            content_start = header_end + 1
+            
+            print(f"🐛 헤더 끝 위치: {header_end}, 내용 시작 위치: {content_start}")
+            
+            # content[:content_start] 분석
+            prefix_content = content[:content_start]
+            print(f"🐛 content[:content_start] 길이: {len(prefix_content)} 문자")
+            print(f"🐛 content[:content_start]에 '# 추출' 포함: {'# 추출' in prefix_content}")
+            print(f"🐛 content[:content_start] 마지막 50자:")
+            print(repr(prefix_content[-50:]))
+            
+            # 다음 섹션 시작점 찾기 (## 또는 # 헤더)
+            lines = content[content_start:].split('\n')
+            next_section_start = -1
+            
+            for i, line in enumerate(lines):
+                stripped_line = line.strip()
+                if stripped_line.startswith('## ') or stripped_line.startswith('# '):
+                    next_section_start = content_start + sum(len(l) + 1 for l in lines[:i])
+                    break
+            
+            
+            # 기존 내용 추출 (섹션 헤더는 제외하고 내용만)
+            if next_section_start == -1:
+                old_content = content[content_start:].strip()
+                # 파일 끝까지이므로 헤더 유지 + 빈 줄 + 새 내용
+                new_full_content = content[:content_start] + '\n' + new_content.strip() + '\n'
+                print(f"🐛 파일 끝 섹션 처리: next_section_start == -1")
+            else:
+                old_content = content[content_start:next_section_start].strip()
+                # 중간 섹션이므로 헤더 유지 + 빈 줄 + 새 내용 + 빈 줄 + 다음 섹션
+                new_full_content = content[:content_start] + '\n' + new_content.strip() + '\n\n' + content[next_section_start:]
+                print(f"🐛 중간 섹션 처리: next_section_start = {next_section_start}")
+            
+            print(f"🐛 new_full_content 길이: {len(new_full_content)} 문자")
+            print(f"🐛 new_full_content에 '# 추출' 포함: {'# 추출' in new_full_content}")
+            print(f"🐛 new_full_content 처음 200자:")
+            print(repr(new_full_content[:200]))
+            
+            
+            # UpdateLogger 사용 안함 - 개별 파일 저장 방식으로 변경됨
+            
+            # 파일 저장
+            with open(doc_path, 'w', encoding='utf-8') as f:
+                f.write(new_full_content)
+                
+            # 파일 저장 후 검증
+            with open(doc_path, 'r', encoding='utf-8') as f:
+                saved_content = f.read()
+            
+            print(f"🐛 파일 저장 후 검증:")
+            print(f"🐛 저장된 파일 길이: {len(saved_content)} 문자")
+            print(f"🐛 저장된 파일에 '# 추출' 포함: {'# 추출' in saved_content}")
+            print(f"🐛 저장된 파일 처음 200자:")
+            print(repr(saved_content[:200]))
+                
+            print(f"🐛 섹션 업데이트 완료: {section_name}")
+            
+        except Exception as e:
+            self.logger.error(f"노드 섹션 업데이트 실패: {node.title} - {section_name} - {e}")
             raise
     
     def _format_extraction_section(self, result: ExtractionResult) -> str:
@@ -275,12 +502,20 @@ class NodeDocumentManager:
             extraction_start += len('\n# 추출\n---\n')
             next_section = content.find('\n# 내용\n---', extraction_start)
             
+            # 기존 추출 섹션 내용 추출 (디버그 로그용)
+            if next_section == -1:
+                old_extraction_content = content[extraction_start:].strip()
+            else:
+                old_extraction_content = content[extraction_start:next_section].strip()
+            
             clean_extraction = extraction_content.strip()
             
             if next_section == -1:
                 new_content = content[:extraction_start] + clean_extraction + "\n"
             else:
                 new_content = content[:extraction_start] + clean_extraction + "\n" + content[next_section:]
+            
+            # UpdateLogger 사용 안함 - 개별 파일 저장 방식으로 변경됨
             
             with open(doc_path, 'w', encoding='utf-8') as f:
                 f.write(new_content)
@@ -300,18 +535,36 @@ class NodeDocumentManager:
             with open(node.document_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
+            print(f"🐛 update_process_status 호출: {node.title}")
+            print(f"🐛 원본 파일에 '# 추출' 포함: {'# 추출' in content}")
+            
             # YAML 메타데이터 섹션 업데이트
             if content.startswith('# 속성\n---\n'):
-                yaml_end = content.find('\n---\n', len('# 속성\n---\n'))
-                if yaml_end != -1:
-                    yaml_content = content[len('# 속성\n---\n'):yaml_end]
+                # "# 추출" 헤더의 위치를 먼저 찾기
+                extraction_header_pos = content.find('\n# 추출\n')
+                if extraction_header_pos != -1:
+                    print(f"🐛 '# 추출' 헤더 위치: {extraction_header_pos}")
+                    
+                    # YAML 메타데이터는 "# 추출" 이전까지
+                    yaml_start_len = len('# 속성\n---\n')
+                    yaml_content = content[yaml_start_len:extraction_header_pos]
+                    
                     try:
-                        metadata = yaml.safe_load(yaml_content) or {}
+                        metadata = yaml.safe_load(yaml_content.strip()) or {}
                         metadata['process_status'] = status
                         
                         updated_yaml = yaml.dump(metadata, default_flow_style=False, allow_unicode=True)
-                        end_marker_len = len('\n---\n')
-                        new_content = f"# 속성\n---\n{updated_yaml}---\n{content[yaml_end + end_marker_len:]}"
+                        
+                        # "# 추출" 헤더부터의 모든 내용을 보존
+                        remaining_content = content[extraction_header_pos:]
+                        print(f"🐛 보존될 부분에 '# 추출' 포함: {'# 추출' in remaining_content}")
+                        print(f"🐛 보존될 부분 처음 100자:")
+                        print(repr(remaining_content[:100]))
+                        
+                        # 새 내용 구성: YAML 헤더 + 업데이트된 메타데이터 + "# 추출"부터의 모든 내용
+                        new_content = f"# 속성\n---\n{updated_yaml}{remaining_content}"
+                        
+                        print(f"🐛 재구성된 내용에 '# 추출' 포함: {'# 추출' in new_content}")
                         
                         with open(node.document_path, 'w', encoding='utf-8') as f:
                             f.write(new_content)
@@ -397,61 +650,6 @@ class NodeDocumentManager:
         
         return sections
     
-    async def update_node_section(self, node: NodeInfo, section_type: str, new_content: str,
-                                 update_logger: UpdateLogger = None):
-        """노드 문서의 특정 섹션 업데이트"""
-        try:
-            if not node.document_path or not Path(node.document_path).exists():
-                self.logger.warning(f"문서 파일 없음: {node.title}")
-                return
-            
-            # 현재 문서 내용 로드
-            with open(node.document_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-            
-            # 추출 섹션 파싱
-            sections = self.parse_extraction_section(content)
-            
-            # 해당 섹션 업데이트
-            sections[section_type] = new_content
-            
-            # 업데이트된 추출 섹션 재구성
-            section_names = {
-                'core_content': '## 핵심 내용',
-                'detailed_core_content': '## 상세 핵심 내용',
-                'detailed_content': '## 상세 정보',
-                'main_topics': '## 주요 화제',
-                'sub_topics': '## 부차 화제'
-            }
-            
-            updated_sections = []
-            for key in ['core_content', 'detailed_core_content', 'detailed_content', 'main_topics', 'sub_topics']:
-                if key in sections and sections[key]:
-                    updated_sections.append(f"{section_names[key]}\n{sections[key]}")
-            
-            new_extraction_content = '\n\n'.join(updated_sections)
-            
-            # 문서에서 추출 섹션 교체
-            extraction_start = content.find('# 추출\n---\n')
-            content_start = content.find('# 내용\n---', extraction_start)
-            
-            if extraction_start != -1 and content_start != -1:
-                new_content_full = (
-                    content[:extraction_start + len('# 추출\n---\n')] + 
-                    '\n' + new_extraction_content + '\n\n' +
-                    content[content_start:]
-                )
-                
-                # 파일 저장
-                with open(node.document_path, 'w', encoding='utf-8') as f:
-                    f.write(new_content_full)
-                
-                self.logger.info(f"✅ {section_type} 섹션 업데이트: {node.title}")
-            else:
-                self.logger.warning(f"추출 섹션을 찾을 수 없음: {node.title}")
-                
-        except Exception as e:
-            self.logger.error(f"섹션 업데이트 실패: {node.title} - {e}")
 
 
 class DebugManager:
