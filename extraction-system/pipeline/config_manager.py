@@ -99,6 +99,49 @@ class ClaudeSDKProvider(AIProvider):
 
     def get_name(self) -> str:
         return "Claude SDK"
+    
+    async def extract_content_with_ai(self, section_title: str, next_title: str, markdown_content: str) -> str:
+        """섹션별 콘텐츠 추출 (section_extractor_v2.py 로직)"""
+        next_title_info = f"다음 섹션: {next_title}" if next_title else "다음 섹션: 없음 (문서 끝)"
+        
+        prompt = f"""다음 마크다운 문서에서 특정 섹션의 내용을 추출해주세요.
+
+추출할 섹션: {section_title}
+{next_title_info}
+
+마크다운 문서:
+```markdown
+{markdown_content}
+```
+
+작업 지시:
+1. 위 문서에서 '{section_title}' 섹션을 찾으세요
+2. 해당 제목부터 {'다음 섹션(' + next_title + ')' if next_title else '문서 끝'} 전까지의 모든 내용을 추출하세요
+3. 페이지 구분자(--- 페이지 X ---)도 포함해서 추출하세요
+4. 섹션 내의 내용을 그대로 유지하세요
+5. 제목과 문맥으로 섹션 범위를 판단하세요
+
+중요한 제약사항:
+- 어떤 설명이나 부가 정보도 추가하지 마세요
+- "문서에서 ... 섹션의 내용을 추출하겠습니다" 같은 설명 금지
+- "해당 섹션은..." 같은 부연설명 금지
+- 오직 원본 문서의 해당 섹션 내용만 그대로 출력하세요
+
+응답 형식:
+섹션 내용을 그대로 복사하여 제공하세요. 어떤 추가 설명이나 마커 없이 원본 텍스트를 정확히 출력하세요.
+"""
+        
+        try:
+            response_text = await self.query(prompt)
+            return response_text.strip()
+            
+        except Exception as e:
+            error_msg = f"섹션 내용 추출 실패 ({section_title}): {str(e)}"
+            if self.logger:
+                self.logger.error(error_msg)
+            else:
+                print(error_msg)
+            return ""
 
 class ConfigManager:
     """extraction_config.yaml 전용 설정 관리자"""

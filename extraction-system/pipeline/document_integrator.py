@@ -158,7 +158,7 @@ class DocumentIntegrator:
                 print(f"   ❌ 노드 문서 없음: {node_doc_filename}")
                 return False
             
-            # 내용 문서 로드
+            # 내용 문서 로드 (v2 로직: 콘텐츠가 없어도 통합 진행)
             content_text = ""
             if content_file_path:
                 try:
@@ -167,10 +167,10 @@ class DocumentIntegrator:
                     print(f"   ✅ 매칭된 내용 문서: {os.path.basename(content_file_path)}")
                 except Exception as e:
                     print(f"   ⚠️ 내용 문서 로드 실패: {e}")
-                    return False
+                    content_text = ""  # 로드 실패시 빈 문자열로 계속 진행
             else:
                 print(f"   ⚠️ 매칭되는 내용 문서 없음: {node['title']}")
-                return False  # 매칭되는 내용 문서가 없으면 통합하지 않음
+                # v2 로직: 내용 문서가 없어도 통합 진행 (빈 내용으로)
             
             # 모든 하위 노드 정보 수집 (재귀적)
             descendants_files = self.get_all_descendants_info(node, all_nodes)

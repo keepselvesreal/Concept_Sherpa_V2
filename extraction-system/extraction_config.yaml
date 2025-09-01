@@ -39,7 +39,7 @@ providers:
     model: "gemini-pro"
     temperature: 0.7
     # 대안 모델 설정
-    lite_model: "gemini-2.0-flash-lite"  # 빠른 분석용 가벼운 모델
+    lite_model: "gemini-2.5-flash-lite"  # 빠른 분석용 가벼운 모델
     experimental_model: "gemini-2.0-flash-exp"  # 실험용 모델
   openai:
     api_key_env: "OPENAI_API_KEY" 
@@ -64,7 +64,7 @@ book_pipeline:
   # 3단계: 콘텐츠 노드 분석 설정 (has_content 필드 추가)
   content_node_analyzer:
     ai_provider: "gemini"  # has_content 식별용 AI 제공자 (빠른 분석)
-    model: "gemini-2.0-flash-lite"  # 가벼운 모델로 빠른 분석
+    model: "gemini-2.5-flash-lite"  # 가벼운 모델로 빠른 분석
     temperature: 0.3  # 낮은 온도로 일관성 있는 판단
     max_retries: 2
     timeout_seconds: 15  # 빠른 응답을 위한 타임아웃
