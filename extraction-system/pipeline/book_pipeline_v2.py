@@ -35,6 +35,8 @@ from extract_chapters_v5 import count_chapters_with_ai, GeminiAPIProvider, norma
 from .content_node_analyzer import ContentNodeAnalyzer
 # 노드 문서 생성 모듈 임포트
 from .node_document_generator import NodeDocumentGenerator
+# 문서 통합 모듈 임포트
+from .document_integrator import DocumentIntegrator
 
 class PipelineResult:
     """파이프라인 실행 결과"""
@@ -43,7 +45,7 @@ class PipelineResult:
         self.error = None
         self.data = {}
         self.step_completed = 0
-        self.total_steps = 5  # 5단계로 확장: 목차추출 → 장별폴더 → 콘텐츠노드분석 → 콘텐츠파일추출 → 노드정보문서생성
+        self.total_steps = 6  # 6단계로 확장: 목차추출 → 장별폴더 → 콘텐츠노드분석 → 콘텐츠파일추출 → 노드정보문서생성 → 문서통합
         self.progress_percent = 0
 
 class BookPipeline:
@@ -53,6 +55,7 @@ class BookPipeline:
         self.temp_dir = None
         self.output_dir = None
         self.node_document_generator = NodeDocumentGenerator()
+        self.document_integrator = DocumentIntegrator()
         
     def extract_toc_from_pdf(self, pdf_path: str) -> Dict[str, Any]:
         """PDF에서 목차 추출 (PyMuPDF 기존 검증된 로직 사용)"""
@@ -423,6 +426,92 @@ class BookPipeline:
         except Exception as e:
             raise Exception(f"노드 정보 문서 생성 실패: {str(e)}")
     
+    def integrate_documents_for_chapters(self, chapters_data: Dict[str, Any]) -> Dict[str, Any]:
+        """모든 장별 폴더에서 노드 정보 문서와 내용 문서를 통합합니다 (6단계)"""
+        try:
+            print("🔗 === 6단계: 문서 통합 시작 ===")
+            
+            created_folders = chapters_data.get('created_folders', [])
+            if not created_folders:
+                print("⚠️ 통합할 장별 폴더가 없습니다.")
+                return {
+                    'success': False,
+                    'error': '통합할 장별 폴더가 없음',
+                    'processed_chapters': 0,
+                    'total_integrated_documents': 0
+                }
+            
+            processed_chapters = 0
+            total_integrated_documents = 0
+            chapter_results = []
+            
+            for chapter_info in created_folders:
+                chapter_title = chapter_info.get('chapter_title', '')
+                folder_path = chapter_info.get('folder_path', '')
+                
+                print(f"\n📖 {chapter_title} 문서 통합 중...")
+                
+                if not folder_path or not os.path.exists(folder_path):
+                    print(f"⚠️ 장별 폴더를 찾을 수 없음: {folder_path}")
+                    chapter_results.append({
+                        'chapter_title': chapter_title,
+                        'success': False,
+                        'error': '장별 폴더 없음'
+                    })
+                    continue
+                
+                try:
+                    # 각 장별 문서 통합
+                    result = self.document_integrator.integrate_documents_for_chapter(folder_path)
+                    
+                    if result.get('success', False):
+                        integrated_count = result.get('integrated_count', 0)
+                        total_integrated_documents += integrated_count
+                        processed_chapters += 1
+                        
+                        chapter_results.append({
+                            'chapter_title': chapter_title,
+                            'success': True,
+                            'integrated_documents': integrated_count,
+                            'total_nodes': result.get('total_nodes', 0),
+                            'toc_file_used': result.get('toc_file_used', ''),
+                            'folder_path': folder_path
+                        })
+                        
+                        print(f"✅ {chapter_title}: {integrated_count}개 문서 통합 완료")
+                    else:
+                        print(f"❌ {chapter_title}: {result.get('error', '통합 실패')}")
+                        chapter_results.append({
+                            'chapter_title': chapter_title,
+                            'success': False,
+                            'error': result.get('error', '통합 실패')
+                        })
+                
+                except Exception as e:
+                    print(f"❌ {chapter_title} 처리 중 오류: {str(e)}")
+                    chapter_results.append({
+                        'chapter_title': chapter_title,
+                        'success': False,
+                        'error': str(e)
+                    })
+            
+            successful_chapters = len([r for r in chapter_results if r.get('success', False)])
+            
+            print(f"\n🎉 문서 통합 완료!")
+            print(f"📊 성공한 장: {successful_chapters}개")
+            print(f"🔗 통합된 문서: {total_integrated_documents}개")
+            
+            return {
+                'success': True,
+                'processed_chapters': successful_chapters,
+                'total_chapters': len(created_folders),
+                'total_integrated_documents': total_integrated_documents,
+                'chapter_results': chapter_results
+            }
+            
+        except Exception as e:
+            raise Exception(f"문서 통합 실패: {str(e)}")
+    
     async def execute(self, file_path: str, metadata_info: Dict[str, Any] = None) -> PipelineResult:
         """파이프라인 실행"""
         result = PipelineResult()
@@ -465,6 +554,12 @@ class BookPipeline:
             print("5️⃣ 노드 정보 문서 생성 중...")
             node_docs_data = self.generate_node_info_documents(chapters_data)
             result.step_completed = 5
+            result.progress_percent = 83
+            
+            # 6단계: 문서 통합
+            print("6️⃣ 노드 정보 문서와 내용 문서 통합 중...")
+            integration_data = self.integrate_documents_for_chapters(chapters_data)
+            result.step_completed = 6
             result.progress_percent = 100
             
             # 성공 결과
@@ -478,8 +573,9 @@ class BookPipeline:
                 'content_analysis': content_analysis_data,
                 'content_extraction': content_extraction_data,
                 'node_documents': node_docs_data,
+                'document_integration': integration_data,
                 'output_directory': str(self.output_dir),
-                'pipeline_stage': '5단계 완료 (목차 → 장별폴더 → 콘텐츠노드분석 → 실제콘텐츠추출 → 노드정보문서생성)'
+                'pipeline_stage': '6단계 완료 (목차 → 장별폴더 → 콘텐츠노드분석 → 실제콘텐츠추출 → 노드정보문서생성 → 문서통합)'
             }
             
             print("🎉🎉🎉 책 파이프라인 전체 완료! 🎉🎉🎉")
@@ -487,6 +583,7 @@ class BookPipeline:
             print(f"📝 총 {content_analysis_data.get('content_nodes_found', 0)}개 콘텐츠 노드 발견")
             print(f"📄 총 {content_extraction_data.get('extracted_files_count', 0)}개 콘텐츠 파일 생성")
             print(f"📋 총 {node_docs_data.get('total_documents_created', 0)}개 노드 정보 문서 생성")
+            print(f"🔗 총 {integration_data.get('total_integrated_documents', 0)}개 문서 통합 완료")
             return result
             
         except Exception as e:
