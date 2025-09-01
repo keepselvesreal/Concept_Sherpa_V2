@@ -21,7 +21,7 @@ from typing import Dict, List, Optional, Any, Tuple, Set
 from modules import (
     ProcessingMode, AIProvider, NodeInfo, ExtractionResult, ProcessingStatus, UpdateLogEntry,
     AIProviderFactory, UpdateLogger,
-    ProcessingStrategy, ProcessingStrategyV1, ProcessingStrategyV2, ProcessingStrategyV3,
+    ProcessingStrategy, ProcessingStrategyV1, ProcessingStrategyV2, ProcessingStrategyV3, ProcessingStrategyV5,
     NodeDocumentManager, DebugManager,
     ExtractionEngine, UpdateEngine,
     NodeTraverser, ProgressTracker
@@ -70,7 +70,6 @@ class UnifiedNodeProcessor:
                 
             # 기본 설정 적용
             defaults = {
-                'debug_dir': './25-08-30',
                 'processing_mode': 'v3',
                 'ai_provider': 'gemini'
             }
@@ -104,6 +103,8 @@ class UnifiedNodeProcessor:
             return ProcessingStrategyV2(self.ai_factory, self.logger)
         elif mode == ProcessingMode.V3:
             return ProcessingStrategyV3(self.ai_factory, self.logger)
+        elif mode == ProcessingMode.V5:
+            return ProcessingStrategyV5(self.ai_factory, self.logger)
         else:
             raise ValueError(f"지원되지 않는 처리 모드: {mode}")
     
@@ -173,7 +174,7 @@ class UnifiedNodeProcessor:
                         self.logger.error(f"❌ 노드 처리 중 오류: {node.title} - {error_msg}")
             
             # 5. 로그 저장
-            update_logger.save_logs()
+            # save_logs() 호출 제거 - 개별 파일 저장 방식으로 변경
             
         except Exception as e:
             self.logger.error(f"❌ 전체 처리 중 오류 발생: {e}")
@@ -191,9 +192,9 @@ async def main():
     parser.add_argument('--config', default='./config.yaml', help='설정 파일 경로')
     parser.add_argument('--ai-provider', choices=['gemini', 'claude', 'openai'], 
                        help='AI 프로바이더 선택')
-    parser.add_argument('--processing-mode', choices=['v1', 'v2', 'v3'], default='v3',
+    parser.add_argument('--processing-mode', choices=['v1', 'v2', 'v3', 'v5'], default='v3',
                        help='처리 방식 선택')
-    parser.add_argument('--debug-dir', default='./25-08-30',
+    parser.add_argument('--debug-dir', 
                        help='디버깅 폴더 경로')
     
     args = parser.parse_args()
