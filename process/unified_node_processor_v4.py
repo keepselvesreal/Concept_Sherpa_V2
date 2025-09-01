@@ -108,7 +108,49 @@ class UnifiedNodeProcessor:
         else:
             raise ValueError(f"지원되지 않는 처리 모드: {mode}")
     
-    async def process_all_nodes(self) -> Dict[str, Any]:
+    def _filter_target_nodes(self, all_nodes: List[NodeInfo], target_node_id: int) -> List[NodeInfo]:
+        """특정 부모 노드와 그 구성 노드들만 필터링"""
+        target_nodes = []
+        
+        # 대상 노드 찾기
+        target_node = None
+        for node in all_nodes:
+            if node.id == target_node_id:
+                target_node = node
+                break
+        
+        if not target_node:
+            self.logger.error(f"❌ 대상 노드를 찾을 수 없음: ID {target_node_id}")
+            return []
+        
+        self.logger.info(f"🎯 대상 부모 노드: {target_node.title} (ID: {target_node_id})")
+        
+        # 대상 노드와 구성 노드들 수집
+        target_nodes.append(target_node)
+        
+        # 구성 노드들 추가 (재귀적으로 모든 하위 노드 포함)
+        if target_node.children_ids:
+            for child_id in target_node.children_ids:
+                self._collect_child_nodes(all_nodes, child_id, target_nodes)
+        
+        self.logger.info(f"📋 필터링된 노드 수: {len(target_nodes)}개")
+        for node in target_nodes:
+            self.logger.info(f"  - {node.title} (ID: {node.id})")
+        
+        return target_nodes
+    
+    def _collect_child_nodes(self, all_nodes: List[NodeInfo], child_id: int, target_nodes: List[NodeInfo]):
+        """하위 노드들을 재귀적으로 수집"""
+        for node in all_nodes:
+            if node.id == child_id:
+                target_nodes.append(node)
+                # 더 하위 노드들이 있다면 재귀적으로 수집
+                if node.children_ids:
+                    for grandchild_id in node.children_ids:
+                        self._collect_child_nodes(all_nodes, grandchild_id, target_nodes)
+                break
+    
+    async def process_all_nodes(self, target_node_id: int = None) -> Dict[str, Any]:
         """모든 노드 처리"""
         self.logger.info("🚀 노드 처리 시작")
         self.tracker.start_processing()
@@ -118,7 +160,20 @@ class UnifiedNodeProcessor:
             nodes = await self.doc_manager.load_nodes_info()
             self.logger.info(f"📋 로딩된 노드 수: {len(nodes)}")
             
-            # 2. 처리할 노드들 필터링 (process_status가 False인 노드들만)
+            # 2. 특정 노드 필터링 (target_node_id가 있는 경우)
+            if target_node_id:
+                nodes = self._filter_target_nodes(nodes, target_node_id)
+                if not nodes:
+                    return {
+                        'success': False,
+                        'total_nodes': 0,
+                        'processed_nodes': 0,
+                        'failed_nodes': 0,
+                        'duration': "0:00:00",
+                        'errors': ["대상 노드를 찾을 수 없음"]
+                    }
+            
+            # 3. 처리할 노드들 필터링 (process_status가 False인 노드들만)
             nodes_to_process = [node for node in nodes if not node.process_status]
             self.logger.info(f"🎯 처리 대상 노드 수: {len(nodes_to_process)}")
             
@@ -196,6 +251,8 @@ async def main():
                        help='처리 방식 선택')
     parser.add_argument('--debug-dir', 
                        help='디버깅 폴더 경로')
+    parser.add_argument('--target-node', type=int,
+                       help='특정 부모 노드 ID (해당 노드와 구성 노드들만 처리)')
     
     args = parser.parse_args()
     
@@ -221,7 +278,7 @@ async def main():
         print(f"📋 처리 방식: {processor.config.get('processing_mode', 'v3')}")
         print(f"📁 디버깅 폴더: {processor.config.get('debug_dir', './25-08-30')}")
         
-        result = await processor.process_all_nodes()
+        result = await processor.process_all_nodes(target_node_id=args.target_node)
         
         if result['success']:
             print(f"\n✅ 전체 처리 완료!")

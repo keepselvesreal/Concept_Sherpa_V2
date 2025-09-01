@@ -1,0 +1,79 @@
+[SYSTEM_PROMPT]
+문서 분석 전문가. 주어진 5가지 정보 타입을 순서대로 정확하게 추출하세요.
+- 핵심 내용: 간결하고 정확한 요약
+- 상세 핵심 내용: 상세하면서도 핵심적인 내용
+- 상세 정보: 체계적이고 포괄적인 정리
+- 주요 화제: 핵심 주제들
+- 부차 화제: 부차적이지만 의미있는 주제들
+
+정확한 형식을 지켜서 출력하세요.
+
+[PROMPT]
+다음 문서에서 5가지 정보를 순서대로 추출해주세요.
+
+문서 제목: 1.1.4_The_implementation_phase
+문서 내용:
+### 1.1.4_The_implementation_phase
+
+1.1.4
+The implementation phase
+After this detailed investigation of Theo's diagrams, Dave lets it sink in as he slowly sips his
+coffee. He then expresses his admiration to Theo.
+Dave
+Wow! That's amazing!
+Theo
+Thank you.
+Dave
+I didn't realize people were really spending the time to write down their design
+in such detail before coding.
+Theo
+I always do that. It saves me lot of time during the coding phase.
+Dave
+When will you start coding?
+Theo
+When I finish my latte.
+Theo grabs his coffee mug and notices that his hot latte has become an iced latte. He was
+so excited to show his class diagram to Dave that he forgot to drink it!
+
+--- 페이지 41 ---
+
+다음 순서로 각 정보를 추출하고, 반드시 다음 형식을 정확히 지켜서 출력해주세요:
+
+## 핵심 내용
+[문서의 핵심 내용을 2-3문장으로 간결하게 요약]
+
+## 상세 핵심 내용  
+[주요 개념과 중요한 세부사항을 포함하여 5-7문장으로 정리]
+
+## 상세 정보
+[문서의 모든 중요한 정보를 빠뜨리지 않고 체계적으로 정리]
+
+## 주요 화제
+[문서에서 다루는 핵심 주제들을 불렛 포인트로 나열]
+
+## 부차 화제  
+[주요 주제 외에 언급되는 부차적인 주제들을 불렛 포인트로 나열]
+
+**중요**: 각 섹션은 반드시 "## " (해시 2개 + 공백)으로 시작하는 제목을 포함해야 하고, 제목 다음 줄부터 내용을 작성해주세요.
+
+[추출 결과]
+## 핵심 내용
+데이브는 테오의 상세한 다이어그램에 감탄하며 코딩 전에 설계를 자세히 기록하는 것에 놀라워한다. 테오는 항상 설계를 먼저 하는 것이 코딩 시간을 절약해준다고 말한다. 테오는 데이브에게 클래스 다이어그램을 보여주는 것에 너무 몰두한 나머지 라떼가 식은 것도 잊었다.
+
+## 상세 핵심 내용
+데이브는 테오의 상세한 다이어그램을 보고 감탄하며, 코딩 전에 이렇게 자세한 설계를 하는 사람들에 대해 놀라움을 표한다. 테오는 항상 코딩 전에 설계를 상세하게 작성하며, 이것이 코딩 시간을 절약해준다고 설명한다. 테오는 데이브에게 클래스 다이어그램을 보여주느라 라떼가 식어버린 것도 알아차리지 못한다. 데이브는 테오의 설계 방식에 깊은 인상을 받은 듯하다.
+
+## 상세 정보
+데이브는 테오의 다이어그램을 자세히 살펴본 후 감탄하며, 코딩 전에 설계를 상세하게 기록하는 것에 놀라움을 표현한다. 테오는 항상 코딩 전에 설계를 꼼꼼하게 하는 것이 코딩 시간을 절약해준다고 말한다. 데이브는 테오에게 언제 코딩을 시작할 것인지 묻고, 테오는 라떼를 다 마신 후라고 답한다. 테오는 데이브에게 클래스 다이어그램을 보여주느라 라떼가 식은 것을 뒤늦게 알아차린다.
+
+## 주요 화제
+* 설계의 중요성
+* 코딩 전 설계의 시간 절약 효과
+* 상세한 다이어그램
+* 데이브의 감탄
+* 테오의 설계 방식
+
+## 부차 화제
+* 라떼
+* 커피 마시는 시간
+* 클래스 다이어그램

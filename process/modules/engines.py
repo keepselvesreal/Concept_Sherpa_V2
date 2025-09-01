@@ -188,6 +188,50 @@ class UpdateEngine:
         self.ai_factory = ai_factory
         self.logger = logger
     
+    async def update_parent_extraction_with_composition(self, parent_node: NodeInfo,
+                                                      doc_manager: NodeDocumentManager,
+                                                      update_logger: UpdateLogger = None):
+        """구성 노드 추출 내용을 반영한 부모 노드 추출 섹션 업데이트"""
+        self.logger.info(f"🔄 부모 노드 추출 섹션 업데이트: {parent_node.title}")
+        
+        try:
+            if not parent_node.children_ids:
+                self.logger.info("🔄 구성 노드 없음 - 부모 노드 업데이트 스킵")
+                return
+            
+            # 1. 노드 딕셔너리 확보
+            if doc_manager._nodes_dict_cache is None:
+                await doc_manager.load_nodes_info()
+            
+            composition_nodes = []
+            for child_id in parent_node.children_ids:
+                child_node = doc_manager._nodes_dict_cache.get(child_id)
+                if child_node is None:
+                    self.logger.warning(f"⚠️ 구성 노드를 찾을 수 없음: {child_id}")
+                    continue
+                composition_nodes.append(child_node)
+            
+            if not composition_nodes:
+                return
+            
+            # 2. 각 정보 타입별로 부모 노드 업데이트 (5개 섹션 모두)
+            section_types = ['core_content', 'detailed_core_content', 'detailed_content', 'main_topics', 'sub_topics']
+            
+            for section_type in section_types:
+                await self._update_parent_section_with_composition(
+                    parent_node, composition_nodes, section_type, 
+                    doc_manager, update_logger
+                )
+            
+            # 부모 노드에 구성 노드 반영 완료 상태 표시 추가
+            await doc_manager.add_update_status_mark(parent_node, "<구성 노드 반영 완료>")
+            
+            self.logger.info(f"✅ 부모 노드 추출 섹션 업데이트 완료: {parent_node.title}")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 부모 노드 추출 섹션 업데이트 실패: {e}")
+            raise
+
     async def update_composition_extractions(self, parent_node: NodeInfo, 
                                            doc_manager: NodeDocumentManager,
                                            update_logger: UpdateLogger = None):
@@ -222,6 +266,10 @@ class UpdateEngine:
                     parent_node, composition_nodes, section_type, 
                     doc_manager, update_logger
                 )
+            
+            # 각 구성 노드에 부모 노드 반영 완료 상태 표시 추가
+            for child_node in composition_nodes:
+                await doc_manager.add_update_status_mark(child_node, "<부모 노드 반영 완료>")
             
             self.logger.info(f"✅ 모든 구성 노드 배치 업데이트 완료: {len(composition_nodes)}개")
             
@@ -285,6 +333,12 @@ class UpdateEngine:
             self.logger.warning(f"구성 노드 {section_name} 업데이트 응답이 비어있음")
             return
         
+        # 로그 저장
+        if update_logger:
+            await update_logger.log_update_with_prompt(
+                parent_node.title, f"구성노드{section_name}업데이트", prompt, system_prompt, response.strip()
+            )
+        
         # 응답 파싱 및 각 구성 노드 업데이트
         await self._parse_and_update_composition_nodes(
             response, composition_nodes, section_type, doc_manager
@@ -334,3 +388,72 @@ class UpdateEngine:
         
         except Exception as e:
             self.logger.error(f"구성 노드 업데이트 파싱 실패: {e}")
+    
+    async def _update_parent_section_with_composition(self, parent_node: NodeInfo,
+                                                    composition_nodes: List[NodeInfo],
+                                                    section_type: str,
+                                                    doc_manager: NodeDocumentManager,
+                                                    update_logger: UpdateLogger = None):
+        """구성 노드 추출 내용을 반영하여 부모 노드의 특정 섹션 업데이트"""
+        
+        section_names = {
+            'core_content': '핵심 내용',
+            'detailed_core_content': '상세 핵심 내용',  
+            'detailed_content': '상세 정보',
+            'main_topics': '주요 화제',
+            'sub_topics': '부차 화제'
+        }
+        
+        section_name = section_names.get(section_type, section_type)
+        
+        # 부모 노드의 현재 해당 섹션 내용 가져오기
+        parent_doc_content = await doc_manager.load_node_document_content(parent_node)
+        parent_sections = doc_manager.parse_extraction_section(parent_doc_content)
+        current_parent_section = parent_sections.get(section_type, "")
+        
+        # 구성 노드들의 해당 섹션 내용 수집
+        composition_info = []
+        for child_node in composition_nodes:
+            child_doc_content = await doc_manager.load_node_document_content(child_node)
+            child_sections = doc_manager.parse_extraction_section(child_doc_content)
+            child_section = child_sections.get(section_type, "")
+            if child_section:
+                composition_info.append(f"구성노드{child_node.id} ({child_node.title})의 {section_name}:\n{child_section}")
+        
+        if not composition_info:
+            self.logger.warning(f"구성 노드들의 {section_name} 섹션이 모두 비어있음")
+            return
+        
+        prompt = f"""다음은 부모 노드의 {section_name}을 구성 노드들의 {section_name} 내용을 반영하여 통합 개선하는 작업입니다.
+
+**부모 노드 ({parent_node.title})의 현재 {section_name}:**
+{current_parent_section}
+
+**구성 노드들의 {section_name}:**
+{chr(10).join(composition_info)}
+
+구성 노드들의 {section_name} 내용을 종합하여 부모 노드의 {section_name}을 개선해주세요.
+- 구성 노드들에서 공통적으로 나타나는 중요한 내용들을 반영
+- 부모 노드만의 전체적인 관점 유지
+- 기존 부모 노드 내용의 핵심은 보존하되 구성 노드 정보로 보완
+
+개선된 {section_name}만 출력해주세요."""
+        
+        system_prompt = f"문서 전문가. 부모-구성 노드 관계를 고려하여 정보의 일관성을 유지하면서 {section_name}을 통합 개선하세요."
+        
+        response, _, _ = await self.ai_factory.generate_content(prompt, system_prompt)
+        
+        if not response.strip():
+            self.logger.warning(f"부모 노드 {section_name} 업데이트 응답이 비어있음")
+            return
+        
+        # 부모 노드 섹션 업데이트
+        await doc_manager.update_node_section(parent_node, section_type, response.strip())
+        
+        # 로그 저장
+        if update_logger:
+            await update_logger.log_update_with_prompt(
+                parent_node.title, f"부모노드{section_name}업데이트", prompt, system_prompt, response.strip()
+            )
+        
+        self.logger.info(f"✅ 부모 노드 {section_name} 업데이트 완료: {parent_node.title}")

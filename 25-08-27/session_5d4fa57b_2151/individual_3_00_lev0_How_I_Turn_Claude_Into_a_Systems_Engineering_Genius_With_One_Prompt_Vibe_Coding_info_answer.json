@@ -1,0 +1,10 @@
+{
+  "query_number": 3,
+  "query": "해당 문서에서 말하는 프롬프트 예시를 한 번 보여주고, 여기서 제시된 내용 기반 프롬프트 구성 설명해줘",
+  "model_response": "태수야, 이 문서에서 구체적인 프롬프트 예시는 직접 제시되어 있지 않아. 다만 Alex Dunlop이 Eskil Steenberg의 강의를 기반으로 3개의 AI 프롬프트를 만들었다고 언급하고 있지.\n\n**만들어진 3개 프롬프트:**\n1. **Claude Code Prompt** - 실제 개발 작업용\n2. **Claude Prompt** - 계획 및 설계용\n3. **Cursor Prompt** - 디버깅 및 테스트 전략용\n\n**프롬프트 구성 원리 (Eskil의 핵심 원칙 기반):**\n- **지속적인 개발 속도** 유지 (프로젝트 규모와 무관)\n- **한 모듈, 한 사람** 원칙 (충분한 시간만 있으면 누구나 모든 것을 할 수 있어야 함)\n- **모든 것이 교체 가능** (이해할 수 없으면 쉽게 다시 작성할 수 있어야 함)\n- **블랙박스 인터페이스** (모듈 간 깔끔한 API로 소통)\n- **새 코드 우선 작성** (나중에 1줄 수정보다 오늘 5줄 새로 작성이 빠름)\n\n**실제 활용 워크플로우:**\n1. 단일 폴더에 집중\n2. 컨텍스트와 프롬프트를 Claude에 전달\n3. 전략적 계획 수립\n4. Claude Code나 Cursor로 실행\n\n문서에 따르면 실제 프롬프트는 [GitHub 저장소](https://github.com/Alexanderdunlop/ai-architecture-prompts)에 공개되어 있다고 하니, 구체적인 프롬프트 내용을 보려면 거기를 확인해야 할 것 같아.\n\n냉철하게 말하자면, 이 접근법의 핵심은 AI가 복잡한 코드를 생성하더라도 모듈 단위로 분리해서 언제든 교체 가능하게 만드는 거야. 꽤 실용적인 아이디어인 것 같은데, 실제로 얼마나 효과적인지는 직접 써봐야 알 수 있을 거야.",
+  "has_relevant_content": true,
+  "elapsed_time": 22.067350387573242,
+  "timestamp": "2025-08-27T22:06:28.018962",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-27/../extraction-system/references/00_lev0_How_I_Turn_Claude_Into_a_Systems_Engineering_Genius_With_One_Prompt_Vibe_Coding_info.md",
+  "success": true
+}

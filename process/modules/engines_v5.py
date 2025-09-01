@@ -293,7 +293,7 @@ class UpdateEngineV5:
         
         # 디버깅 로그 저장
         if update_logger:
-            await update_logger.log_extraction_with_prompt(
+            await update_logger.log_update_with_prompt(
                 parent_node.title, "구성노드통합업데이트", prompt, system_prompt, response.strip()
             )
         
@@ -311,26 +311,46 @@ class UpdateEngineV5:
                                                     doc_manager: NodeDocumentManager):
         """AI 응답을 파싱하고 각 구성 노드의 모든 섹션 업데이트"""
         try:
-            # 구성노드별로 분할
-            node_sections = response.split('\n구성노드')
-            
+            # 구성노드별로 분할 (라인 시작 패턴도 고려)
+            node_sections = []
+            if '\n구성노드' in response:
+                node_sections = response.split('\n구성노드')
+            elif '구성노드' in response:
+                # 라인 시작에 구성노드가 있는 경우도 처리
+                parts = response.split('구성노드')
+                if len(parts) > 1:
+                    node_sections = [''] + [f'구성노드{part}' for part in parts[1:]]
+                    
             if len(node_sections) <= 1:
                 self.logger.warning("구성노드 섹션을 찾을 수 없음")
                 return
             
             updated_nodes = {}
             
-            # 첫 번째는 빈 내용이므로 제외하고 처리
-            for section in node_sections[1:]:
+            # 빈 섹션이 아닌 것만 처리
+            for section in node_sections:
+                if not section.strip():  # 빈 섹션은 건너뛰기
+                    continue
                 try:
                     # 노드 ID 추출
                     lines = section.strip().split('\n')
                     if not lines:
                         continue
                     
-                    # 첫 줄에서 ID 추출 (예: "15:" → 15)
+                    # 첫 줄에서 ID 추출 (예: "구성노드22:" → 22)
                     first_line = lines[0].strip().rstrip(':')
-                    child_id = int(first_line)
+                    # "구성노드22" → "22" 추출
+                    if first_line.startswith('구성노드'):
+                        child_id_str = first_line[len('구성노드'):].strip()
+                    else:
+                        child_id_str = first_line.strip()
+                    
+                    if not child_id_str.isdigit():
+                        self.logger.warning(f"유효하지 않은 노드 ID: '{first_line}' → '{child_id_str}'")
+                        continue
+                        
+                    child_id = int(child_id_str)
+                    self.logger.debug(f"구성노드 ID 추출: '{first_line}' → {child_id}")
                     
                     # 섹션 내용 파싱
                     sections_content = {
@@ -393,10 +413,202 @@ class UpdateEngineV5:
                             korean_section_name = section_name_mapping.get(section_type, section_type)
                             await doc_manager.update_node_section(child_node, korean_section_name, content.strip())
                             self.logger.info(f"✅ 구성노드{child_node.id} {korean_section_name} 업데이트 완료 (주요/부차 화제 보존됨)")
+                    
+                    # 구성 노드에 부모 노드 반영 완료 상태 표시 추가
+                    await doc_manager.add_update_status_mark(child_node, "<부모 노드 반영 완료>")
+                    self.logger.info(f"✅ 구성노드{child_node.id} 상태 표시 추가: <부모 노드 반영 완료>")
         
         except Exception as e:
             self.logger.error(f"구성 노드 통합 업데이트 파싱 실패: {e}")
     
+    async def update_parent_extraction_with_composition(self, parent_node: NodeInfo,
+                                                      doc_manager: NodeDocumentManager,
+                                                      update_logger: UpdateLogger = None):
+        """구성 노드 내용을 반영하여 부모 노드의 추출 섹션 업데이트 (5개 섹션 모두)"""
+        self.logger.info(f"🔄 부모 노드 추출 섹션 업데이트 (구성 노드 반영): {parent_node.title}")
+        
+        try:
+            if not parent_node.children_ids:
+                self.logger.info("🔄 구성 노드 없음 - 부모 노드 업데이트 스킵")
+                return
+
+            # 1. 노드 딕셔너리 확보
+            if doc_manager._nodes_dict_cache is None:
+                await doc_manager.load_nodes_info()
+
+            # 2. 구성 노드들의 내용 수집
+            composition_info = []
+            for child_id in parent_node.children_ids:
+                child_node = doc_manager._nodes_dict_cache.get(child_id)
+                if child_node is None:
+                    self.logger.warning(f"⚠️ 구성 노드를 찾을 수 없음: ID {child_id}")
+                    continue
+                
+                child_doc_content = await doc_manager.load_node_document_content(child_node)
+                child_sections = doc_manager.parse_extraction_section(child_doc_content)
+                
+                # 모든 5개 섹션 내용 수집 (헤더 제거)
+                core_content = child_sections.get('core_content', '').replace('## 핵심 내용', '').strip()
+                detailed_core = child_sections.get('detailed_core_content', '').replace('## 상세 핵심 내용', '').strip()
+                detailed_info = child_sections.get('detailed_content', '').replace('## 상세 정보', '').strip()
+                main_topics = child_sections.get('main_topics', '').replace('## 주요 화제', '').strip()
+                sub_topics = child_sections.get('sub_topics', '').replace('## 부차 화제', '').strip()
+                
+                child_info = f"""
+구성노드{child_node.id} ({child_node.title}):
+- 핵심 내용: {core_content}
+- 상세 핵심 내용: {detailed_core}
+- 상세 정보: {detailed_info}
+- 주요 화제: {main_topics}
+- 부차 화제: {sub_topics}"""
+                
+                composition_info.append(child_info)
+
+            if not composition_info:
+                self.logger.warning("⚠️ 유효한 구성 노드가 없음")
+                return
+
+            # 3. 부모 노드의 현재 추출 섹션 내용
+            parent_doc_content = await doc_manager.load_node_document_content(parent_node)
+            parent_sections = doc_manager.parse_extraction_section(parent_doc_content)
+            
+            # 부모 노드의 현재 내용 (헤더 제거)
+            parent_core = parent_sections.get('core_content', '').replace('## 핵심 내용', '').strip()
+            parent_detailed_core = parent_sections.get('detailed_core_content', '').replace('## 상세 핵심 내용', '').strip()
+            parent_detailed_info = parent_sections.get('detailed_content', '').replace('## 상세 정보', '').strip()
+            parent_main_topics = parent_sections.get('main_topics', '').replace('## 주요 화제', '').strip()
+            parent_sub_topics = parent_sections.get('sub_topics', '').replace('## 부차 화제', '').strip()
+
+            # 4. 통합 프롬프트로 5개 섹션 모두 업데이트
+            prompt = f"""다음은 부모 노드의 추출 섹션을 구성 노드들의 내용을 반영하여 업데이트하는 작업입니다.
+
+**부모 노드 ({parent_node.title})의 현재 내용:**
+핵심 내용: {parent_core}
+상세 핵심 내용: {parent_detailed_core}
+상세 정보: {parent_detailed_info}
+주요 화제: {parent_main_topics}
+부차 화제: {parent_sub_topics}
+
+**구성 노드들의 내용:**
+{chr(10).join(composition_info)}
+
+부모 노드의 각 섹션을 구성 노드들의 내용을 종합적으로 반영하여 개선해주세요. 
+부모 노드는 전체적인 개요와 통합적인 관점을 제공하되, 구성 노드들의 세부 내용이 잘 반영되도록 해주세요.
+
+반드시 다음 형식을 정확히 지켜서 출력해주세요:
+
+## 핵심 내용
+[구성 노드들의 내용을 종합한 개선된 핵심 내용]
+
+## 상세 핵심 내용
+[구성 노드들의 내용을 종합한 개선된 상세 핵심 내용]
+
+## 상세 정보
+[구성 노드들의 내용을 종합한 개선된 상세 정보]
+
+## 주요 화제
+[구성 노드들의 주요 화제를 종합한 개선된 주요 화제]
+
+## 부차 화제
+[구성 노드들의 부차 화제를 종합한 개선된 부차 화제]
+
+**중요**: 각 섹션은 반드시 "## " (해시 2개 + 공백)으로 시작하는 제목을 포함해야 하고, 제목 다음 줄부터 내용을 작성해주세요."""
+
+            system_prompt = """문서 통합 전문가. 부모-구성 노드 관계를 이해하고 구성 노드들의 세부 내용을 종합하여 부모 노드의 각 섹션을 개선하세요.
+부모 노드는 전체적인 통합 관점을 제공하되, 구성 노드들의 핵심 내용이 잘 반영되도록 하세요. 정확한 형식을 지켜서 출력하세요."""
+            
+            # 5. API 호출 (단일 호출)
+            self.api_calls_counter += 1
+            response, _, _ = await self.ai_factory.generate_content(prompt, system_prompt)
+            
+            self.logger.info(f"📊 API 호출 횟수: {self.api_calls_counter}")
+            
+            # 6. 디버깅 로그 저장
+            if update_logger:
+                await update_logger.log_update_with_prompt(
+                    parent_node.title, "부모노드구성반영업데이트", prompt, system_prompt, response.strip()
+                )
+
+            if not response.strip():
+                self.logger.warning(f"부모 노드 업데이트 응답이 비어있음")
+                return
+
+            # 7. 응답 파싱 및 부모 노드의 5개 섹션 업데이트
+            await self._parse_and_update_parent_sections(response, parent_node, doc_manager)
+            
+            # 8. 구성 노드 반영 완료 표시 추가
+            await doc_manager.add_update_status_mark(parent_node, "<구성 노드 반영 완료>")
+            
+            self.logger.info(f"✅ 부모 노드 추출 섹션 업데이트 완료 (구성 노드 반영): {parent_node.title}")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 부모 노드 업데이트 실패: {parent_node.title} - {e}")
+            raise
+    
+    async def _parse_and_update_parent_sections(self, response: str, parent_node: NodeInfo,
+                                              doc_manager: NodeDocumentManager):
+        """부모 노드의 5개 섹션 업데이트를 위한 응답 파싱"""
+        try:
+            sections = {
+                'core_content': '',
+                'detailed_core_content': '',
+                'detailed_content': '',
+                'main_topics': '',
+                'sub_topics': ''
+            }
+            
+            # 섹션 제목 매핑
+            section_headers = {
+                '## 핵심 내용': 'core_content',
+                '## 상세 핵심 내용': 'detailed_core_content',
+                '## 상세 정보': 'detailed_content',
+                '## 주요 화제': 'main_topics',
+                '## 부차 화제': 'sub_topics'
+            }
+            
+            lines = response.split('\n')
+            current_section = None
+            current_content = []
+            
+            for line in lines:
+                line_stripped = line.strip()
+                
+                # 섹션 헤더 확인
+                if line_stripped in section_headers:
+                    # 이전 섹션 저장 (헤더 포함)
+                    if current_section and current_content:
+                        sections[current_section] = '\n'.join(current_content).strip()
+                    
+                    # 새 섹션 시작 (헤더부터 시작)
+                    current_section = section_headers[line_stripped]
+                    current_content = [line_stripped]  # 헤더 포함
+                elif current_section and line.strip():  # 빈 줄이 아닌 경우만 추가
+                    current_content.append(line)
+                elif current_section and not line.strip() and current_content:  # 빈 줄도 포함 (단, 시작이 아닌 경우)
+                    current_content.append(line)
+            
+            # 마지막 섹션 저장
+            if current_section and current_content:
+                sections[current_section] = '\n'.join(current_content).strip()
+            
+            # 각 섹션별로 업데이트 (5개 섹션 모두)
+            section_names = {
+                'core_content': '핵심 내용',
+                'detailed_core_content': '상세 핵심 내용',
+                'detailed_content': '상세 정보',
+                'main_topics': '주요 화제',
+                'sub_topics': '부차 화제'
+            }
+            
+            for section_type, content in sections.items():
+                if content.strip():
+                    korean_section_name = section_names[section_type]
+                    await doc_manager.update_node_section(parent_node, korean_section_name, content.strip())
+                    self.logger.info(f"✅ 부모노드{parent_node.id} {korean_section_name} 업데이트 완료")
+            
+        except Exception as e:
+            self.logger.error(f"부모 노드 섹션 파싱 실패: {e}")
+
     def get_api_calls_count(self) -> int:
         """API 호출 횟수 반환"""
         return self.api_calls_counter

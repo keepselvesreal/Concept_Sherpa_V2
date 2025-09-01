@@ -87,7 +87,10 @@ class ProcessingStrategyV3(ProcessingStrategy):
             if not node.children_ids:
                 return True
                 
-            # 4. 부모 노드인 경우 구성 노드들 업데이트
+            # 4. 부모 노드인 경우: 구성 노드 내용 반영한 부모 노드 추출 섹션 업데이트
+            await self.update_engine.update_parent_extraction_with_composition(node, doc_manager, update_logger)
+            
+            # 5. 업데이트된 부모 노드 추출 섹션 반영한 구성 노드들 업데이트
             await self.update_engine.update_composition_extractions(node, doc_manager, update_logger)
             
             return True
@@ -131,7 +134,10 @@ class ProcessingStrategyV5(ProcessingStrategy):
                 self.logger.info(f"📊 V5 처리 완료 (리프 노드) - API 호출: {self.extraction_engine.get_api_calls_count()}회")
                 return True
                 
-            # 4. 부모 노드인 경우 구성 노드들 통합 업데이트 (단일 API 호출)
+            # 4. 부모 노드인 경우: 구성 노드 내용 반영한 부모 노드 추출 섹션 업데이트
+            await self.update_engine.update_parent_extraction_with_composition(node, doc_manager, update_logger)
+            
+            # 5. 업데이트된 부모 노드 추출 섹션 반영한 구성 노드들 업데이트
             await self.update_engine.update_composition_extractions(node, doc_manager, update_logger)
             
             total_api_calls = self.extraction_engine.get_api_calls_count() + self.update_engine.get_api_calls_count()

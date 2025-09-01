@@ -397,7 +397,7 @@ class NodeDocumentManager:
             raise
     
     async def update_node_section(self, node: NodeInfo, section_name: str, new_content: str,
-                                update_logger: UpdateLogger = None):
+                                update_logger: UpdateLogger = None, update_status_mark: str = None):
         """특정 정보 타입 섹션만 업데이트"""
         try:
             if not node.document_path:
@@ -492,6 +492,65 @@ class NodeDocumentManager:
             
         except Exception as e:
             self.logger.error(f"노드 섹션 업데이트 실패: {node.title} - {section_name} - {e}")
+            raise
+    
+    async def add_update_status_mark(self, node: NodeInfo, status_mark: str):
+        """추출 섹션 헤더 아래에 업데이트 상태 표시 추가"""
+        try:
+            if not node.document_path:
+                return
+                
+            doc_path = Path(node.document_path)
+            if not doc_path.exists():
+                return
+            
+            # 파일 읽기
+            with open(doc_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # '# 추출\n---\n' 패턴 찾기
+            extraction_header = '# 추출\n---\n'
+            header_pos = content.find(extraction_header)
+            
+            if header_pos == -1:
+                self.logger.warning(f"추출 섹션 헤더를 찾을 수 없음: {node.title}")
+                return
+            
+            # 헤더 끝 위치 계산
+            header_end_pos = header_pos + len(extraction_header)
+            
+            # 기존 상태 표시가 있는지 확인 (< 로 시작하는 라인)
+            lines_after_header = content[header_end_pos:].split('\n')
+            existing_status_line = -1
+            
+            for i, line in enumerate(lines_after_header):
+                stripped = line.strip()
+                if stripped.startswith('<') and stripped.endswith('>'):
+                    existing_status_line = i
+                    break
+                elif stripped.startswith('##'):  # 다음 섹션 시작
+                    break
+            
+            # 새로운 내용 구성
+            if existing_status_line >= 0:
+                # 기존 상태 표시 교체
+                lines_after_header[existing_status_line] = status_mark
+                new_after_header = '\n'.join(lines_after_header)
+            else:
+                # 새로운 상태 표시 추가 (헤더 바로 아래)
+                new_after_header = status_mark + '\n\n' + content[header_end_pos:]
+            
+            # 전체 내용 재구성
+            new_content = content[:header_end_pos] + new_after_header
+            
+            # 파일 저장
+            with open(doc_path, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            
+            self.logger.info(f"✅ 업데이트 상태 표시 추가: {node.title} - {status_mark}")
+            
+        except Exception as e:
+            self.logger.error(f"업데이트 상태 표시 추가 실패: {node.title} - {e}")
             raise
     
     def _format_extraction_section(self, result: ExtractionResult) -> str:

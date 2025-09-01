@@ -1,0 +1,86 @@
+[
+  {
+    "id": 27,
+    "title": "2 Separation between code and data",
+    "level": 1,
+    "page": 54,
+    "parent_id": 14,
+    "children_ids": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33
+    ],
+    "start_page": 54,
+    "end_page": 70,
+    "page_count": 17
+  },
+  {
+    "id": 28,
+    "title": "2.1 The two parts of a DOP system",
+    "level": 2,
+    "page": 55,
+    "parent_id": 27,
+    "children_ids": [],
+    "start_page": 55,
+    "end_page": 56,
+    "page_count": 2
+  },
+  {
+    "id": 29,
+    "title": "2.2 Data entities",
+    "level": 2,
+    "page": 57,
+    "parent_id": 27,
+    "children_ids": [],
+    "start_page": 57,
+    "end_page": 58,
+    "page_count": 2
+  },
+  {
+    "id": 30,
+    "title": "2.3 Code modules",
+    "level": 2,
+    "page": 59,
+    "parent_id": 27,
+    "children_ids": [],
+    "start_page": 59,
+    "end_page": 63,
+    "page_count": 5
+  },
+  {
+    "id": 31,
+    "title": "2.4 DOP systems are easy to understand",
+    "level": 2,
+    "page": 64,
+    "parent_id": 27,
+    "children_ids": [],
+    "start_page": 64,
+    "end_page": 65,
+    "page_count": 2
+  },
+  {
+    "id": 32,
+    "title": "2.5 DOP systems are flexible",
+    "level": 2,
+    "page": 66,
+    "parent_id": 27,
+    "children_ids": [],
+    "start_page": 66,
+    "end_page": 69,
+    "page_count": 4
+  },
+  {
+    "id": 33,
+    "title": "Summary",
+    "level": 2,
+    "page": 70,
+    "parent_id": 27,
+    "children_ids": [],
+    "start_page": 70,
+    "end_page": 70,
+    "page_count": 1
+  }
+]

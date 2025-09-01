@@ -1,7 +1,7 @@
 # 통합 노드 처리 시스템 설정 파일
 # AI 제공자 설정 (기존 방식과 신규 방식 모두 지원)
 ai_provider: 'gemini'  # 전역 기본값
-processing_mode: 'v3'  # v1, v2, v3 선택
+processing_mode: 'v5'  # v1, v2, v3, v5 선택
 
 # 스크립트별 개별 설정
 script_configs:
@@ -23,7 +23,7 @@ script_configs:
     batch_size: 3
     max_retries: 2
 nodes_json_path: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/1_Complexity_of_object_oriented_programming/1_Complexity_of_object_oriented_programming_toc.json'
-node_docs_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/1_Complexity_of_object_oriented_programming/node_info_docs copy 2'
+node_docs_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/1_Complexity_of_object_oriented_programming/node_info_docs'
 debug_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/test_logs'
 
 # 병렬 처리 설정

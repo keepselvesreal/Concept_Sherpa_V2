@@ -1,0 +1,105 @@
+[SYSTEM_PROMPT]
+주제 분석 전문가. 부차적이지만 의미있는 주제들을 파악하세요.
+
+[PROMPT]
+다음 문서의 부차적인 화제들을 추출해주세요.
+
+문서 제목: 1.1.1 The design phase
+문서 내용:
+### 1.1.1 The design phase
+
+1.1.1
+The design phase
+Before rushing to his laptop to code the system, Theo grabs a sheet of paper, much big-
+ger than a napkin, and starts to draw a UML class diagram of the system that will imple-
+ment the Klafim prototype. Theo is an object-oriented programmer. For him, there is no
+question—every business entity is represented by an object, and every object is made
+from a class.
+Theo spends some time thinking about the organization of the system. He identifies the
+main classes for the Klafim Global Library Management System.
+The requirements for the Klafim prototype
+There are two kinds of users: library members and librarians.
+Users log in to the system via email and password.
+Members can borrow books.
+Members and librarians can search books by title or by author.
+Librarians can block and unblock members (e.g., when they are late in return-
+ing a book).
+Librarians can list the books currently lent to a member.
+There can be several copies of a book.
+A book belongs to a physical library.
+
+
+--- 페이지 33 ---
+5
+1.1
+OOP design: Classic or classical?
+That was the easy part. Now comes the difficult part: the relations between the classes.
+After two hours or so, Theo comes up with a first draft of a design for the Global Library
+Management System. It looks like the diagram in figure 1.1.
+ NOTE
+The design presented here doesn't pretend to be the smartest OOP design:
+experienced OOP developers would probably use a couple of design patterns to sug-
+gest a much better design. This design is meant to be naive and by no means covers all
+the features of the system. It serves two purposes:
+For Theo, the developer, it is rich enough to start coding.
+For me, the author of the book, it is rich enough to illustrate the complexity of a
+typical OOP system.
+Theo feels proud of himself and of the design diagram he just produced. He definitely
+deserves a cup of coffee!
+Near the coffee machine, Theo meets Dave, a junior software developer who joined
+Albatross a couple of weeks ago. Theo and Dave appreciate each other, as Dave's curiosity
+leads him to ask challenging questions. Meetings near the coffee machine often turn into
+interesting discussions about programming.
+Theo
+Hey Dave! How's it going?
+ Dave
+Today? Not great. I'm trying to fix a bug in my code! I can't understand why
+the state of my objects always changes. I'll figure it out though, I'm sure. How's
+your day going?
+Theo
+I just finished the design of a system for a new customer.
+Dave
+Cool! Would it be OK for me to see it? I'm trying to improve my design skills.
+Theo
+Sure! I have the diagram on my desk. We can take a look now if you like. 
+The main classes of the library management system
+
+Library—The central part of the system design.
+
+Book—A book.
+
+BookItem—A book can have multiple copies, and each copy is considered as
+a book item.
+
+BookLending—When a book is lent, a book lending object is created.
+
+Member—A member of the library.
+
+Librarian—A librarian.
+
+User—A base class for Librarian and Member.
+
+Catalog—Contains a list of books.
+
+Author—A book author.
+
+
+--- 페이지 34 ---
+6
+CHAPTER 1
+Complexity of object-oriented programming
+
+주요 주제 외에 언급되는 부차적인 주제들을 불렛 포인트로 나열해주세요.
+
+[추출 결과]
+다음은 문서에서 언급된 부차적인 주제들을 불렛 포인트로 나열한 것입니다:
+
+*   **객체 지향 프로그래밍 (OOP) 디자인:** OOP 디자인의 개념과 중요성, 디자인 패턴의 사용, 디자인의 퀄리티에 대한 논의
+*   **UML 클래스 다이어그램:** 시스템 설계를 위한 UML 클래스 다이어그램 사용
+*   **프로그래밍 언어 및 개발 환경:** OOP 프로그래밍, 코드 작성, 버그 수정
+*   **소프트웨어 개발 과정:** 설계 단계, 시스템 구현, 요구사항 분석
+*   **개발자 간의 커뮤니케이션:** 선배 개발자와 주니어 개발자 간의 대화, 지식 공유, 질문과 답변
+*   **사례 연구:** Klafim Global Library Management System (구현하려는 시스템)
+*   **도구:** 랩탑, 종이 (UML 다이어그램을 그리는 데 사용됨)
+*   **개발자의 경험과 기술:** 숙련된 개발자와 초보 개발자 간의 차이, 디자인 능력 향상
+*   **커피 머신:** 개발자들의 만남과 대화의 장소

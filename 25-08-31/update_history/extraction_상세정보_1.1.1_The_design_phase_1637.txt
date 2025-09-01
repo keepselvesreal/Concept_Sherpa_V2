@@ -1,0 +1,156 @@
+[SYSTEM_PROMPT]
+문서 정리 전문가. 상세하고 체계적으로 정보를 정리하세요.
+
+[PROMPT]
+다음 문서의 상세 정보를 체계적으로 정리해주세요.
+
+문서 제목: 1.1.1 The design phase
+문서 내용:
+### 1.1.1 The design phase
+
+1.1.1
+The design phase
+Before rushing to his laptop to code the system, Theo grabs a sheet of paper, much big-
+ger than a napkin, and starts to draw a UML class diagram of the system that will imple-
+ment the Klafim prototype. Theo is an object-oriented programmer. For him, there is no
+question—every business entity is represented by an object, and every object is made
+from a class.
+Theo spends some time thinking about the organization of the system. He identifies the
+main classes for the Klafim Global Library Management System.
+The requirements for the Klafim prototype
+There are two kinds of users: library members and librarians.
+Users log in to the system via email and password.
+Members can borrow books.
+Members and librarians can search books by title or by author.
+Librarians can block and unblock members (e.g., when they are late in return-
+ing a book).
+Librarians can list the books currently lent to a member.
+There can be several copies of a book.
+A book belongs to a physical library.
+
+
+--- 페이지 33 ---
+5
+1.1
+OOP design: Classic or classical?
+That was the easy part. Now comes the difficult part: the relations between the classes.
+After two hours or so, Theo comes up with a first draft of a design for the Global Library
+Management System. It looks like the diagram in figure 1.1.
+ NOTE
+The design presented here doesn't pretend to be the smartest OOP design:
+experienced OOP developers would probably use a couple of design patterns to sug-
+gest a much better design. This design is meant to be naive and by no means covers all
+the features of the system. It serves two purposes:
+For Theo, the developer, it is rich enough to start coding.
+For me, the author of the book, it is rich enough to illustrate the complexity of a
+typical OOP system.
+Theo feels proud of himself and of the design diagram he just produced. He definitely
+deserves a cup of coffee!
+Near the coffee machine, Theo meets Dave, a junior software developer who joined
+Albatross a couple of weeks ago. Theo and Dave appreciate each other, as Dave's curiosity
+leads him to ask challenging questions. Meetings near the coffee machine often turn into
+interesting discussions about programming.
+Theo
+Hey Dave! How's it going?
+ Dave
+Today? Not great. I'm trying to fix a bug in my code! I can't understand why
+the state of my objects always changes. I'll figure it out though, I'm sure. How's
+your day going?
+Theo
+I just finished the design of a system for a new customer.
+Dave
+Cool! Would it be OK for me to see it? I'm trying to improve my design skills.
+Theo
+Sure! I have the diagram on my desk. We can take a look now if you like. 
+The main classes of the library management system
+
+Library—The central part of the system design.
+
+Book—A book.
+
+BookItem—A book can have multiple copies, and each copy is considered as
+a book item.
+
+BookLending—When a book is lent, a book lending object is created.
+
+Member—A member of the library.
+
+Librarian—A librarian.
+
+User—A base class for Librarian and Member.
+
+Catalog—Contains a list of books.
+
+Author—A book author.
+
+
+--- 페이지 34 ---
+6
+CHAPTER 1
+Complexity of object-oriented programming
+
+문서의 모든 중요한 정보를 빠뜨리지 않고 체계적으로 정리해주세요.
+
+[추출 결과]
+## 1.1.1 The Design Phase - 상세 정보 정리
+
+**1. 개요**
+
+*   **제목:** 1.1.1 The design phase
+*   **내용:** 객체 지향 프로그래밍(OOP) 시스템 설계를 설명하며, 특히 Klafim Global Library Management System의 프로토타입 설계를 예시로 사용합니다.
+
+**2. 등장인물**
+
+*   **Theo:** 객체 지향 프로그래머, Klafim 시스템 설계를 진행합니다.
+*   **Dave:** Albatross에 입사한 주니어 소프트웨어 개발자, Theo에게 질문하며 OOP에 대한 이해를 높이려 합니다.
+
+**3. 설계 과정**
+
+*   **준비:**
+    *   Theo는 코딩 전에 UML 클래스 다이어그램을 사용하여 시스템 설계를 시작합니다.
+    *   객체 지향 프로그래밍에서 모든 비즈니스 엔티티는 객체로 표현되고, 객체는 클래스로 구성됩니다.
+*   **요구 사항 분석:**
+    *   Klafim 프로토타입 시스템의 요구 사항을 파악합니다.
+    *   **사용자 유형:** 도서관 회원, 사서
+    *   **기능:**
+        *   사용자는 이메일 및 비밀번호로 로그인합니다.
+        *   회원은 책을 대출할 수 있습니다.
+        *   회원 및 사서는 제목 또는 저자를 기준으로 책을 검색할 수 있습니다.
+        *   사서는 회원을 차단 및 해제할 수 있습니다 (예: 연체 시).
+        *   사서는 회원에게 대출된 책 목록을 볼 수 있습니다.
+        *   한 권의 책은 여러 사본을 가질 수 있습니다.
+        *   책은 특정 도서관에 속합니다.
+*   **설계:**
+    *   Theo는 주요 클래스를 식별하고, 클래스 간의 관계를 결정합니다.
+    *   2시간 정도의 작업 후, Global Library Management System의 초안 설계를 완성합니다 (그림 1.1 참조).
+*   **설계의 목적:**
+    *   개발자(Theo)가 코딩을 시작할 수 있도록 충분한 정보를 제공합니다.
+    *   저자(책의 저자)가 일반적인 OOP 시스템의 복잡성을 설명하기에 충분한 정보를 제공합니다.
+*   **설계 후:**
+    *   Theo는 설계에 대한 만족감을 느낍니다.
+    *   커피 머신 근처에서 Dave를 만나 설계에 대한 대화를 나눕니다.
+*   **주요 클래스:**
+    *   **Library:** 시스템의 중앙 부분.
+    *   **Book:** 책.
+    *   **BookItem:** 책의 여러 사본.
+    *   **BookLending:** 책 대출 시 생성되는 객체.
+    *   **Member:** 도서관 회원.
+    *   **Librarian:** 사서.
+    *   **User:** Librarian 및 Member의 기본 클래스.
+    *   **Catalog:** 책 목록을 포함.
+    *   **Author:** 책 저자.
+
+**4. 부록 - Dave와의 대화 내용**
+
+*   **Dave의 문제:** Dave는 코드에서 객체의 상태가 계속 변하는 버그를 겪고 있습니다.
+*   **Theo의 설계:** Theo는 새로운 고객을 위한 시스템 설계를 완료했다고 Dave에게 말합니다.
+*   **Dave의 요청:** Dave는 설계도를 보고 싶어하며, 자신의 설계 능력을 향상시키고 싶어 합니다.
+*   **Theo의 제안:** Theo는 Dave에게 설계를 보여줄 수 있다고 말합니다.
+
+**5. 추가 정보**
+
+*   **설계의 제한점:** 제시된 설계는 최적의 OOP 설계가 아닐 수 있으며, 숙련된 OOP 개발자는 디자인 패턴을 사용할 것입니다.
+*   **설계의 중요성:** 시스템의 복잡성을 이해하고, 코딩을 시작하기 위한 기초를 다지는 데 중요합니다.
+
+---
+**참고:** 이 정리본은 원본 문서의 모든 중요한 정보를 포함하며, 각 내용을 체계적으로 분류하여 이해도를 높였습니다.

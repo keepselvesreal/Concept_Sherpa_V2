@@ -21,9 +21,12 @@
 
 import json
 import os
+import re
 import sys
 import asyncio
 import argparse
+import logging
+from datetime import datetime
 from pathlib import Path
 from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Any
@@ -113,8 +116,11 @@ class ClaudeSDKProvider(AIProvider):
 
 # 메인 섹션 추출 클래스
 class SectionExtractor:
-    def __init__(self, ai_provider_type="claude"):
+    def __init__(self, ai_provider_type="claude", log_file=None):
         """초기화 및 AI 제공자 설정"""
+        # 로깅 설정
+        self.setup_logging(log_file)
+        
         if ai_provider_type.lower() == "claude":
             self.ai_provider = ClaudeSDKProvider()
         elif ai_provider_type.lower() == "gemini":
@@ -125,7 +131,35 @@ class SectionExtractor:
         self.markdown_content = ""
         self.toc_data = []
         self.ai_provider_type = ai_provider_type.lower()
-        print(f"AI 제공자 초기화: {self.ai_provider.get_name()}")
+        
+        log_msg = f"AI 제공자 초기화: {self.ai_provider.get_name()}"
+        print(log_msg)
+        self.logger.info(log_msg)
+    
+    def setup_logging(self, log_file=None):
+        """로깅 시스템 설정"""
+        if log_file is None:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            log_file = f"section_extractor_{timestamp}.log"
+        
+        # 로거 생성
+        self.logger = logging.getLogger('SectionExtractor')
+        self.logger.setLevel(logging.DEBUG)
+        
+        # 파일 핸들러 추가
+        file_handler = logging.FileHandler(log_file, encoding='utf-8')
+        file_handler.setLevel(logging.DEBUG)
+        
+        # 포맷터 설정
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        file_handler.setFormatter(formatter)
+        
+        # 기존 핸들러 제거 후 새로 추가
+        self.logger.handlers.clear()
+        self.logger.addHandler(file_handler)
+        
+        self.log_file = log_file
+        print(f"📝 로그 파일: {log_file}")
     
     def load_toc_json(self, json_path):
         """JSON 목차 파일 읽기"""
@@ -159,6 +193,31 @@ class SectionExtractor:
         print(f"콘텐츠 섹션 추출: {len(content_sections)}개 (전체 {len(self.toc_data)}개 중)")
         return content_sections
     
+    def remove_section_title_from_content(self, content: str, section_title: str) -> str:
+        """추출된 내용에서 섹션 제목을 제거합니다."""
+        self.logger.debug(f"후처리 시작: '{section_title}' (내용 길이: {len(content)} 문자)")
+        
+        lines = content.split('\n')
+        
+        # 첫 번째 줄이 섹션 제목과 일치하는지 확인 (# 포함 또는 미포함)
+        if lines:
+            first_line = lines[0].strip()
+            # # 제거한 제목과 비교
+            title_without_hash = section_title.lstrip('#').strip()
+            first_line_without_hash = first_line.lstrip('#').strip()
+            
+            self.logger.debug(f"제목 매칭 확인: '{title_without_hash}' vs '{first_line_without_hash}'")
+            
+            if first_line_without_hash == title_without_hash:
+                # 첫 번째 줄이 제목이면 제거
+                result = '\n'.join(lines[1:]).strip()
+                self.logger.info(f"섹션 제목 제거됨: '{section_title}' (결과 길이: {len(result)} 문자)")
+                return result
+            else:
+                self.logger.info(f"섹션 제목 매칭 실패, 원본 반환: '{section_title}'")
+        
+        return content
+
     async def extract_single_section_with_ai(self, section_title, next_section_title=None):
         """AI로 특정 섹션 하나만 추출"""
         next_title_info = f"다음 섹션 제목: {next_section_title}" if next_section_title else "문서 끝까지"
@@ -177,19 +236,31 @@ class SectionExtractor:
 1. '{section_title}' 제목을 문서에서 찾으세요
 2. 해당 제목부터 {'다음 섹션(' + next_section_title + ')' if next_section_title else '문서 끝'} 전까지의 모든 내용을 추출하세요
 3. 페이지 구분자(--- 페이지 X ---)도 포함해서 추출하세요
-4. 섹션 내의 모든 텍스트, 공백, 구분자를 그대로 유지하세요
+4. 섹션 내의 내용을 그대로 유지하세요
 5. 제목과 문맥으로 섹션 범위를 판단하세요
 
+중요한 제약사항:
+- 어떤 설명이나 부가 정보도 추가하지 마세요
+- "문서에서 ... 섹션의 내용을 추출하겠습니다" 같은 설명 금지
+- "해당 섹션은..." 같은 부연설명 금지
+- 오직 원본 문서의 해당 섹션 내용만 그대로 출력하세요
+
 응답 형식:
-섹션 내용만 그대로 제공해주세요. 특별한 마커나 구분자 없이 해당 섹션의 내용을 그대로 출력하세요.
+섹션 내용을 그대로 복사하여 제공하세요. 어떤 추가 설명이나 마커 없이 원본 텍스트를 정확히 출력하세요.
 """
 
         try:
+            self.logger.info(f"AI 요청 시작: '{section_title}'")
             response_text = await self.ai_provider.query(prompt)
+            self.logger.info(f"AI 응답 받음: '{section_title}' (길이: {len(response_text)} 문자)")
+            
+            # 후처리는 일단 제외하고 원본 그대로 반환
             return response_text.strip()
             
         except Exception as e:
-            print(f"AI 섹션 '{section_title}' 추출 실패: {e}")
+            error_msg = f"AI 섹션 '{section_title}' 추출 실패: {e}"
+            print(error_msg)
+            self.logger.error(error_msg)
             return None
 
     async def extract_sections_with_ai_parallel(self, content_sections, batch_size=4):
@@ -255,10 +326,11 @@ class SectionExtractor:
                 print(f"⚠️ 섹션 '{section['title']}' 내용이 없어 건너뜀")
                 continue
             
-            # 파일명 생성 (특수문자 제거)
+            # 파일명 생성 (노드 문서와 동일한 정규화 로직 적용)
             section_title = section['title']
-            safe_filename = section_title.replace('/', '_').replace('\\', '_').replace(':', '_').replace('*', '_').replace('?', '_').replace('"', '_').replace('<', '_').replace('>', '_').replace('|', '_')
-            filename = f"{safe_filename}.md"
+            title_clean = re.sub(r'[^\w\s.-]', '', section_title)  # 점(.)도 유지
+            title_clean = re.sub(r'[-\s]+', '_', title_clean).strip('_')
+            filename = f"{title_clean}.md"
             filepath = output_path / filename
             
             # 파일 저장
