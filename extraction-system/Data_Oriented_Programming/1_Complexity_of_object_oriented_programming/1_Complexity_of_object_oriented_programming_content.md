@@ -1,8 +1,4 @@
-# 1 Complexity of object- oriented programming
-
-## Page 31
-
-3
+--- 페이지 31 ---\n3
 Complexity of object-
 oriented programming
 A capricious entrepreneur
@@ -24,11 +20,7 @@ complexity
 What makes OOP systems hard to understand
 The cost of mixing code and data together into 
 objects
-
-
-## Page 32
-
-4
+\n\n--- 페이지 32 ---\n4
 CHAPTER 1
 Complexity of object-oriented programming
  This chapter is not meant to be read as a critical analysis of OOP. Its purpose is to
@@ -69,11 +61,7 @@ ing a book).
 Librarians can list the books currently lent to a member.
 There can be several copies of a book.
 A book belongs to a physical library.
-
-
-## Page 33
-
-5
+\n\n--- 페이지 33 ---\n5
 1.1
 OOP design: Classic or classical?
 That was the easy part. Now comes the difficult part: the relations between the classes.
@@ -125,11 +113,7 @@ User—A base class for Librarian and Member.
 Catalog—Contains a list of books.
 
 Author—A book author.
-
-
-## Page 34
-
-6
+\n\n--- 페이지 34 ---\n6
 CHAPTER 1
 Complexity of object-oriented programming
 1.1.2
@@ -196,11 +180,7 @@ login() : Bool
 *
 Figure 1.1
 A class diagram for Klafim’s Global Library Management System
-
-
-## Page 35
-
-7
+\n\n--- 페이지 35 ---\n7
 1.1
 OOP design: Classic or classical?
 Dave
@@ -255,11 +235,7 @@ composition: one-to-one and
 one-to-many. In both cases, 
 when an object dies, the 
 composed object dies with it.
-
-
-## Page 36
-
-8
+\n\n--- 페이지 36 ---\n8
 CHAPTER 1
 Complexity of object-oriented programming
 TIP
@@ -309,11 +285,7 @@ List<BookLending> getBookLendingsOfMember(member: Member)
 Figure 1.4
 Usage relation: a class 
 uses a method of another class.
-
-
-## Page 37
-
-9
+\n\n--- 페이지 37 ---\n9
 1.1
 OOP design: Classic or classical?
 1.1.3
@@ -367,11 +339,7 @@ List<BookLending> getBookLendingsOfMember
 (member: Member)
 Figure 1.6
 The Library class
-
-
-## Page 38
-
-10
+\n\n--- 페이지 38 ---\n10
 CHAPTER 1
 Complexity of object-oriented programming
 In terms of code (behavior), a Library object does nothing on its own. It delegates
@@ -416,11 +384,7 @@ password : String
 login() : Bool
 Figure 1.7
 Librarian and Member derive from User.
-
-
-## Page 39
-
-11
+\n\n--- 페이지 39 ---\n11
 1.1
 OOP design: Classic or classical?
 The Librarian class represents a librarian:
@@ -462,11 +426,7 @@ id : String
 title : String
 Figure 1.8
 The Catalog class
-
-
-## Page 40
-
-12
+\n\n--- 페이지 40 ---\n12
 CHAPTER 1
 Complexity of object-oriented programming
 THE BOOKITEM CLASS
@@ -520,11 +480,7 @@ Bool isLate()
 Bool returnBook()
 Figure 1.9
 The Book class
-
-
-## Page 41
-
-13
+\n\n--- 페이지 41 ---\n13
 1.2
 Sources of complexity
 1.2
@@ -568,11 +524,7 @@ in order to reduce system complexity differs from the FP approach. In appendix A
 illustrate how to apply DOP principles both in OOP and in FP styles.
 TIP
 DOP is compatible both with OOP and FP.
-
-
-## Page 42
-
-14
+\n\n--- 페이지 42 ---\n14
 CHAPTER 1
 Complexity of object-oriented programming
 In the remaining sections of this chapter, we will illustrate each of the previous
@@ -630,11 +582,7 @@ A class
 diagram overview for 
 Klafim’s Library 
 Management System
-
-
-## Page 43
-
-15
+\n\n--- 페이지 43 ---\n15
 1.2
 Sources of complexity
 From a system analysis perspective, the fact that code and data are mixed together
@@ -694,11 +642,7 @@ C
 Figure 1.12
 A class diagram where Member 
 is split into code and data entities
-
-
-## Page 44
-
-16
+\n\n--- 페이지 44 ---\n16
 CHAPTER 1
 Complexity of object-oriented programming
 The class diagram where Member is split into MemberCode and MemberData is made of
@@ -765,11 +709,7 @@ MemberData
 C
 Figure 1.13
 A class diagram where every class is split into code and data entities
-
-
-## Page 45
-
-17
+\n\n--- 페이지 45 ---\n17
 1.2
 Sources of complexity
 class Member {
@@ -812,11 +752,7 @@ Listing 1.1
 Really simple code
 Listing 1.2
 Apparently simple code
-
-
-## Page 46
-
-18
+\n\n--- 페이지 46 ---\n18
 CHAPTER 1
 Complexity of object-oriented programming
 This unpredictable behavior of the second listing is one of the annoying conse-
@@ -864,11 +800,7 @@ Listing 1.3
 A JSON input of the /search endpoint
 Listing 1.4
 A JSON output of the /search endpoint
-
-
-## Page 47
-
-19
+\n\n--- 페이지 47 ---\n19
 1.2
 Sources of complexity
 Theo would probably implement the /search endpoint by creating three classes simi-
@@ -921,11 +853,7 @@ query: String
 SearchQuery(jsonString: String)
 Figure 1.14
 The class diagram for SearchController
-
-
-## Page 48
-
-20
+\n\n--- 페이지 48 ---\n20
 CHAPTER 1
 Complexity of object-oriented programming
  The bad news is that Theo would have to repeat the same process for every end-
@@ -968,11 +896,7 @@ the ability to log in, and they inherit this ability from the User class.
 So far, so good, but when new requirements are introduced after the system is imple-
 mented, it’s a completely different story. Fast forward to Monday, March 29th, at 11:00 AM,
 where two days are left before the deadline (Wednesday at midnight).
-
-
-## Page 49
-
-21
+\n\n--- 페이지 49 ---\n21
 1.2
 Sources of complexity
 Nancy calls Theo with an urgent request. Theo is not sure if it’s a dream or reality. He
@@ -1028,11 +952,7 @@ Figure 1.15
 The part of the 
 class diagram that deals with 
 members and librarians
-
-
-## Page 50
-
-22
+\n\n--- 페이지 50 ---\n22
 CHAPTER 1
 Complexity of object-oriented programming
 VIP members are library members.
@@ -1078,11 +998,7 @@ VIPMember
 C
 Figure 1.16
 A class diagram for a system with VIP members
-
-
-## Page 51
-
-23
+\n\n--- 페이지 51 ---\n23
 1.2
 Sources of complexity
 problem VIPMember introduced in his class diagram due to multiple inheritance: VIPMember
@@ -1142,11 +1058,7 @@ SuperMember
 C
 Figure 1.17
 A class diagram for a system with Super and VIP members
-
-
-## Page 52
-
-24
+\n\n--- 페이지 52 ---\n24
 CHAPTER 1
 Complexity of object-oriented programming
 Diamonds of Death” as OOP developers sometimes name the ambiguity that arises when a
@@ -1194,11 +1106,7 @@ points towards the superclass.
 The design presented in this chapter doesn’t pretend to be the smartest OOP
 design. Experienced OOP developers would probably use a couple of design
 patterns and suggest a much better diagram.
-
-
-## Page 53
-
-25
+\n\n--- 페이지 53 ---\n25
 Summary
 Traditional OOP systems tend to increase system complexity, in the sense that
 OOP systems are hard to understand.
@@ -1230,4 +1138,4 @@ complex thing, or code verbosity.
 In traditional OOP, code is locked into classes.
 DOP reduces complexity by rethinking data.
 DOP is compatible both with OOP and FP.
-
+\n\n

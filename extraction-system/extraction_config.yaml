@@ -38,6 +38,9 @@ providers:
     api_key_env: "GEMINI_API_KEY"
     model: "gemini-pro"
     temperature: 0.7
+    # 대안 모델 설정
+    lite_model: "gemini-2.0-flash-lite"  # 빠른 분석용 가벼운 모델
+    experimental_model: "gemini-2.0-flash-exp"  # 실험용 모델
   openai:
     api_key_env: "OPENAI_API_KEY" 
     model: "gpt-4"
@@ -57,6 +60,23 @@ book_pipeline:
     temperature: 0.5  # 균형있는 온도 설정
     max_retries: 3
     batch_processing: true  # 배치 처리 활성화
+    
+  # 3단계: 콘텐츠 노드 분석 설정 (has_content 필드 추가)
+  content_node_analyzer:
+    ai_provider: "gemini"  # has_content 식별용 AI 제공자 (빠른 분석)
+    model: "gemini-2.0-flash-lite"  # 가벼운 모델로 빠른 분석
+    temperature: 0.3  # 낮은 온도로 일관성 있는 판단
+    max_retries: 2
+    timeout_seconds: 15  # 빠른 응답을 위한 타임아웃
+    batch_size: 5  # 배치 처리 크기
+    
+  # 4단계: 실제 콘텐츠 추출 설정
+  content_extractor:
+    ai_provider: "claude"  # 콘텐츠 추출용 AI 제공자 (Claude SDK 사용)
+    temperature: 0.7  # 적당한 온도로 자연스러운 추출
+    max_retries: 2
+    output_format: "markdown"  # 출력 형식
+    include_page_numbers: true  # 페이지 번호 포함 여부
     
   # 전역 설정
   global:
