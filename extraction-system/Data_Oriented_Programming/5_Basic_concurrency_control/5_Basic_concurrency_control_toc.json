@@ -1,0 +1,86 @@
+[
+  {
+    "id": 50,
+    "title": "5_Basic_concurrency_control",
+    "level": 1,
+    "page": 119,
+    "parent_id": 14,
+    "children_ids": [
+      51,
+      52,
+      53,
+      54,
+      55,
+      56
+    ],
+    "start_page": 119,
+    "end_page": 137,
+    "page_count": 19
+  },
+  {
+    "id": 51,
+    "title": "5.1_Optimistic_concurrency_control",
+    "level": 2,
+    "page": 120,
+    "parent_id": 50,
+    "children_ids": [],
+    "start_page": 120,
+    "end_page": 121,
+    "page_count": 2
+  },
+  {
+    "id": 52,
+    "title": "5.2_Reconciliation_between_concurrent_mutations",
+    "level": 2,
+    "page": 122,
+    "parent_id": 50,
+    "children_ids": [],
+    "start_page": 122,
+    "end_page": 124,
+    "page_count": 3
+  },
+  {
+    "id": 53,
+    "title": "5.3_Reducing_collections",
+    "level": 2,
+    "page": 125,
+    "parent_id": 50,
+    "children_ids": [],
+    "start_page": 125,
+    "end_page": 126,
+    "page_count": 2
+  },
+  {
+    "id": 54,
+    "title": "5.4_Structural_difference",
+    "level": 2,
+    "page": 127,
+    "parent_id": 50,
+    "children_ids": [],
+    "start_page": 127,
+    "end_page": 133,
+    "page_count": 7
+  },
+  {
+    "id": 55,
+    "title": "5.5_Implementing_the_reconciliation_algorithm",
+    "level": 2,
+    "page": 134,
+    "parent_id": 50,
+    "children_ids": [],
+    "start_page": 134,
+    "end_page": 135,
+    "page_count": 2
+  },
+  {
+    "id": 56,
+    "title": "Summary",
+    "level": 2,
+    "page": 136,
+    "parent_id": 50,
+    "children_ids": [],
+    "start_page": 136,
+    "end_page": 137,
+    "page_count": 2
+  }
+]

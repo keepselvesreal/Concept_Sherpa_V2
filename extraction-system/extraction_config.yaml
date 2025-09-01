@@ -1,4 +1,7 @@
-# 추출 설정 파일
+# 추출 시스템 통합 설정 파일
+# 기존 추출 작업 + 새로운 책 파이프라인 통합
+
+# 기존 추출 작업 설정 (유튜브, 마크다운)
 extraction:
   ai_provider: "claude"  # claude, gemini, openai
   
@@ -39,3 +42,30 @@ providers:
     api_key_env: "OPENAI_API_KEY" 
     model: "gpt-4"
     temperature: 0.7
+
+# 책 파이프라인 전용 설정 (PDF/EPUB → 통합 노드 문서)
+book_pipeline:
+  # 1단계: PDF 목차 추출 설정
+  toc_extractor:
+    ai_provider: "claude"  # 목차 추출은 정확성이 중요하므로 Claude 사용
+    max_retries: 2  # 실패 시 재시도 횟수
+    processing_mode: "hierarchical"  # 계층 구조 처리 모드
+    
+  # 2단계: 장별 폴더 생성 설정  
+  chapter_extractor:
+    ai_provider: "gemini"  # 빠른 분류 작업에 적합
+    temperature: 0.5  # 균형있는 온도 설정
+    max_retries: 3
+    batch_processing: true  # 배치 처리 활성화
+    
+  # 전역 설정
+  global:
+    output_base_dir: "./book_outputs"  # 책 파이프라인 출력 기본 경로
+    temp_cleanup: true  # 임시 파일 자동 정리
+    create_backup: false  # 백업 파일 생성 여부
+    
+  # 처리 옵션
+  processing:
+    parallel_chapters: false  # 장별 병렬 처리 (메모리 사용량 고려)
+    max_chapter_size_mb: 50  # 장별 최대 크기 제한 (MB)
+    extract_images: false  # 이미지 추출 여부 (1단계에서는 비활성화)
