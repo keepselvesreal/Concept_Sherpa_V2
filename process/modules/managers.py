@@ -396,6 +396,45 @@ class NodeDocumentManager:
             self.logger.error(f"추출 섹션 업데이트 실패: {node.title} - {e}")
             raise
     
+    async def save_raw_extraction_content(self, node: NodeInfo, raw_content: str):
+        """AI 응답을 그대로 추출 섹션에 저장 - 복잡한 파싱 없이 단순 저장"""
+        try:
+            node_doc_path = self.node_docs_dir / f"{node.id}_lev{node.level}_{node.title}_info.md"
+            
+            if not node_doc_path.exists():
+                self.logger.error(f"❌ 노드 문서 파일이 존재하지 않음: {node_doc_path}")
+                return
+            
+            # 기존 문서 읽기
+            original_content = node_doc_path.read_text(encoding='utf-8')
+            
+            # # 추출 섹션 찾기
+            extraction_marker = "# 추출\n---"
+            if extraction_marker not in original_content:
+                self.logger.error(f"❌ 추출 섹션을 찾을 수 없음: {node.title}")
+                return
+            
+            # # 추출 섹션 이후와 # 내용 섹션 이전의 내용을 AI 응답으로 교체
+            before_extraction = original_content.split(extraction_marker)[0] + extraction_marker
+            
+            # # 내용 섹션 찾기
+            content_marker = "# 내용\n---"
+            if content_marker in original_content:
+                after_content = "\n\n" + content_marker + original_content.split(content_marker)[1]
+            else:
+                after_content = ""
+            
+            # 새로운 내용 구성 (구분선 바로 밑에 삽입)
+            new_content = before_extraction + "\n" + raw_content + after_content
+            
+            # 파일 저장
+            node_doc_path.write_text(new_content, encoding='utf-8')
+            self.logger.info(f"✅ 원시 추출 내용 저장 완료: {node.title}")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 원시 추출 내용 저장 실패: {node.title} - {e}")
+            raise
+    
     async def update_node_section(self, node: NodeInfo, section_name: str, new_content: str,
                                 update_logger: UpdateLogger = None, update_status_mark: str = None):
         """특정 정보 타입 섹션만 업데이트"""

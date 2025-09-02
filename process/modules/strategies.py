@@ -117,27 +117,25 @@ class ProcessingStrategyV5(ProcessingStrategy):
         try:
             self.logger.info(f"🚀 V5 처리 시작: {node.title}")
             
-            # 1. 통합 추출 작업 (단일 API 호출)
+            # 1. 통합 추출 작업 (단일 API 호출로 바로 저장까지 완료)
             content = await doc_manager.get_combined_content(node)
-            extraction_result = await self.extraction_engine.extract_all_info(content, node.title, update_logger)
+            extraction_result = await self.extraction_engine.extract_all_info(content, node.title, node, doc_manager, update_logger)
             
             if not extraction_result.success:
                 self.logger.error(f"❌ V5 추출 실패: {node.title}")
                 return False
             
-            # 2. 추출 섹션 업데이트
-            await doc_manager.update_extraction_section(node, extraction_result, update_logger)
             self.logger.info(f"✅ V5 추출 완료: {node.title}")
             
-            # 3. 부모 노드가 아닌 경우 여기서 종료 (리프 노드)
+            # 2. 부모 노드가 아닌 경우 여기서 종료 (리프 노드)
             if not node.children_ids:
                 self.logger.info(f"📊 V5 처리 완료 (리프 노드) - API 호출: {self.extraction_engine.get_api_calls_count()}회")
                 return True
                 
-            # 4. 부모 노드인 경우: 구성 노드 내용 반영한 부모 노드 추출 섹션 업데이트
+            # 3. 부모 노드인 경우: 구성 노드 내용 반영한 부모 노드 추출 섹션 업데이트
             await self.update_engine.update_parent_extraction_with_composition(node, doc_manager, update_logger)
             
-            # 5. 업데이트된 부모 노드 추출 섹션 반영한 구성 노드들 업데이트
+            # 4. 업데이트된 부모 노드 추출 섹션 반영한 구성 노드들 업데이트
             await self.update_engine.update_composition_extractions(node, doc_manager, update_logger)
             
             total_api_calls = self.extraction_engine.get_api_calls_count() + self.update_engine.get_api_calls_count()

@@ -26,7 +26,8 @@ class ExtractionEngineV5:
         self.logger = logger
         self.api_calls_counter = 0  # API 호출 횟수 추적
     
-    async def extract_all_info(self, content: str, title: str, 
+    async def extract_all_info(self, content: str, title: str, node: NodeInfo,
+                              doc_manager: NodeDocumentManager,
                               update_logger: UpdateLogger = None) -> ExtractionResult:
         """5개 정보 타입을 단일 AI 호출로 순차 추출"""
         self.logger.info(f"🔍 통합 추출 시작: {title}")
@@ -56,7 +57,9 @@ class ExtractionEngineV5:
 ## 부차 화제  
 [주요 주제 외에 언급되는 부차적인 주제들을 불렛 포인트로 나열]
 
-**중요**: 각 섹션은 반드시 "## " (해시 2개 + 공백)으로 시작하는 제목을 포함해야 하고, 제목 다음 줄부터 내용을 작성해주세요."""
+**중요**: 
+1. 각 섹션은 반드시 "## " (해시 2개 + 공백)으로 시작하는 제목을 포함해야 하고, 제목 다음 줄부터 내용을 작성해주세요.
+2. 섹션 내용을 작성할 때 헤더가 필요한 경우에는 반드시 ### (해시 3개) 이상의 헤더만 사용해주세요. ## 헤더는 섹션 제목과 구분하기 위해 사용하지 마세요."""
 
             system_prompt = """문서 분석 전문가. 주어진 5가지 정보 타입을 순서대로 정확하게 추출하세요.
 - 핵심 내용: 간결하고 정확한 요약
@@ -79,11 +82,17 @@ class ExtractionEngineV5:
                     title, "통합추출", prompt, system_prompt, response.strip()
                 )
             
-            # 응답 파싱 및 결과 생성
-            result = self._parse_integrated_response(response, title)
-            
-            self.logger.info(f"✅ 통합 추출 완료: {title}")
-            return result
+            # AI 응답을 바로 추출 섹션에 저장
+            if response.strip():
+                await doc_manager.save_raw_extraction_content(node, response.strip())
+                self.logger.info(f"✅ 통합 추출 및 저장 완료: {title}")
+                # 성공 결과 반환
+                result = ExtractionResult()
+                result.success = True
+                return result
+            else:
+                self.logger.error(f"❌ 통합 추출 실패 (빈 응답): {title}")
+                return ExtractionResult(success=False, error="빈 응답")
             
         except Exception as e:
             self.logger.error(f"통합 추출 실패: {title} - {e}")
