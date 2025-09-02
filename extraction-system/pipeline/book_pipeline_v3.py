@@ -1,13 +1,15 @@
 # 생성 시간: Mon Sep  1 16:50:39 KST 2025
-# 핵심 내용: PDF/EPUB → 통합 노드 문서 생성 파이프라인 v3 (2단계: 장별정보처리준비 → 각장의정보통합)
+# 핵심 내용: PDF/EPUB → 통합 노드 문서 생성 파이프라인 v3 (4단계: 장별정보처리준비 → 각장의정보통합 → 노드정보문서처리 → enhanced_toc생성)
 # 상세 내용:
-#   - BookPipeline (라인 20-600): 메인 파이프라인 클래스
-#   - setup_logging_system (라인 70-120): 책별 로그 시스템 설정
-#   - prepare_chapter_workspace (라인 121-280): 1단계 - 장별 정보 처리 준비
-#   - integrate_chapter_information_sequentially (라인 281-450): 2단계 - 각 장의 정보 통합  
-#   - integrate_single_chapter_information (라인 451-550): 개별 장 통합 처리
-#   - execute (라인 551-600): 파이프라인 실행 메인 메서드
-#   - PipelineResult (라인 50-65): 결과 반환 클래스
+#   - BookPipeline (라인 63-1010): 메인 파이프라인 클래스
+#   - setup_logging_system (라인 70-133): 책별 로그 시스템 설정
+#   - prepare_chapter_workspace (라인 134-340): 1단계 - 장별 정보 처리 준비
+#   - integrate_chapter_information_sequentially (라인 341-483): 2단계 - 각 장의 정보 통합  
+#   - integrate_single_chapter_information (라인 485-672): 개별 장 통합 처리
+#   - process_node_documents (라인 674-817): 3단계 - 노드 정보 문서 처리 (unified_node_processor_v4 사용)
+#   - generate_enhanced_toc (라인 819-924): 4단계 - enhanced_chapter_toc.md 생성
+#   - execute (라인 926-1010): 파이프라인 실행 메인 메서드
+#   - PipelineResult (라인 52-60): 결과 반환 클래스
 # 상태: active
 # 주소: book_pipeline/v3
 # 참조: book_pipeline/v2
@@ -19,6 +21,7 @@ import tempfile
 import sys
 import re
 import logging
+import yaml
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Any, Optional
@@ -31,6 +34,8 @@ load_dotenv()
 sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/25-08-29')
 sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/25-08-30')  # PyMuPDF toc_extractor
 sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31')
+sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/process')  # unified_node_processor_v4
+sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/components')  # chapter_toc_generator
 
 from toc_extractor import extract_toc_with_pymupdf, process_toc_items, calculate_page_ranges
 from extract_chapters_v5 import count_chapters_with_ai, GeminiAPIProvider, normalize_title, extract_pdf_content, find_chapter_items, save_chapter_content_to_folder
@@ -42,6 +47,10 @@ from node_document_generator import NodeDocumentGenerator
 # 문서 통합 모듈 임포트
 from document_integrator import DocumentIntegrator
 
+# 새로 추가되는 모듈들
+from unified_node_processor_v4 import UnifiedNodeProcessor
+from chapter_toc_generator import combine_extracts
+
 class PipelineResult:
     """파이프라인 실행 결과"""
     def __init__(self):
@@ -49,7 +58,7 @@ class PipelineResult:
         self.error = None
         self.data = {}
         self.step_completed = 0
-        self.total_steps = 2  # 2단계로 단순화: 장별정보처리준비 → 각장의정보통합
+        self.total_steps = 4  # 4단계로 확장: 장별정보처리준비 → 각장의정보통합 → 노드정보문서처리 → enhanced_toc생성
         self.progress_percent = 0
 
 class BookPipeline:
@@ -664,6 +673,258 @@ class BookPipeline:
                 'steps_completed': steps_completed if 'steps_completed' in locals() else []
             }
     
+    async def process_node_documents(self, integration_data: Dict[str, Any]) -> Dict[str, Any]:
+        """3단계: 노드 정보 문서 처리 (unified_node_processor_v4.py 사용)"""
+        try:
+            print("3️⃣ 노드 정보 문서 처리 시작...")
+            if self.logger:
+                self.logger.info("=== 노드 정보 문서 처리 시작 ===")
+                if self.test_mode:
+                    self.logger.info(f"🧪 테스트 모드: 최대 {self.max_chapters}장만 처리")
+            
+            integration_results = integration_data.get('integration_results', [])
+            if not integration_results:
+                error_msg = "처리할 통합 결과가 없습니다"
+                print(f"⚠️ {error_msg}")
+                if self.logger:
+                    self.logger.warning(error_msg)
+                return {
+                    'success': False,
+                    'error': error_msg,
+                    'processed_chapters': 0,
+                    'node_processing_results': []
+                }
+            
+            # config 파일 로드 및 수정
+            config_path = "/home/nadle/projects/Knowledge_Sherpa/v2/extraction-system/extraction_config.yaml"
+            with open(config_path, 'r', encoding='utf-8') as f:
+                config = yaml.safe_load(f)
+            
+            processed_chapters = 0
+            node_processing_results = []
+            
+            # 성공한 장들만 처리 (테스트 모드 고려)
+            successful_chapters = [r for r in integration_results if r.get('success', False)]
+            chapters_to_process = successful_chapters
+            
+            if self.max_chapters:
+                chapters_to_process = successful_chapters[:self.max_chapters]
+                print(f"🧪 테스트 모드: {len(chapters_to_process)}장 노드 문서 처리 예정")
+                if self.logger:
+                    self.logger.info(f"테스트 모드: {len(chapters_to_process)}장 노드 문서 처리 예정")
+            
+            for i, chapter_result in enumerate(chapters_to_process):
+                chapter_number = chapter_result.get('chapter_number')
+                chapter_title = chapter_result.get('chapter_title', '')
+                
+                print(f"📋 장 {chapter_number} 노드 정보 문서 처리 중: {chapter_title}")
+                if self.logger:
+                    self.logger.info(f"장 {chapter_number} 노드 문서 처리 시작: {chapter_title}")
+                
+                try:
+                    # 장별 폴더 경로 구성
+                    chapter_normalized_title = normalize_title(chapter_title)
+                    chapter_folder = self.output_dir / self.normalized_book_title / chapter_normalized_title
+                    
+                    # 각 장별로 config 동적 설정
+                    config['unified_node_processor']['nodes_json_path'] = str(chapter_folder / f"{chapter_normalized_title}_toc.json")
+                    config['unified_node_processor']['node_docs_dir'] = str(chapter_folder / "node_info_docs")
+                    config['unified_node_processor']['debug_dir'] = str(self.logs_dir) if self.logs_dir else "./logs"
+                    
+                    # 임시 config 파일 생성
+                    temp_config_path = self.logs_dir / f"temp_config_ch{chapter_number}.yaml" if self.logs_dir else Path(f"./temp_config_ch{chapter_number}.yaml")
+                    with open(temp_config_path, 'w', encoding='utf-8') as f:
+                        yaml.dump(config, f, ensure_ascii=False, indent=2)
+                    
+                    # UnifiedNodeProcessor 초기화 및 실행
+                    print(f"    🚀 UnifiedNodeProcessor 초기화 중... (config: {temp_config_path})")
+                    processor = UnifiedNodeProcessor(str(temp_config_path))
+                    
+                    # 노드 문서 처리 실행
+                    print(f"    ⚡ 노드 처리 실행 중...")
+                    result = await processor.process_all_nodes()
+                    
+                    # 임시 config 파일 정리
+                    if temp_config_path.exists():
+                        temp_config_path.unlink()
+                    
+                    if result.get('success', False):
+                        processed_chapters += 1
+                        processed_nodes = result.get('processed_nodes', 0)
+                        
+                        node_processing_results.append({
+                            'chapter_number': chapter_number,
+                            'chapter_title': chapter_title,
+                            'success': True,
+                            'processed_nodes': processed_nodes,
+                            'duration': result.get('duration', '0:00:00')
+                        })
+                        
+                        print(f"    ✅ 장 {chapter_number} 노드 문서 처리 완료: {processed_nodes}개 노드 처리")
+                        if self.logger:
+                            self.logger.info(f"장 {chapter_number} 노드 문서 처리 완료: {processed_nodes}개 노드")
+                    else:
+                        error_msg = f"노드 문서 처리 실패"
+                        errors = result.get('errors', [])
+                        if errors:
+                            error_msg += f": {'; '.join(errors[:3])}"  # 처음 3개 오류만 표시
+                        
+                        node_processing_results.append({
+                            'chapter_number': chapter_number,
+                            'chapter_title': chapter_title,
+                            'success': False,
+                            'error': error_msg
+                        })
+                        
+                        print(f"    ❌ 장 {chapter_number}: {error_msg}")
+                        if self.logger:
+                            self.logger.error(f"장 {chapter_number} {error_msg}")
+                
+                except Exception as e:
+                    error_msg = f"장 {chapter_number} 노드 문서 처리 중 예외: {str(e)}"
+                    print(f"❌ {error_msg}")
+                    if self.logger:
+                        self.logger.error(error_msg)
+                    
+                    node_processing_results.append({
+                        'chapter_number': chapter_number,
+                        'chapter_title': chapter_title,
+                        'success': False,
+                        'error': str(e)
+                    })
+            
+            success_count = len([r for r in node_processing_results if r.get('success', False)])
+            total_count = len(chapters_to_process)
+            success_rate = (success_count / total_count * 100) if total_count > 0 else 0
+            
+            print(f"🎉 노드 정보 문서 처리 완료!")
+            print(f"📊 성공: {success_count}/{total_count} 장 ({success_rate:.1f}%)")
+            
+            if self.logger:
+                self.logger.info(f"노드 정보 문서 처리 완료: {success_count}/{total_count} 장 성공")
+            
+            return {
+                'success': True,
+                'processed_chapters': success_count,
+                'total_chapters': total_count,
+                'success_rate': success_rate,
+                'node_processing_results': node_processing_results
+            }
+            
+        except Exception as e:
+            error_msg = f"노드 정보 문서 처리 실패: {str(e)}"
+            print(f"❌ {error_msg}")
+            if self.logger:
+                self.logger.error(error_msg)
+            raise Exception(error_msg)
+    
+    async def generate_enhanced_toc(self, node_processing_data: Dict[str, Any]) -> Dict[str, Any]:
+        """4단계: enhanced_chapter_toc.md 생성 (chapter_toc_generator.py 사용)"""
+        try:
+            print("4️⃣ enhanced_chapter_toc.md 생성 시작...")
+            if self.logger:
+                self.logger.info("=== enhanced_chapter_toc.md 생성 시작 ===")
+            
+            node_results = node_processing_data.get('node_processing_results', [])
+            successful_chapters = [r for r in node_results if r.get('success', False)]
+            
+            if not successful_chapters:
+                error_msg = "enhanced_chapter_toc.md 생성할 성공한 장이 없습니다"
+                print(f"⚠️ {error_msg}")
+                if self.logger:
+                    self.logger.warning(error_msg)
+                return {
+                    'success': False,
+                    'error': error_msg,
+                    'generated_files': []
+                }
+            
+            generated_files = []
+            
+            # 테스트 모드 고려
+            chapters_to_process = successful_chapters
+            if self.test_mode:
+                print(f"🧪 테스트 모드: {len(chapters_to_process)}장 enhanced_toc 생성 예정")
+                if self.logger:
+                    self.logger.info(f"테스트 모드: {len(chapters_to_process)}장 enhanced_toc 생성 예정")
+            
+            # 각 장별로 enhanced_chapter_toc.md 생성
+            for chapter_result in chapters_to_process:
+                chapter_number = chapter_result.get('chapter_number')
+                chapter_title = chapter_result.get('chapter_title', '')
+                
+                print(f"📄 장 {chapter_number} enhanced_chapter_toc.md 생성 중: {chapter_title}")
+                
+                try:
+                    # 장별 node_info_docs 폴더 경로
+                    chapter_normalized_title = normalize_title(chapter_title)
+                    node_info_docs_folder = self.output_dir / self.normalized_book_title / chapter_normalized_title / "node_info_docs"
+                    
+                    if not node_info_docs_folder.exists():
+                        error_msg = f"node_info_docs 폴더를 찾을 수 없음: {node_info_docs_folder}"
+                        print(f"    ⚠️ 장 {chapter_number}: {error_msg}")
+                        if self.logger:
+                            self.logger.warning(f"장 {chapter_number} {error_msg}")
+                        continue
+                    
+                    # combine_extracts 함수 사용해서 enhanced_chapter_toc.md 생성
+                    print(f"    🔗 추출 섹션 결합 중...")
+                    combined_content = combine_extracts(str(node_info_docs_folder))
+                    
+                    if not combined_content.strip():
+                        print(f"    ⚠️ 장 {chapter_number}: 추출할 내용이 없습니다")
+                        continue
+                    
+                    # enhanced_chapter_toc.md 파일 저장
+                    output_filename = f"enhanced_{chapter_normalized_title}_toc.md"
+                    output_path = node_info_docs_folder / output_filename
+                    
+                    with open(output_path, 'w', encoding='utf-8') as f:
+                        f.write(combined_content)
+                    
+                    generated_files.append({
+                        'chapter_number': chapter_number,
+                        'chapter_title': chapter_title,
+                        'file_path': str(output_path),
+                        'file_size': len(combined_content)
+                    })
+                    
+                    print(f"    ✅ 장 {chapter_number} enhanced_chapter_toc.md 생성 완료: {output_path}")
+                    if self.logger:
+                        self.logger.info(f"장 {chapter_number} enhanced_chapter_toc.md 생성: {output_path}")
+                
+                except Exception as e:
+                    error_msg = f"장 {chapter_number} enhanced_chapter_toc.md 생성 중 오류: {str(e)}"
+                    print(f"    ❌ {error_msg}")
+                    if self.logger:
+                        self.logger.error(error_msg)
+                    continue
+            
+            success_count = len(generated_files)
+            total_count = len(chapters_to_process)
+            
+            print(f"🎉 enhanced_chapter_toc.md 생성 완료!")
+            print(f"📄 생성된 파일: {success_count}/{total_count}개")
+            
+            if self.logger:
+                self.logger.info(f"enhanced_chapter_toc.md 생성 완료: {success_count}/{total_count}개 파일")
+                for file_info in generated_files:
+                    self.logger.info(f"  - 장 {file_info['chapter_number']}: {file_info['file_path']}")
+            
+            return {
+                'success': True,
+                'generated_count': success_count,
+                'total_chapters': total_count,
+                'generated_files': generated_files
+            }
+            
+        except Exception as e:
+            error_msg = f"enhanced_chapter_toc.md 생성 실패: {str(e)}"
+            print(f"❌ {error_msg}")
+            if self.logger:
+                self.logger.error(error_msg)
+            raise Exception(error_msg)
+    
     async def execute(self, file_path: str, metadata_info: Dict[str, Any] = None) -> PipelineResult:
         """파이프라인 실행"""
         result = PipelineResult()
@@ -684,6 +945,16 @@ class BookPipeline:
             # 2단계: 각 장의 정보 통합
             integration_data = await self.integrate_chapter_information_sequentially(workspace_data, file_path)
             result.step_completed = 2
+            result.progress_percent = 50
+            
+            # 3단계: 노드 정보 문서 처리
+            node_processing_data = await self.process_node_documents(integration_data)
+            result.step_completed = 3
+            result.progress_percent = 75
+            
+            # 4단계: enhanced_chapter_toc.md 생성
+            enhanced_toc_data = await self.generate_enhanced_toc(node_processing_data)
+            result.step_completed = 4
             result.progress_percent = 100
             
             # 성공 결과
@@ -691,7 +962,9 @@ class BookPipeline:
             result.data = {
                 'workspace_info': workspace_data,
                 'integration_info': integration_data,
-                'pipeline_stage': '2단계 완료 (장별정보처리준비 → 각장의정보통합)',
+                'node_processing_info': node_processing_data,
+                'enhanced_toc_info': enhanced_toc_data,
+                'pipeline_stage': '4단계 완료 (장별정보처리준비 → 각장의정보통합 → 노드정보문서처리 → enhanced_toc생성)',
                 'logs_directory': str(self.logs_dir) if self.logs_dir else None
             }
             
@@ -699,23 +972,31 @@ class BookPipeline:
             processed_chapters = integration_data.get('processed_chapters', 0)
             success_rate = integration_data.get('success_rate', 0)
             
+            # 추가 단계 결과 정보
+            node_processed = node_processing_data.get('processed_chapters', 0)
+            enhanced_toc_generated = enhanced_toc_data.get('generated_count', 0)
+            
             # 테스트 모드와 일반 모드에 따른 결과 출력
             if self.test_mode:
                 print("🧪🎉 책 파이프라인 v3 테스트 모드 완료! 🎉🧪")
                 print(f"📚 책: {workspace_data.get('book_title', '알 수 없음')}")
                 print(f"🔬 테스트 결과: {processed_chapters}/{self.max_chapters} 장 처리 ({success_rate:.1f}%)")
+                print(f"📋 노드 문서: {node_processed}장 처리")
+                print(f"📄 Enhanced TOC: {enhanced_toc_generated}개 생성")
                 print(f"📁 출력: {workspace_data.get('output_directory', '')}")
                 print(f"📋 로그: {self.logs_dir}")
                 if self.logger:
-                    self.logger.info(f"테스트 모드 완료: {processed_chapters}/{self.max_chapters} 장 처리")
+                    self.logger.info(f"테스트 모드 완료: {processed_chapters}/{self.max_chapters} 장 처리, 노드문서 {node_processed}장, TOC {enhanced_toc_generated}개")
             else:
                 print("🎉🎉🎉 책 파이프라인 v3 전체 완료! 🎉🎉🎉")
                 print(f"📚 책: {workspace_data.get('book_title', '알 수 없음')}")
                 print(f"📊 성공: {processed_chapters}/{total_chapters} 장 ({success_rate:.1f}%)")
+                print(f"📋 노드 문서: {node_processed}/{total_chapters}장 처리")
+                print(f"📄 Enhanced TOC: {enhanced_toc_generated}/{total_chapters}개 생성")
                 print(f"📁 출력: {workspace_data.get('output_directory', '')}")
                 print(f"📋 로그: {self.logs_dir}")
                 if self.logger:
-                    self.logger.info(f"책 파이프라인 v3 전체 완료: {processed_chapters}/{total_chapters} 장 성공")
+                    self.logger.info(f"책 파이프라인 v3 전체 완료: {processed_chapters}/{total_chapters} 장 성공, 노드문서 {node_processed}장, TOC {enhanced_toc_generated}개")
             
             return result
             

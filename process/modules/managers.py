@@ -333,27 +333,27 @@ class NodeDocumentManager:
             print(f"  - main_topics: {bool(result.main_topics)} ({len(result.main_topics) if result.main_topics else 0} 문자)")
             print(f"  - sub_topics: {bool(result.sub_topics)} ({len(result.sub_topics) if result.sub_topics else 0} 문자)")
             
-            # 모든 추출된 내용을 # 추출 섹션 아래에 한 번에 삽입
-            extraction_content = []
+            # 모든 추출된 내용을 # 추출 섹션 아래에 적절한 헤더와 함께 삽입
+            extraction_sections = []
             
             if result.core_content:
-                extraction_content.append(result.core_content)
+                extraction_sections.append("## 핵심 내용" + result.core_content)
                 
             if result.detailed_core_content:
-                extraction_content.append(result.detailed_core_content)
+                extraction_sections.append("## 상세 핵심 내용" + result.detailed_core_content)
                 
             if result.detailed_content:
-                extraction_content.append(result.detailed_content)
+                extraction_sections.append("## 상세 내용" + result.detailed_content)
                 
             if result.main_topics:
-                extraction_content.append(result.main_topics)
+                extraction_sections.append("## 주요 화제" + result.main_topics)
                 
             if result.sub_topics:
-                extraction_content.append(result.sub_topics)
+                extraction_sections.append("## 부차 화제" + result.sub_topics)
             
-            if extraction_content:
-                # 모든 내용을 합치고 # 추출 섹션에 삽입
-                full_extraction = "\n\n".join(extraction_content)
+            if extraction_sections:
+                # 모든 섹션을 적절한 헤더와 함께 결합
+                full_extraction = "\n\n".join(extraction_sections)
                 print(f"🐛 전체 추출 내용 길이: {len(full_extraction)} 문자")
                 
                 # 파일 읽기

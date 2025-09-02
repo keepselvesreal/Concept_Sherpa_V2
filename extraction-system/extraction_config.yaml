@@ -36,7 +36,7 @@ providers:
     allowed_tools: []
   gemini:
     api_key_env: "GEMINI_API_KEY"
-    model: "gemini-pro"
+    model: "gemini-2.5-flash"  # gemini-2.5-flash 사용
     temperature: 0.7
     # 대안 모델 설정
     lite_model: "gemini-2.5-flash-lite"  # 빠른 분석용 가벼운 모델
@@ -89,3 +89,27 @@ book_pipeline:
     parallel_chapters: false  # 장별 병렬 처리 (메모리 사용량 고려)
     max_chapter_size_mb: 50  # 장별 최대 크기 제한 (MB)
     extract_images: false  # 이미지 추출 여부 (1단계에서는 비활성화)
+
+# unified_node_processor_v4.py 설정 (노드 정보 문서 추출/업데이트용)
+unified_node_processor:
+  ai_provider: "gemini"  # AI 제공자 선택
+  processing_mode: "v3"  # 처리 모드 (v1, v2, v3, v5)
+  debug_dir: "./logs"  # 디버그 로그 폴더 경로 (상대 경로, 실행 시 동적 설정됨)
+  # 아래 경로들은 book_pipeline_v3.py에서 각 장별로 동적 설정됨
+  nodes_json_path: ""  # 동적 설정: {chapter_folder}/{chapter}_toc.json
+  node_docs_dir: ""    # 동적 설정: {chapter_folder}/node_info_docs
+  
+  # 병렬 처리 설정
+  parallel:
+    max_concurrent: 3
+    
+  # 로깅 설정
+  logging:
+    level: 'INFO'
+    save_logs: true
+
+# chapter_toc_generator.py 설정 (enhanced_chapter_toc.md 생성용)
+chapter_toc_generator:
+  output_filename_pattern: "enhanced_{title}_toc.md"  # 출력 파일명 패턴
+  include_empty_sections: false  # 빈 추출 섹션 포함 여부
+  sort_by_filename: true  # 파일명 숫자 순서로 정렬
