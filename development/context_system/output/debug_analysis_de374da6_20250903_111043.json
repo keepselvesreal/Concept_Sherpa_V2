@@ -1,0 +1,35 @@
+{
+  "Epic": "북 파이프라인 시스템 리팩토링 및 AI 기반 문서 처리",
+  "Contexts": [
+    {
+      "Context Name": "TDD 기반 리팩토링",
+      "Description": "기존 복잡한 book_pipeline_v3.py를 TDD 방식으로 완전 재구성",
+      "Reason": "향후 TDD 접근법과 리팩토링 전략 재사용"
+    },
+    {
+      "Context Name": "AI Provider 설정 관리",
+      "Description": "Gemini API 등 다양한 AI 서비스를 설정 파일로 독립적 관리",
+      "Reason": "AI 서비스 통합 패턴과 설정 구조 참고"
+    },
+    {
+      "Context Name": "구조화된 로깅 시스템",
+      "Description": "작업별/메서드별 로그 파일 자동 생성 및 입출력 기록",
+      "Reason": "디버깅과 모니터링을 위한 로깅 아키텍처 패턴"
+    },
+    {
+      "Context Name": "PDF 북마크 기반 TOC 추출",
+      "Description": "PDF 북마크에서 장 정보 추출 후 AI로 장 식별 및 폴더 구조 생성",
+      "Reason": "문서 구조 자동 분석 및 정리 시스템 구현"
+    },
+    {
+      "Context Name": "환경변수 및 의존성 관리",
+      "Description": "uv를 통한 의존성 관리와 .env 파일 기반 API 키 설정",
+      "Reason": "Python 프로젝트 환경 설정 베스트 프랙티스"
+    },
+    {
+      "Context Name": "데이터 저장 구조 표준화",
+      "Description": "책 제목 기반 폴더 생성 후 장별 JSON과 MD 파일 저장",
+      "Reason": "구조화된 문서 저장 시스템 설계 참고"
+    }
+  ]
+}

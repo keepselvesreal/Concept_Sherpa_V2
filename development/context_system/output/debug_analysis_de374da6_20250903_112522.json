@@ -1,0 +1,8 @@
+{
+  "type": "error",
+  "error": {
+    "type": "not_found_error",
+    "message": "model: claude-3-5-haiku@20241022"
+  },
+  "request_id": "req_011CSkg5E5t3nCmSTNyo9wA8"
+}

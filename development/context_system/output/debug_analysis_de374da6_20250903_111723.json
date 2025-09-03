@@ -1,0 +1,45 @@
+{
+  "Epic": "Knowledge Sherpa Book Pipeline 리팩토링",
+  "Contexts": [
+    {
+      "Context Name": "환경 설정 및 의존성 관리",
+      "Description": "UV를 사용한 의존성 관리 및 .env 파일의 API key 사용, 환경 변수 설정 방법 논의",
+      "Reason": "프로젝트 환경 설정 및 보안, API key 관리에 대한 일관성 있는 접근 방식 필요"
+    },
+    {
+      "Context Name": "북마크 기반 목차 추출 및 정보 활용",
+      "Description": "기존 PDF 북마크를 활용한 목차 추출, 장별 시작/끝 페이지 정보 불필요",
+      "Reason": "PDF 내 정보 활용을 통해 정확하고 효율적인 목차 생성, 중복 정보 방지"
+    },
+    {
+      "Context Name": "Commit 메시지 및 작업 내용 기록",
+      "Description": "메인 커밋 메시지 수정, 현재 작업 내용(리팩토링, 목차 추출 테스트) 포함",
+      "Reason": "작업 진행 상황 및 변경 사항을 명확하게 기록하여 추후 유지보수 및 협업 용이"
+    },
+    {
+      "Context Name": "결과 확인 및 로깅",
+      "Description": "추출 결과 저장, 로거 메서드 추가, 로그 파일 구조 정의, 프롬프트 및 출력 별도 파일 기록, 오류 발생 시 로깅",
+      "Reason": "개발 과정에서 발생하는 문제를 신속하게 파악하고, 디버깅 및 결과 확인 용이하도록 하기 위함"
+    },
+    {
+      "Context Name": "AI 기반 장 정보 추출 및 폴더 구조 생성",
+      "Description": "AI를 사용하여 장 정보를 식별하고, 장별 폴더를 생성, 목차 및 문서 저장 (TDD 적용)",
+      "Reason": "자동화된 장별 데이터 생성 및 관리를 통해 효율적인 정보 구조 구축"
+    },
+    {
+      "Context Name": "AI Provider 및 Model 설정",
+      "Description": "AI 모델 및 제공자 설정 파일 분리, claude API 사용 제외 및 SDK 사용 분리",
+      "Reason": "AI 모델 유연성 확보 및 API 변경에 대한 대응 용이"
+    },
+    {
+      "Context Name": "테스트 및 TDD 기반 개발",
+      "Description": "TDD 기반의 파이프라인 리팩토링, 기존 로직 이관 및 정상 동작 확인, 초기에는 최소한의 테스트, 여러 경우의 테스트는 추후 추가.",
+      "Reason": "코드의 신뢰성 확보, 리팩토링 과정에서의 오류 최소화, 코드의 유지 보수성 향상"
+    },
+    {
+      "Context Name": "파일 및 경로 관리",
+      "Description": ".env 파일 사용, 장별 폴더 구조 (/home/nadle/projects/Knowledge_Sherpa/v2/extraction-system/Data_Oriented_Programming), 기존 모듈 임포트 경로 관련 문제, 실제 PDF 사용",
+      "Reason": "데이터 관리 및 프로젝트 구조의 일관성을 유지하고, 개발 과정에서 발생하는 문제점 최소화"
+    }
+  ]
+}
