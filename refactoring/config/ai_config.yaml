@@ -1,0 +1,40 @@
+# 생성 시간: Mon Sep  3 17:19:45 KST 2025
+# 핵심 내용: AI 서비스 설정 (각 단계별로 다른 AI 설정 사용 가능)
+# 상세 내용:
+#   - default_ai (라인 9-14): 기본 AI 설정
+#   - stage_specific_ai (라인 16-35): 단계별 AI 설정 (선택적)
+# 상태: active
+
+# 기본 AI 설정 (모든 단계에서 fallback)
+default_ai:
+  provider: "gemini" 
+  model: "gemini-1.5-flash"
+  temperature: 0.1
+  max_tokens: 8192
+  api_key: null  # 환경변수 GEMINI_API_KEY 사용
+
+# 단계별 AI 설정 (선택적 - 각 단계마다 다른 AI 도구 사용 가능)
+stage_specific_ai:
+  workspace_preparation:
+    provider: "gemini"
+    model: "gemini-1.5-flash" 
+    temperature: 0.1
+    max_tokens: 4096
+    
+  information_integration:
+    provider: "gemini"
+    model: "gemini-1.5-pro"  # 더 복잡한 작업에는 pro 모델
+    temperature: 0.05
+    max_tokens: 8192
+    
+  content_processing:
+    provider: "gemini"
+    model: "gemini-1.5-pro"  # 핵심 가공 작업에는 pro 모델
+    temperature: 0.0  # 일관성 중요
+    max_tokens: 32768
+    
+  toc_generation:
+    provider: "gemini"
+    model: "gemini-1.5-flash"  # 목차 생성은 flash 모델로 충분
+    temperature: 0.1
+    max_tokens: 4096

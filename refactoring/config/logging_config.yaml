@@ -1,0 +1,44 @@
+# 생성 시간: Mon Sep  3 17:21:15 KST 2025  
+# 핵심 내용: 로깅 시스템 설정 (책별, 단계별, 용도별 로그 파일 관리)
+# 상세 내용:
+#   - book_logger (라인 9-16): 책별 로거 설정
+#   - stage_logger (라인 18-22): 단계별 로거 설정
+#   - chapter_logger (라인 24-28): 장별 로거 설정
+#   - file_handlers (라인 30-42): 파일 핸들러 설정
+# 상태: active
+
+# 책별 로거 설정
+book_logger:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    - pipeline.log        # 전체 파이프라인 진행상황
+    - chapter_integration.log  # 장별 통합 처리 상세
+    - processing_errors.log    # 정보 처리 관련 모든 에러 (ERROR 레벨만)
+  console_output: true
+
+# 단계별 로거 설정
+stage_logger:
+  level: "INFO"
+  inherit_from_book: true  # 책별 로거의 핸들러 상속
+  propagate: true
+
+# 장별 로거 설정  
+chapter_logger:
+  level: "INFO"
+  inherit_from_book: true
+  propagate: true
+
+# 파일 핸들러 설정
+file_handlers:
+  pipeline.log:
+    level: "INFO" 
+    encoding: "utf-8"
+    
+  chapter_integration.log:
+    level: "INFO"
+    encoding: "utf-8"
+    
+  processing_errors.log:
+    level: "ERROR"  # 에러만 기록
+    encoding: "utf-8"

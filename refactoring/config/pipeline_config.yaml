@@ -1,0 +1,64 @@
+# 생성 시간: Mon Sep  3 16:52:30 KST 2025
+# 핵심 내용: 리팩터링된 책 파이프라인 전체 설정 (refactoring 폴더 기준)
+# 상세 내용:
+#   - test_mode (라인 10-15): selected_chapters 기반 테스트 모드 설정
+#   - workspace_preparation (라인 17-29): 1단계 기본 작업 준비 설정
+#   - information_integration (라인 31-38): 2단계 통합 노드 정보 문서 생성 설정
+#   - content_processing (라인 40-47): 3단계 가공 작업 설정
+#   - toc_generation (라인 49-54): 4단계 목차 생성 설정
+#   - global (라인 56-60): 전역 설정 - refactoring 폴더 기준
+# 상태: active
+
+# 테스트 모드 설정 (개선: selected_chapters 방식)
+test_mode:
+  enabled: false
+  selected_chapters: []  # 특정 장만 처리 (예: [1, 3, 5] 또는 [] for all chapters)
+  debug_verbose: true
+  skip_on_error: false
+
+# 1단계: 기본 작업 준비
+workspace_preparation:
+  toc_extraction:
+    method: "PyMuPDF"
+    hierarchy_enabled: true
+  
+  folder_structure:
+    base_path: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output"
+    chapter_naming: "normalized_title"
+    create_subdirs: true
+  
+  ai_analysis:
+    enabled: true
+    provider: "gemini"
+    fallback_on_failure: true
+
+# 2단계: 통합 노드 정보 문서 생성
+information_integration:
+  sequential_processing: true
+  continue_on_chapter_failure: true
+  node_document_generation:
+    enabled: true
+  content_analysis:
+    enabled: true
+
+# 3단계: 가공 작업 (핵심 단계)
+content_processing:
+  unified_processor:
+    enabled: true
+    config_template: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/config/extraction_config.yaml"
+  parallel_processing: false
+  validation:
+    enabled: true
+
+# 4단계: 목차 생성
+toc_generation:
+  enhanced_toc:
+    enabled: true
+    combine_extracts: true
+  output_format: "markdown"
+
+# 전역 설정 (refactoring 폴더 기준)
+global:
+  output_base_dir: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output"
+  logs_base_dir: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/logs"
+  temp_cleanup: true
