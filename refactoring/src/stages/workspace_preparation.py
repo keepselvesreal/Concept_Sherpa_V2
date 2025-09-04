@@ -20,13 +20,10 @@ from typing import Dict, Any, List
 # 기본 클래스와 서비스 임포트
 from ..core.base.base_processor import BaseProcessor
 from ..services.ai_service import AIService
+from ..services.toc_service import TocService
+from ..services.chapter_extraction_service import ChapterExtractionService
 
-# 기존 검증된 모듈들 임포트 (원본 경로 유지)
-import sys
-sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/25-08-30')
-sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31')
-from toc_extractor import extract_toc_with_pymupdf, process_toc_items, calculate_page_ranges
-from extract_chapters_v5 import count_chapters_with_ai, GeminiAPIProvider, normalize_title, extract_pdf_content, find_chapter_items, save_chapter_content_to_folder
+# 기존 AI 관련 임포트도 ChapterExtractionService로 완전 대체됨
 
 class WorkspacePreparationStage(BaseProcessor):
     """1단계: 기본 작업 준비 프로세서"""
@@ -34,6 +31,8 @@ class WorkspacePreparationStage(BaseProcessor):
     def __init__(self, config_manager, logger_factory):
         super().__init__(config_manager, logger_factory, "workspace_preparation")
         self.ai_service = None
+        self.toc_service = None
+        self.chapter_extraction_service = None
         self.book_title = None
         self.normalized_book_title = None
         
@@ -109,26 +108,9 @@ class WorkspacePreparationStage(BaseProcessor):
             return self.handle_error(e, "워크스페이스 준비")
             
     async def extract_toc_from_pdf(self, pdf_path: str) -> Dict[str, Any]:
-        """PDF 목차 추출 (기존 로직 이관)"""
+        """PDF 목차 추출 (새 TocService 사용)"""
         try:
-            raw_toc = extract_toc_with_pymupdf(pdf_path)
-            if not raw_toc:
-                return {'success': False, 'error': '목차 추출 실패'}
-            
-            processed_toc = process_toc_items(raw_toc)
-            complete_toc = calculate_page_ranges(processed_toc)
-            
-            toc_data = {
-                "extraction_info": {
-                    "source_pdf": os.path.basename(pdf_path),
-                    "extraction_method": "PyMuPDF complete TOC extraction with hierarchy",
-                    "extraction_timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S KST'),
-                    "total_items": len(complete_toc),
-                    "note": "Complete hierarchy extracted using PyMuPDF library"
-                },
-                "toc_structure": complete_toc
-            }
-            
+            toc_data = self.toc_service.extract_complete_toc(pdf_path)
             return {'success': True, 'data': toc_data}
             
         except Exception as e:
@@ -136,7 +118,10 @@ class WorkspacePreparationStage(BaseProcessor):
     
     async def setup_book_logger(self, book_title: str):
         """책별 로거 설정"""
-        self.normalized_book_title = normalize_title(book_title)
+        # 임시로 로컬 정규화 함수 사용 (서비스 초기화 전이므로)
+        import re
+        title_clean = re.sub(r'[^\w\s.-]', '', book_title)
+        self.normalized_book_title = re.sub(r'[-\s]+', '_', title_clean).strip('_')
         
         # 로그 기본 디렉토리
         logs_base_dir = self.config_manager.get("global.logs_base_dir", "./logs")
@@ -144,8 +129,10 @@ class WorkspacePreparationStage(BaseProcessor):
         # 책별 로거 생성
         book_logger = self.logger_factory.create_book_logger(book_title, logs_base_dir)
         
-        # AI 서비스 초기화 (단계별 설정)
+        # 서비스들 초기화 (단계별 설정)
         self.ai_service = AIService(self.config_manager, book_logger, "workspace_preparation")
+        self.toc_service = TocService(self.config_manager, book_logger)
+        self.chapter_extraction_service = ChapterExtractionService(self.config_manager, book_logger)
         
         return book_logger
         
@@ -174,12 +161,11 @@ class WorkspacePreparationStage(BaseProcessor):
         return toc_filepath
         
     async def analyze_chapters_with_ai(self, toc_filepath: str) -> Dict[str, Any]:
-        """AI 기반 장 분석 (기존 로직 활용)"""
+        """AI 기반 장 분석 (새 ChapterExtractionService 사용)"""
         try:
-            # 기존 AI 제공자 방식 사용 (호환성 유지)
-            # TODO: 향후 ai_service로 완전 이관
-            ai_provider = GeminiAPIProvider(self.logger)
-            chapters_analysis = await count_chapters_with_ai(toc_filepath, ai_provider, self.logger)
+            # 새 ChapterExtractionService의 AI 제공자 사용
+            ai_provider = self.chapter_extraction_service.create_ai_provider("gemini")
+            chapters_analysis = await self.chapter_extraction_service.count_chapters_with_ai(toc_filepath, ai_provider)
             
             if chapters_analysis['success']:
                 chapters_count = len(chapters_analysis['chapters_info'])
@@ -231,26 +217,26 @@ class WorkspacePreparationStage(BaseProcessor):
                             next_chapter_start_id = item['id']
                             break
                 
-                # 기존 함수들 활용해서 폴더 생성
-                chapter_items = find_chapter_items(toc_structure, chapter_item['id'], next_chapter_start_id, self.logger)
-                chapter_content = extract_pdf_content(pdf_path, chapter_info['start_page'], chapter_info['end_page'], self.logger)
+                # 새 서비스들 활용해서 폴더 생성
+                chapter_items = self.chapter_extraction_service.find_chapter_items(toc_structure, chapter_item['id'], next_chapter_start_id)
+                chapter_content = self.chapter_extraction_service.extract_pdf_content(pdf_path, chapter_info['start_page'], chapter_info['end_page'])
                 
-                chapter_toc_filepath, content_filepath = save_chapter_content_to_folder(
-                    chapter_title, chapter_items, chapter_content, book_dir, self.logger
+                chapter_toc_filepath, content_filepath = self.chapter_extraction_service.save_chapter_content_to_folder(
+                    chapter_title, chapter_items, chapter_content, book_dir
                 )
                 
                 created_folders.append({
                     'chapter_number': chapter_number,
                     'chapter_title': chapter_title,
-                    'normalized_title': normalize_title(chapter_title),
-                    'folder_path': str(book_dir / normalize_title(chapter_title)),
+                    'normalized_title': self.chapter_extraction_service.normalize_title(chapter_title),
+                    'folder_path': str(book_dir / self.chapter_extraction_service.normalize_title(chapter_title)),
                     'toc_file': str(chapter_toc_filepath),
                     'content_file': str(content_filepath) if content_filepath else None,
                     'page_range': f"{chapter_info['start_page']}-{chapter_info['end_page']}",
                     'items_count': len(chapter_items)
                 })
                 
-                self.log_step(f"✅ 장 {chapter_number} 완료: {normalize_title(chapter_title)}")
+                self.log_step(f"✅ 장 {chapter_number} 완료: {self.chapter_extraction_service.normalize_title(chapter_title)}")
                 
             except Exception as chapter_error:
                 self.log_step(f"❌ 장 {chapter_number} 처리 중 오류: {chapter_error}", "error")
