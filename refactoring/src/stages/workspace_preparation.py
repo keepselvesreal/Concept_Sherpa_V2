@@ -33,6 +33,7 @@ class WorkspacePreparationStage(BaseProcessor):
         self.ai_service = None
         self.toc_service = None
         self.chapter_extraction_service = None
+        self.result_logger = None  # ResultLogger 추가
         self.book_title = None
         self.normalized_book_title = None
         
@@ -53,13 +54,21 @@ class WorkspacePreparationStage(BaseProcessor):
             
             self.log_step("1단계 기본 작업 준비 시작", "info")
             
-            # Step 1: PDF 목차 추출
+            # Step 1: 기본 서비스 초기화 (임시)
+            self.log_step("🔧 기본 서비스 초기화 중...")
+            temp_logger = self.logger_factory.create_book_logger("temp_book", "./logs")
+            
+            # TocService만 먼저 초기화
+            from ..services.toc_service import TocService
+            self.toc_service = TocService(self.config_manager, temp_logger)
+            
+            # Step 2: PDF 목차 추출
             self.log_step("📖 PDF 목차 추출 중...")
             toc_data = await self.extract_toc_from_pdf(pdf_path)
             if not toc_data.get('success'):
                 return self.handle_error(Exception(toc_data.get('error', '목차 추출 실패')), "PDF 목차 추출")
             
-            # Step 2: 책 제목 추출 및 로거 설정
+            # Step 3: 책 제목 추출 및 로거 설정
             self.log_step("📋 책별 로거 설정 중...")
             toc_structure = toc_data['data']['toc_structure']
             self.book_title = toc_structure[0]['title'] if toc_structure else "Unknown_Book"
@@ -133,6 +142,13 @@ class WorkspacePreparationStage(BaseProcessor):
         self.ai_service = AIService(self.config_manager, book_logger, "workspace_preparation")
         self.toc_service = TocService(self.config_manager, book_logger)
         self.chapter_extraction_service = ChapterExtractionService(self.config_manager, book_logger)
+        
+        # ResultLogger 초기화 (output 디렉토리에 결과 저장)
+        output_base_dir = self.config_manager.get("workspace_preparation.folder_structure.base_path", "./output")
+        self.result_logger = self.logger_factory.create_result_logger(
+            f"{self.normalized_book_title}_extraction_results",
+            output_base_dir
+        )
         
         return book_logger
         
@@ -224,6 +240,71 @@ class WorkspacePreparationStage(BaseProcessor):
                 chapter_toc_filepath, content_filepath = self.chapter_extraction_service.save_chapter_content_to_folder(
                     chapter_title, chapter_items, chapter_content, book_dir
                 )
+                
+                # ResultLogger로 장 목차와 내용 저장
+                try:
+                    # 장 목차 데이터 구성
+                    chapter_toc_data = {
+                        "chapter_info": {
+                            "number": chapter_number,
+                            "title": chapter_title,
+                            "start_page": chapter_info['start_page'],
+                            "end_page": chapter_info['end_page'],
+                            "page_count": chapter_info['end_page'] - chapter_info['start_page'] + 1
+                        },
+                        "sections": chapter_items,
+                        "extraction_metadata": {
+                            "extracted_at": datetime.now().strftime('%Y-%m-%d %H:%M:%S KST'),
+                            "extraction_method": "WorkspacePreparationStage pipeline",
+                            "total_sections": len(chapter_items),
+                            "original_toc_file": str(chapter_toc_filepath),
+                            "original_content_file": str(content_filepath) if content_filepath else None
+                        }
+                    }
+                    
+                    # 장 목차 JSON으로 저장
+                    toc_result_path = self.result_logger.save_result(
+                        f"chapter_{chapter_number:02d}_toc_{self.chapter_extraction_service.normalize_title(chapter_title)}", 
+                        chapter_toc_data, 
+                        "json"
+                    )
+                    
+                    # 장 내용 마크다운으로 저장 (content_filepath가 있을 경우)
+                    content_result_path = None
+                    if content_filepath and content_filepath.exists():
+                        # 기존 내용에 메타데이터 추가한 마크다운 생성
+                        with open(content_filepath, 'r', encoding='utf-8') as f:
+                            original_content = f.read()
+                        
+                        enhanced_content = f"""# {chapter_number}장: {chapter_title}
+
+**추출 정보:**
+- 페이지 범위: {chapter_info['start_page']}-{chapter_info['end_page']} ({chapter_info['end_page'] - chapter_info['start_page'] + 1}페이지)
+- 섹션 수: {len(chapter_items)}개
+- 추출 일시: {datetime.now().strftime('%Y-%m-%d %H:%M:%S KST')}
+
+---
+
+{original_content}
+
+---
+
+**처리 정보:**
+- 원본 목차 파일: {chapter_toc_filepath}
+- 원본 내용 파일: {content_filepath}
+- 추출 방법: WorkspacePreparationStage pipeline
+"""
+                        
+                        content_result_path = self.result_logger.save_result(
+                            f"chapter_{chapter_number:02d}_content_{self.chapter_extraction_service.normalize_title(chapter_title)}",
+                            enhanced_content,
+                            "md"
+                        )
+                    
+                    self.log_step(f"📊 장 {chapter_number} 결과 저장: TOC({toc_result_path.name}), Content({content_result_path.name if content_result_path else 'None'})")
+                    
+                except Exception as save_error:
+                    self.log_step(f"⚠️ 장 {chapter_number} 결과 저장 실패: {save_error}", "warning")
                 
                 created_folders.append({
                     'chapter_number': chapter_number,
