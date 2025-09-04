@@ -97,7 +97,7 @@ class ContentDocumentService:
             
             # 세션 완료 요약 - 단순한 성공 지표만
             total_queries = len(chapter_sections) + len([s for s in sections_with_content if s.get('has_content', False)]) + 2
-            final_usage = ai_service.get_session_info(session_id).usage_count if ai_service.get_session_info(session_id) else 0
+            final_usage = ai_service.get_session_info(session_id).message_count if ai_service.get_session_info(session_id) else 0
             
             self.logger.info(f"🎯 [SESSION] 완료: {session_id[:12]}... | 총쿼리: {total_queries} | 최종사용: {final_usage} | 성공")
             
@@ -145,13 +145,13 @@ class ContentDocumentService:
 이제 각 섹션별로 질문하겠습니다. 위 내용을 기억해주세요."""
 
             # 컨텍스트 설정 - 세션 생존 여부만 추적
-            usage_before = ai_service.get_session_info(session_id).usage_count if ai_service.get_session_info(session_id) else 0
+            usage_before = ai_service.get_session_info(session_id).message_count if ai_service.get_session_info(session_id) else 0
             self.logger.info(f"📝 [SESSION] 컨텍스트설정: {session_id[:12]}... | 사용#{usage_before} | 내용: {len(chapter_content)}자")
             
             await ai_service.query_with_session(context_prompt, session_id)
             
             # 세션 사용 횟수 증가 확인 (세션 연속성 간접 확인)
-            usage_after = ai_service.get_session_info(session_id).usage_count if ai_service.get_session_info(session_id) else 0
+            usage_after = ai_service.get_session_info(session_id).message_count if ai_service.get_session_info(session_id) else 0
             self.logger.info(f"✅ [SESSION] 컨텍스트완료: {session_id[:12]}... | 사용#{usage_after} | 증가: {'Yes' if usage_after > usage_before else 'No'}")
             
             # 2단계: 각 섹션별 분석 (네이티브 세션 유지)
@@ -167,7 +167,7 @@ JSON 형식으로만 응답해주세요:
                     
                     # 주요 섹션에서만 세션 활성 상태 체크 (매번 하지 않고)
                     if len(chapter_sections) <= 5 or section == chapter_sections[0] or section == chapter_sections[-1]:
-                        current_usage = ai_service.get_session_info(session_id).usage_count if ai_service.get_session_info(session_id) else 0
+                        current_usage = ai_service.get_session_info(session_id).message_count if ai_service.get_session_info(session_id) else 0
                         self.logger.info(f"❓ [SESSION] 섹션분석: '{section_title}' | 사용#{current_usage}")
                     
                     response_text = await ai_service.query_with_session(section_query, session_id)
