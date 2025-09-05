@@ -1,3 +1,0 @@
-# Technical Implementation Details
-
-Looking at the document to extract the text between "Technical Implementation Details" and "Command Structure" sections...

@@ -1,9 +1,0 @@
-{
-  "query_number": 4,
-  "query": "순수 함수가 되기 위해서는 상태(state)가 없어야만 해?",
-  "model_response": "태수야, 이전에 함수형 프로그래밍 문서에서 순수 함수에 대해 다뤘으니까 정확히 답변해줄 수 있겠어.\n\n순수 함수가 되기 위해서 **완전히 상태가 없어야 하는 건 아니야**. 핵심은 **외부 상태를 변경하지 않는 것**이지, 상태 자체를 사용하면 안 되는 건 아니거든.\n\n순수 함수의 정확한 조건은 이거야:\n\n**1. 같은 입력 → 항상 같은 출력**\n- 동일한 인자로 호출하면 언제나 동일한 결과를 반환해야 해\n\n**2. 부작용(side effect) 없음**\n- 함수 외부의 상태를 변경하면 안 돼\n- 전역 변수 수정, 파일 쓰기, 콘솔 출력 등이 부작용에 해당해\n\n그러니까 함수 **내부에서 지역 상태를 사용하는 건 전혀 문제없어**:\n\n```python\n# ✅ 순수 함수 - 내부 상태 사용 OK\ndef calculate_sum(numbers):\n    total = 0  # 지역 상태\n    for num in numbers:\n        total += num  # 내부 상태 변경\n    return total\n\n# ✅ 순수 함수 - 불변 외부 상태 참조 OK\nTAX_RATE = 0.1  # 상수\ndef calculate_tax(amount):\n    return amount * TAX_RATE\n\n# ❌ 순수하지 않음 - 외부 상태 변경\ncounter = 0\ndef impure_function(x):\n    global counter\n    counter += 1  # 외부 상태 변경!\n    return x * 2\n```\n\n요점은 **\"외부에서 관찰 가능한 변화를 일으키지 않는 것\"**이야. 함수 안에서 뭘 하든 상관없고, 심지어 불변인 외부 데이터를 읽는 것도 괜찮아.\n\n데이터 지향 프로그래밍에서도 이런 순수 함수를 적극 활용해서 데이터 변환 파이프라인을 구성하는 거고.\n\n냉철하게 말하자면, 많은 사람들이 \"상태 없음\"이라는 표현 때문에 오해하는데, 정확히는 \"외부 상태에 대한 부작용 없음\"이 핵심이야.",
-  "has_relevant_content": true,
-  "elapsed_time": 25.56057834625244,
-  "timestamp": "2025-08-26T21:13:19.068096",
-  "success": true
-}

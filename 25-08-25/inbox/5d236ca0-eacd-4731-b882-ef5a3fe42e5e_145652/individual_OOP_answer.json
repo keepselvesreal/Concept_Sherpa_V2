@@ -1,9 +1,0 @@
-{
-  "query_id": "145652",
-  "query": "DOP가 다른 프로그래밍 패러다임과 구분되는 특징은?",
-  "model_response": "태수야, DOP에 대해 질문했는데 참고 문서는 OOP에 관한 내용이야. DOP가 무엇을 의미하는지 좀 더 구체적으로 알려줄 수 있을까?\n\n일반적으로 알려진 DOP는 다음과 같아:\n\n**1. Data-Oriented Programming (DOP)**\n- 데이터 구조와 변환에 중점\n- 함수형 프로그래밍의 영향\n- 불변성과 데이터 분리 강조\n\n**2. Domain-Oriented Programming**\n- 비즈니스 도메인 중심 설계\n- DDD(Domain-Driven Design)와 유사\n\n어떤 DOP를 말하는 건지 명확히 해주면 다른 패러다임과의 차이점을 정확하게 설명해줄 수 있을 것 같아.",
-  "elapsed_time": 15.15,
-  "timestamp": "2025-08-25T14:57:07.191467",
-  "document_path": "references/OOP.md",
-  "success": true
-}
