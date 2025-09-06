@@ -8,7 +8,7 @@
 # 기본 AI 설정 (모든 단계에서 fallback)
 default_ai:
   provider: "gemini" 
-  model: "gemini-1.5-flash"
+  model: "gemini-2.0-flash-lite"  # 최신 고속 모델로 변경
   temperature: 0.1
   max_tokens: 8192
   api_key: null  # 환경변수 GEMINI_API_KEY 사용
@@ -16,16 +16,32 @@ default_ai:
 # 단계별 AI 설정 (선택적 - 각 단계마다 다른 AI 도구 사용 가능)
 stage_specific_ai:
   workspace_preparation:
-    provider: "gemini"
-    model: "gemini-1.5-flash" 
-    temperature: 0.1
-    max_tokens: 4096
+    # workspace_preparation 하위 단계들
+    chapter_toc_extraction:  # 장 목차 추출 및 분석
+      provider: "gemini"
+      model: "gemini-2.0-flash-lite"
+      temperature: 0.1
+      max_tokens: 8192
+    
+    chapter_content_extraction:  # 장 내용 추출 및 처리
+      provider: "gemini"
+      model: "gemini-2.0-flash-lite"
+      temperature: 0.1
+      max_tokens: 8192
     
   information_integration:
-    provider: "gemini"
-    model: "gemini-1.5-pro"  # 더 복잡한 작업에는 pro 모델
-    temperature: 0.05
-    max_tokens: 8192
+    # information_integration 하위 단계들
+    detect_section_content:  # 섹션 내용 포함 여부 분석
+      provider: "gemini"
+      model: "gemini-2.0-flash-lite"
+      temperature: 0.1
+      max_tokens: 8192
+      
+    extract_section_content:  # 개별 섹션 내용 추출
+      provider: "gemini"
+      model: "gemini-2.0-flash-lite"
+      temperature: 0.1
+      max_tokens: 8192
     
   content_processing:
     provider: "gemini"

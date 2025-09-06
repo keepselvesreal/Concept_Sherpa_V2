@@ -1,0 +1,12 @@
+{
+  "chapter_title": "2 Separation between code and data",
+  "normalized_title": "2_Separation_between_code_and_data",
+  "content_length": 31633,
+  "toc_items_count": 7,
+  "created_at": "2025-09-04T17:53:10.996523",
+  "files": {
+    "content": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output/Data_Oriented_Programming/chapter_2_Separation_between_code_and_data/content.txt",
+    "toc_items": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output/Data_Oriented_Programming/chapter_2_Separation_between_code_and_data/toc_items.json",
+    "summary": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output/Data_Oriented_Programming/chapter_2_Separation_between_code_and_data/summary.json"
+  }
+}

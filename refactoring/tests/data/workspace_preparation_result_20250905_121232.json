@@ -1,0 +1,113 @@
+{
+  "success": true,
+  "normalized_book_title": "Data_Oriented_Programming",
+  "total_chapters": 15,
+  "output_directory": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming",
+  "created_folders": [
+    {
+      "normalized_title": "1_Complexity_of_object_oriented_programming",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/1_Complexity_of_object_oriented_programming",
+      "items_count": 12,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/1_Complexity_of_object_oriented_programming/1_Complexity_of_object_oriented_programming_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/1_Complexity_of_object_oriented_programming/1_Complexity_of_object_oriented_programming_content.md"
+    },
+    {
+      "normalized_title": "2_Separation_between_code_and_data",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/2_Separation_between_code_and_data",
+      "items_count": 7,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/2_Separation_between_code_and_data/2_Separation_between_code_and_data_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/2_Separation_between_code_and_data/2_Separation_between_code_and_data_content.md"
+    },
+    {
+      "normalized_title": "3_Basic_data_manipulation",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/3_Basic_data_manipulation",
+      "items_count": 7,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/3_Basic_data_manipulation/3_Basic_data_manipulation_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/3_Basic_data_manipulation/3_Basic_data_manipulation_content.md"
+    },
+    {
+      "normalized_title": "4_State_management",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/4_State_management",
+      "items_count": 9,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/4_State_management/4_State_management_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/4_State_management/4_State_management_content.md"
+    },
+    {
+      "normalized_title": "5_Basic_concurrency_control",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/5_Basic_concurrency_control",
+      "items_count": 7,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/5_Basic_concurrency_control/5_Basic_concurrency_control_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/5_Basic_concurrency_control/5_Basic_concurrency_control_content.md"
+    },
+    {
+      "normalized_title": "6_Unit_tests",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/6_Unit_tests",
+      "items_count": 11,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/6_Unit_tests/6_Unit_tests_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/6_Unit_tests/6_Unit_tests_content.md"
+    },
+    {
+      "normalized_title": "7_Basic_data_validation",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/7_Basic_data_validation",
+      "items_count": 7,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/7_Basic_data_validation/7_Basic_data_validation_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/7_Basic_data_validation/7_Basic_data_validation_content.md"
+    },
+    {
+      "normalized_title": "8_Advanced_concurrency_control",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/8_Advanced_concurrency_control",
+      "items_count": 6,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/8_Advanced_concurrency_control/8_Advanced_concurrency_control_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/8_Advanced_concurrency_control/8_Advanced_concurrency_control_content.md"
+    },
+    {
+      "normalized_title": "9_Persistent_data_structures",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/9_Persistent_data_structures",
+      "items_count": 12,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/9_Persistent_data_structures/9_Persistent_data_structures_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/9_Persistent_data_structures/9_Persistent_data_structures_content.md"
+    },
+    {
+      "normalized_title": "10_Database_operations",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/10_Database_operations",
+      "items_count": 6,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/10_Database_operations/10_Database_operations_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/10_Database_operations/10_Database_operations_content.md"
+    },
+    {
+      "normalized_title": "11_Web_services",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/11_Web_services",
+      "items_count": 10,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/11_Web_services/11_Web_services_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/11_Web_services/11_Web_services_content.md"
+    },
+    {
+      "normalized_title": "12_Advanced_data_validation",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/12_Advanced_data_validation",
+      "items_count": 8,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/12_Advanced_data_validation/12_Advanced_data_validation_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/12_Advanced_data_validation/12_Advanced_data_validation_content.md"
+    },
+    {
+      "normalized_title": "13_Polymorphism",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/13_Polymorphism",
+      "items_count": 7,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/13_Polymorphism/13_Polymorphism_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/13_Polymorphism/13_Polymorphism_content.md"
+    },
+    {
+      "normalized_title": "14_Advanced_data_manipulation",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/14_Advanced_data_manipulation",
+      "items_count": 6,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/14_Advanced_data_manipulation/14_Advanced_data_manipulation_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/14_Advanced_data_manipulation/14_Advanced_data_manipulation_content.md"
+    },
+    {
+      "normalized_title": "15_Debugging",
+      "folder_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/15_Debugging",
+      "items_count": 88,
+      "toc_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/15_Debugging/15_Debugging_toc.json",
+      "content_file": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/15_Debugging/15_Debugging_content.md"
+    }
+  ]
+}

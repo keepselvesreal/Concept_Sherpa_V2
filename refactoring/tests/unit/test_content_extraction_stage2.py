@@ -123,16 +123,16 @@ class ContentExtractionTester:
                 print(f"   - 빈 섹션: {empty_sections}개")
                 
                 # 추출된 문서들 확인
-                extracted_documents = content_nodes_result.get('extracted_documents', [])
-                if extracted_documents:
+                section_documents = content_nodes_result.get('section_documents', [])
+                if section_documents:
                     print(f"📄 추출된 문서 예시:")
-                    for i, doc in enumerate(extracted_documents[:3], 1):  # 처음 3개만 표시
+                    for i, doc in enumerate(section_documents[:3], 1):  # 처음 3개만 표시
                         doc_title = doc.get('title', 'Unknown')[:50]
                         has_content = doc.get('has_content', False)
                         status = "✓" if has_content else "○"
                         print(f"   {i}. {status} {doc_title}")
-                    if len(extracted_documents) > 3:
-                        print(f"   ... 총 {len(extracted_documents)}개 문서")
+                    if len(section_documents) > 3:
+                        print(f"   ... 총 {len(section_documents)}개 문서")
                 
                 return True
             else:

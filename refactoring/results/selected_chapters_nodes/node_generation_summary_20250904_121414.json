@@ -1,0 +1,33 @@
+{
+  "test_timestamp": "20250904_121414",
+  "target_chapters": [
+    1,
+    6,
+    9
+  ],
+  "workspace_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output/Data_Oriented_Programming",
+  "result_directory": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes",
+  "chapters_processed": 3,
+  "chapters_success": 0,
+  "total_generated_files": 0,
+  "chapter_results": [
+    {
+      "chapter_number": 1,
+      "chapter_folder": "1_Complexity_of_object_oriented_programming",
+      "success": false,
+      "error": "'NodeDocumentService' object has no attribute 'generate_node_documents'"
+    },
+    {
+      "chapter_number": 6,
+      "chapter_folder": "6_Unit_tests",
+      "success": false,
+      "error": "'NodeDocumentService' object has no attribute 'generate_node_documents'"
+    },
+    {
+      "chapter_number": 9,
+      "chapter_folder": "9_Persistent_data_structures",
+      "success": false,
+      "error": "'NodeDocumentService' object has no attribute 'generate_node_documents'"
+    }
+  ]
+}

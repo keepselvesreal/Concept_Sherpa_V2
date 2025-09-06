@@ -1,0 +1,76 @@
+{
+  "test_timestamp": "20250904_121510",
+  "target_chapters": [
+    1,
+    6,
+    9
+  ],
+  "workspace_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output/Data_Oriented_Programming",
+  "result_directory": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes",
+  "chapters_processed": 3,
+  "chapters_success": 3,
+  "total_generated_files": 34,
+  "chapter_results": [
+    {
+      "chapter_number": 1,
+      "chapter_folder": "1_Complexity_of_object_oriented_programming",
+      "toc_items_count": 12,
+      "generated_files_count": 12,
+      "generated_files": [
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/15_lev1_1_Complexity_of_object_oriented_programming_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/16_lev2_1.1_OOP_design_Classic_or_classical_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/17_lev3_1.1.1_The_design_phase_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/18_lev3_1.1.2_UML_101_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/19_lev3_1.1.3_Explaining_each_piece_of_the_class_diagram_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/20_lev3_1.1.4_The_implementation_phase_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/21_lev2_1.2_Sources_of_complexity_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/22_lev3_1.2.1_Many_relations_between_classes_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/23_lev3_1.2.2_Unpredictable_code_behavior_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/24_lev3_1.2.3_Not_trivial_data_serialization_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/25_lev3_1.2.4_Complex_class_hierarchies_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_01/node_info_docs/26_lev2_Summary_info.md"
+      ],
+      "success": true
+    },
+    {
+      "chapter_number": 6,
+      "chapter_folder": "6_Unit_tests",
+      "toc_items_count": 10,
+      "generated_files_count": 10,
+      "generated_files": [
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/57_lev1_6_Unit_tests_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/58_lev2_6.1_The_simplicity_of_data_oriented_test_cases_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/59_lev2_6.2_Unit_tests_for_data_manipulation_code_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/60_lev3_6.2.1_The_tree_of_function_calls_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/61_lev3_6.2.2_Unit_tests_for_functions_down_the_tree_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/62_lev3_6.2.3_Unit_tests_for_nodes_in_the_tree_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/63_lev2_6.3_Unit_tests_for_queries_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/64_lev2_6.4_Unit_tests_for_mutations_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/65_lev2_Moving_forward_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_06/node_info_docs/66_lev2_Summary_info.md"
+      ],
+      "success": true
+    },
+    {
+      "chapter_number": 9,
+      "chapter_folder": "9_Persistent_data_structures",
+      "toc_items_count": 12,
+      "generated_files_count": 12,
+      "generated_files": [
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/81_lev1_9_Persistent_data_structures_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/82_lev2_9.1_The_need_for_persistent_data_structures_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/83_lev2_9.2_The_efficiency_of_persistent_data_structures_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/84_lev2_9.3_Persistent_data_structures_libraries_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/85_lev3_9.3.1_Persistent_data_structures_in_Java_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/86_lev3_9.3.2_Persistent_data_structures_in_JavaScript_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/87_lev2_9.4_Persistent_data_structures_in_action_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/88_lev3_9.4.1_Writing_queries_with_persistent_data_structures_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/89_lev3_9.4.2_Writing_mutations_with_persistent_data_structures_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/90_lev3_9.4.3_Serialization_and_deserialization_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/91_lev3_9.4.4_Structural_diff_info.md",
+        "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/results/selected_chapters_nodes/chapter_09/node_info_docs/92_lev2_Summary_info.md"
+      ],
+      "success": true
+    }
+  ]
+}

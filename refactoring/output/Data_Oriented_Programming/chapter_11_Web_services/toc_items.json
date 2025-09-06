@@ -1,0 +1,126 @@
+[
+  {
+    "id": 99,
+    "title": "11 Web services",
+    "level": 1,
+    "page": 248,
+    "parent_id": 67,
+    "children_ids": [
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107
+    ],
+    "start_page": 248,
+    "end_page": 272,
+    "page_count": 25
+  },
+  {
+    "id": 100,
+    "title": "11.1 Another feature request",
+    "level": 2,
+    "page": 249,
+    "parent_id": 99,
+    "children_ids": [],
+    "start_page": 249,
+    "end_page": 249,
+    "page_count": 1
+  },
+  {
+    "id": 101,
+    "title": "11.2 Building the insides like the outsides",
+    "level": 2,
+    "page": 250,
+    "parent_id": 99,
+    "children_ids": [],
+    "start_page": 250,
+    "end_page": 252,
+    "page_count": 3
+  },
+  {
+    "id": 102,
+    "title": "11.3 Representing a client request as a map",
+    "level": 2,
+    "page": 253,
+    "parent_id": 99,
+    "children_ids": [],
+    "start_page": 253,
+    "end_page": 254,
+    "page_count": 2
+  },
+  {
+    "id": 103,
+    "title": "11.4 Representing a server response as a map",
+    "level": 2,
+    "page": 255,
+    "parent_id": 99,
+    "children_ids": [],
+    "start_page": 255,
+    "end_page": 258,
+    "page_count": 4
+  },
+  {
+    "id": 104,
+    "title": "11.5 Passing information forward",
+    "level": 2,
+    "page": 259,
+    "parent_id": 99,
+    "children_ids": [],
+    "start_page": 259,
+    "end_page": 261,
+    "page_count": 3
+  },
+  {
+    "id": 105,
+    "title": "11.6 Search result enrichment in action",
+    "level": 2,
+    "page": 262,
+    "parent_id": 99,
+    "children_ids": [],
+    "start_page": 262,
+    "end_page": 271,
+    "page_count": 10
+  },
+  {
+    "id": 106,
+    "title": "Delivering on time",
+    "level": 2,
+    "page": 272,
+    "parent_id": 99,
+    "children_ids": [],
+    "start_page": 272,
+    "end_page": 272,
+    "page_count": 1
+  },
+  {
+    "id": 107,
+    "title": "Summary",
+    "level": 2,
+    "page": 272,
+    "parent_id": 99,
+    "children_ids": [],
+    "start_page": 272,
+    "end_page": 272,
+    "page_count": 1
+  },
+  {
+    "id": 108,
+    "title": "Part 3—Maintainability",
+    "level": 0,
+    "page": 273,
+    "parent_id": null,
+    "children_ids": [
+      109,
+      117,
+      124,
+      130
+    ],
+    "start_page": 273,
+    "end_page": 360,
+    "page_count": 88
+  }
+]

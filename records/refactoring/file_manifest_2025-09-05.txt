@@ -1,0 +1,75 @@
+# 2025-09-05 세션 생성 파일 목록
+
+## 테스트 파일
+/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/integration/test_workspace_preparation_v2_integration.py
+- 수정됨: 4개 개별 테스트 → 1개 통합 테스트로 단순화
+- 추가 기능: 출력 결과 저장, 기존 데이터 정리
+
+## 테스트 생성 결과물
+
+### 책 폴더 및 장별 폴더 (15개)
+/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/Data_Oriented_Programming/
+├── toc.json
+├── 1_Complexity_of_object_oriented_programming/
+│   ├── 1_Complexity_of_object_oriented_programming_content.md
+│   └── 1_Complexity_of_object_oriented_programming_toc.json
+├── 2_Separation_between_code_and_data/
+│   ├── 2_Separation_between_code_and_data_content.md
+│   └── 2_Separation_between_code_and_data_toc.json
+├── 3_Basic_data_manipulation/
+│   ├── 3_Basic_data_manipulation_content.md
+│   └── 3_Basic_data_manipulation_toc.json
+├── 4_State_management/
+│   ├── 4_State_management_content.md
+│   └── 4_State_management_toc.json
+├── 5_Basic_concurrency_control/
+│   ├── 5_Basic_concurrency_control_content.md
+│   └── 5_Basic_concurrency_control_toc.json
+├── 6_Unit_tests/
+│   ├── 6_Unit_tests_content.md
+│   └── 6_Unit_tests_toc.json
+├── 7_Basic_data_validation/
+│   ├── 7_Basic_data_validation_content.md
+│   └── 7_Basic_data_validation_toc.json
+├── 8_Advanced_concurrency_control/
+│   ├── 8_Advanced_concurrency_control_content.md
+│   └── 8_Advanced_concurrency_control_toc.json
+├── 9_Persistent_data_structures/
+│   ├── 9_Persistent_data_structures_content.md
+│   └── 9_Persistent_data_structures_toc.json
+├── 10_Database_operations/
+│   ├── 10_Database_operations_content.md
+│   └── 10_Database_operations_toc.json
+├── 11_Web_services/
+│   ├── 11_Web_services_content.md
+│   └── 11_Web_services_toc.json
+├── 12_Advanced_data_validation/
+│   ├── 12_Advanced_data_validation_content.md
+│   └── 12_Advanced_data_validation_toc.json
+├── 13_Polymorphism/
+│   ├── 13_Polymorphism_content.md
+│   └── 13_Polymorphism_toc.json
+├── 14_Advanced_data_manipulation/
+│   ├── 14_Advanced_data_manipulation_content.md
+│   └── 14_Advanced_data_manipulation_toc.json
+└── 15_Debugging/
+    ├── 15_Debugging_content.md
+    └── 15_Debugging_toc.json
+
+### 최종 출력 결과
+/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data/workspace_preparation_result_20250905_121232.json
+- 전체 프로세스 결과 JSON
+- 15개 장 정보 포함
+- created_folders 구조 검증 데이터
+
+## 기록 파일
+/home/nadle/projects/Knowledge_Sherpa/v2/records/refactoring/2025-09-05_workspace_preparation_v2_integration_test.md
+/home/nadle/projects/Knowledge_Sherpa/v2/records/refactoring/file_manifest_2025-09-05.txt
+
+## 통계
+- 총 생성 파일 수: 33개 (1개 테스트 파일 + 30개 결과 파일 + 2개 기록 파일)
+- 장별 폴더: 15개
+- 장별 컨텐츠 파일: 15개 (.md)
+- 장별 TOC 파일: 15개 (.json)
+- 전체 TOC 파일: 1개 (toc.json)
+- 최종 출력 결과: 1개 (JSON)

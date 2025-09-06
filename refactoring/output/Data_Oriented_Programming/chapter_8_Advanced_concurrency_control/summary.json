@@ -1,0 +1,12 @@
+{
+  "chapter_title": "8 Advanced concurrency control",
+  "normalized_title": "8_Advanced_concurrency_control",
+  "content_length": 19242,
+  "toc_items_count": 6,
+  "created_at": "2025-09-04T17:53:11.216239",
+  "files": {
+    "content": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output/Data_Oriented_Programming/chapter_8_Advanced_concurrency_control/content.txt",
+    "toc_items": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output/Data_Oriented_Programming/chapter_8_Advanced_concurrency_control/toc_items.json",
+    "summary": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output/Data_Oriented_Programming/chapter_8_Advanced_concurrency_control/summary.json"
+  }
+}

@@ -39,7 +39,7 @@ class ContentDocumentService:
         self.config_manager = config_manager
         self.logger = logger
         
-    async def extract_sections(self, chapter_sections: List[Dict[str, Any]], 
+    async def detect_section_content(self, chapter_sections: List[Dict[str, Any]], 
                              chapter_content: str,
                              stage_name: str = "chapter_content_extraction") -> ContentDocumentResult:
         """

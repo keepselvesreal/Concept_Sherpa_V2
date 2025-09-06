@@ -1,0 +1,33 @@
+{
+  "test_summary": {
+    "success": true,
+    "processed_chapters": 0,
+    "total_chapters": 3,
+    "success_rate": 0.0
+  },
+  "workspace_info": {
+    "book_title": "Unknown",
+    "output_dir": "",
+    "total_created_folders": 15
+  },
+  "processing_results": [
+    {
+      "chapter_number": 1,
+      "chapter_title": "1 Complexity of object- oriented programming",
+      "success": false,
+      "error": "노드 정보 문서 생성 실패: 장 폴더가 존재하지 않습니다: "
+    },
+    {
+      "chapter_number": 6,
+      "chapter_title": "6 Unit tests",
+      "success": false,
+      "error": "노드 정보 문서 생성 실패: 장 폴더가 존재하지 않습니다: "
+    },
+    {
+      "chapter_number": 9,
+      "chapter_title": "9 Persistent data structures",
+      "success": false,
+      "error": "노드 정보 문서 생성 실패: 장 폴더가 존재하지 않습니다: "
+    }
+  ]
+}
