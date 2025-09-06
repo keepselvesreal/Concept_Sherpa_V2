@@ -1,0 +1,17 @@
+{
+  "session_info": {
+    "session_id": "20250823_153112",
+    "question": "Claude Code의 핵심 특징은 무엇인가요?",
+    "total_documents": 2,
+    "execution_time": "2025-08-23T15:31:27.736936"
+  },
+  "document_paths": [
+    "/home/nadle/projects/Concept_Sherpa_V2/25-08-23/ref1.md",
+    "/home/nadle/projects/Concept_Sherpa_V2/25-08-23/ref2.md"
+  ],
+  "processing_summary": {
+    "successful": 2,
+    "failed": 0,
+    "total_cost": 0.0528777
+  }
+}

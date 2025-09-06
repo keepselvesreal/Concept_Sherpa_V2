@@ -1,0 +1,3 @@
+### 1.4.3 Adapting to New Management Paradigms
+
+And so thinking about these examples, managing implementations that you yourself don't understand is actually a problem as old as civilization. And every manager in the world is actually already dealing with this. Just we as software engineers are not used to this. We are used to being purely individual contributors where we understand the full depth down to the stack. But that's something that in order to become most productive, we are going to need to let go of in the way that every manager in order to be most productive is going to need to let go of some details.

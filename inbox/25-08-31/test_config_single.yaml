@@ -1,0 +1,21 @@
+# 16번 노드만 테스트용 설정
+ai_provider: 'gemini'
+processing_mode: 'v5'
+nodes_json_path: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/test_single_16.json'
+node_docs_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/1_Complexity_of_object_oriented_programming/node_info_docs'
+debug_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/test_logs_single'
+
+# 로깅 설정
+logging:
+  level: 'INFO'
+  save_logs: true
+
+# AI 모델 설정
+models:
+  gemini: "gemini-2.0-flash-exp"
+
+# 프로바이더별 상세 설정
+providers:
+  gemini:
+    model: 'models/gemini-2.0-flash'
+    temperature: 0.7

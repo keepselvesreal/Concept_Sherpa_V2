@@ -1,0 +1,109 @@
+[SYSTEM_PROMPT]
+텍스트 분석 전문가. Summary의 상세한 내용을 체계적이고 포괄적으로 정리하세요.
+
+[PROMPT]
+다음은 "Summary"의 내용입니다:
+
+## Summary
+
+"""
+생성 시간: 2025-08-10 22:28:30 KST
+핵심 내용: 7장 요약 (Summary) - Basic data validation 핵심 개념 정리
+상세 내용:
+    - DOP 원칙 4 (915행): 데이터 스키마와 표현의 분리
+    - 시스템 경계 정의 (916-918행): 데이터 교환이 발생하는 영역
+    - 경계에서의 검증 예시 (919-921행): 클라이언트 요청/응답, 외부 소스 데이터
+    - DOP 데이터 검증 의미 (921-923행): 스키마 준수 여부 확인
+    - 검증 실패 정보 (923-925행): 상세한 검증 실패 정보와 사용자 친화적 형식
+    - 경계 검증의 중요성 (925-927행): 경계에서 검증하면 내부 재검증 불필요
+    - JSON Schema 특징 (927-937행): 언어, 구문, 표현력, 조작성
+    - 필드 기본값과 모범 사례 (935-941행): 옵션 필드와 외부 소스 검증
+    - 데이터 전송 원칙 (940-942행): 엄격한 송신, 유연한 수신
+    - Ajv 라이브러리 특징 (942-945행): JavaScript JSON Schema 라이브러리와 기본 동작
+상태: 활성
+주소: chapter7_06_summary
+참조: 원본 파일 /home/nadle/projects/Knowledge_Sherpa/v2/25-08-09/extracted_texts/Level01_7 Basic data validation.md
+"""
+
+# Summary
+
+Summary
+ DOP Principle #4 is to separate data schema and data representation.
+ The boundaries of a system are defined to be the areas where the system
+exchanges data.
+ Some examples of data validation at the boundaries of the system are validation
+of client requests and responses, and validation of data that comes from exter-
+nal sources.
+ Data validation in DOP means checking whether a piece of data conforms to a
+schema.
+ When a piece of data is not valid, we get information about the validation fail-
+ures and send this information back to the client in a human readable format.
+ When data at system boundaries is valid, it's not critical to validate data again
+inside the system.
+ JSON Schema is a language that allows us to separate data validation from data
+representation.
+ JSON Schema syntax is a bit verbose.
+ The expressive power of JSON Schema is high.
+ JSON Schemas are just maps and, as so, we are free to manipulate them like any
+other maps in our programs.
+ We can store a schema definition in a variable and use this variable in another
+schema.
+ In JSON Schema, map fields are optional by default.
+ It's good practice to validate data that comes from an external data source.
+
+=== 페이지 190 ===
+162 CHAPTER 7 Basic data validation
+ It's good practice to be strict regarding data that you send and to be flexible
+regarding data that you receive.
+ Ajv is a JSON Schema library in JavaScript.
+ By default, Ajv catches only the first validation failure.
+ Advanced validation is covered in chapter 12.
+
+이 내용의 상세 핵심 내용을 체계적으로 정리해주세요.
+헤더를 사용할 경우 ### 3레벨부터 사용하고, 응답에 '상세 핵심 내용'이라는 헤더는 포함하지 마세요.
+
+[추출 결과]
+### 요약 정보
+
+*   **생성 시간:** 2025-08-10 22:28:30 KST
+*   **핵심 내용:** 7장 요약 (Summary) - Basic data validation 핵심 개념 정리
+*   **상태:** 활성
+*   **주소:** chapter7_06_summary
+*   **참조:** /home/nadle/projects/Knowledge_Sherpa/v2/25-08-09/extracted_texts/Level01_7 Basic data validation.md
+
+### 주요 내용
+
+#### 1. DOP (Data Object Principle) 원칙 4
+
+*   **핵심:** 데이터 스키마와 표현의 분리
+
+#### 2. 시스템 경계에서의 데이터 검증
+
+*   **정의:** 시스템이 데이터를 교환하는 영역
+*   **예시:** 클라이언트 요청/응답, 외부 소스 데이터
+*   **목적:** 스키마 준수 여부 확인
+*   **실패 처리:** 상세한 검증 실패 정보를 사용자 친화적 형식으로 제공
+
+#### 3. 경계 검증의 중요성
+
+*   **효과:** 경계에서 데이터가 유효하면 내부 재검증 불필요
+
+#### 4. JSON Schema
+
+*   **특징:**
+    *   데이터 유효성 검사를 데이터 표현과 분리하는 언어
+    *   다소 상세한 구문
+    *   높은 표현력
+    *   맵 형태로 조작 가능 (변수 저장, 다른 스키마에서 재사용)
+    *   기본적으로 필드는 옵션(선택)
+*   **모범 사례:** 외부 소스 데이터 검증
+
+#### 5. 데이터 전송 원칙
+
+*   **원칙:** 엄격한 송신, 유연한 수신
+
+#### 6. Ajv 라이브러리 (JavaScript JSON Schema 라이브러리)
+
+*   **특징:**
+    *   기본적으로 첫 번째 유효성 검사 실패만 감지
+    *   Advanced validation (12장)

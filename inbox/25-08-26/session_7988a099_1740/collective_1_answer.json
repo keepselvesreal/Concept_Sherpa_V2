@@ -1,0 +1,14 @@
+{
+  "query_number": 1,
+  "query": "객체지향 프로그래밍의 특징은?",
+  "model_response": "객체지향 프로그래밍의 4가지 핵심 특징은 다음과 같아:\n\n**1. 캡슐화 (Encapsulation)**\n- 데이터와 메서드를 하나의 객체로 묶어서 관리해\n- 외부에서 객체의 내부 데이터에 직접 접근하는 걸 제한해서 데이터를 보호하지\n\n**2. 상속 (Inheritance)**\n- 기존 클래스의 특성을 물려받아서 새로운 클래스를 만들 수 있어\n- 코드를 중복해서 작성할 필요 없이 재사용할 수 있게 해주지\n\n**3. 다형성 (Polymorphism)**\n- 같은 인터페이스(메서드명)를 사용해도 객체에 따라 다른 동작을 수행해\n- 예를 들어 Animal 클래스를 상속받은 Dog와 Cat이 각각 다른 소리를 내는 것처럼\n\n**4. 추상화 (Abstraction)**\n- 복잡한 내부 구현은 숨기고 필요한 기능만 외부에 노출해\n- 사용자는 내부가 어떻게 동작하는지 몰라도 인터페이스만 알면 사용할 수 있지\n\n**주요 장점들:**\n- 재사용성: 코드 중복을 줄여줘\n- 유지보수: 모듈화된 구조로 관리하기 쉬워\n- 확장성: 새로운 기능을 추가하기 용이해\n- 직관성: 현실 세계의 사물을 모델링하는 방식이라 이해하기 쉬워\n\n현실적으로 말하면, 이론은 깔끔해 보이지만 실제로는 과도한 추상화나 복잡한 상속 구조 때문에 오히려 복잡해지는 경우도 많으니까, 적절히 균형을 맞춰서 사용하는 게 중요해.",
+  "has_relevant_content": true,
+  "elapsed_time": 24.623820304870605,
+  "timestamp": "2025-08-26T17:40:49.096989",
+  "success": true,
+  "document_paths": [
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/OOP.md",
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/FP.md",
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/DOP.md"
+  ]
+}

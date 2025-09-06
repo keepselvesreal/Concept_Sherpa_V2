@@ -1,0 +1,10 @@
+{
+  "query_number": 1,
+  "query": "DOP를 실제로 어떻게 사용하나?",
+  "model_response": "태수야, 제공된 OOP.md 문서로는 DOP(Data-Oriented Programming) 사용법을 답변할 수 없어. 문서는 객체 지향 프로그래밍(OOP)에 대한 내용만 다루고 있거든. DOP는 OOP와는 완전히 다른 패러다임이야 - OOP가 객체 중심이라면, DOP는 데이터와 그 변환에 집중하는 방식이지. DOP 관련 자료나 문서가 있다면 그걸 참조해서 다시 질문해줘.",
+  "has_relevant_content": false,
+  "elapsed_time": 16.136682510375977,
+  "timestamp": "2025-08-27T10:13:57.274459",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-27/references/OOP.md",
+  "success": true
+}

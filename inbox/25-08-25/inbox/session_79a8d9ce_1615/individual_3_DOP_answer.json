@@ -1,0 +1,9 @@
+{
+  "query_number": 3,
+  "query": "DOP가 이전 패러다임과 구분되는 특징은?",
+  "model_response": "태수야, DOP가 기존 패러다임들과 구별되는 핵심 특징들을 정리해보면:\n\n## 🎯 DOP만의 독특한 특징\n\n### 1. **데이터 우선 설계 철학**\n- OOP: \"어떤 객체가 필요한가?\" \n- FP: \"어떤 함수가 필요한가?\"\n- **DOP: \"어떤 데이터가 필요한가?\"** ← 이게 시작점\n\n### 2. **기본 데이터 타입 고집**\n```python\n# OOP: 복잡한 클래스 계층\nclass User(Person):\n    def __init__(self, name, email):\n        super().__init__(name)\n        self.email = email\n\n# DOP: 단순한 딕셔너리/맵\nuser = {\"name\": \"태수\", \"email\": \"taesu@example.com\"}\n```\n\n### 3. **데이터와 로직의 완전 분리**\n- OOP는 데이터와 메서드를 캡슐화\n- FP는 함수 중심이지만 여전히 추상화 추구\n- **DOP는 데이터를 날것 그대로 노출하고 로직을 별도 관리**\n\n### 4. **JSON 호환성을 의도적으로 추구**\n```python\n# DOP 데이터는 그대로 JSON이 됨\ndata = {\"users\": [{\"name\": \"태수\", \"age\": 25}]}\njson.dumps(data)  # 바로 직렬화 가능\n```\n\n## 🔍 실질적 차이점\n\n### **투명성(Transparency)**\n- 다른 패러다임들은 추상화로 복잡성을 숨김\n- **DOP는 데이터를 투명하게 노출**해서 무엇을 다루는지 명확히 보여줌\n\n### **변환 중심 사고**\n- OOP: 객체.메서드() 호출\n- FP: 함수 합성\n- **DOP: 데이터 → 변환함수 → 새로운데이터**\n\n솔직히 말하면, DOP는 \"복잡한 추상화는 그만, 데이터 자체에 집중하자\"는 일종의 **단순함으로의 회귀**라고 볼 수 있어. 특히 현대의 데이터 중심 시스템에서는 이런 접근이 더 효과적일 때가 많지.",
+  "elapsed_time": 24.97,
+  "timestamp": "2025-08-25T16:15:31.470812",
+  "document_path": "references/DOP.md",
+  "success": true
+}

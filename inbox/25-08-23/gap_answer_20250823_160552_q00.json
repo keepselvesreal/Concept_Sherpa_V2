@@ -1,0 +1,15 @@
+{
+  "question_index": 0,
+  "original_question": {
+    "category": "practical_gaps",
+    "gap_description": "기존 객체지향 프로젝트를 DOP로 점진적 전환하는 구체적 방법 부족",
+    "question": "기존 객체지향 코드베이스에서 DOP를 점진적으로 도입하려면 어떤 부분부터 시작해야 하고, 어떤 순서로 리팩토링해야 할까요?",
+    "expected_benefit": "실제 프로젝트에서 안전하고 효율적으로 DOP를 도입할 수 있는 실행 계획을 세울 수 있음"
+  },
+  "answer": "태수야, 기존 OOP 코드베이스를 DOP로 점진적 전환하는 건 한 번에 뒤집기보다는 전략적으로 접근해야 해.\n\n## 🎯 시작점 선정 (우선순위 순)\n\n### 1. 데이터 처리 로직부터\n```python\n# 이런 부분들을 먼저 타겟하자\nclass DataProcessor:\n    def transform_user_data(self, users):\n        # 이미 데이터 변환 중심 → DOP 전환 쉬움\n        pass\n```\n**왜 여기서 시작하나?** 이미 데이터 중심이라 저항이 적고, 성과가 눈에 보여.\n\n### 2. 유틸리티/헬퍼 함수들\n```python\n# Before (OOP)\nclass StringHelper:\n    @staticmethod\n    def format_phone(phone):\n        return phone.replace(\"-\", \"\")\n\n# After (DOP) \ndef format_phone(phone_data):\n    return phone_data.replace(\"-\", \"\")\n```\n\n### 3. 상태가 단순한 도메인 객체들\n복잡한 비즈니스 로직보다는 단순 데이터 컨테이너부터.\n\n## 📋 점진적 전환 순서\n\n### Phase 1: 데이터 구조 분리 (1-2주)\n```python\n# 기존 클래스에서 데이터만 먼저 추출\nclass User:  # 기존 유지\n    pass\n\n# 새로 추가\nUserData = {\n    \"id\": int,\n    \"name\": str, \n    \"email\": str\n}\n```\n\n### Phase 2: 순수 함수 도입 (2-3주)\n```python\n# 기존 메서드를 순수 함수로 복제\ndef is_adult_user(user_data):  # 새 함수\n    return user_data[\"age\"] >= 18\n\nclass User:\n    def is_adult(self):  # 기존 유지, 내부에서 새 함수 호출\n        return is_adult_user(self.to_dict())\n```\n\n### Phase 3: 불변성 적용 (3-4주)\n```python\ndef update_user_email(user_data, new_email):\n    return {**user_data, \"email\": new_email}  # 원본 보존\n```\n\n### Phase 4: 파이프라인 구축 (4-6주)\n```python\nusers_data = (\n    load_users()\n    |> filter_active_users\n    |> transform_for_display\n    |> sort_by_name\n)\n```\n\n## ⚠️ 현실적 주의사항\n\n### 팀 저항 관리가 핵심\n- **코드 리뷰에서 DOP 스타일 강요하지 마라** → 점진적 설득\n- 성과 측정 가능한 부분부터 (성능, 버그 감소)\n- 기존 OOP 코드 무작정 비판하지 말고 공존 전략\n\n### 하이브리드 접근이 현실적\n```python\n# 완전 DOP 전환보다는 혼합 사용\nclass UserService:  # OOP 껍데기 유지\n    def process_users(self, users):\n        # 내부는 DOP 스타일 함수들 사용\n        return pipe(\n            users,\n            validate_users,\n            transform_users, \n            save_users\n        )\n```\n\n**핵심**: 완벽한 DOP 전환보다는 **데이터 처리 성능이 중요한 핫스팟**부터 시작해서, 팀이 익숙해지면서 점차 확산시키는 게 현실적이야. 무리하지 말고 천천히 가자.",
+  "metadata": {
+    "cost": 0.0315075,
+    "timestamp": "2025-08-23T16:07:19.810920",
+    "status": "success"
+  }
+}

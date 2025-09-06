@@ -1,0 +1,76 @@
+# 4.3 Implementing structural sharing
+
+**메타데이터:**
+- ID: 37
+- 레벨: 2
+- 페이지: 108-109
+- 페이지 수: 2
+- 부모 ID: 33
+- 텍스트 길이: 2184 문자
+
+---
+
+structural sharing
+When Joe leaves the office, Theo meets Dave near the coffee machine. Dave looks perplexed.
+Dave Who’s the guy that just left the office?
+Theo It’s Joe. My DOP mentor.
+Dave What’s DOP?
+Theo DOP refers to data-oriented programming.
+Dave I never heard that term before.
+Theo It’s not well-known by programmers yet, but it’s quite a powerful programming
+paradigm. From what I’ve seen so far, it makes programming much simpler.
+Dave Can you give me an example?
+Theo I just learned about structural sharing and how it makes it possible to create
+new versions of data, effectively without copying.
+Dave How does that work?
+Theo takes Dave to his office and shows him Joe’s diagram on the whiteboard (see figure 4.6).
+It takes Theo a few minutes to explain to Dave what it does exactly, but in the end, Dave
+gets it.
+Dave What does the implementation of structural sharing look like?
+Theo I don’t know. I used the _.set function from Lodash.
+Dave It sounds like an interesting challenge.
+Theo Take the challenge if you want. Right now, I’m too tired for this recursive algo-
+rithmic stuff.
+
+4.3 Implementing structural sharing 81
+«Next»
+Library
+Library
+«Next»
+Catalog UserManagement
+Catalog
+«Next»
+booksByIsbn ... authorsById
+booksByIsbn
+«Next»
+watchmen ...
+watchmen
+«Next»
+publicationYear:1987 title:Watchmen authorlds
+publicationYear:1986
+...
+Figure 4.6 Structural sharing in action
+The next day, Theo stops by Dave’s cubicle before heading to his office. Dave, with a touch
+of pride, shows Theo his implementation of structural sharing. Theo is amazed by the fact
+that it’s only 11 lines of JavaScript code!
+Listing4.4 The implementation of structural sharing
+function setImmutable(map, path, v) {
+var modifiedNode = v;
+var k = path[0];
+var restOfPath = path.slice(1);
+if (restOfPath.length > 0) {
+modifiedNode = setImmutable(map[k], restOfPath, v);
+}
+var res = Object.assign({}, map);
+Shallow
+res[k] = modifiedNode;
+clones a map
+return res;
+in JavaScript.
+}
+Theo Dave, you’re brilliant!
+Dave (smiling) Aw, shucks.
+Theo Oops, I have to go. I’m already late for my session with Joe! Joe is probably wait-
+ing in my office, biting his nails.
+
+82 CHAPTER 4 State management

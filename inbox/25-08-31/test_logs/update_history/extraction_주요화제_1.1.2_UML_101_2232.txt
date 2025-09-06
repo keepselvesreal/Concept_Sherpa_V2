@@ -1,0 +1,230 @@
+[SYSTEM_PROMPT]
+주제 분석 전문가. 문서의 핵심 주제들을 정확히 파악하세요.
+
+[PROMPT]
+다음 문서의 주요 화제들을 추출해주세요.
+
+문서 제목: 1.1.2_UML_101
+문서 내용:
+### 1.1.2_UML_101
+
+--- 페이지 34 ---
+6
+CHAPTER 1
+Complexity of object-oriented programming
+1.1.2
+UML 101
+Latte in hand, Dave follows Theo to his desk. Theo proudly shows Dave his piece of art: the
+UML diagram for the Library Management System (figure 1.1). Dave seems really excited.
+Dave
+Wow! Such a detailed class diagram.
+Theo
+Yeah. I'm pretty happy with it.
+Librarian
+C
+blockMember(member: Member) : Bool
+unblockMember(member: Member) : Bool
+addBookItem(bookItem: BookItem) : BookItem
+getBookLendingsOfMember(member: Member) : List<BookLending>
+Member
+C
+isBlocked() : Bool
+block() : Bool
+unblock() : Bool
+returnBook(bookLending: BookLending) : Bool
+checkout(bookItem: BookItem) : BookLending
+Catalog
+C
+search(searchCriteria, queryStr) : List<Book>
+addBookItem(librarian: Librarian, bookItem: BookItem) : BookItem
+Library
+C
+name : String
+address : String
+Book
+C
+id : String
+title : String
+Author
+C
+id : String
+fullName: String
+BookItem
+C
+id : String
+libId: String
+checkout(member: Member) : BookLending
+BookLending
+C
+id : String
+lendingDate : date
+dueDate : date
+isLate() : Bool
+returnBook() : Bool
+User
+C
+id : String
+email : String
+password : String
+login() : Bool
+*
+*
+*
+*
+*
+*
+*
+Figure 1.1
+A class diagram for Klafim's Global Library Management System
+
+
+--- 페이지 35 ---
+7
+1.1
+OOP design: Classic or classical?
+Dave
+The thing is that I can never remember the meaning of the different arrows.
+Theo
+There are four types of arrows in my class diagram: composition, association,
+inheritance, and usage.
+Dave
+What's the difference between composition and association?
+ NOTE
+Don't worry if you're not familiar with OOP jargon. We're going to leave it
+aside in the next chapter.
+Theo
+It's all about whether the objects can live without each other. With composi-
+tion, when one object dies, the other one dies too. While in an association rela-
+tion, each object has an independent life.
+TIP
+In a composition relation, when one object dies, the other one also dies. While
+in an association relation, each object has an independent life cycle.
+In the class diagram, there are two kinds of composition symbolized by an arrow with
+a plain diamond at one edge and an optional star at the other edge. Figure 1.2 shows
+the relation between:
+A Library that owns a Catalog—A one-to-one composition. If a Library object
+dies, then its Catalog object dies with it.
+A Library that owns many Members—A one-to-many composition. If a Library
+object dies, then all its Member objects die with it.
+TIP
+A composition relation is represented by a plain diamond at one edge and an
+optional star at the other edge.
+Dave
+Do you have association relations in your diagram?
+Theo
+Take a look at the arrow between Book and Author. It has an empty diamond
+and a star at both edges, so it's a many-to-many association relation.
+A book can be written by multiple authors, and an author can write multiple books.
+Moreover, Book and Author objects can live independently. The relation between
+books and authors is a many-to-many association (figure 1.3).
+Catalog
+C
+List<Book> search(searchCriteria, queryStr)
+BookItem addBookItem(librarian: Librarian, bookItem: BookItem)
+Library
+C
+name : String
+address : String
+Member
+C
+*
+Figure 1.2
+The two kinds of 
+composition: one-to-one and 
+one-to-many. In both cases, 
+when an object dies, the 
+composed object dies with it.
+
+
+--- 페이지 36 ---
+8
+CHAPTER 1
+Complexity of object-oriented programming
+TIP
+A many-to-many association relation is represented by an empty diamond and a
+star at both edges.
+Dave
+I also see a bunch of dashed arrows in your diagram.
+Theo
+Dashed arrows are for usage relations: when a class uses a method of another
+class. Consider, for example, the Librarian::blockMember method. It calls
+Member::block.
+TIP
+Dashed arrows indicate usage relations (figure 1.4), for instance, when a class
+uses a method of another class.
+Dave
+I see. And I guess a plain arrow with an empty triangle, like the one between
+Member and User, represents inheritance.
+Theo
+Absolutely!
+TIP
+Plain arrows with empty triangles represent class inheritance (figure 1.5), where
+the arrow points towards the superclass. 
+Book
+C
+id : String
+title : String
+Author
+C
+id : String
+fullName: String
+*
+*
+Figure 1.3
+Many-to-many association relation: 
+each object lives independently.
+C Librarian
+Bool isBlocked()
+Bool block()
+Bool unblock()
+Bool returnBook(bookLending: BookLending)
+BookLending checkout(bookItem: BookItem)
+C Member
+Bool blockMember(member: Member)
+Bool unblockMember(member: Member)
+BookItem addBookItem(bookItem: BookItem)
+List<BookLending> getBookLendingsOfMember(member: Member)
+Figure 1.4
+Usage relation: a class 
+uses a method of another class.
+
+
+--- 페이지 37 ---
+9
+1.1
+OOP design: Classic or classical?
+C Member
+isBlocked() : Bool
+block() : Bool
+unblock() : Bool
+checkout(bookItem: BookItem) : BookLending
+returnBook(bookLending : BookLending) : Bool
+User
+C
+id : String
+email : String
+password : String
+login() : Bool
+Figure 1.5
+Inheritance relation: a class 
+derives from another class.
+
+문서에서 다루는 핵심 주제들을 불렛 포인트로 나열해주세요.
+
+[추출 결과]
+다음은 문서의 주요 화제입니다.
+
+*   **UML (Unified Modeling Language):**
+    *   UML 클래스 다이어그램의 예시 (도서관 관리 시스템)
+    *   UML 다이어그램 내 화살표 (관계)의 의미 설명
+*   **객체 지향 프로그래밍 (OOP):**
+    *   객체 지향 설계의 복잡성
+    *   클래스 다이어그램을 이용한 객체 관계 표현
+*   **클래스 다이어그램 내 관계의 종류:**
+    *   Composition (합성 관계): 생명 주기 의존성
+    *   Association (연관 관계): 독립적인 생명 주기
+    *   Usage (사용 관계): 클래스 간 메서드 호출
+    *   Inheritance (상속 관계): 클래스 간 상속
+*   **도서관 관리 시스템:**
+    *   UML 클래스 다이어그램 예시로 사용
+    *   클래스 예시: Librarian, Member, Catalog, Library, Book, Author, BookItem, BookLending, User

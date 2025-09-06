@@ -1,0 +1,14 @@
+{
+  "query_number": 1,
+  "query": "dop가 뭐야?",
+  "model_response": "태수야, 참조 문서를 보니 **DOP**는 **데이터 지향 프로그래밍(Data-Oriented Programming)**을 의미하는구나.\n\n## DOP의 핵심 개념\n\n**데이터를 중심으로 시스템을 설계하는 프로그래밍 패러다임**이야. 쉽게 말해서 객체나 함수보다 **데이터 구조를 먼저 생각**하고 설계하는 방식이지.\n\n## 주요 특징 3가지\n\n1. **데이터 우선 설계** - 복잡한 클래스 말고 기본 타입 활용\n2. **불변성** - 데이터가 변경되지 않아서 안전함  \n3. **단순한 데이터 구조** - 복잡하지 않게 깔끔하게\n\n## 실제 이점들\n\n- **메모리 효율성** ↗️\n- **병렬 처리**에 적합\n- **테스트가 쉬움**\n- **시스템 간 호환성** 좋음\n\n## 성능 면에서\n\n참조 문서에 따르면 실제로 성능 개선 효과가 꽤 크다고 나와있어:\n- 게임 엔진: 30-40% 성능 향상\n- 대용량 데이터 처리: 50-70% 처리 시간 단축\n\n함수형 프로그래밍과도 공통점이 많다고 하니, 요즘 트렌드와도 잘 맞는 것 같네.",
+  "has_relevant_content": true,
+  "elapsed_time": 19.40223002433777,
+  "timestamp": "2025-08-26T11:56:21.568587",
+  "document_paths": [
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/sample_doc3.txt",
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/sample_doc2.md",
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/sample_doc1.md"
+  ],
+  "success": true
+}

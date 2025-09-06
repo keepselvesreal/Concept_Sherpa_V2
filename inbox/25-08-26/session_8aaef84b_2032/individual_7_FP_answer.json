@@ -1,0 +1,10 @@
+{
+  "query_number": 7,
+  "query": "그럼 순수함수를 만들기 위한 팁, 지침, 베스트 프랙티스에는 뭐가 있어?",
+  "model_response": "태수야, 참조 문서에서 순수함수가 언급되긴 하지만 구체적인 작성 팁은 부족하니까 실용적인 지침들을 정리해줄게.\n\n## 🎯 순수함수 작성 핵심 팁\n\n**1. 부작용 완전 제거**\n- 전역 변수 수정 금지\n- 외부 API 호출 금지 \n- 파일 I/O 금지\n- 콘솔 출력도 부작용임\n\n**2. 입출력만으로 모든 것 결정**\n```python\n# ❌ 나쁜 예 - 전역변수 참조\ncount = 0\ndef bad_add(x):\n    global count\n    count += 1\n    return x + count\n\n# ✅ 좋은 예 - 입력만 사용\ndef good_add(x, increment):\n    return x + increment\n```\n\n**3. 불변성 유지**\n- 입력 데이터 절대 변경 금지\n- 새 객체 생성해서 반환\n- 깊은 복사 활용\n\n**4. 단일 책임 원칙**\n- 한 함수는 한 가지 일만\n- 작고 명확한 함수가 좋음\n- 3-5줄 이내가 이상적\n\n**5. 예외 처리도 순수하게**\n```python\n# ❌ 예외 던지기보다는\n# ✅ Result 타입이나 Optional 활용\nfrom typing import Optional\n\ndef safe_divide(x: float, y: float) -> Optional[float]:\n    return x / y if y != 0 else None\n```\n\n## 🔧 실전 베스트 프랙티스\n\n**검증 방법들:**\n- 같은 입력 여러 번 → 항상 같은 결과\n- 함수 실행 전후 외부 상태 동일한지 확인\n- 단위 테스트 작성이 쉬워야 함\n\n**주의사항:**\n- 현실적으로 100% 순수는 어려움\n- 핵심 비즈니스 로직만이라도 순수하게\n- I/O는 함수 경계에서 분리\n\n냉철하게 말하자면, 순수함수는 이론적으론 완벽하지만 실제 개발에선 타협점이 필요해. 하지만 이런 원칙들을 지키려고 노력하면 확실히 버그 적고 테스트하기 쉬운 코드가 나와.",
+  "has_relevant_content": true,
+  "elapsed_time": 29.229849815368652,
+  "timestamp": "2025-08-26T21:37:37.823806",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/FP.md",
+  "success": true
+}

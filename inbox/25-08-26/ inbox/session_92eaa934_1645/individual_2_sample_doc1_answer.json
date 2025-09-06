@@ -1,0 +1,10 @@
+{
+  "query_number": 2,
+  "query": "두 번째 질의입니다",
+  "model_response": "구체적인 질문이 없어서 참조 문서와의 관련성을 판단할 수 없습니다. 데이터 지향 프로그래밍에 대해 궁금한 게 있으면 구체적으로 물어보세요.",
+  "has_relevant_content": false,
+  "elapsed_time": 20.338622331619263,
+  "timestamp": "2025-08-26T16:46:50.578762",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/sample_doc1.md",
+  "success": true
+}

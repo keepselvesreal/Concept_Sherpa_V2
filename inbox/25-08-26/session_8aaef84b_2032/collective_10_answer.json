@@ -1,0 +1,10 @@
+{
+  "query_number": 10,
+  "query": "기존 프로그램 패러다이밍과의 차이는?",
+  "model_response": "세션 재개 질의 처리 중 오류가 발생했습니다: Command failed with exit code 1 (exit code: 1)\nError output: No conversation found with session ID: 8aaef84b-4b4c-4d12-b5d5-a0662a0b5044",
+  "has_relevant_content": false,
+  "elapsed_time": 3.9425714015960693,
+  "timestamp": "2025-08-27T11:25:10.866534",
+  "success": false,
+  "error": "Command failed with exit code 1 (exit code: 1)\nError output: No conversation found with session ID: 8aaef84b-4b4c-4d12-b5d5-a0662a0b5044"
+}

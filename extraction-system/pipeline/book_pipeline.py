@@ -27,6 +27,9 @@ sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31')
 from toc_extractor import extract_toc_with_pymupdf, process_toc_items, calculate_page_ranges
 from extract_chapters_v5 import count_chapters_with_ai, GeminiAPIProvider, normalize_title, extract_pdf_content, find_chapter_items, save_chapter_content_to_folder
 
+# 콘텐츠 노드 분석 모듈 임포트
+from .content_node_analyzer import ContentNodeAnalyzer
+
 class PipelineResult:
     """파이프라인 실행 결과"""
     def __init__(self):
@@ -34,7 +37,7 @@ class PipelineResult:
         self.error = None
         self.data = {}
         self.step_completed = 0
-        self.total_steps = 2
+        self.total_steps = 4  # 4단계로 확장: 목차추출 → 장별폴더 → 콘텐츠노드분석 → 실제콘텐츠추출
         self.progress_percent = 0
 
 class BookPipeline:
@@ -207,6 +210,190 @@ class BookPipeline:
         except Exception as e:
             raise Exception(f"장별 폴더 생성 실패: {str(e)}")
     
+    async def analyze_content_nodes(self, chapters_data: Dict[str, Any], pdf_path: str) -> Dict[str, Any]:
+        """장별 TOC 파일들에 has_content 필드 추가 및 콘텐츠 노드 추출"""
+        try:
+            print("🔍 === 장별 콘텐츠 노드 분석 시작 ===")
+            
+            created_folders = chapters_data.get('created_folders', [])
+            if not created_folders:
+                print("⚠️ 분석할 장별 폴더가 없습니다.")
+                return {
+                    'success': False,
+                    'error': '분석할 장별 폴더가 없음',
+                    'processed_chapters': 0,
+                    'content_nodes_found': 0
+                }
+            
+            # Logger 설정 (기존 로직에서 필요)
+            import logging
+            logger = logging.getLogger('content_node_analyzer')
+            logger.setLevel(logging.INFO)
+            
+            # ContentNodeAnalyzer 초기화 (Gemini API 사용)
+            analyzer = ContentNodeAnalyzer(
+                ai_provider=GeminiAPIProvider(logger),
+                logger=logger
+            )
+            
+            processed_chapters = 0
+            total_content_nodes = 0
+            chapter_results = []
+            
+            for chapter_info in created_folders:
+                chapter_title = chapter_info.get('chapter_title', '')
+                toc_file = chapter_info.get('toc_file', '')
+                
+                print(f"\n📖 장 {chapter_info.get('chapter_number')}: {chapter_title}")
+                
+                if not toc_file or not os.path.exists(toc_file):
+                    print(f"⚠️ TOC 파일을 찾을 수 없음: {toc_file}")
+                    continue
+                
+                try:
+                    # 각 장별 TOC 분석
+                    analysis_result = await analyzer.analyze_chapter_toc(toc_file, pdf_path)
+                    
+                    if analysis_result.get('success', False):
+                        content_nodes_count = analysis_result.get('content_nodes_count', 0)
+                        total_content_nodes += content_nodes_count
+                        processed_chapters += 1
+                        
+                        chapter_results.append({
+                            'chapter_number': chapter_info.get('chapter_number'),
+                            'chapter_title': chapter_title,
+                            'content_nodes_count': content_nodes_count,
+                            'content_nodes_path': analysis_result.get('content_nodes_path', ''),
+                            'success': True
+                        })
+                        
+                        print(f"✅ {chapter_title}: {content_nodes_count}개 콘텐츠 노드 발견")
+                    else:
+                        print(f"❌ {chapter_title}: {analysis_result.get('error', '분석 실패')}")
+                        chapter_results.append({
+                            'chapter_number': chapter_info.get('chapter_number'),
+                            'chapter_title': chapter_title,
+                            'success': False,
+                            'error': analysis_result.get('error', '분석 실패')
+                        })
+                
+                except Exception as e:
+                    print(f"❌ {chapter_title} 분석 중 오류: {str(e)}")
+                    chapter_results.append({
+                        'chapter_number': chapter_info.get('chapter_number'),
+                        'chapter_title': chapter_title,
+                        'success': False,
+                        'error': str(e)
+                    })
+            
+            print(f"\n🎉 콘텐츠 노드 분석 완료!")
+            print(f"📊 처리된 장: {processed_chapters}개")
+            print(f"📝 발견된 콘텐츠 노드: {total_content_nodes}개")
+            
+            return {
+                'success': True,
+                'processed_chapters': processed_chapters,
+                'total_chapters': len(created_folders),
+                'content_nodes_found': total_content_nodes,
+                'chapter_results': chapter_results
+            }
+            
+        except Exception as e:
+            raise Exception(f"콘텐츠 노드 분석 실패: {str(e)}")
+    
+    async def extract_content_files(self, content_analysis_data: Dict[str, Any], pdf_path: str) -> Dict[str, Any]:
+        """콘텐츠 노드를 실제 파일로 추출"""
+        try:
+            print("📄 === 실제 콘텐츠 파일 추출 시작 ===")
+            
+            if not content_analysis_data.get('success', False):
+                print("⚠️ 콘텐츠 분석이 완료되지 않음")
+                return {
+                    'success': False,
+                    'error': '콘텐츠 분석이 완료되지 않음',
+                    'processed_chapters': 0,
+                    'extracted_files': 0
+                }
+            
+            # Logger 설정
+            import logging
+            logger = logging.getLogger('content_extractor')
+            logger.setLevel(logging.INFO)
+            
+            # ContentNodeAnalyzer 초기화 (콘텐츠 추출용)
+            analyzer = ContentNodeAnalyzer(logger=logger)
+            
+            chapter_results = content_analysis_data.get('chapter_results', [])
+            total_extracted_files = 0
+            extraction_results = []
+            
+            for chapter_result in chapter_results:
+                if not chapter_result.get('success', False):
+                    continue
+                
+                chapter_title = chapter_result.get('chapter_title', '')
+                content_nodes_path = chapter_result.get('content_nodes_path', '')
+                
+                print(f"\n📖 {chapter_title} 콘텐츠 추출 중...")
+                
+                if not content_nodes_path or not os.path.exists(content_nodes_path):
+                    print(f"⚠️ Content nodes 파일을 찾을 수 없음: {content_nodes_path}")
+                    extraction_results.append({
+                        'chapter_title': chapter_title,
+                        'success': False,
+                        'error': 'Content nodes 파일 없음'
+                    })
+                    continue
+                
+                try:
+                    # 각 장별 콘텐츠 추출
+                    extraction_result = await analyzer.extract_content_nodes_to_files(content_nodes_path, pdf_path)
+                    
+                    if extraction_result.get('success', False):
+                        extracted_count = extraction_result.get('successful_extractions', 0)
+                        total_extracted_files += extracted_count
+                        
+                        extraction_results.append({
+                            'chapter_title': chapter_title,
+                            'success': True,
+                            'extracted_files_count': extracted_count,
+                            'total_nodes': extraction_result.get('total_nodes', 0),
+                            'extracted_files': extraction_result.get('extracted_files', [])
+                        })
+                        
+                        print(f"✅ {chapter_title}: {extracted_count}개 파일 추출 완료")
+                    else:
+                        print(f"❌ {chapter_title}: {extraction_result.get('error', '추출 실패')}")
+                        extraction_results.append({
+                            'chapter_title': chapter_title,
+                            'success': False,
+                            'error': extraction_result.get('error', '추출 실패')
+                        })
+                
+                except Exception as e:
+                    print(f"❌ {chapter_title} 추출 중 오류: {str(e)}")
+                    extraction_results.append({
+                        'chapter_title': chapter_title,
+                        'success': False,
+                        'error': str(e)
+                    })
+            
+            successful_chapters = len([r for r in extraction_results if r.get('success', False)])
+            
+            print(f"\n🎉 콘텐츠 파일 추출 완료!")
+            print(f"📊 성공한 장: {successful_chapters}개")
+            print(f"📄 추출된 파일: {total_extracted_files}개")
+            
+            return {
+                'success': True,
+                'processed_chapters': successful_chapters,
+                'total_chapters': len(chapter_results),
+                'extracted_files_count': total_extracted_files,
+                'extraction_results': extraction_results
+            }
+            
+        except Exception as e:
+            raise Exception(f"콘텐츠 파일 추출 실패: {str(e)}")
     
     async def execute(self, file_path: str, metadata_info: Dict[str, Any]) -> PipelineResult:
         """파이프라인 실행"""
@@ -226,12 +413,24 @@ class BookPipeline:
             print("1️⃣ PDF 목차 추출 중...")
             toc_data = self.extract_toc_from_pdf(file_path)
             result.step_completed = 1
-            result.progress_percent = 50
+            result.progress_percent = 25
             
             # 2단계: 장별 폴더 생성 (async 호출)
             print("2️⃣ 장별 폴더 생성 중...")
             chapters_data = await self.create_chapters_folders(toc_data, file_path)
             result.step_completed = 2
+            result.progress_percent = 50
+            
+            # 3단계: 콘텐츠 노드 분석 (has_content 필드 추가)
+            print("3️⃣ 콘텐츠 노드 분석 중...")
+            content_analysis_data = await self.analyze_content_nodes(chapters_data, file_path)
+            result.step_completed = 3
+            result.progress_percent = 75
+            
+            # 4단계: 실제 콘텐츠 파일 추출
+            print("4️⃣ 실제 콘텐츠 파일 추출 중...")
+            content_extraction_data = await self.extract_content_files(content_analysis_data, file_path)
+            result.step_completed = 4
             result.progress_percent = 100
             
             # 성공 결과
@@ -242,11 +441,16 @@ class BookPipeline:
                     'extraction_timestamp': toc_data["extraction_info"]["extraction_timestamp"]
                 },
                 'chapters_info': chapters_data,
+                'content_analysis': content_analysis_data,
+                'content_extraction': content_extraction_data,
                 'output_directory': str(self.output_dir),
-                'pipeline_stage': '1단계 완료 (목차 → 장별 폴더)'
+                'pipeline_stage': '4단계 완료 (목차 → 장별폴더 → 콘텐츠노드분석 → 실제콘텐츠추출)'
             }
             
-            print("✅ 책 파이프라인 1단계 완료!")
+            print("🎉🎉🎉 책 파이프라인 전체 완료! 🎉🎉🎉")
+            print(f"📊 총 {content_analysis_data.get('processed_chapters', 0)}개 장 처리")
+            print(f"📝 총 {content_analysis_data.get('content_nodes_found', 0)}개 콘텐츠 노드 발견")
+            print(f"📄 총 {content_extraction_data.get('extracted_files_count', 0)}개 콘텐츠 파일 생성")
             return result
             
         except Exception as e:

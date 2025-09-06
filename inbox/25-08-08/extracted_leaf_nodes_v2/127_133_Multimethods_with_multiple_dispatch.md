@@ -1,0 +1,234 @@
+# 13.3 Multimethods with multiple dispatch
+
+**메타데이터:**
+- ID: 127
+- 레벨: 2
+- 페이지: 309-313
+- 페이지 수: 5
+- 부모 ID: 123
+- 텍스트 길이: 8803 문자
+
+---
+
+s with multiple dispatch 281
+Theo Absolutely! In order to define a default implementation, you pass to method—
+as a single argument—the function that provides the default implementation.
+Theo writes the code and shows it to Dave. Dave then tests Theo’s code and seems satisfied
+with the result.
+Listing13.11 Defining a default implementation
+function greetDefault(animal) {
+console.log("My name is " + animal.name);
+}
+greet = method(greetDefault)(greet);
+Listing13.12 Calling a multimethod when no method fits the dispatch value
+var myHorse = {
+"type": "horse",
+"name": "Horace"
+};
+greet(myHorse);
+// → "My name is Horace"
+TIP Multimethods support default implementations that are called when no method
+corresponds to the dispatch value.
+Dave Cool!
+13.3 Multimethods with multiple dispatch
+Theo So far, we’ve mimicked OOP by having the type of the multimethod argument
+as a dispatch value. But if you think again about the flow of a multimethod,
+you’ll discover something interesting. Would you like to try and draw a dia-
+gram that describes the flow of a multimethod in general?
+Dave Let me get a fresh napkin. The one under my glass is a bit wet.
+Theo Uh, Dave, you can use my notebook.
+It takes Dave a few minutes to draw a diagram like the one in figure 13.2. He pushes the
+notebook back to Theo.
+Value1 Method1
+Handle case 1
+Dispatch function Value3 Method3
+Emit a dispatch value Handle case 3
+args
+Value2 Method2
+Handle case 2
+Figure 13.2 The logic flow
+of multimethods
+
+282 CHAPTER 13 Polymorphism
+Theo Excellent! I hope you see that the dispatch function can emit any value.
+Dave Like what?
+Theo Like emitting the type of two arguments!
+Dave What do you mean?
+Theo Imagine that our animals are polyglot.
+Dave Poly what?
+Theo Polyglot comes from the Greek polús, meaning much, and from glôssa, meaning
+language. A polyglot is a person who can speak many languages.
+Dave What languages would our animals speak?
+Theo I don’t know. Let’s say English and French.
+Dave OK, and how would we represent a language in our program?
+Theo With a map, of course!
+Dave What fields would we have in a language map?
+Theo Let’s keep things simple and have two fields: type and name.
+Dave Like an animal map?
+Theo Not exactly. In a language map, the type field must be either fr for French or en
+for English, whereas in the animal map, the type field is either dog, cat, or cow.
+Dave Let me try to write the language map schema and the two language maps.
+Theo gladly consents; his French press coffee is getting cold! Dave writes his implementa-
+tion of the code and shows Theo.
+Listing13.13 The schema of a language map
+var languageSchema = {
+"type": "object",
+"properties": {
+"name": {"type": "string"},
+"type": {"type": "string"}
+},
+"required": ["name", "type"],
+};
+Listing13.14 Two language maps
+var french = {
+"type": "fr",
+"name": "Français"
+};
+var english = {
+"type": "en",
+"name": "English"
+};
+Theo Excellent! Now, let’s write the code for the dispatch function and the methods
+for our polyglot animals. Let’s call our multimethod, greetLang. We have one
+dispatch function and six methods.
+
+13.3 Multimethods with multiple dispatch 283
+Dave Right, three animals (dog, cat, and cow) times two languages (en and fr).
+Before the implementation, I’d like to draw a flow diagram. It will help me to
+make things crystal clear.
+Theo You need my notebook again?
+Not waiting for Dave to respond, Theo pushes his notebook across the table to Dave. Dave
+draws a diagram like the one in figure 13.3 and slides the notebook back to Theo.
+["dog", "en"] greetLangDogEn
+Greet as a dog in English
+["cat", "en"] greetLangCatEn
+Greet as a cat in English
+["cow", "en"] greetLangCowEn
+Greet as a cow in English
+args greetLangDispatch
+animal, language Emit the animal and the language types
+["dog", "fr"] greetLangDogFr
+Greet as a dog in French
+["cat", "fr"] greetLangCatFr
+Greet as a cat in French
+["cow", "fr"] greetLangCowFr
+Greet as a cow in French
+Figure 13.3 The logic flow of the greetLang multimethod
+Theo Why did you omit the arrow between the arguments and the methods?
+Dave In order to keep the diagram readable. Otherwise, there would be too many
+arrows.
+Theo OK, I see. Are you ready for coding?
+Dave Yes!
+Theo The dispatch function needs to validate its arguments and return an array with
+two elements: the type of animal and the type of language.
+Dave types for a bit on his laptop. He initializes the multimethod with a dispatch function
+that returns the type of its arguments and then shows the code to Theo.
+Listing13.15 Initializing a multimethod with a dispatch function
+var greetLangArgsSchema = {
+"type": "array",
+"prefixItems": [animalSchema, languageSchema]
+};
+function greetLangDispatch(animal, language) {
+if(dev()) {
+
+284 CHAPTER 13 Polymorphism
+if(!ajv.validate(greetLangArgsSchema, [animal, language])) {
+throw ("greetLang called with invalid arguments: " +
+ajv.errorsText(ajv.errors));
+}
+}
+return [animal.type, language.type];
+};
+var greetLang = multi(greetLangDispatch);
+Dave Does the order of the elements in the array matter?
+Theo It doesn’t matter, but it needs to be consistent with the wiring of the methods.
+The implementation of greetLang would therefore look like this.
+Listing13.16 The implementation of greetLang methods
+function greetLangDogEn(animal, language) {
+console.log("Woof woof! My name is " +
+animal.name +
+" and I speak " +
+language.name);
+}
+greetLang = method(["dog", "en"], greetLangDogEn)(greetLang);
+function greetLangDogFr(animal, language) {
+console.log("Ouaf Ouaf! Je m'appelle " +
+animal.name +
+" et je parle " +
+language.name);
+}
+greetLang = method(["dog", "fr"], greetLangDogFr)(greetLang);
+function greetLangCatEn(animal, language) {
+console.log("Meow! I am " +
+animal.name +
+" and I speak " +
+language.name);
+}
+greetLang = method(["cat", "en"], greetLangCatEn)(greetLang);
+function greetLangCatFr(animal, language) {
+console.log("Miaou! Je m'appelle " +
+animal.name +
+" et je parle " +
+language.name);
+}
+greetLang = method(["cat", "fr"], greetLangCatFr)(greetLang);
+function greetLangCowEn(animal, language) {
+console.log("Moo! Call me " +
+animal.name +
+" and I speak " +
+
+13.3 Multimethods with multiple dispatch 285
+language.name);
+}
+greetLang = method(["cow", "en"], greetLangCowEn)(greetLang);
+function greetLangCowFr(animal, language) {
+console.log("Meuh! Appelle moi " +
+animal.name +
+" et je parle " +
+language.name);
+}
+greetLang = method(["cow", "fr"], greetLangCowFr)(greetLang);
+Dave looks at the code for the methods that deal with French. He is surprised to see Ouaf
+Ouaf instead of Woof Woof for dogs, Miaou instead of Meow for cats, and Meuh instead of
+Moo for cows.
+Dave I didn’t know that animal onomatopoeia were different in French than in
+English!
+Theo Ono what?
+Dave Onomatopoeia, from the Greek ónoma that means name and poiéo– that means to
+produce. It is the property of words that sound like what they represent; for
+instance, Woof, Meow, and Moo.
+Theo Yeah, for some reason in French, dogs Ouaf, cats Miaou, and cows Meuh.
+Dave I see that in the array the animal type is always before the language type.
+Theo Right! As I told you before, in a multimethod that features multiple dispatch,
+the order doesn’t really matter, but it has to be consistent.
+TIP Multiple dispatch is when a dispatch function emits a value that depends on more
+than one argument. In a multimethod that features multiple dispatch, the order of
+the elements in the array emitted by the dispatch function has to be consistent with
+the order of the elements in the wiring of the methods.
+Dave Now let me see if I can figure out how to use a multimethod that features mul-
+tiple dispatch.
+Dave remembers that Theo told him earlier that multimethods are used like regular func-
+tions. With that in mind, he comes up with the code for a multimethod that features multi-
+ple dispatch.
+Listing13.17 Calling a multimethod that features multiple dispatch
+greetLang(myDog, french);
+// → "Ouaf Ouaf! Je m\'appelle Fido et je parle Français"
+greetLang(myDog, english);
+// → "Woof woof! My name is Fido and I speak English"
+greetLang(myCat, french);
+// → "Miaou! Je m\'appelle Milo et je parle Français"
+
+286 CHAPTER 13 Polymorphism
+greetLang(myCat, english);
+// → "Meow! I am Milo and I speak English"
+greetLang(myCow, french);
+// → "Meuh! Appelle moi Clarabelle et je parle Français"
+greetLang(myCow, english);
+// → "Moo! Call me Clarabelle and I speak English"
+Theo Now do you agree that multimethods with multiple dispatch offer a more pow-
+erful polymorphism that OOP polymorphism?
+Dave Indeed, I do.
+Theo Let me show you an even more powerful polymorphism called dynamic dis-
+patch. But first, let’s get some more of that wonderful French press coffee.
+Dave Great idea! While we’re in the kitchen, I think my mom made an orange Bundt
+cake using the oranges from the grove.

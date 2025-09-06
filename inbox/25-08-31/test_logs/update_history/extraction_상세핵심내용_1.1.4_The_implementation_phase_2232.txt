@@ -1,0 +1,38 @@
+[SYSTEM_PROMPT]
+문서 분석 전문가. 상세하면서도 핵심적인 내용을 정리하세요.
+
+[PROMPT]
+다음 문서의 상세 핵심 내용을 정리해주세요.
+
+문서 제목: 1.1.4_The_implementation_phase
+문서 내용:
+### 1.1.4_The_implementation_phase
+
+1.1.4
+The implementation phase
+After this detailed investigation of Theo's diagrams, Dave lets it sink in as he slowly sips his
+coffee. He then expresses his admiration to Theo.
+Dave
+Wow! That's amazing!
+Theo
+Thank you.
+Dave
+I didn't realize people were really spending the time to write down their design
+in such detail before coding.
+Theo
+I always do that. It saves me lot of time during the coding phase.
+Dave
+When will you start coding?
+Theo
+When I finish my latte.
+Theo grabs his coffee mug and notices that his hot latte has become an iced latte. He was
+so excited to show his class diagram to Dave that he forgot to drink it!
+
+--- 페이지 41 ---
+
+주요 개념과 중요한 세부사항을 포함하여 5-7문장으로 정리해주세요.
+
+[추출 결과]
+다음은 문서 "1.1.4_The_implementation_phase"의 핵심 내용을 5-7 문장으로 정리한 것입니다.
+
+이 문서는 구현 단계(implementation phase)에 대한 짧은 대화 내용을 담고 있습니다. Theo는 상세하게 작성된 디자인 다이어그램을 Dave에게 보여주며, Dave는 Theo의 꼼꼼함에 감탄합니다. Theo는 코딩 전에 상세 디자인을 작성하는 것이 코딩 시간 절약에 도움이 된다고 설명합니다.  Dave는 코딩 시작 시점을 묻고, Theo는 커피를 다 마신 후 시작할 것이라고 답합니다. Theo는 다이어그램 설명에 집중한 나머지 라떼가 식은 것을 뒤늦게 깨닫습니다. 이 대화는 상세 설계를 통해 코딩 시간을 절약할 수 있다는 점과, 설계에 집중하다 보면 개인적인 일을 잊을 수 있다는 점을 보여줍니다.

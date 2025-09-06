@@ -1,0 +1,25 @@
+# 테스트용 설정 파일 - 16번 노드만 처리
+ai_provider: 'gemini'
+processing_mode: 'v5'
+nodes_json_path: '../25-08-31/test_single_node.json'
+node_docs_dir: '../25-08-31/node_docs'
+debug_dir: '../25-08-31'
+
+# 병렬 처리 설정
+parallel:
+  max_concurrent: 3
+
+# 로깅 설정
+logging:
+  level: 'INFO'
+  save_logs: true
+
+# AI 모델 설정
+models:
+  gemini: "gemini-2.0-flash-exp"
+
+# 프로바이더별 상세 설정
+providers:
+  gemini:
+    model: 'models/gemini-2.0-flash-lite'
+    temperature: 0.7

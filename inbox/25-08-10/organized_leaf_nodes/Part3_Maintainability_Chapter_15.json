@@ -1,0 +1,44 @@
+[
+  {
+    "id": 139,
+    "title": "15 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 140,
+    "title": "15.1 Determinism in programming",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 141,
+    "title": "15.2 Reproducibility with numbers and strings",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 142,
+    "title": "15.3 Reproducibility with any data",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 143,
+    "title": "15.4 Unit tests",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 144,
+    "title": "15.5 Dealing with external data sources",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

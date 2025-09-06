@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "Part 1 Introduction",
+    "level": 1,
+    "start_text": "Part 1\nFlexibility\nI\nt's Monday morning. Theodore is sitting with Nancy on the terrace of La Vita è\nBella, an Italian coffee shop near the San Francisco Zoo.",
+    "end_text": "Nancy Perfect!"
+  },
+  {
+    "id": 3,
+    "title": "1 Introduction",
+    "level": 2,
+    "start_text": "Complexity of object-\noriented programming\nA capricious entrepreneur\nThis chapter covers\n The tendency of OOP to increase system\ncomplexity",
+    "end_text": "This paradigm is\nknown as data-oriented programming (DOP)."
+  },
+  {
+    "id": 5,
+    "title": "1.1 Introduction",
+    "level": 3,
+    "start_text": "NOTE Theo, Nancy, and their new project were introduced in the opener for part 1.\nTake a moment to read the opener if you missed it.",
+    "end_text": "His job is to close deals and to deliver on time."
+  },
+  {
+    "id": 6,
+    "title": "1.1.1 The design phase",
+    "level": 3,
+    "start_text": "Before rushing to his laptop to code the system, Theo grabs a sheet of paper, much big-\nger than a napkin, and starts to draw a UML class diagram",
+    "end_text": "We can take a look now if you like."
+  },
+  {
+    "id": 7,
+    "title": "1.1.2 UML 101",
+    "level": 3,
+    "start_text": "Latte in hand, Dave follows Theo to his desk. Theo proudly shows Dave his piece of art: the\nUML diagram for the Library Management System",
+    "end_text": "While in an asso"
+  }
+]

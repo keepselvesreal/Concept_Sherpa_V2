@@ -1,0 +1,13 @@
+{
+  "session_id": "6f758032-2884-4b0c-8374-ede4f8f3961b",
+  "created_at": "2025-08-25T11:44:43+0900",
+  "interactions": [
+    {
+      "query_count": 1,
+      "timestamp": "2025-08-25T11:44:43+0900",
+      "query": "안녕",
+      "model_response": "안녕 태수! 뭘 도와드릴까요?",
+      "response_timestamp": "2025-08-25T11:44:51+0900"
+    }
+  ]
+}

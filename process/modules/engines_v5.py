@@ -81,7 +81,8 @@ class ExtractionEngineV5:
             # 디버깅 로그 저장
             if update_logger:
                 await update_logger.log_extraction_with_prompt(
-                    title, "통합추출", prompt, system_prompt, response.strip()
+                    title, "통합추출", prompt, system_prompt, response.strip(),
+                    self.ai_factory.provider_type, self.ai_factory.current_model
                 )
             
             # AI 응답을 바로 추출 섹션에 저장
@@ -305,7 +306,8 @@ class UpdateEngineV5:
         # 디버깅 로그 저장
         if update_logger:
             await update_logger.log_update_with_prompt(
-                parent_node.title, "구성노드통합업데이트", prompt, system_prompt, response.strip()
+                parent_node.title, "구성노드통합업데이트", prompt, system_prompt, response.strip(),
+                self.ai_factory.provider_type, self.ai_factory.current_model
             )
         
         if not response.strip():
@@ -537,7 +539,8 @@ class UpdateEngineV5:
             # 6. 디버깅 로그 저장
             if update_logger:
                 await update_logger.log_update_with_prompt(
-                    parent_node.title, "부모노드구성반영업데이트", prompt, system_prompt, response.strip()
+                    parent_node.title, "부모노드구성반영업데이트", prompt, system_prompt, response.strip(),
+                    self.ai_factory.provider_type, self.ai_factory.current_model
                 )
 
             if not response.strip():

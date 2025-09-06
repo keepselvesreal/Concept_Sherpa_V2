@@ -23,7 +23,6 @@ import logging
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Any
-import fitz  # PyMuPDF
 
 # 프로젝트 내부 모듈
 from .config_manager import ConfigManager
@@ -76,20 +75,27 @@ class ContentNodeAnalyzer:
         
         print(f"📝 로그 파일: {log_file}")
 
-    async def analyze_chapter_toc(self, toc_path: str, pdf_path: str) -> Dict[str, Any]:
-        """content_node_extractor_v3.py 로직: has_content 필드 분석"""
+    async def analyze_chapter_toc(self, toc_path: str, content_md_path: str) -> Dict[str, Any]:
+        """section_extractor_v2.py 로직 기반: 이미 생성된 마크다운에서 has_content 필드 분석"""
         try:
+            print("🔍 장별 TOC has_content 분석 시작...")
             self.logger.info(f"=== 장별 TOC has_content 분석 시작 ===")
             self.logger.info(f"TOC 파일: {toc_path}")
-            self.logger.info(f"PDF 파일: {pdf_path}")
+            self.logger.info(f"마크다운 파일: {content_md_path}")
             
             # TOC JSON 로드
+            print("📖 TOC JSON 파일 읽는 중...")
             with open(toc_path, 'r', encoding='utf-8') as f:
                 toc_data = json.load(f)
+            print(f"✅ TOC JSON 로드 완료: {len(toc_data)}개 항목")
             self.logger.info(f"TOC JSON 로드 완료: {len(toc_data)}개 항목")
             
-            # PDF → 마크다운 변환
-            markdown_content = self.create_full_markdown_from_pdf(pdf_path, toc_data)
+            # 이미 생성된 마크다운 파일 로드
+            print("📄 마크다운 파일 읽는 중...")
+            with open(content_md_path, 'r', encoding='utf-8') as f:
+                markdown_content = f.read()
+            print(f"✅ 마크다운 문서 로드 완료: {len(markdown_content)} 문자")
+            self.logger.info(f"마크다운 문서 로드 완료: {len(markdown_content)} 문자")
             
             # 최대 레벨 찾기
             max_level = max(item.get('level', 0) for item in toc_data)
@@ -173,12 +179,12 @@ class ContentNodeAnalyzer:
             self.logger.error(f"AI 분석 실패: {str(e)}")
             return True  # 실패시 안전한 기본값
 
-    async def extract_content_nodes_to_files(self, content_nodes_path: str, pdf_path: str) -> Dict[str, Any]:
-        """section_extractor_v2.py 로직: Claude SDK 기반 콘텐츠 파일 추출"""
+    async def extract_content_nodes_to_files(self, content_nodes_path: str, content_md_path: str) -> Dict[str, Any]:
+        """section_extractor_v2.py 로직: 이미 생성된 마크다운에서 Claude SDK 기반 콘텐츠 파일 추출"""
         try:
             self.logger.info(f"=== section_extractor_v2.py 로직 기반 콘텐츠 파일 추출 시작 ===")
             self.logger.info(f"Content nodes: {content_nodes_path}")
-            self.logger.info(f"PDF 파일: {pdf_path}")
+            self.logger.info(f"마크다운 파일: {content_md_path}")
             
             # content_nodes.json 로드
             with open(content_nodes_path, 'r', encoding='utf-8') as f:
@@ -191,10 +197,10 @@ class ContentNodeAnalyzer:
             if not content_sections:
                 return {'success': False, 'error': 'has_content=true인 섹션이 없음'}
             
-            # PDF → 전체 마크다운 변환
-            self.logger.info("PDF를 마크다운으로 변환 중...")
-            markdown_content = self.create_full_markdown_from_pdf(pdf_path, content_sections)
-            self.logger.info(f"마크다운 변환 완료: {len(markdown_content)} 문자")
+            # 이미 생성된 마크다운 파일 로드
+            with open(content_md_path, 'r', encoding='utf-8') as f:
+                markdown_content = f.read()
+            self.logger.info(f"마크다운 문서 로드 완료: {len(markdown_content)} 문자")
             
             # section_extractor_v2.py 스타일 병렬 섹션 추출
             self.logger.info("🔍 Claude SDK 병렬 섹션 추출 시작")
@@ -227,37 +233,6 @@ class ContentNodeAnalyzer:
         except Exception as e:
             self.logger.error(f"콘텐츠 노드 파일 추출 실패: {str(e)}", exc_info=True)
             return {'success': False, 'error': str(e)}
-
-    def create_full_markdown_from_pdf(self, pdf_path: str, content_sections: list) -> str:
-        """PDF → 전체 마크다운 변환 (section_extractor_v2.py 스타일)"""
-        try:
-            self.logger.info(f"PDF → 마크다운 전체 변환 시작: {pdf_path}")
-            
-            doc = fitz.open(pdf_path)
-            markdown_content = ""
-            
-            # 전체 섹션 범위 계산
-            min_page = min(section.get('start_page', section.get('page', 1)) for section in content_sections)
-            max_page = max(section.get('end_page', section.get('page', 1)) for section in content_sections)
-            
-            self.logger.info(f"전체 페이지 범위: {min_page}-{max_page}")
-            
-            # 페이지별 텍스트 추출
-            for page_num in range(min_page - 1, min(max_page, doc.page_count)):
-                if page_num < doc.page_count:
-                    page = doc.load_page(page_num)
-                    text = page.get_text()
-                    markdown_content += f"--- 페이지 {page_num + 1} ---\n{text}\n\n"
-                else:
-                    self.logger.warning(f"페이지 {page_num + 1}는 PDF 범위를 벗어남")
-            
-            doc.close()
-            self.logger.info(f"PDF → 마크다운 전체 변환 완료: {len(markdown_content)} 문자")
-            return markdown_content
-            
-        except Exception as e:
-            self.logger.error(f"PDF → 마크다운 전체 변환 실패: {str(e)}")
-            return ""
 
     async def extract_single_section_with_claude(self, section_title: str, next_section_title: str, markdown_content: str) -> str:
         """section_extractor_v2.py 로직: Claude SDK로 특정 섹션 하나만 추출"""

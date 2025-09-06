@@ -1,0 +1,10 @@
+{
+  "session_id": "20250824_235535",
+  "query_id": 1,
+  "current_query": "이 문서의 핵심 내용을 3줄로 요약해주세요.",
+  "answer": "태수야, 이 참고 문서는 내용이 너무 부족해서 제대로 된 요약을 하기 어렵다.\n\n주어진 내용으로만 보면:\n- 데이터 분석 도구로 R과 파이썬이 많이 쓰임\n- 이 두 언어는 머신러닝과 통계 분석에 특화됨\n- 그런데 이게 전부야\n\n솔직히 말하면 이 정도 정보로는 유의미한 분석이나 요약을 하기 힘들어. 더 구체적인 문서나 맥락이 필요해.",
+  "elapsed_time": 8.18,
+  "timestamp": "2025-08-24T23:55:44.168012",
+  "document_path": "/home/nadle/projects/test/data_analysis_doc.md",
+  "success": true
+}

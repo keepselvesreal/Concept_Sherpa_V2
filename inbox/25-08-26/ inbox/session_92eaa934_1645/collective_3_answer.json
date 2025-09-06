@@ -1,0 +1,10 @@
+{
+  "query_number": 3,
+  "query": "세 번째 질의 테스트",
+  "model_response": "세션 재개 질의 처리 중 오류가 발생했습니다: Command failed with exit code 1 (exit code: 1)\nError output: No conversation found with session ID: 92eaa934-7f17-4047-9127-123223f1737c",
+  "has_relevant_content": false,
+  "elapsed_time": 20.671401739120483,
+  "timestamp": "2025-08-26T16:57:21.828484",
+  "success": false,
+  "error": "Command failed with exit code 1 (exit code: 1)\nError output: No conversation found with session ID: 92eaa934-7f17-4047-9127-123223f1737c"
+}

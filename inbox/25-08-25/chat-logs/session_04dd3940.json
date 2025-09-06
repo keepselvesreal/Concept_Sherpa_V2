@@ -1,0 +1,13 @@
+{
+  "session_id": "04dd3940-391e-4e1f-b361-a6bca7d17619",
+  "created_at": "2025-08-25T12:21:46+0900",
+  "interactions": [
+    {
+      "query_count": 1,
+      "timestamp": "2025-08-25T12:21:46+0900",
+      "query": "get_session_id.py를 실행해줘 ",
+      "model_response": "Python 3.11이 설치되지 않았네. 먼저 사용 가능한 파이썬 버전을 확인해보자.\n\nuv를 사용해서 실행해보자.\n\n좋아! 세션 ID가 정상적으로 찾아졌다.\n- 전체 세션 ID: `04dd3940-391e-4e1f-b361-a6bca7d17619`\n- 짧은 ID: `04dd3940` \n- 세션 파일 위치: `/home/nadle/projects/Knowledge_Sherpa/v2/25-08-25/chat-logs/session_04dd3940.json`\n\n훅 로그와 임시 파일 두 곳에서 모두 일치하는 세션 ID를 찾았으니 신뢰할 수 있는 정보야.",
+      "response_timestamp": "2025-08-25T12:22:15+0900"
+    }
+  ]
+}

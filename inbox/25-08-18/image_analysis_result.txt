@@ -1,0 +1,14 @@
+2025-08-18 20:44:22,712 - __main__ - INFO - ImageAnalyzer 초기화 완료
+2025-08-18 20:44:22,712 - __main__ - INFO - 이미지 분석 시작 - URL: https://velog.io/@jungseokheo/hanghaeplus5thweek/image.2.png
+2025-08-18 20:44:23,092 - __main__ - INFO - 임시 파일 저장: /tmp/tmp1ihe23e1.png
+2025-08-18 20:44:30,748 - __main__ - INFO - 이미지 분석 성공
+2025-08-18 20:44:30,749 - __main__ - INFO - 임시 파일 삭제: /tmp/tmp1ihe23e1.png
+🔍 이미지 분석 시작
+📎 URL: https://velog.io/@jungseokheo/hanghaeplus5thweek/image.2.png
+📋 추가 요청: 이미지 속 텍스트와 반응, 내용을 자세히 분석해주세요
+--------------------------------------------------
+✅ 분석 성공!
+
+📊 분석 결과:
+--------------------------------------------------
+제공된 이미지를 분석하겠습니다.

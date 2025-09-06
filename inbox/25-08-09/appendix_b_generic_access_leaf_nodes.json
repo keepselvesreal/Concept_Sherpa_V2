@@ -1,0 +1,107 @@
+[
+  {
+    "id": 175,
+    "title": "Appendix B Introduction",
+    "level": 1,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 177,
+    "title": "B.1 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 178,
+    "title": "B.1.1 Accessing non-nested map fields with dynamic getters",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 179,
+    "title": "B.1.2 Accessing nested map fields with dynamic getters",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 181,
+    "title": "B.2 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 182,
+    "title": "B.2.1 Accessing non-nested map fields with value getters",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 183,
+    "title": "B.2.2 Accessing nested map fields with value getters",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 185,
+    "title": "B.3 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 186,
+    "title": "B.3.1 Accessing non-nested map fields with typed getters",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 187,
+    "title": "B.3.2 Accessing nested map fields with typed getters",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 189,
+    "title": "B.4 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 190,
+    "title": "B.4.1 Generic access to non-nested class members",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 191,
+    "title": "B.4.2 Generic access to nested class members",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 192,
+    "title": "B.4.3 Automatic JSON serialization of objects",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 193,
+    "title": "Summary",
+    "level": 1,
+    "start_text": "",
+    "end_text": ""
+  }
+]

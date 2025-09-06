@@ -1,0 +1,86 @@
+[
+  {
+    "id": 34,
+    "title": "3 Basic data manipulation",
+    "level": 1,
+    "page": 71,
+    "parent_id": 14,
+    "children_ids": [
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "start_page": 71,
+    "end_page": 98,
+    "page_count": 28
+  },
+  {
+    "id": 35,
+    "title": "3.1 Designing a data model",
+    "level": 2,
+    "page": 72,
+    "parent_id": 34,
+    "children_ids": [],
+    "start_page": 72,
+    "end_page": 75,
+    "page_count": 4
+  },
+  {
+    "id": 36,
+    "title": "3.2 Representing records as maps",
+    "level": 2,
+    "page": 76,
+    "parent_id": 34,
+    "children_ids": [],
+    "start_page": 76,
+    "end_page": 81,
+    "page_count": 6
+  },
+  {
+    "id": 37,
+    "title": "3.3 Manipulating data with generic functions",
+    "level": 2,
+    "page": 82,
+    "parent_id": 34,
+    "children_ids": [],
+    "start_page": 82,
+    "end_page": 85,
+    "page_count": 4
+  },
+  {
+    "id": 38,
+    "title": "3.4 Calculating search results",
+    "level": 2,
+    "page": 86,
+    "parent_id": 34,
+    "children_ids": [],
+    "start_page": 86,
+    "end_page": 92,
+    "page_count": 7
+  },
+  {
+    "id": 39,
+    "title": "3.5 Handling records of different types",
+    "level": 2,
+    "page": 93,
+    "parent_id": 34,
+    "children_ids": [],
+    "start_page": 93,
+    "end_page": 96,
+    "page_count": 4
+  },
+  {
+    "id": 40,
+    "title": "Summary",
+    "level": 2,
+    "page": 97,
+    "parent_id": 34,
+    "children_ids": [],
+    "start_page": 97,
+    "end_page": 98,
+    "page_count": 2
+  }
+]

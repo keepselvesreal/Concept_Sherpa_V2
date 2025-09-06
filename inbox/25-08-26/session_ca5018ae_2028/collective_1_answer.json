@@ -1,0 +1,14 @@
+{
+  "query_number": 1,
+  "query": "완전한 단계별 테스트",
+  "model_response": "태수야, '완전한 단계별 테스트'가 뭘 의미하는지 좀 더 구체적으로 설명해줄 수 있을까?\n\n참조 문서들은 프로그래밍 패러다임(OOP, FP, DOP)에 관한 내용인데, 네가 말하는 테스트가:\n\n1. **이 패러다임들에 대한 이해도 테스트**를 원하는 건지\n2. **소프트웨어 테스팅 방법론**에 대한 단계별 가이드를 원하는 건지\n3. **특정 프로젝트나 코드의 테스트 계획**을 세우려는 건지\n4. **학습한 내용을 검증하는 테스트**를 만들어달라는 건지\n\n목적이 명확해야 제대로 된 도움을 줄 수 있어. 지금 상황에서는 어떤 방향으로 가야 할지 판단하기 어렵거든.",
+  "has_relevant_content": false,
+  "elapsed_time": 15.709096193313599,
+  "timestamp": "2025-08-26T20:28:49.565652",
+  "success": true,
+  "document_paths": [
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/OOP.md",
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/FP.md",
+    "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/DOP.md"
+  ]
+}

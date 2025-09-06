@@ -37,9 +37,16 @@ class UpdateLogger:
         # 최대 50자로 제한
         return safe_name[:50]
     
-    def _format_simple_extraction_log(self, system_prompt: str, prompt: str, result: str) -> str:
+    def _format_simple_extraction_log(self, system_prompt: str, prompt: str, result: str, 
+                                      ai_provider: str = None, ai_model: str = None) -> str:
         """간단한 추출 로그 형식 생성 - 프롬프트와 결과만"""
-        return f"""[SYSTEM_PROMPT]
+        header = ""
+        if ai_provider:
+            header += f"[AI_PROVIDER]\n{ai_provider}\n\n"
+        if ai_model:
+            header += f"[AI_MODEL]\n{ai_model}\n\n"
+        
+        return f"""{header}[SYSTEM_PROMPT]
 {system_prompt}
 
 [PROMPT]
@@ -48,9 +55,16 @@ class UpdateLogger:
 [추출 결과]
 {result}"""
     
-    def _format_simple_update_log(self, system_prompt: str, prompt: str, update_content: str) -> str:
+    def _format_simple_update_log(self, system_prompt: str, prompt: str, update_content: str,
+                                  ai_provider: str = None, ai_model: str = None) -> str:
         """간단한 업데이트 로그 형식 생성 - 프롬프트와 결과만"""
-        return f"""[SYSTEM_PROMPT]
+        header = ""
+        if ai_provider:
+            header += f"[AI_PROVIDER]\n{ai_provider}\n\n"
+        if ai_model:
+            header += f"[AI_MODEL]\n{ai_model}\n\n"
+        
+        return f"""{header}[SYSTEM_PROMPT]
 {system_prompt}
 
 [PROMPT]
@@ -61,7 +75,8 @@ class UpdateLogger:
     
     async def log_extraction_with_prompt(self, node_title: str, info_type: str,
                                         prompt: str, system_prompt: str, 
-                                        extraction_result: str):
+                                        extraction_result: str,
+                                        ai_provider: str = None, ai_model: str = None):
         """추출 작업 시 프롬프트와 결과 저장"""
         try:
             # 시간 형식: HHMM
@@ -74,7 +89,7 @@ class UpdateLogger:
             
             # 로그 내용 구성
             log_content = self._format_simple_extraction_log(
-                system_prompt, prompt, extraction_result
+                system_prompt, prompt, extraction_result, ai_provider, ai_model
             )
             
             # 파일 저장
@@ -91,7 +106,8 @@ class UpdateLogger:
     async def log_update_with_prompt(self, node_title: str, info_type: str,
                                     prompt: str, system_prompt: str, 
                                     update_content: str,
-                                    operation_type: str = "update"):
+                                    operation_type: str = "update",
+                                    ai_provider: str = None, ai_model: str = None):
         """업데이트 작업 시 프롬프트와 결과 저장"""
         try:
             # 시간 형식: HHMM
@@ -104,7 +120,7 @@ class UpdateLogger:
             
             # 로그 내용 구성
             log_content = self._format_simple_update_log(
-                system_prompt, prompt, update_content
+                system_prompt, prompt, update_content, ai_provider, ai_model
             )
             
             # 파일 저장

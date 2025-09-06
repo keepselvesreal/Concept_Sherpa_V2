@@ -1,0 +1,9 @@
+{
+  "query_number": 1,
+  "query": "dop가 다른 프로그래밍 패러다임과 구분되는점은?",
+  "model_response": "질의에서 언급하신 \"dop\"가 무엇을 의미하는지 명확하지 않네요. \n\n혹시 다음 중 하나를 의미하시는 건가요?\n\n1. **DOP (Data-Oriented Programming)** - 데이터 중심 프로그래밍\n2. **OOP (Object-Oriented Programming)**의 오타\n3. 다른 특정 프로그래밍 패러다임\n\n정확한 답변을 위해 어떤 프로그래밍 패러다임에 대해 알고 싶으신지 명확히 해주시면, 그것이 다른 패러다임들(함수형, 객체지향, 절차형 등)과 어떻게 구분되는지 설명드리겠습니다.",
+  "elapsed_time": 14.03,
+  "timestamp": "2025-08-25T16:30:09.435331",
+  "document_path": "references/FP.md",
+  "success": true
+}

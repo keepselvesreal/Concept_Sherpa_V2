@@ -1,0 +1,10 @@
+{
+  "query_number": 1,
+  "query": "참조 문서에서 말하는 3개 프롬프트의 핵심이 뭐야?",
+  "model_response": "태수야, 이 글에서 말하는 3개 프롬프트의 핵심은 Eskil Steenberg의 시스템 아키텍처 강의를 AI 개발에 적용한 것들이야.\n\n**3개 프롬프트의 구성:**\n1. **Claude Code Prompt** - 실제 개발 작업용\n2. **Claude Prompt** - 계획 및 설계용  \n3. **Cursor Prompt** - 디버깅 및 테스트 전략용\n\n**핵심 원칙들:**\n- **모든 것이 교체 가능해야 함** - AI가 복잡한 코드를 생성해도 모듈 단위로 쉽게 교체 가능\n- **블랙박스 인터페이스** - 모듈 간 깔끔한 API로 소통\n- **한 모듈, 한 사람** - 개별 모듈에 집중할 수 있는 구조\n- **지속적인 개발 속도** - 프로젝트 크기와 관계없이 일정한 생산성 유지\n- **새 코드 우선** - 기존 코드 수정보다 새로 작성하는 게 빠름\n\n**실제 적용 방식:**\n- 단일 폴더에 집중\n- 컨텍스트와 프롬프트를 Claude에 전달\n- 전략적 계획 수립\n- Claude Code나 Cursor로 실행\n\n솔직히 말하면, 이건 AI 코드 생성의 가장 큰 약점인 '복잡하고 이해하기 어려운 코드'를 오히려 장점으로 바꾸는 똑똑한 접근법이야. 모듈화만 잘 되어 있으면 AI가 뭘 만들든 필요할 때 교체하면 되니까.",
+  "has_relevant_content": true,
+  "elapsed_time": 19.67621421813965,
+  "timestamp": "2025-08-27T21:51:52.895757",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-27/../extraction-system/references/00_lev0_How_I_Turn_Claude_Into_a_Systems_Engineering_Genius_With_One_Prompt_Vibe_Coding_info.md",
+  "success": true
+}

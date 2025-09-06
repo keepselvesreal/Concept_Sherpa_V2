@@ -1,0 +1,148 @@
+[
+  {
+    "id": 81,
+    "title": "9_Persistent_data_structures",
+    "level": 1,
+    "page": 203,
+    "parent_id": 67,
+    "children_ids": [
+      82,
+      83,
+      84,
+      87,
+      92
+    ],
+    "start_page": 203,
+    "end_page": 224,
+    "page_count": 22
+  },
+  {
+    "id": 82,
+    "title": "9.1_The_need_for_persistent_data_structures",
+    "level": 2,
+    "page": 203,
+    "parent_id": 81,
+    "children_ids": [],
+    "start_page": 203,
+    "end_page": 205,
+    "page_count": 3
+  },
+  {
+    "id": 83,
+    "title": "9.2_The_efficiency_of_persistent_data_structures",
+    "level": 2,
+    "page": 206,
+    "parent_id": 81,
+    "children_ids": [],
+    "start_page": 206,
+    "end_page": 211,
+    "page_count": 6
+  },
+  {
+    "id": 84,
+    "title": "9.3_Persistent_data_structures_libraries",
+    "level": 2,
+    "page": 212,
+    "parent_id": 81,
+    "children_ids": [
+      85,
+      86
+    ],
+    "start_page": 212,
+    "end_page": 215,
+    "page_count": 4
+  },
+  {
+    "id": 85,
+    "title": "9.3.1_Persistent_data_structures_in_Java",
+    "level": 3,
+    "page": 212,
+    "parent_id": 84,
+    "children_ids": [],
+    "start_page": 212,
+    "end_page": 213,
+    "page_count": 2
+  },
+  {
+    "id": 86,
+    "title": "9.3.2_Persistent_data_structures_in_JavaScript",
+    "level": 3,
+    "page": 214,
+    "parent_id": 84,
+    "children_ids": [],
+    "start_page": 214,
+    "end_page": 215,
+    "page_count": 2
+  },
+  {
+    "id": 87,
+    "title": "9.4_Persistent_data_structures_in_action",
+    "level": 2,
+    "page": 216,
+    "parent_id": 81,
+    "children_ids": [
+      88,
+      89,
+      90,
+      91
+    ],
+    "start_page": 216,
+    "end_page": 222,
+    "page_count": 7
+  },
+  {
+    "id": 88,
+    "title": "9.4.1_Writing_queries_with_persistent_data_structures",
+    "level": 3,
+    "page": 216,
+    "parent_id": 87,
+    "children_ids": [],
+    "start_page": 216,
+    "end_page": 218,
+    "page_count": 3
+  },
+  {
+    "id": 89,
+    "title": "9.4.2_Writing_mutations_with_persistent_data_structures",
+    "level": 3,
+    "page": 219,
+    "parent_id": 87,
+    "children_ids": [],
+    "start_page": 219,
+    "end_page": 219,
+    "page_count": 1
+  },
+  {
+    "id": 90,
+    "title": "9.4.3_Serialization_and_deserialization",
+    "level": 3,
+    "page": 220,
+    "parent_id": 87,
+    "children_ids": [],
+    "start_page": 220,
+    "end_page": 220,
+    "page_count": 1
+  },
+  {
+    "id": 91,
+    "title": "9.4.4_Structural_diff",
+    "level": 3,
+    "page": 221,
+    "parent_id": 87,
+    "children_ids": [],
+    "start_page": 221,
+    "end_page": 222,
+    "page_count": 2
+  },
+  {
+    "id": 92,
+    "title": "Summary",
+    "level": 2,
+    "page": 223,
+    "parent_id": 81,
+    "children_ids": [],
+    "start_page": 223,
+    "end_page": 224,
+    "page_count": 2
+  }
+]

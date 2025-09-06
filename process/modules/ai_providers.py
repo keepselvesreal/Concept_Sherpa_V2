@@ -79,6 +79,9 @@ class AIProviderFactory:
             self._setup_claude()
         elif self.provider_type == 'openai':
             self._setup_openai()
+        
+        # 현재 사용 중인 모델 정보 저장
+        self._update_current_model()
     
     def _setup_gemini(self):
         """Gemini 설정"""
@@ -107,6 +110,29 @@ class AIProviderFactory:
         
         openai.api_key = api_key
     
+    def _update_current_model(self):
+        """현재 사용 중인 모델 정보 업데이트"""
+        if self.provider_type == 'gemini':
+            # unified_node_processor 설정에서 model 가져오기, 없으면 providers/gemini에서 가져오기
+            model_name = self.config.get('model')  # unified_node_processor.model 우선
+            if not model_name:
+                gemini_config = self.model_config.get('gemini', {})
+                if isinstance(gemini_config, dict):
+                    model_name = gemini_config.get('model', 'gemini-2.0-flash-exp')
+                else:
+                    model_name = gemini_config or 'gemini-2.0-flash-exp'
+            self.current_model = model_name
+        elif self.provider_type == 'claude':
+            self.current_model = "claude-3-sonnet"  # Claude 기본 모델
+        elif self.provider_type == 'openai':
+            openai_config = self.model_config.get('openai', {})
+            if isinstance(openai_config, dict):
+                self.current_model = openai_config.get('model', 'gpt-4')
+            else:
+                self.current_model = 'gpt-4'
+        else:
+            self.current_model = "unknown"
+    
     async def generate_content(self, prompt: str, system_prompt: str = "", 
                              update_logger: UpdateLogger = None) -> Tuple[str, int, int]:
         """내용 생성"""
@@ -134,12 +160,14 @@ class AIProviderFactory:
                 self.logger.error(f"system_prompt가 문자열이 아님: {type(system_prompt)} - {system_prompt}")
                 return "", 0, 0
             
-            # model_config에서 gemini 설정 가져오기 (딕셔너리일 수 있음)
-            gemini_config = self.model_config.get('gemini', {})
-            if isinstance(gemini_config, dict):
-                model_name = gemini_config.get('model', 'gemini-2.0-flash-exp')
-            else:
-                model_name = gemini_config or 'gemini-2.0-flash-exp'
+            # unified_node_processor 설정에서 model 가져오기, 없으면 providers/gemini에서 가져오기
+            model_name = self.config.get('model')  # unified_node_processor.model 우선
+            if not model_name:
+                gemini_config = self.model_config.get('gemini', {})
+                if isinstance(gemini_config, dict):
+                    model_name = gemini_config.get('model', 'gemini-2.0-flash-exp')
+                else:
+                    model_name = gemini_config or 'gemini-2.0-flash-exp'
             self.logger.debug(f"Gemini model_name: {model_name} (type: {type(model_name)})")
             self.logger.debug(f"system_prompt: {system_prompt} (type: {type(system_prompt)})")
             model = genai.GenerativeModel(model_name, system_instruction=system_prompt)

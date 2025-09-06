@@ -22,8 +22,9 @@ from typing import Dict, List, Any, Optional
 sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/inbox/25-08-30')
 sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/inbox/25-08-31')
 
-from .refactoring_logger import RefactoringLogger, RefactoringLogContext
-from .ai_providers import AIProviderFactory
+from refactoring_logger import RefactoringLogger, RefactoringLogContext
+from ai_providers import AIProviderFactory
+from chapter_organizer import ChapterOrganizer
 
 @dataclass
 class TocExtractionResult:
@@ -290,3 +291,93 @@ class TocExtractor:
         normalized = normalized.strip('_')
         
         return normalized if normalized else "untitled"
+    
+    def organize_chapters(self, pdf_path: str, extraction_base_path: str = None) -> Dict[str, Any]:
+        """
+        전체 파이프라인: 목차 추출 → AI 장 식별 → 장별 폴더/파일 생성
+        
+        Args:
+            pdf_path: PDF 파일 경로
+            extraction_base_path: extraction-system 기본 경로 (기본값: /home/nadle/projects/Knowledge_Sherpa/v2/extraction-system)
+            
+        Returns:
+            Dict: 전체 정리 결과
+        """
+        context = RefactoringLogContext("TocExtractor", "organize_chapters")
+        
+        if extraction_base_path is None:
+            extraction_base_path = "/home/nadle/projects/Knowledge_Sherpa/v2/extraction-system"
+        
+        try:
+            if self.logger:
+                self.logger.operation_start(context, {
+                    "pdf_path": pdf_path,
+                    "extraction_base_path": extraction_base_path
+                })
+            
+            # 1. 목차 추출
+            print("📚 1단계: PDF 목차 추출 중...")
+            toc_result = self.extract_toc(pdf_path)
+            if not toc_result.success:
+                return {"success": False, "error": f"목차 추출 실패: {toc_result.error}"}
+            
+            # 2. AI 장 식별
+            print("🤖 2단계: AI 기반 장 식별 중...")
+            chapter_result = self.analyze_chapters_with_ai(toc_result.toc_data)
+            if not chapter_result.success:
+                return {"success": False, "error": f"장 식별 실패: {chapter_result.error}"}
+            
+            # 3. 장별 폴더/파일 생성
+            print("📁 3단계: 장별 폴더 및 파일 생성 중...")
+            pdf_filename = Path(pdf_path).name
+            organizer = ChapterOrganizer(Path(extraction_base_path), self.logger)
+            
+            organize_result = organizer.organize_book_chapters(
+                pdf_filename,
+                chapter_result.chapters_info,
+                toc_result.toc_data.get("toc_structure", [])
+            )
+            
+            if not organize_result["success"]:
+                return {"success": False, "error": f"장별 정리 실패: {organize_result.get('error', '')}"}
+            
+            # 4. 최종 결과 정리
+            final_result = {
+                "success": True,
+                "pipeline_stages": {
+                    "toc_extraction": {
+                        "success": True,
+                        "total_toc_items": len(toc_result.toc_data.get("toc_structure", []))
+                    },
+                    "chapter_identification": {
+                        "success": True,
+                        "total_chapters": len(chapter_result.chapters_info)
+                    },
+                    "chapter_organization": {
+                        "success": True,
+                        "created_chapters": len(organize_result["created_chapters"])
+                    }
+                },
+                "book_info": {
+                    "pdf_filename": pdf_filename,
+                    "book_directory": organize_result["book_directory"],
+                    "total_chapters": organize_result["total_chapters"]
+                },
+                "created_chapters": organize_result["created_chapters"]
+            }
+            
+            if self.logger:
+                self.logger.operation_success(context, {
+                    "success": True,
+                    "total_chapters_organized": organize_result["total_chapters"]
+                })
+            
+            print(f"✅ 완료! {organize_result['total_chapters']}개 장이 {organize_result['book_directory']}에 정리됨")
+            
+            return final_result
+            
+        except Exception as e:
+            error = f"전체 파이프라인 실행 중 오류: {str(e)}"
+            if self.logger:
+                self.logger.operation_error(context, str(e))
+            return {"success": False, "error": error}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": 64,
+    "title": "Part 2 Introduction",
+    "level": 1,
+    "start_text": "# 7 Basic data validation **Level:** 1 **페이지 범위:** 169 - 190 **총 페이지 수:** 22 **",
+    "end_text": "y the first validation failure.  Advanced validation is covered in chapter 12.",
+    "section_start_pos": 0,
+    "section_end_pos": 34680,
+    "section_length": 34680
+  },
+  {
+    "id": 66,
+    "title": "7 Introduction",
+    "level": 2,
+    "start_text": "# 7 Basic data validation **Level:** 1 **페이지 범위:** 169 - 190 **총 페이지 수:** 22 **",
+    "end_text": "y the first validation failure.  Advanced validation is covered in chapter 12.",
+    "section_start_pos": 0,
+    "section_end_pos": 34680,
+    "section_length": 34680
+  },
+  {
+    "id": 67,
+    "title": "7.1 Data validation in DOP",
+    "level": 2,
+    "start_text": "7.1 Data validation in DOP Theo has rescheduled his meetings. With such an impos",
+    "end_text": "abase Figure 7.1 High-level architecture of a modern web server === 페이지 171 ===",
+    "section_start_pos": 1088,
+    "section_end_pos": 2742,
+    "section_length": 1654
+  },
+  {
+    "id": 68,
+    "title": "7.2 JSON Schema in a nutshell",
+    "level": 2,
+    "start_text": "7.2 JSON Schema in a nutshell 143 Joe This architectural diagram defines what we",
+    "end_text": "bout data validation inside the system? Joe Later, when the code base is bigger.",
+    "section_start_pos": 2743,
+    "section_end_pos": 4542,
+    "section_length": 1799
+  },
+  {
+    "id": 69,
+    "title": "7.3 Schema flexibility and strictness",
+    "level": 2,
+    "start_text": "7.3 Schema flexibility and strictness 149 validate(searchBooksRequestSchema, inv",
+    "end_text": "multiple book results, and in each book result, some of the fields are optional!",
+    "section_start_pos": 12729,
+    "section_end_pos": 14244,
+    "section_length": 1515
+  },
+  {
+    "id": 70,
+    "title": "7.4 Schema composition",
+    "level": 2,
+    "start_text": "7.4 Schema composition Theo What about validating data that comes from an extern",
+    "end_text": "y Books API response { \"type\": \"object\", \"required\": [\"title\"], === 페이지 183 ===",
+    "section_start_pos": 21390,
+    "section_end_pos": 22805,
+    "section_length": 1415
+  },
+  {
+    "id": 71,
+    "title": "7.5 Details about data validation failures",
+    "level": 2,
+    "start_text": "7.5 Details about data validation failures Joe So far, we’ve treated JSON Schema",
+    "end_text": "dSearchBooksRequest); ajv.errors Displays the validation errors === 페이지 187 ===",
+    "section_start_pos": 27126,
+    "section_end_pos": 28864,
+    "section_length": 1738
+  },
+  {
+    "id": 72,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "Summary 161 \"additionalProperties\": false We don’t allow fields that } are not e",
+    "end_text": "umber\": 54, because it contains all \"myString\": \"Happy\" the required fields. } ]",
+    "section_start_pos": 32593,
+    "section_end_pos": 33147,
+    "section_length": 554
+  }
+]

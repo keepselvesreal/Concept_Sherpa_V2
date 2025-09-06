@@ -61,21 +61,29 @@ class UnifiedNodeProcessor:
         self.logger.info(f"✅ UnifiedNodeProcessor 초기화 완료")
         self.logger.info(f"🔧 처리 모드: {self.config.get('processing_mode', 'v3')}")
         self.logger.info(f"🤖 AI 프로바이더: {self.config.get('ai_provider', 'gemini')}")
+        self.logger.info(f"🎯 AI 모델: {self.config.get('model', 'models/gemini-2.0-flash')}")
     
     def _load_config(self) -> Dict[str, Any]:
         """설정 파일 로딩"""
         try:
             with open(self.config_path, 'r', encoding='utf-8') as f:
-                config = yaml.safe_load(f)
+                full_config = yaml.safe_load(f)
                 
+            # unified_node_processor 섹션 추출
+            config = full_config.get('unified_node_processor', {})
+            
             # 기본 설정 적용
             defaults = {
                 'processing_mode': 'v3',
-                'ai_provider': 'gemini'
+                'ai_provider': 'gemini',
+                'model': 'models/gemini-2.0-flash'
             }
             for key, value in defaults.items():
                 if key not in config:
                     config[key] = value
+            
+            # providers 섹션도 포함 (AIProviderFactory 호환성을 위해)
+            config['providers'] = full_config.get('providers', {})
                     
             return config
         except Exception as e:

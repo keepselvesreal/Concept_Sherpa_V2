@@ -1,0 +1,13 @@
+unified_node_processor:
+  ai_provider: "gemini"
+  model: "models/gemini-2.0-flash"
+  processing_mode: "v5"
+  debug_dir: "/home/nadle/projects/Knowledge_Sherpa/v2/extraction-system/logs/Data_Oriented_Programming"
+  nodes_json_path: "/home/nadle/projects/Knowledge_Sherpa/v2/process/temp_test_toc.json"
+  node_docs_dir: "/home/nadle/projects/Knowledge_Sherpa/v2/extraction-system/Data_Oriented_Programming/1_Complexity_of_object_oriented_programming/node_info_docs"
+
+providers:
+  gemini:
+    api_key_env: "GEMINI_API_KEY"
+    model: "models/gemini-2.0-flash"
+    temperature: 0.7

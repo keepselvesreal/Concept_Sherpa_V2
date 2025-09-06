@@ -1,0 +1,15 @@
+{
+  "question_index": 1,
+  "original_question": {
+    "category": "unclear_details",
+    "gap_description": "새 데이터 생성의 메모리 효율성에 대한 오해",
+    "question": "새 데이터를 계속 만들면 메모리가 엄청 많이 쓰일 것 같은데, 어떻게 효율적으로 처리하는 거야?",
+    "expected_benefit": "구조적 공유 등의 최적화 기법을 이해해서 불변성에 대한 성능 우려를 해소할 수 있음"
+  },
+  "answer": "태수야, 좋은 질문이네. 메모리 걱정하는 건 당연한데, 실제로는 생각만큼 큰 문제가 아니야.\n\n참고 문서를 보면 **\"불변성으로 인한 메모리 오버헤드\"**가 단점으로 언급되어 있는데, 이게 핵심이야. 하지만 현실적으로는 다음과 같이 해결돼:\n\n## 메모리 효율성 해결 방법\n\n### 1. **구조적 공유(Structural Sharing)**\n```python\n# 실제로는 전체 복사가 아님\noriginal = {\"name\": \"John\", \"age\": 30, \"skills\": [\"Python\", \"Java\"]}\nupdated = {**original, \"age\": 31}  # skills 배열은 공유됨\n```\n\n### 2. **지연 평가와 제너레이터**\n```python\n# 메모리에 모든 데이터를 올리지 않음\ndef process_large_dataset(data):\n    for item in data:  # 한 번에 하나씩 처리\n        yield transform(item)\n```\n\n### 3. **가비지 컬렉션의 효율성**\n- 불변 데이터는 참조가 끊어지면 즉시 해제 가능\n- 순환 참조 문제가 거의 없음\n\n## 실용적 관점\n\n참고 문서의 게임 개발 예시를 보면:\n```python\ndef update_positions(entities):\n    return [  # 새 리스트지만 구조적으로 효율적\n        {**entity, \"position\": (새_위치)}\n        for entity in entities\n    ]\n```\n\n**현실적으로**:\n- 작은 데이터 구조들은 복사 비용이 미미함\n- CPU 캐시 효율성 향상으로 전체 성능은 오히려 좋아짐\n- 메모리보다 **개발 생산성과 버그 방지** 효과가 훨씬 큼\n\n정말 메모리가 문제가 되는 대용량 데이터라면, 스트리밍 처리나 청크 단위 처리를 고려해야 하지만, 일반적인 애플리케이션에서는 과도한 걱정이야.\n\n핵심은 **\"premature optimization is the root of all evil\"** - 실제 병목을 측정해보고 최적화하는 게 맞아.",
+  "metadata": {
+    "cost": 0.025875,
+    "timestamp": "2025-08-23T16:12:48.236376",
+    "status": "success"
+  }
+}

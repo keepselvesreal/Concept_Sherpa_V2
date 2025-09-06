@@ -1,0 +1,10 @@
+{
+  "query_number": 1,
+  "query": "데이터 지향 프로그래밍의 특징은?",
+  "model_response": "태수야, 참조 문서는 함수형 프로그래밍에 대한 내용이라 데이터 지향 프로그래밍과는 직접적인 관련이 없어. 데이터 지향 프로그래밍(Data-Oriented Programming)의 특징을 설명해줄게:\n\n## 🎯 데이터 지향 프로그래밍 핵심 특징\n\n**1. 데이터가 중심**\n- 코드보다 데이터 구조와 흐름에 집중\n- 메모리 레이아웃과 캐시 친화적 설계\n\n**2. 성능 최적화 우선**\n- CPU 캐시 효율성 극대화\n- 메모리 접근 패턴 최적화\n- 벡터화(SIMD) 활용\n\n**3. 구조체의 배열 vs 배열의 구조체**\n```cpp\n// AoS (Array of Structures) - 비효율\nstruct Player { int x, y, health; };\nPlayer players[1000];\n\n// SoA (Structure of Arrays) - 효율적\nstruct Players {\n    int x[1000];\n    int y[1000]; \n    int health[1000];\n};\n```\n\n**4. 함수는 데이터 변환기**\n- 데이터를 입력받아 변환된 데이터를 출력\n- 상태보다는 변환에 집중\n\n**5. 핫/콜드 데이터 분리**\n- 자주 사용되는 데이터와 그렇지 않은 데이터 분리\n- 캐시 미스 최소화\n\n## 💡 언제 유용한가?\n- 게임 개발 (대량의 엔티티 처리)\n- 과학 계산 (대용량 데이터 처리)\n- 실시간 시스템\n\n객체지향이나 함수형과는 다른 관점이야. 성능이 중요한 시스템에서 특히 빛을 발하지만, 코드 복잡성이 증가할 수 있다는 점은 고려해야 해.",
+  "has_relevant_content": false,
+  "elapsed_time": 21.71,
+  "timestamp": "2025-08-25T20:38:36.682260",
+  "document_path": "references/FP.md",
+  "success": true
+}

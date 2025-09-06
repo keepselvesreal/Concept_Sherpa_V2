@@ -1,0 +1,66 @@
+[
+  {
+    "title": "7 Basic data validation",
+    "level": 1,
+    "id": 0,
+    "parent_id": null,
+    "children_ids": [1, 2, 3, 4, 5, 6, 7],
+    "is_added_node": false
+  },
+  {
+    "title": "7 Introduction", 
+    "level": 2,
+    "id": 1,
+    "parent_id": 0,
+    "children_ids": [],
+    "is_added_node": true
+  },
+  {
+    "title": "7.1 Data validation in DOP",
+    "level": 2,
+    "id": 2,
+    "parent_id": 0,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "7.2 JSON Schema in a nutshell",
+    "level": 2,
+    "id": 3,
+    "parent_id": 0,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "7.3 Schema flexibility and strictness",
+    "level": 2,
+    "id": 4,
+    "parent_id": 0,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "7.4 Schema composition",
+    "level": 2,
+    "id": 5,
+    "parent_id": 0,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "7.5 Details about data validation failures",
+    "level": 2,
+    "id": 6,
+    "parent_id": 0,
+    "children_ids": [],
+    "is_added_node": false
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "id": 7,
+    "parent_id": 0,
+    "children_ids": [],
+    "is_added_node": false
+  }
+]

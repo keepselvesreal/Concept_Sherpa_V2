@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "title": "Part 1 Introduction",
+    "level": 1,
+    "start_text": "It's Monday morning. Theodore is sitting with Nancy on the terrace of La Vita è Bella",
+    "end_text": "Nancy Perfect!"
+  },
+  {
+    "id": 3,
+    "title": "1 Introduction",
+    "level": 2,
+    "start_text": "This chapter covers • The tendency of OOP to increase system complexity",
+    "end_text": "This paradigm is known as data-oriented programming (DOP)."
+  },
+  {
+    "id": 5,
+    "title": "1.1 Introduction",
+    "level": 3,
+    "start_text": "Theo gets back to the office with Nancy's napkin in his pocket",
+    "end_text": "Theo spends some time thinking about the organization of the system."
+  },
+  {
+    "id": 6,
+    "title": "1.1.1 The design phase",
+    "level": 3,
+    "start_text": "Before rushing to his laptop to code the system, Theo grabs a sheet of paper",
+    "end_text": "Theo Sure! I have the diagram on my desk. We can take a look now if you like."
+  },
+  {
+    "id": 7,
+    "title": "1.1.2 UML 101",
+    "level": 3,
+    "start_text": "Latte in hand, Dave follows Theo to his desk.",
+    "end_text": "Plain arrows with empty triangles represent class inheritance"
+  },
+  {
+    "id": 8,
+    "title": "1.1.3 Explaining each piece of the class diagram",
+    "level": 3,
+    "start_text": "Dave Thanks for the UML refresher! Now I think I can remember",
+    "end_text": "The User class represents a user of the"
+  },
+  {
+    "id": 9,
+    "title": "1.1.4 The implementation phase",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 11,
+    "title": "1.2 Introduction",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 12,
+    "title": "1.2.1 Many relations between classes",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 13,
+    "title": "1.2.2 Unpredictable code behavior",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 14,
+    "title": "1.2.3 Not trivial data serialization",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 15,
+    "title": "1.2.4 Complex class hierarchies",
+    "level": 3,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 16,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

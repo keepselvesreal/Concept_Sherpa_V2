@@ -1,0 +1,19 @@
+[
+  {
+    "id": 16,
+    "title": "1.1 OOP design: Classic or classical?",
+    "level": 2,
+    "page": 32,
+    "parent_id": 15,
+    "children_ids": [
+      17,
+      18,
+      19,
+      20
+    ],
+    "start_page": 32,
+    "end_page": 32,
+    "page_count": 1,
+    "has_content": true
+  }
+]

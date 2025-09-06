@@ -1,0 +1,9 @@
+### 1.9.8 Multi-Tool Integration and Codebase Exploration
+
+**Question**: Have you used other tools along with Claude Code to increase your speed a little bit more like running multiple Claude Codes together using git work trees and then merging few things or stack PRs or something like that. Is that something that you personally follow or would advise to? Second question is how do you structurally and in a very nice engineering way approach a part of the codebase that you're not very familiar with but you want to ship a PR in it really fast and you want to do it in a really nice way and not vibe code it. So yeah what are your ways of using Claude Code to help do both these things?
+
+**Eric**: Yep. Yeah. So, I definitely use Claude Code as well as Cursor. And I'd say typically I'll start things with Claude Code and then I'll use Cursor to fix things up. Or if I have very specific changes, if I know exactly the change that I want to do to this file, I'll just do it myself with Cursor and target the exact lines that I know need to change.
+
+The second part of your question was how to get spun up on a new part of the codebase. Before I start trying to write the feature I use Claude Code to help me explore the codebase. So I might say like tell me where in this codebase auth happens or where in this codebase something happens. Tell me similar features to this and have it tell me the file names. Have it tell me the classes that I should look at. And then use that to try to build up a mental picture to make sure that I can do this and not vibe code. Make sure I can still get a good sense of what's happening. And then I go work on the feature with Claude.
+
+Thank you so much. I'll be around and can answer other questions.

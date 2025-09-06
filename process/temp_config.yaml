@@ -1,0 +1,5 @@
+ai_provider: gemini
+debug_dir: /home/nadle/projects/Knowledge_Sherpa/v2/extraction-system/Data_Oriented_Programming/1_Complexity_of_object_oriented_programming/debug_logs
+node_docs_dir: /home/nadle/projects/Knowledge_Sherpa/v2/extraction-system/Data_Oriented_Programming/1_Complexity_of_object_oriented_programming/node_info_docs
+nodes_json_path: /home/nadle/projects/Knowledge_Sherpa/v2/extraction-system/Data_Oriented_Programming/1_Complexity_of_object_oriented_programming/1_Complexity_of_object_oriented_programming_toc.json
+processing_mode: v5

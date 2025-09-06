@@ -1,0 +1,13 @@
+{
+  "session_id": "47930e96-fb1d-4484-8334-a7f3d818fb43",
+  "created_at": "2025-08-26T21:13:25+0900",
+  "conversations": [
+    {
+      "query_number": 1,
+      "timestamp": "2025-08-26T21:13:25+0900",
+      "query": "다음 사용자 질의와 참조 문서를 분석하여 답변해주세요.\n\n사용자 질의: 순수 함수가 되기 위해서는 상태(state)가 없어야만 해?\n\n참조 문서: OOP.md\n# 객체 지향 프로그래밍(Object-Oriented Programming)\n\n## 🎯 객체 지향 프로그래밍 (OOP) 핵심\n\n### 기본 개념\n**현실 세계의 사물을 객체로 모델링**하여 프로그램을 설계하는 방식\n\n### 4가지 핵심 원리\n\n**1. 캡슐화 (Encapsulation)**\n- 데이터와 메서드를 하나로 묶음\n- 외부에서 직접 접근 제한\n\n**2. 상속 (Inheritance)**\n- 기존 클래스의 특성을 물려받아 새 클래스 생성\n- 코드 재사용성 향상\n\n**3. 다형성 (Polymorphism)**\n- 같은 인터페이스로 다른 동작 수행\n- 하나의 메서드가 여러 형태로 동작\n\n**4. 추상화 (Abstraction)**\n- 복잡한 구현을 숨기고 필요한 기능만 노출\n- 인터페이스로 본질만 표현\n\n## 💡 간단한 예시\n```python\nclass Animal:  # 부모 클래스\n    def speak(self):\n        pass\n\nclass Dog(Animal):  # 상속\n    def speak(self):\n        return \"멍멍\"  # 다형성\n\nclass Cat(Animal):\n    def speak(self):\n        return \"야옹\"  # 다형성\n```\n\n## 🏆 장점\n- **재사용성**: 코드 중복 최소화\n- **유지보수**: 모듈화된 구조\n- **확장성**: 새 기능 추가 용이\n- **직관성**: 현실 세계와 유사한 구조\n\n작업:\n1. 먼저 참조 문서에 질의와 관련된 내용이 있는지 판단하세요\n2. 관련 내용이 있으면 문서를 바탕으로 정확하고 구체적으로 답변하세요\n3. 관련 내용이 없으면 해당 문서로는 답변할 수 없다고 설명하세요\n\n응답 형식은 다음 JSON 구조로 작성해주세요:\n{\n    \"has_relevant_content\": true 또는 false,\n    \"model_response\": \"실제 답변 내용\"\n}",
+      "answer": "```json\n{\n    \"has_relevant_content\": false,\n    \"model_response\": \"태수야, 참조 문서(OOP.md)는 객체지향 프로그래밍에 대한 내용이라 순수 함수(pure function)에 대한 질문과는 직접적인 연관이 없어. 순수 함수는 함수형 프로그래밍 개념이거든.\\n\\n간단히 답변하자면: 순수 함수가 되려면 상태(state)가 '없어야' 하는 게 아니라, '외부 상태에 의존하거나 변경하면 안 된다'는 거야.\\n\\n순수 함수의 조건:\\n1. 동일한 입력에 항상 동일한 출력\\n2. 부작용(side effect) 없음 - 외부 상태 변경 금지\\n\\n함수 내부에서 지역 변수를 사용하는 건 문제없어. 중요한 건 외부 상태에 의존하지 않고, 외부에 영향을 주지 않는 거지.\"\n}\n```",
+      "response_timestamp": "2025-08-26T21:13:36+0900"
+    }
+  ]
+}

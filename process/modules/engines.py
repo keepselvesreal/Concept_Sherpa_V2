@@ -83,7 +83,8 @@ class ExtractionEngine:
         # 로그 저장
         if update_logger:
             await update_logger.log_extraction_with_prompt(
-                title, "핵심내용", prompt, system_prompt, response.strip()
+                title, "핵심내용", prompt, system_prompt, response.strip(),
+                self.ai_factory.provider_type, self.ai_factory.current_model
             )
         
         return response.strip()
@@ -106,7 +107,8 @@ class ExtractionEngine:
         # 로그 저장
         if update_logger:
             await update_logger.log_extraction_with_prompt(
-                title, "상세핵심내용", prompt, system_prompt, response.strip()
+                title, "상세핵심내용", prompt, system_prompt, response.strip(),
+                self.ai_factory.provider_type, self.ai_factory.current_model
             )
         
         return response.strip()
@@ -129,7 +131,8 @@ class ExtractionEngine:
         # 로그 저장
         if update_logger:
             await update_logger.log_extraction_with_prompt(
-                title, "상세정보", prompt, system_prompt, response.strip()
+                title, "상세정보", prompt, system_prompt, response.strip(),
+                self.ai_factory.provider_type, self.ai_factory.current_model
             )
         
         return response.strip()
@@ -152,7 +155,8 @@ class ExtractionEngine:
         # 로그 저장
         if update_logger:
             await update_logger.log_extraction_with_prompt(
-                title, "주요화제", prompt, system_prompt, response.strip()
+                title, "주요화제", prompt, system_prompt, response.strip(),
+                self.ai_factory.provider_type, self.ai_factory.current_model
             )
         
         return response.strip()
@@ -175,7 +179,8 @@ class ExtractionEngine:
         # 로그 저장
         if update_logger:
             await update_logger.log_extraction_with_prompt(
-                title, "부차화제", prompt, system_prompt, response.strip()
+                title, "부차화제", prompt, system_prompt, response.strip(),
+                self.ai_factory.provider_type, self.ai_factory.current_model
             )
         
         return response.strip()

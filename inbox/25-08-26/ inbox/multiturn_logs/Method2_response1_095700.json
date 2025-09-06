@@ -1,0 +1,13 @@
+{
+  "timestamp": "2025-08-26T09:57:00.489531",
+  "method": "Method2",
+  "step": "response1",
+  "data": {
+    "query": "5*4는 얼마야?",
+    "session_id": "7ee3af72-7121-4d6c-984b-898e6ed3830f",
+    "responses": [
+      "[TextBlock(text='20')]"
+    ],
+    "response_count": 1
+  }
+}

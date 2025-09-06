@@ -1,0 +1,10 @@
+{
+  "query_number": 3,
+  "query": "세 번째 질의 테스트",
+  "model_response": "제공된 참조 문서(sample_doc1.md)는 데이터 지향 프로그래밍(DOP)에 대한 기술적 내용을 다루고 있는데, '세 번째 질의 테스트'라는 질문은 구체적인 내용이 없어서 문서와 연결 지을 수 없어. 만약 데이터 지향 프로그래밍에 대해 궁금한 게 있다면 구체적으로 물어봐 - 그러면 문서 내용을 바탕으로 제대로 답변해줄 수 있을 거야.",
+  "has_relevant_content": false,
+  "elapsed_time": 28.305989742279053,
+  "timestamp": "2025-08-26T16:57:29.473214",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-26/references/sample_doc1.md",
+  "success": true
+}

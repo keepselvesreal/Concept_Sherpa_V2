@@ -1,0 +1,51 @@
+[
+  {
+    "id": 44,
+    "title": "5 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 45,
+    "title": "5.1 Optimistic concurrency control",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 46,
+    "title": "5.2 Reconciliation between concurrent mutations",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 47,
+    "title": "5.3 Reducing collections",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 48,
+    "title": "5.4 Structural difference",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 49,
+    "title": "5.5 Implementing the reconciliation algorithm",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 50,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

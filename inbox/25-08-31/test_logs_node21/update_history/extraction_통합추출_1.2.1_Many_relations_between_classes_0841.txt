@@ -1,0 +1,244 @@
+[SYSTEM_PROMPT]
+문서 분석 전문가. 주어진 5가지 정보 타입을 순서대로 정확하게 추출하세요.
+- 핵심 내용: 간결하고 정확한 요약
+- 상세 핵심 내용: 상세하면서도 핵심적인 내용
+- 상세 정보: 체계적이고 포괄적인 정리
+- 주요 화제: 핵심 주제들
+- 부차 화제: 부차적이지만 의미있는 주제들
+
+정확한 형식을 지켜서 출력하세요.
+
+[PROMPT]
+다음 문서에서 5가지 정보를 순서대로 추출해주세요.
+
+문서 제목: 1.2.1 Many relations between classes
+문서 내용:
+### 1.2.1_Many_relations_between_classes
+
+1.2.1
+Many relations between classes
+One way to assess the complexity of a class diagram is to look only at the entities and
+their relations, ignoring members and methods, as in figure 1.10. When we design a
+system, we have to define the relations between different pieces of code and data.
+That's unavoidable.
+TIP
+In OOP, code and data are mixed together in classes: data as members and code as
+methods.
+Table 1.1
+Aspects of OOP and their impact on system complexity
+Aspect
+Impact on complexity
+Code and data are mixed.
+Classes tend to be involved in many relations.
+Objects are mutable.
+Extra thinking is needed when reading code.
+Objects are mutable.
+Explicit synchronization is required on multi-threaded environments.
+Data is locked in objects.
+Data serialization is not trivial.
+Code is locked in classes.
+Class hierarchies are complex.
+*
+*
+*
+*
+*
+*
+Librarian
+C
+Book
+C
+Author
+C
+BookItem
+C
+Catalog
+C
+BookLending
+C
+Library
+C
+Member
+C
+User
+C
+Figure 1.10
+A class 
+diagram overview for 
+Klafim's Library 
+Management System
+
+--- 페이지 43 ---
+15
+1.2
+Sources of complexity
+From a system analysis perspective, the fact that code and data are mixed together
+makes the system complex in the sense that entities tend to be involved in many rela-
+tions. In figure 1.11, we take a closer look at the Member class. Member is involved in five
+relations: two data relations and three code relations.
+Data relations:
+– Library has many Members.
+– Member has many BookLendings.
+Code relations:
+– Member extends User.
+– Librarian uses Member.
+– Member uses BookItem.
+Imagine for a moment that we were able, somehow, to split the Member class into two
+separate entities:
+
+MemberCode for the code
+
+MemberData for the data
+Instead of a Member class with five relations, we would have the diagram shown in fig-
+ure 1.12 with:
+A MemberCode entity and three relations.
+A MemberData entity and two relations.
+Library
+C
+Librarian
+C
+BookItem
+C
+BookLending
+C
+User
+C
+Member
+C
+*
+*
+Figure 1.11
+The class Member is 
+involved in five relations.
+Librarian
+C
+BookItem
+C
+User
+C
+MemberCode
+C
+Library
+C
+BookLending
+C
+MemberData
+C
+*
+*
+Figure 1.12
+A class diagram where Member 
+is split into code and data entities
+
+--- 페이지 44 ---
+16
+CHAPTER 1
+Complexity of object-oriented programming
+The class diagram where Member is split into MemberCode and MemberData is made of
+two independent parts. Each part is easier to understand than the original diagram.
+ Let's split every class of our original class diagram into code and data entities.
+Figure 1.13 shows the resulting diagram. Now the system is made of two indepen-
+dent parts:
+A part that involves only data entities.
+A part that involves only code entities.
+TIP
+A system where every class is split into two independent parts, code and data, is
+simpler than a system where code and data are mixed.
+The resulting system, made up of two independent subsystems, is easier to understand
+than the original system. The fact that the two subsystems are independent means that
+each subsystem can be understood separately and in any order. The resulting system
+not simpler by accident; it is a logical consequence of separating code from data.
+TIP
+A system made of multiple simple independent parts is less complex than a sys-
+tem made of a single complex part. 
+AuthorData
+C
+LibrarianData
+C
+CatalogCode
+C
+LibrarianCode
+C
+MemberCode
+C
+UserCode
+C
+BookItem
+C
+BookItemCode
+C
+*
+*
+*
+*
+*
+*
+*
+BookData
+C
+BookItemData
+C
+BookLendingData
+C
+BookLendingCode
+C
+LibraryData
+C
+CatalogData
+C
+MemberData
+C
+Figure 1.13
+A class diagram where every class is split into code and data entities
+
+다음 순서로 각 정보를 추출하고, 반드시 다음 형식을 정확히 지켜서 출력해주세요:
+
+## 핵심 내용
+[문서의 핵심 내용을 2-3문장으로 간결하게 요약]
+
+## 상세 핵심 내용  
+[주요 개념과 중요한 세부사항을 포함하여 5-7문장으로 정리]
+
+## 상세 정보
+[문서의 모든 중요한 정보를 빠뜨리지 않고 체계적으로 정리]
+
+## 주요 화제
+[문서에서 다루는 핵심 주제들을 불렛 포인트로 나열]
+
+## 부차 화제  
+[주요 주제 외에 언급되는 부차적인 주제들을 불렛 포인트로 나열]
+
+**중요**: 각 섹션은 반드시 "## " (해시 2개 + 공백)으로 시작하는 제목을 포함해야 하고, 제목 다음 줄부터 내용을 작성해주세요.
+
+[추출 결과]
+## 핵심 내용
+객체 지향 프로그래밍(OOP)에서 코드와 데이터가 혼합되어 있을 때 클래스 다이어그램이 복잡해지는 경향이 있다. 클래스를 코드와 데이터 엔티티로 분리하면 시스템이 단순해지고 이해하기 쉬워진다. 독립적인 하위 시스템으로 구성된 시스템은 단일 복잡 시스템보다 덜 복잡하다.
+
+## 상세 핵심 내용
+OOP에서는 코드와 데이터가 클래스 내에 혼합되어 있어 클래스 다이어그램이 복잡해지는 경향이 있다. 특히 클래스 간의 관계가 많아지면 시스템 분석이 어려워진다. Member 클래스를 예로 들어, 이를 MemberCode(코드)와 MemberData(데이터)로 분리하면 관련된 관계의 수가 줄어들어 시스템을 더 쉽게 이해할 수 있다. 모든 클래스를 코드와 데이터 엔티티로 분리하면 전체 시스템은 독립적인 코드 하위 시스템과 데이터 하위 시스템으로 나뉘어 각각 이해하기 쉬워진다. 따라서 코드와 데이터를 분리하는 것이 시스템 복잡성을 줄이는 효과적인 방법이다.
+
+## 상세 정보
+*   클래스 다이어그램의 복잡성을 평가하는 방법은 엔티티와 관계를 살펴보고 멤버와 메서드를 무시하는 것이다.
+*   OOP에서 코드와 데이터는 클래스 내에 혼합되어 있으며, 이는 클래스가 많은 관계에 관여하게 되는 원인이 된다.
+*   Member 클래스는 Library, BookLendings, User, Librarian, BookItem 과의 관계로 인해 복잡하다.
+*   Member 클래스를 MemberCode와 MemberData로 분리하면 각 엔티티와 관련된 관계의 수가 줄어든다.
+*   모든 클래스를 코드와 데이터 엔티티로 분리하면 시스템은 독립적인 코드 하위 시스템과 데이터 하위 시스템으로 구성된다.
+*   독립적인 하위 시스템으로 구성된 시스템은 단일 복잡 시스템보다 이해하기 쉽다.
+*   시스템을 단순하고 독립적인 부분으로 나누는 것은 시스템을 이해하기 쉽게 만든다.
+*   코드와 데이터를 분리하는 것은 시스템 복잡성을 줄이는 논리적인 방법이다.
+
+## 주요 화제
+*   클래스 다이어그램 복잡성
+*   객체 지향 프로그래밍 (OOP)
+*   코드와 데이터의 혼합
+*   시스템 복잡성 감소
+*   클래스 분리 (코드/데이터)
+*   독립적인 하위 시스템
+
+## 부차 화제
+*   Klafim's Library Management System
+*   Member 클래스의 관계
+*   MemberCode, MemberData 엔티티
+*   데이터 직렬화
+*   명시적 동기화
+*   클래스 계층 구조

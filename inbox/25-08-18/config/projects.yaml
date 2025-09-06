@@ -1,0 +1,34 @@
+projects:
+  knowledge_sherpa:
+    name: "Knowledge Sherpa"
+    description: "AI-powered knowledge extraction system"
+    adapter: "postgresql"
+    connection:
+      url: "from_env:NEON_DATABASE_URL"
+    tables:
+      - "documents"
+      - "core_content_embeddings"
+      - "detailed_core_embeddings"
+      - "main_topic_embeddings"
+      - "sub_topic_embeddings"
+      - "openai_documents"
+      - "openai_core_content_embeddings"
+      - "openai_detailed_core_embeddings"
+      - "openai_main_topic_embeddings"
+      - "openai_sub_topic_embeddings"
+  
+  # 다른 프로젝트 예시
+  example_project:
+    name: "Example Project"
+    description: "Example PostgreSQL project"
+    adapter: "postgresql"
+    connection:
+      host: "localhost"
+      port: "5432"
+      database: "example_db"
+      user: "from_env:DB_USER"
+      password: "from_env:DB_PASSWORD"
+    tables:
+      - "users"
+      - "posts"
+      - "comments"

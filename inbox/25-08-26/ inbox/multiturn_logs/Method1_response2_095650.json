@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-08-26T09:56:50.036942",
+  "method": "Method1",
+  "step": "response2",
+  "data": {
+    "session_id": "047ddae6-ad0b-4767-b531-069f70c7ddd6",
+    "query": "그럼 방금 답에 10을 더하면?",
+    "responses": [
+      "[TextBlock(text='15')]"
+    ],
+    "response_count": 1,
+    "context_maintained": true
+  }
+}

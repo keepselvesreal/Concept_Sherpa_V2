@@ -17,7 +17,7 @@ from typing import Dict, Any, Optional, List
 import yaml
 from pathlib import Path
 from dotenv import load_dotenv
-from .refactoring_logger import RefactoringLogger, RefactoringLogContext
+from refactoring_logger import RefactoringLogger, RefactoringLogContext
 
 @dataclass
 class AIResponse:

@@ -1,0 +1,57 @@
+# 생성 시간: Mon Jan  2 08:00:00 KST 2025
+# 핵심 내용: AI Provider 설정 파일 - Gemini, OpenAI, Claude SDK 지원
+# 상세 내용:
+#   - ai_providers (라인 8-35): 각 AI Provider별 설정
+#   - default_provider (라인 37): 기본 사용할 Provider
+#   - model_configurations (라인 39-52): 모델별 상세 설정
+# 상태: active
+
+ai_providers:
+  gemini:
+    enabled: true
+    api_key_env: "GEMINI_API_KEY"
+    default_model: "gemini-2.0-flash-lite"
+    available_models:
+      - "gemini-2.0-flash-lite"
+      - "gemini-1.5-pro"
+      - "gemini-1.5-flash"
+    base_url: null
+    
+  openai:
+    enabled: false
+    api_key_env: "OPENAI_API_KEY"
+    default_model: "gpt-4o-mini"
+    available_models:
+      - "gpt-4o"
+      - "gpt-4o-mini"
+      - "gpt-3.5-turbo"
+    base_url: null
+    
+  claude_sdk:
+    enabled: false
+    # Claude SDK는 API 키가 아닌 별도 인증 방식 사용
+    auth_method: "sdk"
+    default_model: "claude-3-5-sonnet-20241022"
+    available_models:
+      - "claude-3-5-sonnet-20241022"
+      - "claude-3-5-haiku-20241022"
+    
+# 기본으로 사용할 Provider
+default_provider: "gemini"
+
+# 모델별 상세 설정
+model_configurations:
+  "gemini-2.0-flash-lite":
+    max_tokens: 8192
+    temperature: 0.1
+    timeout_seconds: 30
+    
+  "gpt-4o-mini":
+    max_tokens: 4096
+    temperature: 0.1
+    timeout_seconds: 30
+    
+  "claude-3-5-sonnet-20241022":
+    max_tokens: 4096
+    temperature: 0.1
+    timeout_seconds: 60

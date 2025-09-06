@@ -1,0 +1,10 @@
+{
+  "query_number": 2,
+  "query": "DOP의 단점도 알려줘",
+  "model_response": "태수야, 참조 문서는 OOP(객체 지향 프로그래밍)에 대한 내용인데, 네가 물어본 DOP의 단점에 대한 정보는 없어. DOP가 Data-Oriented Programming을 말하는 거라면, 이 문서로는 답변할 수 없겠네. DOP에 대한 별도 자료가 필요할 것 같아.",
+  "has_relevant_content": false,
+  "elapsed_time": 15.342841386795044,
+  "timestamp": "2025-08-27T10:01:27.609257",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-27/references/OOP.md",
+  "success": true
+}

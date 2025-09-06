@@ -1,0 +1,1097 @@
+{
+  "extraction_time": "2025-08-07 11:28:43 KST",
+  "method": "PDF bookmarks",
+  "total_items": 218,
+  "toc": [
+    {
+      "title": "Data-Oriented Programming",
+      "level": 0,
+      "page": 1
+    },
+    {
+      "title": "brief contents",
+      "level": 0,
+      "page": 8
+    },
+    {
+      "title": "contents",
+      "level": 0,
+      "page": 10
+    },
+    {
+      "title": "forewords",
+      "level": 0,
+      "page": 15
+    },
+    {
+      "title": "preface",
+      "level": 0,
+      "page": 19
+    },
+    {
+      "title": "acknowledgments",
+      "level": 0,
+      "page": 20
+    },
+    {
+      "title": "about this book",
+      "level": 0,
+      "page": 22
+    },
+    {
+      "title": "Who should read this book?",
+      "level": 0,
+      "page": 22
+    },
+    {
+      "title": "How this book is organized: A road map",
+      "level": 0,
+      "page": 22
+    },
+    {
+      "title": "About the code",
+      "level": 0,
+      "page": 25
+    },
+    {
+      "title": "liveBook discussion forum",
+      "level": 0,
+      "page": 25
+    },
+    {
+      "title": "about the author",
+      "level": 0,
+      "page": 26
+    },
+    {
+      "title": "about the cover illustration",
+      "level": 0,
+      "page": 27
+    },
+    {
+      "title": "dramatis personae",
+      "level": 0,
+      "page": 28
+    },
+    {
+      "title": "Part 1—Flexibility",
+      "level": 0,
+      "page": 29
+    },
+    {
+      "title": "1 Complexity of object- oriented programming",
+      "level": 0,
+      "page": 31
+    },
+    {
+      "title": "1.1 OOP design: Classic or classical?",
+      "level": 0,
+      "page": 32
+    },
+    {
+      "title": "1.1.1 The design phase",
+      "level": 0,
+      "page": 32
+    },
+    {
+      "title": "1.1.2 UML 101",
+      "level": 0,
+      "page": 34
+    },
+    {
+      "title": "1.1.3 Explaining each piece of the class diagram",
+      "level": 0,
+      "page": 37
+    },
+    {
+      "title": "1.1.4 The implementation phase",
+      "level": 0,
+      "page": 40
+    },
+    {
+      "title": "1.2 Sources of complexity",
+      "level": 0,
+      "page": 41
+    },
+    {
+      "title": "1.2.1 Many relations between classes",
+      "level": 0,
+      "page": 42
+    },
+    {
+      "title": "1.2.2 Unpredictable code behavior",
+      "level": 0,
+      "page": 44
+    },
+    {
+      "title": "1.2.3 Not trivial data serialization",
+      "level": 0,
+      "page": 46
+    },
+    {
+      "title": "1.2.4 Complex class hierarchies",
+      "level": 0,
+      "page": 48
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 52
+    },
+    {
+      "title": "2 Separation between code and data",
+      "level": 0,
+      "page": 54
+    },
+    {
+      "title": "2.1 The two parts of a DOP system",
+      "level": 0,
+      "page": 55
+    },
+    {
+      "title": "2.2 Data entities",
+      "level": 0,
+      "page": 57
+    },
+    {
+      "title": "2.3 Code modules",
+      "level": 0,
+      "page": 59
+    },
+    {
+      "title": "2.4 DOP systems are easy to understand",
+      "level": 0,
+      "page": 64
+    },
+    {
+      "title": "2.5 DOP systems are flexible",
+      "level": 0,
+      "page": 66
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 70
+    },
+    {
+      "title": "3 Basic data manipulation",
+      "level": 0,
+      "page": 71
+    },
+    {
+      "title": "3.1 Designing a data model",
+      "level": 0,
+      "page": 72
+    },
+    {
+      "title": "3.2 Representing records as maps",
+      "level": 0,
+      "page": 76
+    },
+    {
+      "title": "3.3 Manipulating data with generic functions",
+      "level": 0,
+      "page": 82
+    },
+    {
+      "title": "3.4 Calculating search results",
+      "level": 0,
+      "page": 86
+    },
+    {
+      "title": "3.5 Handling records of different types",
+      "level": 0,
+      "page": 93
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 97
+    },
+    {
+      "title": "4 State management",
+      "level": 0,
+      "page": 99
+    },
+    {
+      "title": "4.1 Multiple versions of the system data",
+      "level": 0,
+      "page": 100
+    },
+    {
+      "title": "4.2 Structural sharing",
+      "level": 0,
+      "page": 102
+    },
+    {
+      "title": "4.3 Implementing structural sharing",
+      "level": 0,
+      "page": 108
+    },
+    {
+      "title": "4.4 Data safety",
+      "level": 0,
+      "page": 110
+    },
+    {
+      "title": "4.5 The commit phase of a mutation",
+      "level": 0,
+      "page": 111
+    },
+    {
+      "title": "4.6 Ensuring system state integrity",
+      "level": 0,
+      "page": 113
+    },
+    {
+      "title": "4.7 Restoring previous states",
+      "level": 0,
+      "page": 114
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 117
+    },
+    {
+      "title": "5 Basic concurrency control",
+      "level": 0,
+      "page": 119
+    },
+    {
+      "title": "5.1 Optimistic concurrency control",
+      "level": 0,
+      "page": 120
+    },
+    {
+      "title": "5.2 Reconciliation between concurrent mutations",
+      "level": 0,
+      "page": 122
+    },
+    {
+      "title": "5.3 Reducing collections",
+      "level": 0,
+      "page": 125
+    },
+    {
+      "title": "5.4 Structural difference",
+      "level": 0,
+      "page": 127
+    },
+    {
+      "title": "5.5 Implementing the reconciliation algorithm",
+      "level": 0,
+      "page": 134
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 136
+    },
+    {
+      "title": "6 Unit tests",
+      "level": 0,
+      "page": 138
+    },
+    {
+      "title": "6.1 The simplicity of data-oriented test cases",
+      "level": 0,
+      "page": 138
+    },
+    {
+      "title": "6.2 Unit tests for data manipulation code",
+      "level": 0,
+      "page": 140
+    },
+    {
+      "title": "6.2.1 The tree of function calls",
+      "level": 0,
+      "page": 141
+    },
+    {
+      "title": "6.2.2 Unit tests for functions down the tree",
+      "level": 0,
+      "page": 143
+    },
+    {
+      "title": "6.2.3 Unit tests for nodes in the tree",
+      "level": 0,
+      "page": 147
+    },
+    {
+      "title": "6.3 Unit tests for queries",
+      "level": 0,
+      "page": 149
+    },
+    {
+      "title": "6.4 Unit tests for mutations",
+      "level": 0,
+      "page": 154
+    },
+    {
+      "title": "Moving forward",
+      "level": 0,
+      "page": 162
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 162
+    },
+    {
+      "title": "Part 2—Scalability",
+      "level": 0,
+      "page": 165
+    },
+    {
+      "title": "7 Basic data validation",
+      "level": 0,
+      "page": 169
+    },
+    {
+      "title": "7.1 Data validation in DOP",
+      "level": 0,
+      "page": 170
+    },
+    {
+      "title": "7.2 JSON Schema in a nutshell",
+      "level": 0,
+      "page": 171
+    },
+    {
+      "title": "7.3 Schema flexibility and strictness",
+      "level": 0,
+      "page": 177
+    },
+    {
+      "title": "7.4 Schema composition",
+      "level": 0,
+      "page": 182
+    },
+    {
+      "title": "7.5 Details about data validation failures",
+      "level": 0,
+      "page": 186
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 189
+    },
+    {
+      "title": "8 Advanced concurrency control",
+      "level": 0,
+      "page": 191
+    },
+    {
+      "title": "8.1 The complexity of locks",
+      "level": 0,
+      "page": 192
+    },
+    {
+      "title": "8.2 Thread-safe counter with atoms",
+      "level": 0,
+      "page": 193
+    },
+    {
+      "title": "8.3 Thread-safe cache with atoms",
+      "level": 0,
+      "page": 198
+    },
+    {
+      "title": "8.4 State management with atoms",
+      "level": 0,
+      "page": 200
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 202
+    },
+    {
+      "title": "9 Persistent data structures",
+      "level": 0,
+      "page": 203
+    },
+    {
+      "title": "9.1 The need for persistent data structures",
+      "level": 0,
+      "page": 203
+    },
+    {
+      "title": "9.2 The efficiency of persistent data structures",
+      "level": 0,
+      "page": 206
+    },
+    {
+      "title": "9.3 Persistent data structures libraries",
+      "level": 0,
+      "page": 212
+    },
+    {
+      "title": "9.3.1 Persistent data structures in Java",
+      "level": 0,
+      "page": 212
+    },
+    {
+      "title": "9.3.2 Persistent data structures in JavaScript",
+      "level": 0,
+      "page": 214
+    },
+    {
+      "title": "9.4 Persistent data structures in action",
+      "level": 0,
+      "page": 216
+    },
+    {
+      "title": "9.4.1 Writing queries with persistent data structures",
+      "level": 0,
+      "page": 216
+    },
+    {
+      "title": "9.4.2 Writing mutations with persistent data structures",
+      "level": 0,
+      "page": 219
+    },
+    {
+      "title": "9.4.3 Serialization and deserialization",
+      "level": 0,
+      "page": 220
+    },
+    {
+      "title": "9.4.4 Structural diff",
+      "level": 0,
+      "page": 221
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 223
+    },
+    {
+      "title": "10 Database operations",
+      "level": 0,
+      "page": 225
+    },
+    {
+      "title": "10.1 Fetching data from the database",
+      "level": 0,
+      "page": 226
+    },
+    {
+      "title": "10.2 Storing data in the database",
+      "level": 0,
+      "page": 232
+    },
+    {
+      "title": "10.3 Simple data manipulation",
+      "level": 0,
+      "page": 235
+    },
+    {
+      "title": "10.4 Advanced data manipulation",
+      "level": 0,
+      "page": 239
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 246
+    },
+    {
+      "title": "11 Web services",
+      "level": 0,
+      "page": 248
+    },
+    {
+      "title": "11.1 Another feature request",
+      "level": 0,
+      "page": 249
+    },
+    {
+      "title": "11.2 Building the insides like the outsides",
+      "level": 0,
+      "page": 250
+    },
+    {
+      "title": "11.3 Representing a client request as a map",
+      "level": 0,
+      "page": 253
+    },
+    {
+      "title": "11.4 Representing a server response as a map",
+      "level": 0,
+      "page": 255
+    },
+    {
+      "title": "11.5 Passing information forward",
+      "level": 0,
+      "page": 259
+    },
+    {
+      "title": "11.6 Search result enrichment in action",
+      "level": 0,
+      "page": 262
+    },
+    {
+      "title": "Delivering on time",
+      "level": 0,
+      "page": 272
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 272
+    },
+    {
+      "title": "Part 3—Maintainability",
+      "level": 0,
+      "page": 273
+    },
+    {
+      "title": "12 Advanced data validation",
+      "level": 0,
+      "page": 275
+    },
+    {
+      "title": "12.1 Function arguments validation",
+      "level": 0,
+      "page": 276
+    },
+    {
+      "title": "12.2 Return value validation",
+      "level": 0,
+      "page": 283
+    },
+    {
+      "title": "12.3 Advanced data validation",
+      "level": 0,
+      "page": 285
+    },
+    {
+      "title": "12.4 Automatic generation of data model diagrams",
+      "level": 0,
+      "page": 288
+    },
+    {
+      "title": "12.5 Automatic generation of schema-based unit tests",
+      "level": 0,
+      "page": 290
+    },
+    {
+      "title": "12.6 A new gift",
+      "level": 0,
+      "page": 297
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 298
+    },
+    {
+      "title": "13 Polymorphism",
+      "level": 0,
+      "page": 300
+    },
+    {
+      "title": "13.1 The essence of polymorphism",
+      "level": 0,
+      "page": 301
+    },
+    {
+      "title": "13.2 Multimethods with single dispatch",
+      "level": 0,
+      "page": 305
+    },
+    {
+      "title": "13.3 Multimethods with multiple dispatch",
+      "level": 0,
+      "page": 309
+    },
+    {
+      "title": "13.4 Multimethods with dynamic dispatch",
+      "level": 0,
+      "page": 314
+    },
+    {
+      "title": "13.5 Integrating multimethods in a production system",
+      "level": 0,
+      "page": 317
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 322
+    },
+    {
+      "title": "14 Advanced data manipulation",
+      "level": 0,
+      "page": 323
+    },
+    {
+      "title": "14.1 Updating a value in a map with eloquence",
+      "level": 0,
+      "page": 324
+    },
+    {
+      "title": "14.2 Manipulating nested data",
+      "level": 0,
+      "page": 327
+    },
+    {
+      "title": "14.3 Using the best tool for the job",
+      "level": 0,
+      "page": 329
+    },
+    {
+      "title": "14.4 Unwinding at ease",
+      "level": 0,
+      "page": 333
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 338
+    },
+    {
+      "title": "15 Debugging",
+      "level": 0,
+      "page": 339
+    },
+    {
+      "title": "15.1 Determinism in programming",
+      "level": 0,
+      "page": 340
+    },
+    {
+      "title": "15.2 Reproducibility with numbers and strings",
+      "level": 0,
+      "page": 342
+    },
+    {
+      "title": "15.3 Reproducibility with any data",
+      "level": 0,
+      "page": 346
+    },
+    {
+      "title": "15.4 Unit tests",
+      "level": 0,
+      "page": 349
+    },
+    {
+      "title": "15.5 Dealing with external data sources",
+      "level": 0,
+      "page": 357
+    },
+    {
+      "title": "Farewell",
+      "level": 0,
+      "page": 358
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 359
+    },
+    {
+      "title": "Appendix A—Principles of data-oriented programming",
+      "level": 0,
+      "page": 361
+    },
+    {
+      "title": "A.1 Principle #1: Separate code from data",
+      "level": 0,
+      "page": 363
+    },
+    {
+      "title": "A.1.1 Illustration of Principle #1",
+      "level": 0,
+      "page": 363
+    },
+    {
+      "title": "A.1.2 Benefits of Principle #1",
+      "level": 0,
+      "page": 365
+    },
+    {
+      "title": "A.1.3 Cost for Principle #1",
+      "level": 0,
+      "page": 371
+    },
+    {
+      "title": "A.1.4 Summary of Principle #1",
+      "level": 0,
+      "page": 372
+    },
+    {
+      "title": "A.2 Principle #2: Represent data with generic data structures",
+      "level": 0,
+      "page": 373
+    },
+    {
+      "title": "A.2.1 Illustration of Principle #2",
+      "level": 0,
+      "page": 373
+    },
+    {
+      "title": "A.2.2 Benefits of Principle #2",
+      "level": 0,
+      "page": 374
+    },
+    {
+      "title": "A.2.3 Cost for Principle #2",
+      "level": 0,
+      "page": 375
+    },
+    {
+      "title": "A.2.4 Summary of Principle #2",
+      "level": 0,
+      "page": 378
+    },
+    {
+      "title": "A.3 Principle #3: Data is immutable",
+      "level": 0,
+      "page": 379
+    },
+    {
+      "title": "A.3.1 Illustration of Principle #3",
+      "level": 0,
+      "page": 379
+    },
+    {
+      "title": "A.3.2 Benefits of Principle #3",
+      "level": 0,
+      "page": 380
+    },
+    {
+      "title": "A.3.3 Cost for Principle #3",
+      "level": 0,
+      "page": 382
+    },
+    {
+      "title": "A.3.4 Summary of Principle #3",
+      "level": 0,
+      "page": 382
+    },
+    {
+      "title": "A.4 Principle #4: Separate data schema from data representation",
+      "level": 0,
+      "page": 383
+    },
+    {
+      "title": "A.4.1 Illustration of Principle #4",
+      "level": 0,
+      "page": 383
+    },
+    {
+      "title": "A.4.2 Benefits of Principle #4",
+      "level": 0,
+      "page": 385
+    },
+    {
+      "title": "A.4.3 Cost for Principle #4",
+      "level": 0,
+      "page": 389
+    },
+    {
+      "title": "A.4.4 Summary of Principle #4",
+      "level": 0,
+      "page": 390
+    },
+    {
+      "title": "Conclusion",
+      "level": 0,
+      "page": 391
+    },
+    {
+      "title": "Appendix B—Generic data access in statically-typed languages",
+      "level": 0,
+      "page": 392
+    },
+    {
+      "title": "B.1 Dynamic getters for string maps",
+      "level": 0,
+      "page": 392
+    },
+    {
+      "title": "B.1.1 Accessing non-nested map fields with dynamic getters",
+      "level": 0,
+      "page": 393
+    },
+    {
+      "title": "B.1.2 Accessing nested map fields with dynamic getters",
+      "level": 0,
+      "page": 394
+    },
+    {
+      "title": "B.2 Value getters for maps",
+      "level": 0,
+      "page": 395
+    },
+    {
+      "title": "B.2.1 Accessing non-nested map fields with value getters",
+      "level": 0,
+      "page": 395
+    },
+    {
+      "title": "B.2.2 Accessing nested map fields with value getters",
+      "level": 0,
+      "page": 396
+    },
+    {
+      "title": "B.3 Typed getters for maps",
+      "level": 0,
+      "page": 398
+    },
+    {
+      "title": "B.3.1 Accessing non-nested map fields with typed getters",
+      "level": 0,
+      "page": 398
+    },
+    {
+      "title": "B.3.2 Accessing nested map fields with typed getters",
+      "level": 0,
+      "page": 399
+    },
+    {
+      "title": "B.4 Generic access to class members",
+      "level": 0,
+      "page": 401
+    },
+    {
+      "title": "B.4.1 Generic access to non-nested class members",
+      "level": 0,
+      "page": 401
+    },
+    {
+      "title": "B.4.2 Generic access to nested class members",
+      "level": 0,
+      "page": 404
+    },
+    {
+      "title": "B.4.3 Automatic JSON serialization of objects",
+      "level": 0,
+      "page": 406
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 408
+    },
+    {
+      "title": "Appendix C—Data-oriented programming: A link in the chain of programming paradigms",
+      "level": 0,
+      "page": 409
+    },
+    {
+      "title": "C.1 Time line",
+      "level": 0,
+      "page": 409
+    },
+    {
+      "title": "C.1.1 1958: Lisp",
+      "level": 0,
+      "page": 409
+    },
+    {
+      "title": "C.1.2 1981: Values and objects",
+      "level": 0,
+      "page": 410
+    },
+    {
+      "title": "C.1.3 2000: Ideal hash trees",
+      "level": 0,
+      "page": 411
+    },
+    {
+      "title": "C.1.4 2006: Out of the Tar Pit",
+      "level": 0,
+      "page": 411
+    },
+    {
+      "title": "C.1.5 2007: Clojure",
+      "level": 0,
+      "page": 411
+    },
+    {
+      "title": "C.1.6 2009: Immutability for all",
+      "level": 0,
+      "page": 411
+    },
+    {
+      "title": "C.2 DOP principles as best practices",
+      "level": 0,
+      "page": 411
+    },
+    {
+      "title": "C.2.1 Principle #1: Separate code from data",
+      "level": 0,
+      "page": 412
+    },
+    {
+      "title": "C.2.2 Principle #2: Represent data with generic data structures",
+      "level": 0,
+      "page": 412
+    },
+    {
+      "title": "C.2.3 Principle #3: Data is immutable",
+      "level": 0,
+      "page": 412
+    },
+    {
+      "title": "C.2.4 Principle #4: Separate data schema from data representation",
+      "level": 0,
+      "page": 413
+    },
+    {
+      "title": "C.3 DOP and other data-related paradigms",
+      "level": 0,
+      "page": 413
+    },
+    {
+      "title": "C.3.1 Data-oriented design",
+      "level": 0,
+      "page": 414
+    },
+    {
+      "title": "C.3.2 Data-driven programming",
+      "level": 0,
+      "page": 414
+    },
+    {
+      "title": "C.3.3 Data-oriented programming (DOP)",
+      "level": 0,
+      "page": 414
+    },
+    {
+      "title": "Summary",
+      "level": 0,
+      "page": 414
+    },
+    {
+      "title": "Appendix D—Lodash reference",
+      "level": 0,
+      "page": 415
+    },
+    {
+      "title": "index",
+      "level": 0,
+      "page": 419
+    },
+    {
+      "title": "A",
+      "level": 0,
+      "page": 419
+    },
+    {
+      "title": "B",
+      "level": 0,
+      "page": 419
+    },
+    {
+      "title": "C",
+      "level": 0,
+      "page": 419
+    },
+    {
+      "title": "D",
+      "level": 0,
+      "page": 420
+    },
+    {
+      "title": "E",
+      "level": 0,
+      "page": 421
+    },
+    {
+      "title": "F",
+      "level": 0,
+      "page": 421
+    },
+    {
+      "title": "G",
+      "level": 0,
+      "page": 421
+    },
+    {
+      "title": "H",
+      "level": 0,
+      "page": 421
+    },
+    {
+      "title": "I",
+      "level": 0,
+      "page": 421
+    },
+    {
+      "title": "J",
+      "level": 0,
+      "page": 421
+    },
+    {
+      "title": "K",
+      "level": 0,
+      "page": 421
+    },
+    {
+      "title": "L",
+      "level": 0,
+      "page": 421
+    },
+    {
+      "title": "M",
+      "level": 0,
+      "page": 422
+    },
+    {
+      "title": "N",
+      "level": 0,
+      "page": 422
+    },
+    {
+      "title": "O",
+      "level": 0,
+      "page": 422
+    },
+    {
+      "title": "P",
+      "level": 0,
+      "page": 423
+    },
+    {
+      "title": "Q",
+      "level": 0,
+      "page": 423
+    },
+    {
+      "title": "R",
+      "level": 0,
+      "page": 423
+    },
+    {
+      "title": "S",
+      "level": 0,
+      "page": 423
+    },
+    {
+      "title": "T",
+      "level": 0,
+      "page": 423
+    },
+    {
+      "title": "U",
+      "level": 0,
+      "page": 424
+    },
+    {
+      "title": "V",
+      "level": 0,
+      "page": 424
+    },
+    {
+      "title": "W",
+      "level": 0,
+      "page": 424
+    }
+  ]
+}

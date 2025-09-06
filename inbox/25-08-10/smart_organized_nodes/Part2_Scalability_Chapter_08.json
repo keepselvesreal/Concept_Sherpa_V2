@@ -1,0 +1,44 @@
+[
+  {
+    "id": 74,
+    "title": "8 Introduction",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 75,
+    "title": "8.1 The complexity of locks",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 76,
+    "title": "8.2 Thread-safe counter with atoms",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 77,
+    "title": "8.3 Thread-safe cache with atoms",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 78,
+    "title": "8.4 State management with atoms",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  },
+  {
+    "id": 79,
+    "title": "Summary",
+    "level": 2,
+    "start_text": "",
+    "end_text": ""
+  }
+]

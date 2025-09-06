@@ -1,0 +1,1713 @@
+[
+  {
+    "title": "Data-Oriented Programming",
+    "level": 0,
+    "start_page": 1,
+    "end_page": 7,
+    "page_count": 7
+  },
+  {
+    "title": "brief contents",
+    "level": 0,
+    "start_page": 8,
+    "end_page": 9,
+    "page_count": 2
+  },
+  {
+    "title": "contents",
+    "level": 0,
+    "start_page": 10,
+    "end_page": 14,
+    "page_count": 5
+  },
+  {
+    "title": "forewords",
+    "level": 0,
+    "start_page": 15,
+    "end_page": 18,
+    "page_count": 4
+  },
+  {
+    "title": "preface",
+    "level": 0,
+    "start_page": 19,
+    "end_page": 19,
+    "page_count": 1
+  },
+  {
+    "title": "acknowledgments",
+    "level": 0,
+    "start_page": 20,
+    "end_page": 21,
+    "page_count": 2
+  },
+  {
+    "title": "about this book",
+    "level": 0,
+    "start_page": 22,
+    "end_page": 25,
+    "page_count": 4
+  },
+  {
+    "title": "Who should read this book?",
+    "level": 1,
+    "start_page": 22,
+    "end_page": 21,
+    "page_count": 0
+  },
+  {
+    "title": "How this book is organized: A road map",
+    "level": 1,
+    "start_page": 22,
+    "end_page": 24,
+    "page_count": 3
+  },
+  {
+    "title": "About the code",
+    "level": 1,
+    "start_page": 25,
+    "end_page": 24,
+    "page_count": 0
+  },
+  {
+    "title": "liveBook discussion forum",
+    "level": 1,
+    "start_page": 25,
+    "end_page": 25,
+    "page_count": 1
+  },
+  {
+    "title": "about the author",
+    "level": 0,
+    "start_page": 26,
+    "end_page": 26,
+    "page_count": 1
+  },
+  {
+    "title": "about the cover illustration",
+    "level": 0,
+    "start_page": 27,
+    "end_page": 27,
+    "page_count": 1
+  },
+  {
+    "title": "dramatis personae",
+    "level": 0,
+    "start_page": 28,
+    "end_page": 28,
+    "page_count": 1
+  },
+  {
+    "title": "Part 1—Flexibility",
+    "level": 0,
+    "start_page": 29,
+    "end_page": 164,
+    "page_count": 136
+  },
+  {
+    "title": "1.0 Introduction (사용자 추가)",
+    "level": 1,
+    "desc": "Part 1—Flexibility와 1 Complexity of object- oriented programming 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "1 Complexity of object- oriented programming",
+    "level": 1,
+    "start_page": 31,
+    "end_page": 53,
+    "page_count": 23
+  },
+  {
+    "title": "1.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "1 Complexity of object- oriented programming와 1.1 OOP design: Classic or classical? 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "1.1 OOP design: Classic or classical?",
+    "level": 2,
+    "start_page": 32,
+    "end_page": 40,
+    "page_count": 9
+  },
+  {
+    "title": "1.1.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 3,
+    "desc": "1.1 OOP design: Classic or classical?와 1.1.1 The design phase 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "1.1.1 The design phase",
+    "level": 3,
+    "start_page": 32,
+    "end_page": 33,
+    "page_count": 2
+  },
+  {
+    "title": "1.1.2 UML 101",
+    "level": 3,
+    "start_page": 34,
+    "end_page": 36,
+    "page_count": 3
+  },
+  {
+    "title": "1.1.3 Explaining each piece of the class diagram",
+    "level": 3,
+    "start_page": 37,
+    "end_page": 39,
+    "page_count": 3
+  },
+  {
+    "title": "1.1.4 The implementation phase",
+    "level": 3,
+    "start_page": 40,
+    "end_page": 40,
+    "page_count": 1
+  },
+  {
+    "title": "1.2 Sources of complexity",
+    "level": 2,
+    "start_page": 41,
+    "end_page": 51,
+    "page_count": 11
+  },
+  {
+    "title": "1.2.0 Introduction (사용자 추가)",
+    "level": 3,
+    "desc": "1.2 Sources of complexity와 1.2.1 Many relations between classes 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "1.2.1 Many relations between classes",
+    "level": 3,
+    "start_page": 42,
+    "end_page": 43,
+    "page_count": 2
+  },
+  {
+    "title": "1.2.2 Unpredictable code behavior",
+    "level": 3,
+    "start_page": 44,
+    "end_page": 45,
+    "page_count": 2
+  },
+  {
+    "title": "1.2.3 Not trivial data serialization",
+    "level": 3,
+    "start_page": 46,
+    "end_page": 47,
+    "page_count": 2
+  },
+  {
+    "title": "1.2.4 Complex class hierarchies",
+    "level": 3,
+    "start_page": 48,
+    "end_page": 51,
+    "page_count": 4
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 52,
+    "end_page": 53,
+    "page_count": 2
+  },
+  {
+    "title": "2 Separation between code and data",
+    "level": 1,
+    "start_page": 54,
+    "end_page": 70,
+    "page_count": 17
+  },
+  {
+    "title": "2.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "2 Separation between code and data와 2.1 The two parts of a DOP system 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "2.1 The two parts of a DOP system",
+    "level": 2,
+    "start_page": 55,
+    "end_page": 56,
+    "page_count": 2
+  },
+  {
+    "title": "2.2 Data entities",
+    "level": 2,
+    "start_page": 57,
+    "end_page": 58,
+    "page_count": 2
+  },
+  {
+    "title": "2.3 Code modules",
+    "level": 2,
+    "start_page": 59,
+    "end_page": 63,
+    "page_count": 5
+  },
+  {
+    "title": "2.4 DOP systems are easy to understand",
+    "level": 2,
+    "start_page": 64,
+    "end_page": 65,
+    "page_count": 2
+  },
+  {
+    "title": "2.5 DOP systems are flexible",
+    "level": 2,
+    "start_page": 66,
+    "end_page": 69,
+    "page_count": 4
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 70,
+    "end_page": 70,
+    "page_count": 1
+  },
+  {
+    "title": "3 Basic data manipulation",
+    "level": 1,
+    "start_page": 71,
+    "end_page": 98,
+    "page_count": 28
+  },
+  {
+    "title": "3.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "3 Basic data manipulation와 3.1 Designing a data model 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "3.1 Designing a data model",
+    "level": 2,
+    "start_page": 72,
+    "end_page": 75,
+    "page_count": 4
+  },
+  {
+    "title": "3.2 Representing records as maps",
+    "level": 2,
+    "start_page": 76,
+    "end_page": 81,
+    "page_count": 6
+  },
+  {
+    "title": "3.3 Manipulating data with generic functions",
+    "level": 2,
+    "start_page": 82,
+    "end_page": 85,
+    "page_count": 4
+  },
+  {
+    "title": "3.4 Calculating search results",
+    "level": 2,
+    "start_page": 86,
+    "end_page": 92,
+    "page_count": 7
+  },
+  {
+    "title": "3.5 Handling records of different types",
+    "level": 2,
+    "start_page": 93,
+    "end_page": 96,
+    "page_count": 4
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 97,
+    "end_page": 98,
+    "page_count": 2
+  },
+  {
+    "title": "4 State management",
+    "level": 1,
+    "start_page": 99,
+    "end_page": 118,
+    "page_count": 20
+  },
+  {
+    "title": "4.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "4 State management와 4.1 Multiple versions of the system data 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "4.1 Multiple versions of the system data",
+    "level": 2,
+    "start_page": 100,
+    "end_page": 101,
+    "page_count": 2
+  },
+  {
+    "title": "4.2 Structural sharing",
+    "level": 2,
+    "start_page": 102,
+    "end_page": 107,
+    "page_count": 6
+  },
+  {
+    "title": "4.3 Implementing structural sharing",
+    "level": 2,
+    "start_page": 108,
+    "end_page": 109,
+    "page_count": 2
+  },
+  {
+    "title": "4.4 Data safety",
+    "level": 2,
+    "start_page": 110,
+    "end_page": 110,
+    "page_count": 1
+  },
+  {
+    "title": "4.5 The commit phase of a mutation",
+    "level": 2,
+    "start_page": 111,
+    "end_page": 112,
+    "page_count": 2
+  },
+  {
+    "title": "4.6 Ensuring system state integrity",
+    "level": 2,
+    "start_page": 113,
+    "end_page": 113,
+    "page_count": 1
+  },
+  {
+    "title": "4.7 Restoring previous states",
+    "level": 2,
+    "start_page": 114,
+    "end_page": 116,
+    "page_count": 3
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 117,
+    "end_page": 118,
+    "page_count": 2
+  },
+  {
+    "title": "5 Basic concurrency control",
+    "level": 1,
+    "start_page": 119,
+    "end_page": 137,
+    "page_count": 19
+  },
+  {
+    "title": "5.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "5 Basic concurrency control와 5.1 Optimistic concurrency control 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "5.1 Optimistic concurrency control",
+    "level": 2,
+    "start_page": 120,
+    "end_page": 121,
+    "page_count": 2
+  },
+  {
+    "title": "5.2 Reconciliation between concurrent mutations",
+    "level": 2,
+    "start_page": 122,
+    "end_page": 124,
+    "page_count": 3
+  },
+  {
+    "title": "5.3 Reducing collections",
+    "level": 2,
+    "start_page": 125,
+    "end_page": 126,
+    "page_count": 2
+  },
+  {
+    "title": "5.4 Structural difference",
+    "level": 2,
+    "start_page": 127,
+    "end_page": 133,
+    "page_count": 7
+  },
+  {
+    "title": "5.5 Implementing the reconciliation algorithm",
+    "level": 2,
+    "start_page": 134,
+    "end_page": 135,
+    "page_count": 2
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 136,
+    "end_page": 137,
+    "page_count": 2
+  },
+  {
+    "title": "6 Unit tests",
+    "level": 1,
+    "start_page": 138,
+    "end_page": 164,
+    "page_count": 27
+  },
+  {
+    "title": "6.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "6 Unit tests와 6.1 The simplicity of data-oriented test cases 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "6.1 The simplicity of data-oriented test cases",
+    "level": 2,
+    "start_page": 138,
+    "end_page": 139,
+    "page_count": 2
+  },
+  {
+    "title": "6.2 Unit tests for data manipulation code",
+    "level": 2,
+    "start_page": 140,
+    "end_page": 148,
+    "page_count": 9
+  },
+  {
+    "title": "6.2.0 Introduction (사용자 추가)",
+    "level": 3,
+    "desc": "6.2 Unit tests for data manipulation code와 6.2.1 The tree of function calls 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "6.2.1 The tree of function calls",
+    "level": 3,
+    "start_page": 141,
+    "end_page": 142,
+    "page_count": 2
+  },
+  {
+    "title": "6.2.2 Unit tests for functions down the tree",
+    "level": 3,
+    "start_page": 143,
+    "end_page": 146,
+    "page_count": 4
+  },
+  {
+    "title": "6.2.3 Unit tests for nodes in the tree",
+    "level": 3,
+    "start_page": 147,
+    "end_page": 148,
+    "page_count": 2
+  },
+  {
+    "title": "6.3 Unit tests for queries",
+    "level": 2,
+    "start_page": 149,
+    "end_page": 153,
+    "page_count": 5
+  },
+  {
+    "title": "6.4 Unit tests for mutations",
+    "level": 2,
+    "start_page": 154,
+    "end_page": 161,
+    "page_count": 8
+  },
+  {
+    "title": "Moving forward",
+    "level": 2,
+    "start_page": 162,
+    "end_page": 161,
+    "page_count": 0
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 162,
+    "end_page": 164,
+    "page_count": 3
+  },
+  {
+    "title": "Part 2—Scalability",
+    "level": 0,
+    "start_page": 165,
+    "end_page": 272,
+    "page_count": 108
+  },
+  {
+    "title": "7.0 Introduction (사용자 추가)",
+    "level": 1,
+    "desc": "Part 2—Scalability와 7 Basic data validation 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "7 Basic data validation",
+    "level": 1,
+    "start_page": 169,
+    "end_page": 190,
+    "page_count": 22
+  },
+  {
+    "title": "7.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "7 Basic data validation와 7.1 Data validation in DOP 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "7.1 Data validation in DOP",
+    "level": 2,
+    "start_page": 170,
+    "end_page": 170,
+    "page_count": 1
+  },
+  {
+    "title": "7.2 JSON Schema in a nutshell",
+    "level": 2,
+    "start_page": 171,
+    "end_page": 176,
+    "page_count": 6
+  },
+  {
+    "title": "7.3 Schema flexibility and strictness",
+    "level": 2,
+    "start_page": 177,
+    "end_page": 181,
+    "page_count": 5
+  },
+  {
+    "title": "7.4 Schema composition",
+    "level": 2,
+    "start_page": 182,
+    "end_page": 185,
+    "page_count": 4
+  },
+  {
+    "title": "7.5 Details about data validation failures",
+    "level": 2,
+    "start_page": 186,
+    "end_page": 188,
+    "page_count": 3
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 189,
+    "end_page": 190,
+    "page_count": 2
+  },
+  {
+    "title": "8 Advanced concurrency control",
+    "level": 1,
+    "start_page": 191,
+    "end_page": 202,
+    "page_count": 12
+  },
+  {
+    "title": "8.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "8 Advanced concurrency control와 8.1 The complexity of locks 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "8.1 The complexity of locks",
+    "level": 2,
+    "start_page": 192,
+    "end_page": 192,
+    "page_count": 1
+  },
+  {
+    "title": "8.2 Thread-safe counter with atoms",
+    "level": 2,
+    "start_page": 193,
+    "end_page": 197,
+    "page_count": 5
+  },
+  {
+    "title": "8.3 Thread-safe cache with atoms",
+    "level": 2,
+    "start_page": 198,
+    "end_page": 199,
+    "page_count": 2
+  },
+  {
+    "title": "8.4 State management with atoms",
+    "level": 2,
+    "start_page": 200,
+    "end_page": 201,
+    "page_count": 2
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 202,
+    "end_page": 202,
+    "page_count": 1
+  },
+  {
+    "title": "9 Persistent data structures",
+    "level": 1,
+    "start_page": 203,
+    "end_page": 224,
+    "page_count": 22
+  },
+  {
+    "title": "9.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "9 Persistent data structures와 9.1 The need for persistent data structures 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "9.1 The need for persistent data structures",
+    "level": 2,
+    "start_page": 203,
+    "end_page": 205,
+    "page_count": 3
+  },
+  {
+    "title": "9.2 The efficiency of persistent data structures",
+    "level": 2,
+    "start_page": 206,
+    "end_page": 211,
+    "page_count": 6
+  },
+  {
+    "title": "9.3 Persistent data structures libraries",
+    "level": 2,
+    "start_page": 212,
+    "end_page": 215,
+    "page_count": 4
+  },
+  {
+    "title": "9.3.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 3,
+    "desc": "9.3 Persistent data structures libraries와 9.3.1 Persistent data structures in Java 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "9.3.1 Persistent data structures in Java",
+    "level": 3,
+    "start_page": 212,
+    "end_page": 213,
+    "page_count": 2
+  },
+  {
+    "title": "9.3.2 Persistent data structures in JavaScript",
+    "level": 3,
+    "start_page": 214,
+    "end_page": 215,
+    "page_count": 2
+  },
+  {
+    "title": "9.4 Persistent data structures in action",
+    "level": 2,
+    "start_page": 216,
+    "end_page": 222,
+    "page_count": 7
+  },
+  {
+    "title": "9.4.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 3,
+    "desc": "9.4 Persistent data structures in action와 9.4.1 Writing queries with persistent data structures 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "9.4.1 Writing queries with persistent data structures",
+    "level": 3,
+    "start_page": 216,
+    "end_page": 218,
+    "page_count": 3
+  },
+  {
+    "title": "9.4.2 Writing mutations with persistent data structures",
+    "level": 3,
+    "start_page": 219,
+    "end_page": 219,
+    "page_count": 1
+  },
+  {
+    "title": "9.4.3 Serialization and deserialization",
+    "level": 3,
+    "start_page": 220,
+    "end_page": 220,
+    "page_count": 1
+  },
+  {
+    "title": "9.4.4 Structural diff",
+    "level": 3,
+    "start_page": 221,
+    "end_page": 222,
+    "page_count": 2
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 223,
+    "end_page": 224,
+    "page_count": 2
+  },
+  {
+    "title": "10 Database operations",
+    "level": 1,
+    "start_page": 225,
+    "end_page": 247,
+    "page_count": 23
+  },
+  {
+    "title": "10.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "10 Database operations와 10.1 Fetching data from the database 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "10.1 Fetching data from the database",
+    "level": 2,
+    "start_page": 226,
+    "end_page": 231,
+    "page_count": 6
+  },
+  {
+    "title": "10.2 Storing data in the database",
+    "level": 2,
+    "start_page": 232,
+    "end_page": 234,
+    "page_count": 3
+  },
+  {
+    "title": "10.3 Simple data manipulation",
+    "level": 2,
+    "start_page": 235,
+    "end_page": 238,
+    "page_count": 4
+  },
+  {
+    "title": "10.4 Advanced data manipulation",
+    "level": 2,
+    "start_page": 239,
+    "end_page": 245,
+    "page_count": 7
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 246,
+    "end_page": 247,
+    "page_count": 2
+  },
+  {
+    "title": "11 Web services",
+    "level": 1,
+    "start_page": 248,
+    "end_page": 272,
+    "page_count": 25
+  },
+  {
+    "title": "11.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "11 Web services와 11.1 Another feature request 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "11.1 Another feature request",
+    "level": 2,
+    "start_page": 249,
+    "end_page": 249,
+    "page_count": 1
+  },
+  {
+    "title": "11.2 Building the insides like the outsides",
+    "level": 2,
+    "start_page": 250,
+    "end_page": 252,
+    "page_count": 3
+  },
+  {
+    "title": "11.3 Representing a client request as a map",
+    "level": 2,
+    "start_page": 253,
+    "end_page": 254,
+    "page_count": 2
+  },
+  {
+    "title": "11.4 Representing a server response as a map",
+    "level": 2,
+    "start_page": 255,
+    "end_page": 258,
+    "page_count": 4
+  },
+  {
+    "title": "11.5 Passing information forward",
+    "level": 2,
+    "start_page": 259,
+    "end_page": 261,
+    "page_count": 3
+  },
+  {
+    "title": "11.6 Search result enrichment in action",
+    "level": 2,
+    "start_page": 262,
+    "end_page": 271,
+    "page_count": 10
+  },
+  {
+    "title": "Delivering on time",
+    "level": 2,
+    "start_page": 272,
+    "end_page": 271,
+    "page_count": 0
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 272,
+    "end_page": 272,
+    "page_count": 1
+  },
+  {
+    "title": "Part 3—Maintainability",
+    "level": 0,
+    "start_page": 273,
+    "end_page": 360,
+    "page_count": 88
+  },
+  {
+    "title": "12.0 Introduction (사용자 추가)",
+    "level": 1,
+    "desc": "Part 3—Maintainability와 12 Advanced data validation 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "12 Advanced data validation",
+    "level": 1,
+    "start_page": 275,
+    "end_page": 299,
+    "page_count": 25
+  },
+  {
+    "title": "12.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "12 Advanced data validation와 12.1 Function arguments validation 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "12.1 Function arguments validation",
+    "level": 2,
+    "start_page": 276,
+    "end_page": 282,
+    "page_count": 7
+  },
+  {
+    "title": "12.2 Return value validation",
+    "level": 2,
+    "start_page": 283,
+    "end_page": 284,
+    "page_count": 2
+  },
+  {
+    "title": "12.3 Advanced data validation",
+    "level": 2,
+    "start_page": 285,
+    "end_page": 287,
+    "page_count": 3
+  },
+  {
+    "title": "12.4 Automatic generation of data model diagrams",
+    "level": 2,
+    "start_page": 288,
+    "end_page": 289,
+    "page_count": 2
+  },
+  {
+    "title": "12.5 Automatic generation of schema-based unit tests",
+    "level": 2,
+    "start_page": 290,
+    "end_page": 296,
+    "page_count": 7
+  },
+  {
+    "title": "12.6 A new gift",
+    "level": 2,
+    "start_page": 297,
+    "end_page": 297,
+    "page_count": 1
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 298,
+    "end_page": 299,
+    "page_count": 2
+  },
+  {
+    "title": "13 Polymorphism",
+    "level": 1,
+    "start_page": 300,
+    "end_page": 322,
+    "page_count": 23
+  },
+  {
+    "title": "13.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "13 Polymorphism와 13.1 The essence of polymorphism 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "13.1 The essence of polymorphism",
+    "level": 2,
+    "start_page": 301,
+    "end_page": 304,
+    "page_count": 4
+  },
+  {
+    "title": "13.2 Multimethods with single dispatch",
+    "level": 2,
+    "start_page": 305,
+    "end_page": 308,
+    "page_count": 4
+  },
+  {
+    "title": "13.3 Multimethods with multiple dispatch",
+    "level": 2,
+    "start_page": 309,
+    "end_page": 313,
+    "page_count": 5
+  },
+  {
+    "title": "13.4 Multimethods with dynamic dispatch",
+    "level": 2,
+    "start_page": 314,
+    "end_page": 316,
+    "page_count": 3
+  },
+  {
+    "title": "13.5 Integrating multimethods in a production system",
+    "level": 2,
+    "start_page": 317,
+    "end_page": 321,
+    "page_count": 5
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 322,
+    "end_page": 322,
+    "page_count": 1
+  },
+  {
+    "title": "14 Advanced data manipulation",
+    "level": 1,
+    "start_page": 323,
+    "end_page": 338,
+    "page_count": 16
+  },
+  {
+    "title": "14.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "14 Advanced data manipulation와 14.1 Updating a value in a map with eloquence 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "14.1 Updating a value in a map with eloquence",
+    "level": 2,
+    "start_page": 324,
+    "end_page": 326,
+    "page_count": 3
+  },
+  {
+    "title": "14.2 Manipulating nested data",
+    "level": 2,
+    "start_page": 327,
+    "end_page": 328,
+    "page_count": 2
+  },
+  {
+    "title": "14.3 Using the best tool for the job",
+    "level": 2,
+    "start_page": 329,
+    "end_page": 332,
+    "page_count": 4
+  },
+  {
+    "title": "14.4 Unwinding at ease",
+    "level": 2,
+    "start_page": 333,
+    "end_page": 337,
+    "page_count": 5
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 338,
+    "end_page": 338,
+    "page_count": 1
+  },
+  {
+    "title": "15 Debugging",
+    "level": 1,
+    "start_page": 339,
+    "end_page": 360,
+    "page_count": 22
+  },
+  {
+    "title": "15.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "15 Debugging와 15.1 Determinism in programming 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "15.1 Determinism in programming",
+    "level": 2,
+    "start_page": 340,
+    "end_page": 341,
+    "page_count": 2
+  },
+  {
+    "title": "15.2 Reproducibility with numbers and strings",
+    "level": 2,
+    "start_page": 342,
+    "end_page": 345,
+    "page_count": 4
+  },
+  {
+    "title": "15.3 Reproducibility with any data",
+    "level": 2,
+    "start_page": 346,
+    "end_page": 348,
+    "page_count": 3
+  },
+  {
+    "title": "15.4 Unit tests",
+    "level": 2,
+    "start_page": 349,
+    "end_page": 356,
+    "page_count": 8
+  },
+  {
+    "title": "15.5 Dealing with external data sources",
+    "level": 2,
+    "start_page": 357,
+    "end_page": 357,
+    "page_count": 1
+  },
+  {
+    "title": "Farewell",
+    "level": 2,
+    "start_page": 358,
+    "end_page": 358,
+    "page_count": 1
+  },
+  {
+    "title": "Summary",
+    "level": 2,
+    "start_page": 359,
+    "end_page": 360,
+    "page_count": 2
+  },
+  {
+    "title": "Appendix A—Principles of data-oriented programming",
+    "level": 0,
+    "start_page": 361,
+    "end_page": 391,
+    "page_count": 31
+  },
+  {
+    "title": "A.0 Introduction (사용자 추가)",
+    "level": 1,
+    "desc": "Appendix A—Principles of data-oriented programming와 A.1 Principle #1: Separate code from data 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "A.1 Principle #1: Separate code from data",
+    "level": 1,
+    "start_page": 363,
+    "end_page": 372,
+    "page_count": 10
+  },
+  {
+    "title": "A.1.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "A.1 Principle #1: Separate code from data와 A.1.1 Illustration of Principle #1 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "A.1.1 Illustration of Principle #1",
+    "level": 2,
+    "start_page": 363,
+    "end_page": 364,
+    "page_count": 2
+  },
+  {
+    "title": "A.1.2 Benefits of Principle #1",
+    "level": 2,
+    "start_page": 365,
+    "end_page": 370,
+    "page_count": 6
+  },
+  {
+    "title": "A.1.3 Cost for Principle #1",
+    "level": 2,
+    "start_page": 371,
+    "end_page": 371,
+    "page_count": 1
+  },
+  {
+    "title": "A.1.4 Summary of Principle #1",
+    "level": 2,
+    "start_page": 372,
+    "end_page": 372,
+    "page_count": 1
+  },
+  {
+    "title": "A.2 Principle #2: Represent data with generic data structures",
+    "level": 1,
+    "start_page": 373,
+    "end_page": 378,
+    "page_count": 6
+  },
+  {
+    "title": "A.2.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "A.2 Principle #2: Represent data with generic data structures와 A.2.1 Illustration of Principle #2 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "A.2.1 Illustration of Principle #2",
+    "level": 2,
+    "start_page": 373,
+    "end_page": 373,
+    "page_count": 1
+  },
+  {
+    "title": "A.2.2 Benefits of Principle #2",
+    "level": 2,
+    "start_page": 374,
+    "end_page": 374,
+    "page_count": 1
+  },
+  {
+    "title": "A.2.3 Cost for Principle #2",
+    "level": 2,
+    "start_page": 375,
+    "end_page": 377,
+    "page_count": 3
+  },
+  {
+    "title": "A.2.4 Summary of Principle #2",
+    "level": 2,
+    "start_page": 378,
+    "end_page": 378,
+    "page_count": 1
+  },
+  {
+    "title": "A.3 Principle #3: Data is immutable",
+    "level": 1,
+    "start_page": 379,
+    "end_page": 382,
+    "page_count": 4
+  },
+  {
+    "title": "A.3.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "A.3 Principle #3: Data is immutable와 A.3.1 Illustration of Principle #3 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "A.3.1 Illustration of Principle #3",
+    "level": 2,
+    "start_page": 379,
+    "end_page": 379,
+    "page_count": 1
+  },
+  {
+    "title": "A.3.2 Benefits of Principle #3",
+    "level": 2,
+    "start_page": 380,
+    "end_page": 381,
+    "page_count": 2
+  },
+  {
+    "title": "A.3.3 Cost for Principle #3",
+    "level": 2,
+    "start_page": 382,
+    "end_page": 381,
+    "page_count": 0
+  },
+  {
+    "title": "A.3.4 Summary of Principle #3",
+    "level": 2,
+    "start_page": 382,
+    "end_page": 382,
+    "page_count": 1
+  },
+  {
+    "title": "A.4 Principle #4: Separate data schema from data representation",
+    "level": 1,
+    "start_page": 383,
+    "end_page": 390,
+    "page_count": 8
+  },
+  {
+    "title": "A.4.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "A.4 Principle #4: Separate data schema from data representation와 A.4.1 Illustration of Principle #4 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "A.4.1 Illustration of Principle #4",
+    "level": 2,
+    "start_page": 383,
+    "end_page": 384,
+    "page_count": 2
+  },
+  {
+    "title": "A.4.2 Benefits of Principle #4",
+    "level": 2,
+    "start_page": 385,
+    "end_page": 388,
+    "page_count": 4
+  },
+  {
+    "title": "A.4.3 Cost for Principle #4",
+    "level": 2,
+    "start_page": 389,
+    "end_page": 389,
+    "page_count": 1
+  },
+  {
+    "title": "A.4.4 Summary of Principle #4",
+    "level": 2,
+    "start_page": 390,
+    "end_page": 390,
+    "page_count": 1
+  },
+  {
+    "title": "Conclusion",
+    "level": 1,
+    "start_page": 391,
+    "end_page": 391,
+    "page_count": 1
+  },
+  {
+    "title": "Appendix B—Generic data access in statically-typed languages",
+    "level": 0,
+    "start_page": 392,
+    "end_page": 408,
+    "page_count": 17
+  },
+  {
+    "title": "B.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 1,
+    "desc": "Appendix B—Generic data access in statically-typed languages와 B.1 Dynamic getters for string maps 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "B.1 Dynamic getters for string maps",
+    "level": 1,
+    "start_page": 392,
+    "end_page": 394,
+    "page_count": 3
+  },
+  {
+    "title": "B.1.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "B.1 Dynamic getters for string maps와 B.1.1 Accessing non-nested map fields with dynamic getters 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "B.1.1 Accessing non-nested map fields with dynamic getters",
+    "level": 2,
+    "start_page": 393,
+    "end_page": 393,
+    "page_count": 1
+  },
+  {
+    "title": "B.1.2 Accessing nested map fields with dynamic getters",
+    "level": 2,
+    "start_page": 394,
+    "end_page": 394,
+    "page_count": 1
+  },
+  {
+    "title": "B.2 Value getters for maps",
+    "level": 1,
+    "start_page": 395,
+    "end_page": 397,
+    "page_count": 3
+  },
+  {
+    "title": "B.2.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "B.2 Value getters for maps와 B.2.1 Accessing non-nested map fields with value getters 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "B.2.1 Accessing non-nested map fields with value getters",
+    "level": 2,
+    "start_page": 395,
+    "end_page": 395,
+    "page_count": 1
+  },
+  {
+    "title": "B.2.2 Accessing nested map fields with value getters",
+    "level": 2,
+    "start_page": 396,
+    "end_page": 397,
+    "page_count": 2
+  },
+  {
+    "title": "B.3 Typed getters for maps",
+    "level": 1,
+    "start_page": 398,
+    "end_page": 400,
+    "page_count": 3
+  },
+  {
+    "title": "B.3.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "B.3 Typed getters for maps와 B.3.1 Accessing non-nested map fields with typed getters 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "B.3.1 Accessing non-nested map fields with typed getters",
+    "level": 2,
+    "start_page": 398,
+    "end_page": 398,
+    "page_count": 1
+  },
+  {
+    "title": "B.3.2 Accessing nested map fields with typed getters",
+    "level": 2,
+    "start_page": 399,
+    "end_page": 400,
+    "page_count": 2
+  },
+  {
+    "title": "B.4 Generic access to class members",
+    "level": 1,
+    "start_page": 401,
+    "end_page": 407,
+    "page_count": 7
+  },
+  {
+    "title": "B.4.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "B.4 Generic access to class members와 B.4.1 Generic access to non-nested class members 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "B.4.1 Generic access to non-nested class members",
+    "level": 2,
+    "start_page": 401,
+    "end_page": 403,
+    "page_count": 3
+  },
+  {
+    "title": "B.4.2 Generic access to nested class members",
+    "level": 2,
+    "start_page": 404,
+    "end_page": 405,
+    "page_count": 2
+  },
+  {
+    "title": "B.4.3 Automatic JSON serialization of objects",
+    "level": 2,
+    "start_page": 406,
+    "end_page": 407,
+    "page_count": 2
+  },
+  {
+    "title": "Summary",
+    "level": 1,
+    "start_page": 408,
+    "end_page": 408,
+    "page_count": 1
+  },
+  {
+    "title": "Appendix C—Data-oriented programming: A link in the chain of programming paradigms",
+    "level": 0,
+    "start_page": 409,
+    "end_page": 414,
+    "page_count": 6
+  },
+  {
+    "title": "C.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 1,
+    "desc": "Appendix C—Data-oriented programming: A link in the chain of programming paradigms와 C.1 Time line 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "C.1 Time line",
+    "level": 1,
+    "start_page": 409,
+    "end_page": 410,
+    "page_count": 2
+  },
+  {
+    "title": "C.1.0.0 Introduction (사용자 추가) - 확인 필요함",
+    "level": 2,
+    "desc": "C.1 Time line와 C.1.1 1958: Lisp 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "C.1.1 1958: Lisp",
+    "level": 2,
+    "start_page": 409,
+    "end_page": 409,
+    "page_count": 1
+  },
+  {
+    "title": "C.1.2 1981: Values and objects",
+    "level": 2,
+    "start_page": 410,
+    "end_page": 410,
+    "page_count": 1
+  },
+  {
+    "title": "C.1.3 2000: Ideal hash trees",
+    "level": 2,
+    "start_page": 411,
+    "end_page": 410,
+    "page_count": 0
+  },
+  {
+    "title": "C.1.4 2006: Out of the Tar Pit",
+    "level": 2,
+    "start_page": 411,
+    "end_page": 410,
+    "page_count": 0
+  },
+  {
+    "title": "C.1.5 2007: Clojure",
+    "level": 2,
+    "start_page": 411,
+    "end_page": 410,
+    "page_count": 0
+  },
+  {
+    "title": "C.1.6 2009: Immutability for all",
+    "level": 2,
+    "start_page": 411,
+    "end_page": 410,
+    "page_count": 0
+  },
+  {
+    "title": "C.2 DOP principles as best practices",
+    "level": 1,
+    "start_page": 411,
+    "end_page": 412,
+    "page_count": 2
+  },
+  {
+    "title": "C.2.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "C.2 DOP principles as best practices와 C.2.1 Principle #1: Separate code from data 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "C.2.1 Principle #1: Separate code from data",
+    "level": 2,
+    "start_page": 412,
+    "end_page": 411,
+    "page_count": 0
+  },
+  {
+    "title": "C.2.2 Principle #2: Represent data with generic data structures",
+    "level": 2,
+    "start_page": 412,
+    "end_page": 411,
+    "page_count": 0
+  },
+  {
+    "title": "C.2.3 Principle #3: Data is immutable",
+    "level": 2,
+    "start_page": 412,
+    "end_page": 412,
+    "page_count": 1
+  },
+  {
+    "title": "C.2.4 Principle #4: Separate data schema from data representation",
+    "level": 2,
+    "start_page": 413,
+    "end_page": 412,
+    "page_count": 0
+  },
+  {
+    "title": "C.3 DOP and other data-related paradigms",
+    "level": 1,
+    "start_page": 413,
+    "end_page": 413,
+    "page_count": 1
+  },
+  {
+    "title": "C.3.0.0 Introduction (사용자 추가)",
+    "level": 2,
+    "desc": "C.3 DOP and other data-related paradigms와 C.3.1 Data-oriented design 사이에 존재하는 내용을 담은 부분"
+  },
+  {
+    "title": "C.3.1 Data-oriented design",
+    "level": 2,
+    "start_page": 414,
+    "end_page": 413,
+    "page_count": 0
+  },
+  {
+    "title": "C.3.2 Data-driven programming",
+    "level": 2,
+    "start_page": 414,
+    "end_page": 413,
+    "page_count": 0
+  },
+  {
+    "title": "C.3.3 Data-oriented programming (DOP)",
+    "level": 2,
+    "start_page": 414,
+    "end_page": 413,
+    "page_count": 0
+  },
+  {
+    "title": "Summary",
+    "level": 1,
+    "start_page": 414,
+    "end_page": 414,
+    "page_count": 1
+  },
+  {
+    "title": "Appendix D—Lodash reference",
+    "level": 0,
+    "start_page": 415,
+    "end_page": 418,
+    "page_count": 4
+  },
+  {
+    "title": "index",
+    "level": 0,
+    "start_page": 419,
+    "end_page": 426,
+    "page_count": 8
+  },
+  {
+    "title": "A",
+    "level": 1,
+    "start_page": 419,
+    "end_page": 418,
+    "page_count": 0
+  },
+  {
+    "title": "B",
+    "level": 1,
+    "start_page": 419,
+    "end_page": 418,
+    "page_count": 0
+  },
+  {
+    "title": "C",
+    "level": 1,
+    "start_page": 419,
+    "end_page": 419,
+    "page_count": 1
+  },
+  {
+    "title": "D",
+    "level": 1,
+    "start_page": 420,
+    "end_page": 420,
+    "page_count": 1
+  },
+  {
+    "title": "E",
+    "level": 1,
+    "start_page": 421,
+    "end_page": 420,
+    "page_count": 0
+  },
+  {
+    "title": "F",
+    "level": 1,
+    "start_page": 421,
+    "end_page": 420,
+    "page_count": 0
+  },
+  {
+    "title": "G",
+    "level": 1,
+    "start_page": 421,
+    "end_page": 420,
+    "page_count": 0
+  },
+  {
+    "title": "H",
+    "level": 1,
+    "start_page": 421,
+    "end_page": 420,
+    "page_count": 0
+  },
+  {
+    "title": "I",
+    "level": 1,
+    "start_page": 421,
+    "end_page": 420,
+    "page_count": 0
+  },
+  {
+    "title": "J",
+    "level": 1,
+    "start_page": 421,
+    "end_page": 420,
+    "page_count": 0
+  },
+  {
+    "title": "K",
+    "level": 1,
+    "start_page": 421,
+    "end_page": 420,
+    "page_count": 0
+  },
+  {
+    "title": "L",
+    "level": 1,
+    "start_page": 421,
+    "end_page": 421,
+    "page_count": 1
+  },
+  {
+    "title": "M",
+    "level": 1,
+    "start_page": 422,
+    "end_page": 421,
+    "page_count": 0
+  },
+  {
+    "title": "N",
+    "level": 1,
+    "start_page": 422,
+    "end_page": 421,
+    "page_count": 0
+  },
+  {
+    "title": "O",
+    "level": 1,
+    "start_page": 422,
+    "end_page": 422,
+    "page_count": 1
+  },
+  {
+    "title": "P",
+    "level": 1,
+    "start_page": 423,
+    "end_page": 422,
+    "page_count": 0
+  },
+  {
+    "title": "Q",
+    "level": 1,
+    "start_page": 423,
+    "end_page": 422,
+    "page_count": 0
+  },
+  {
+    "title": "R",
+    "level": 1,
+    "start_page": 423,
+    "end_page": 422,
+    "page_count": 0
+  },
+  {
+    "title": "S",
+    "level": 1,
+    "start_page": 423,
+    "end_page": 422,
+    "page_count": 0
+  },
+  {
+    "title": "T",
+    "level": 1,
+    "start_page": 423,
+    "end_page": 423,
+    "page_count": 1
+  },
+  {
+    "title": "U",
+    "level": 1,
+    "start_page": 424,
+    "end_page": 423,
+    "page_count": 0
+  },
+  {
+    "title": "V",
+    "level": 1,
+    "start_page": 424,
+    "end_page": 423,
+    "page_count": 0
+  },
+  {
+    "title": "W",
+    "level": 1,
+    "start_page": 424,
+    "end_page": 426,
+    "page_count": 3
+  }
+]

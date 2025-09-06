@@ -1,0 +1,10 @@
+{
+  "query_number": 1,
+  "query": "DOP가 뭔데?",
+  "model_response": "태수야, 제공된 참조 문서(FP.md)는 함수형 프로그래밍(Functional Programming)에 대한 내용만 담고 있어. DOP에 대한 정보는 이 문서에 없어서 정확한 답변을 드릴 수 없겠어.\n\nDOP가 뭘 의미하는지 좀 더 구체적인 맥락을 알려주면 더 정확하게 도움줄 수 있을 것 같아. 프로그래밍 분야에서 사용되는 용어인지, 아니면 다른 분야의 용어인지 말이야.",
+  "has_relevant_content": false,
+  "elapsed_time": 15.69967007637024,
+  "timestamp": "2025-08-27T10:00:12.071044",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/25-08-27/references/FP.md",
+  "success": true
+}

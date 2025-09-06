@@ -1,0 +1,550 @@
+{
+  "status": "FAIL",
+  "message": "16 Introduction items are missing",
+  "summary": {
+    "status": "FAIL",
+    "expected_count": 21,
+    "actual_count": 5,
+    "missing_count": 16,
+    "extra_count": 0,
+    "missing_items": [
+      "1.0",
+      "2.0",
+      "3.0",
+      "6.0",
+      "9.0",
+      "A.1.0",
+      "A.2.0",
+      "A.3.0",
+      "A.4.0",
+      "B.1.0",
+      "B.2.0",
+      "B.3.0",
+      "B.4.0",
+      "C.1.0",
+      "C.2.0",
+      "C.3.0"
+    ],
+    "extra_items": []
+  },
+  "missing_details": [
+    {
+      "intro_number": "1.0",
+      "parent_number": "1",
+      "parent_title": "Flexibility",
+      "child_number": "1.1",
+      "child_title": "OOP design: Classic or classical?",
+      "content_lines": 9
+    },
+    {
+      "intro_number": "1.0",
+      "parent_number": "1",
+      "parent_title": "Flexibility",
+      "child_number": "1.2",
+      "child_title": "Sources of complexity",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "1.0",
+      "parent_number": "1",
+      "parent_title": "Complexity of object-oriented programming",
+      "child_number": "1.1",
+      "child_title": "OOP design: Classic or classical?",
+      "content_lines": 9
+    },
+    {
+      "intro_number": "1.0",
+      "parent_number": "1",
+      "parent_title": "Complexity of object-oriented programming",
+      "child_number": "1.2",
+      "child_title": "Sources of complexity",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.1",
+      "child_title": "The two parts of a DOP system",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.2",
+      "child_title": "Data entities",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.3",
+      "child_title": "Code modules",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.4",
+      "child_title": "DOP systems are easy to understand",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Separation between code and data",
+      "child_number": "2.5",
+      "child_title": "DOP systems are flexible",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.1",
+      "child_title": "The two parts of a DOP system",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.2",
+      "child_title": "Data entities",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.3",
+      "child_title": "Code modules",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.4",
+      "child_title": "DOP systems are easy to understand",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "2.0",
+      "parent_number": "2",
+      "parent_title": "Scalability",
+      "child_number": "2.5",
+      "child_title": "DOP systems are flexible",
+      "content_lines": 13
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.1",
+      "child_title": "Designing a data model",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.2",
+      "child_title": "Representing records as maps",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.3",
+      "child_title": "Manipulating data with generic functions",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.4",
+      "child_title": "Calculating search results",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Basic data manipulation",
+      "child_number": "3.5",
+      "child_title": "Handling records of different types",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.1",
+      "child_title": "Designing a data model",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.2",
+      "child_title": "Representing records as maps",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.3",
+      "child_title": "Manipulating data with generic functions",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.4",
+      "child_title": "Calculating search results",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "3.0",
+      "parent_number": "3",
+      "parent_title": "Maintainability",
+      "child_number": "3.5",
+      "child_title": "Handling records of different types",
+      "content_lines": 11
+    },
+    {
+      "intro_number": "6.0",
+      "parent_number": "6",
+      "parent_title": "Unit tests",
+      "child_number": "6.3",
+      "child_title": "Unit tests for queries",
+      "content_lines": 2
+    },
+    {
+      "intro_number": "6.0",
+      "parent_number": "6",
+      "parent_title": "Unit tests",
+      "child_number": "6.4",
+      "child_title": "Unit tests for mutations",
+      "content_lines": 2
+    },
+    {
+      "intro_number": "9.0",
+      "parent_number": "9",
+      "parent_title": "Persistent data structures",
+      "child_number": "9.4",
+      "child_title": "Persistent data structures in action",
+      "content_lines": 2
+    },
+    {
+      "intro_number": "A.1.0",
+      "parent_number": "A.1",
+      "parent_title": "Principle #1: Separate code from data",
+      "child_number": "A.1.1",
+      "child_title": "Illustration of Principle #1",
+      "content_lines": 21
+    },
+    {
+      "intro_number": "A.1.0",
+      "parent_number": "A.1",
+      "parent_title": "Principle #1: Separate code from data",
+      "child_number": "A.1.2",
+      "child_title": "Benefits of Principle #1",
+      "content_lines": 86
+    },
+    {
+      "intro_number": "A.1.0",
+      "parent_number": "A.1",
+      "parent_title": "Principle #1: Separate code from data",
+      "child_number": "A.1.3",
+      "child_title": "Cost for Principle #1",
+      "content_lines": 247
+    },
+    {
+      "intro_number": "A.1.0",
+      "parent_number": "A.1",
+      "parent_title": "Principle #1: Separate code from data",
+      "child_number": "A.1.4",
+      "child_title": "Summary of Principle #1",
+      "content_lines": 284
+    },
+    {
+      "intro_number": "A.2.0",
+      "parent_number": "A.2",
+      "parent_title": "Principle #2: Represent data with generic data structures",
+      "child_number": "A.2.1",
+      "child_title": "Illustration of Principle #2",
+      "content_lines": 266
+    },
+    {
+      "intro_number": "A.2.0",
+      "parent_number": "A.2",
+      "parent_title": "Principle #2: Represent data with generic data structures",
+      "child_number": "A.2.2",
+      "child_title": "Benefits of Principle #2",
+      "content_lines": 296
+    },
+    {
+      "intro_number": "A.2.0",
+      "parent_number": "A.2",
+      "parent_title": "Principle #2: Represent data with generic data structures",
+      "child_number": "A.2.3",
+      "child_title": "Cost for Principle #2",
+      "content_lines": 344
+    },
+    {
+      "intro_number": "A.2.0",
+      "parent_number": "A.2",
+      "parent_title": "Principle #2: Represent data with generic data structures",
+      "child_number": "A.2.4",
+      "child_title": "Summary of Principle #2",
+      "content_lines": 428
+    },
+    {
+      "intro_number": "A.3.0",
+      "parent_number": "A.3",
+      "parent_title": "Principle #3: Data is immutable",
+      "child_number": "A.3.1",
+      "child_title": "Illustration of Principle #3",
+      "content_lines": 445
+    },
+    {
+      "intro_number": "A.3.0",
+      "parent_number": "A.3",
+      "parent_title": "Principle #3: Data is immutable",
+      "child_number": "A.3.2",
+      "child_title": "Benefits of Principle #3",
+      "content_lines": 489
+    },
+    {
+      "intro_number": "A.3.0",
+      "parent_number": "A.3",
+      "parent_title": "Principle #3: Data is immutable",
+      "child_number": "A.3.3",
+      "child_title": "Cost for Principle #3",
+      "content_lines": 539
+    },
+    {
+      "intro_number": "A.3.0",
+      "parent_number": "A.3",
+      "parent_title": "Principle #3: Data is immutable",
+      "child_number": "A.3.4",
+      "child_title": "Summary of Principle #3",
+      "content_lines": 557
+    },
+    {
+      "intro_number": "A.4.0",
+      "parent_number": "A.4",
+      "parent_title": "Principle #4: Separate data schema from data representation",
+      "child_number": "A.4.1",
+      "child_title": "Illustration of Principle #4",
+      "content_lines": 560
+    },
+    {
+      "intro_number": "A.4.0",
+      "parent_number": "A.4",
+      "parent_title": "Principle #4: Separate data schema from data representation",
+      "child_number": "A.4.2",
+      "child_title": "Benefits of Principle #4",
+      "content_lines": 622
+    },
+    {
+      "intro_number": "A.4.0",
+      "parent_number": "A.4",
+      "parent_title": "Principle #4: Separate data schema from data representation",
+      "child_number": "A.4.3",
+      "child_title": "Cost for Principle #4",
+      "content_lines": 775
+    },
+    {
+      "intro_number": "A.4.0",
+      "parent_number": "A.4",
+      "parent_title": "Principle #4: Separate data schema from data representation",
+      "child_number": "A.4.4",
+      "child_title": "Summary of Principle #4",
+      "content_lines": 793
+    },
+    {
+      "intro_number": "B.1.0",
+      "parent_number": "B.1",
+      "parent_title": "Dynamic getters for string maps",
+      "child_number": "B.1.1",
+      "child_title": "Accessing non-nested map fields with dynamic getters",
+      "content_lines": 5
+    },
+    {
+      "intro_number": "B.1.0",
+      "parent_number": "B.1",
+      "parent_title": "Dynamic getters for string maps",
+      "child_number": "B.1.2",
+      "child_title": "Accessing nested map fields with dynamic getters",
+      "content_lines": 47
+    },
+    {
+      "intro_number": "B.2.0",
+      "parent_number": "B.2",
+      "parent_title": "Value getters for maps",
+      "child_number": "B.2.1",
+      "child_title": "Accessing non-nested map fields with value getters",
+      "content_lines": 58
+    },
+    {
+      "intro_number": "B.2.0",
+      "parent_number": "B.2",
+      "parent_title": "Value getters for maps",
+      "child_number": "B.2.2",
+      "child_title": "Accessing nested map fields with value getters",
+      "content_lines": 94
+    },
+    {
+      "intro_number": "B.3.0",
+      "parent_number": "B.3",
+      "parent_title": "Typed getters for maps",
+      "child_number": "B.3.1",
+      "child_title": "Accessing non-nested map fields with typed getters",
+      "content_lines": 127
+    },
+    {
+      "intro_number": "B.3.0",
+      "parent_number": "B.3",
+      "parent_title": "Typed getters for maps",
+      "child_number": "B.3.2",
+      "child_title": "Accessing nested map fields with typed getters",
+      "content_lines": 170
+    },
+    {
+      "intro_number": "B.4.0",
+      "parent_number": "B.4",
+      "parent_title": "Generic access to class members",
+      "child_number": "B.4.1",
+      "child_title": "Generic access to non-nested class members",
+      "content_lines": 211
+    },
+    {
+      "intro_number": "B.4.0",
+      "parent_number": "B.4",
+      "parent_title": "Generic access to class members",
+      "child_number": "B.4.2",
+      "child_title": "Generic access to nested class members",
+      "content_lines": 305
+    },
+    {
+      "intro_number": "B.4.0",
+      "parent_number": "B.4",
+      "parent_title": "Generic access to class members",
+      "child_number": "B.4.3",
+      "child_title": "Automatic JSON serialization of objects",
+      "content_lines": 371
+    },
+    {
+      "intro_number": "C.1.0",
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.2",
+      "child_title": "1981: Values and objects",
+      "content_lines": 35
+    },
+    {
+      "intro_number": "C.1.0",
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.3",
+      "child_title": "2000: Ideal hash trees",
+      "content_lines": 46
+    },
+    {
+      "intro_number": "C.1.0",
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.4",
+      "child_title": "2006: Out of the Tar Pit",
+      "content_lines": 51
+    },
+    {
+      "intro_number": "C.1.0",
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.5",
+      "child_title": "2007: Clojure",
+      "content_lines": 60
+    },
+    {
+      "intro_number": "C.1.0",
+      "parent_number": "C.1",
+      "parent_title": "Time line",
+      "child_number": "C.1.6",
+      "child_title": "2009: Immutability for all",
+      "content_lines": 68
+    },
+    {
+      "intro_number": "C.2.0",
+      "parent_number": "C.2",
+      "parent_title": "DOP principles as best practices",
+      "child_number": "C.2.1",
+      "child_title": "Principle #1: Separate code from data",
+      "content_lines": 33
+    },
+    {
+      "intro_number": "C.2.0",
+      "parent_number": "C.2",
+      "parent_title": "DOP principles as best practices",
+      "child_number": "C.2.2",
+      "child_title": "Principle #2: Represent data with generic data structures",
+      "content_lines": 40
+    },
+    {
+      "intro_number": "C.2.0",
+      "parent_number": "C.2",
+      "parent_title": "DOP principles as best practices",
+      "child_number": "C.2.3",
+      "child_title": "Principle #3: Data is immutable",
+      "content_lines": 47
+    },
+    {
+      "intro_number": "C.2.0",
+      "parent_number": "C.2",
+      "parent_title": "DOP principles as best practices",
+      "child_number": "C.2.4",
+      "child_title": "Principle #4: Separate data schema from data representation",
+      "content_lines": 75
+    },
+    {
+      "intro_number": "C.3.0",
+      "parent_number": "C.3",
+      "parent_title": "DOP and other data-related paradigms",
+      "child_number": "C.3.1",
+      "child_title": "Data-oriented design",
+      "content_lines": 31
+    },
+    {
+      "intro_number": "C.3.0",
+      "parent_number": "C.3",
+      "parent_title": "DOP and other data-related paradigms",
+      "child_number": "C.3.2",
+      "child_title": "Data-driven programming",
+      "content_lines": 37
+    },
+    {
+      "intro_number": "C.3.0",
+      "parent_number": "C.3",
+      "parent_title": "DOP and other data-related paradigms",
+      "child_number": "C.3.3",
+      "child_title": "Data-oriented programming (DOP)",
+      "content_lines": 42
+    }
+  ],
+  "next_steps": [
+    "1. toc_normalizer.py의 파싱 패턴 개선",
+    "2. Appendix 섹션 (A.1, B.2, C.3 등) 처리 추가",
+    "3. Part 레벨 내용 검증 추가",
+    "4. PDF 섹션 찾기 알고리즘 개선"
+  ]
+}

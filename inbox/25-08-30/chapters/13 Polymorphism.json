@@ -1,0 +1,86 @@
+[
+  {
+    "id": 117,
+    "title": "13 Polymorphism",
+    "level": 1,
+    "page": 300,
+    "parent_id": 108,
+    "children_ids": [
+      118,
+      119,
+      120,
+      121,
+      122,
+      123
+    ],
+    "start_page": 300,
+    "end_page": 322,
+    "page_count": 23
+  },
+  {
+    "id": 118,
+    "title": "13.1 The essence of polymorphism",
+    "level": 2,
+    "page": 301,
+    "parent_id": 117,
+    "children_ids": [],
+    "start_page": 301,
+    "end_page": 304,
+    "page_count": 4
+  },
+  {
+    "id": 119,
+    "title": "13.2 Multimethods with single dispatch",
+    "level": 2,
+    "page": 305,
+    "parent_id": 117,
+    "children_ids": [],
+    "start_page": 305,
+    "end_page": 308,
+    "page_count": 4
+  },
+  {
+    "id": 120,
+    "title": "13.3 Multimethods with multiple dispatch",
+    "level": 2,
+    "page": 309,
+    "parent_id": 117,
+    "children_ids": [],
+    "start_page": 309,
+    "end_page": 313,
+    "page_count": 5
+  },
+  {
+    "id": 121,
+    "title": "13.4 Multimethods with dynamic dispatch",
+    "level": 2,
+    "page": 314,
+    "parent_id": 117,
+    "children_ids": [],
+    "start_page": 314,
+    "end_page": 316,
+    "page_count": 3
+  },
+  {
+    "id": 122,
+    "title": "13.5 Integrating multimethods in a production system",
+    "level": 2,
+    "page": 317,
+    "parent_id": 117,
+    "children_ids": [],
+    "start_page": 317,
+    "end_page": 321,
+    "page_count": 5
+  },
+  {
+    "id": 123,
+    "title": "Summary",
+    "level": 2,
+    "page": 322,
+    "parent_id": 117,
+    "children_ids": [],
+    "start_page": 322,
+    "end_page": 322,
+    "page_count": 1
+  }
+]

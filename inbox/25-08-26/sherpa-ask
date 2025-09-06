@@ -1,0 +1,26 @@
+#!/bin/bash
+# 목차
+# 생성 시간: 2025년 8월 26일 12시 15분
+# 핵심 내용: session_query_processor.py를 간단한 ask 명령어로 사용할 수 있게 하는 wrapper 스크립트
+# 상세 내용:
+#   - 스크립트 경로 자동 감지: 현재 스크립트 위치를 기반으로 session_query_processor.py 경로 설정
+#   - 인자 처리: 모든 명령줄 인자를 원본 스크립트에 그대로 전달
+#   - Python 실행: uv를 통한 Python 실행 (프로젝트 의존성 관리)
+# 상태: active
+# 참조: session_query_processor.py
+
+# 현재 스크립트의 디렉토리 경로 가져오기
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# session_query_processor.py의 전체 경로
+PROCESSOR_SCRIPT="$SCRIPT_DIR/session_query_processor.py"
+
+# 스크립트 존재 확인
+if [ ! -f "$PROCESSOR_SCRIPT" ]; then
+    echo "❌ 오류: session_query_processor.py를 찾을 수 없습니다: $PROCESSOR_SCRIPT"
+    exit 1
+fi
+
+# uv를 통해 Python 스크립트 실행 (모든 인자 전달)
+cd "$SCRIPT_DIR"
+exec uv run python "$PROCESSOR_SCRIPT" "$@"

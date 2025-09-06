@@ -1,0 +1,321 @@
+{
+  "sections": [
+    {
+      "id": 0,
+      "title": "1. Vibe Coding in Production",
+      "level": 0,
+      "parent_id": null,
+      "children_ids": [1, 2, 6, 9, 13, 18, 22, 26, 32, 35]
+    },
+    {
+      "id": 1,
+      "title": "1.0 Introduction",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": []
+    },
+    {
+      "id": 2,
+      "title": "1.1 Defining Vibe Coding",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [3, 4, 5]
+    },
+    {
+      "id": 3,
+      "title": "1.1.1 Common Misconceptions",
+      "level": 2,
+      "parent_id": 2,
+      "children_ids": []
+    },
+    {
+      "id": 4,
+      "title": "1.1.2 Karpathy's Definition",
+      "level": 2,
+      "parent_id": 2,
+      "children_ids": []
+    },
+    {
+      "id": 5,
+      "title": "1.1.3 Impact on Non-Engineers",
+      "level": 2,
+      "parent_id": 2,
+      "children_ids": []
+    },
+    {
+      "id": 6,
+      "title": "1.2 Current Challenges and Limitations",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [7, 8]
+    },
+    {
+      "id": 7,
+      "title": "1.2.1 Negative Consequences",
+      "level": 2,
+      "parent_id": 6,
+      "children_ids": []
+    },
+    {
+      "id": 8,
+      "title": "1.2.2 Low-Stakes Success Stories",
+      "level": 2,
+      "parent_id": 6,
+      "children_ids": []
+    },
+    {
+      "id": 9,
+      "title": "1.3 The Exponential Growth Argument",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [10, 11, 12]
+    },
+    {
+      "id": 10,
+      "title": "1.3.1 Current Capabilities and Growth Rate",
+      "level": 2,
+      "parent_id": 9,
+      "children_ids": []
+    },
+    {
+      "id": 11,
+      "title": "1.3.2 Future Scaling Challenges",
+      "level": 2,
+      "parent_id": 9,
+      "children_ids": []
+    },
+    {
+      "id": 12,
+      "title": "1.3.3 The Compiler Analogy",
+      "level": 2,
+      "parent_id": 9,
+      "children_ids": []
+    },
+    {
+      "id": 13,
+      "title": "1.4 Responsible Implementation Framework",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [14, 15, 16, 17]
+    },
+    {
+      "id": 14,
+      "title": "1.4.1 Core Philosophy",
+      "level": 2,
+      "parent_id": 13,
+      "children_ids": []
+    },
+    {
+      "id": 15,
+      "title": "1.4.2 Historical Management Precedents",
+      "level": 2,
+      "parent_id": 13,
+      "children_ids": []
+    },
+    {
+      "id": 16,
+      "title": "1.4.3 Adapting to New Management Paradigms",
+      "level": 2,
+      "parent_id": 13,
+      "children_ids": []
+    },
+    {
+      "id": 17,
+      "title": "1.4.4 Abstraction Layers and Verification",
+      "level": 2,
+      "parent_id": 13,
+      "children_ids": []
+    },
+    {
+      "id": 18,
+      "title": "1.5 Technical Debt Considerations",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [19, 20, 21]
+    },
+    {
+      "id": 19,
+      "title": "1.5.1 The Technical Debt Problem",
+      "level": 2,
+      "parent_id": 18,
+      "children_ids": []
+    },
+    {
+      "id": 20,
+      "title": "1.5.2 Leaf Node Strategy",
+      "level": 2,
+      "parent_id": 18,
+      "children_ids": []
+    },
+    {
+      "id": 21,
+      "title": "1.5.3 Future Model Improvements",
+      "level": 2,
+      "parent_id": 18,
+      "children_ids": []
+    },
+    {
+      "id": 22,
+      "title": "1.6 Success Strategies for Vibe Coding",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [23, 24, 25]
+    },
+    {
+      "id": 23,
+      "title": "1.6.1 Acting as Claude's Product Manager",
+      "level": 2,
+      "parent_id": 22,
+      "children_ids": []
+    },
+    {
+      "id": 24,
+      "title": "1.6.2 Preparation and Context Building",
+      "level": 2,
+      "parent_id": 22,
+      "children_ids": []
+    },
+    {
+      "id": 25,
+      "title": "1.6.3 Limitations and Prerequisites",
+      "level": 2,
+      "parent_id": 22,
+      "children_ids": []
+    },
+    {
+      "id": 26,
+      "title": "1.7 Case Study: 22,000-Line Production Change",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [27, 28, 29, 30, 31]
+    },
+    {
+      "id": 27,
+      "title": "1.7.1 Project Overview",
+      "level": 2,
+      "parent_id": 26,
+      "children_ids": []
+    },
+    {
+      "id": 28,
+      "title": "1.7.2 Human Work and Planning",
+      "level": 2,
+      "parent_id": 26,
+      "children_ids": []
+    },
+    {
+      "id": 29,
+      "title": "1.7.3 Strategic Code Placement",
+      "level": 2,
+      "parent_id": 26,
+      "children_ids": []
+    },
+    {
+      "id": 30,
+      "title": "1.7.4 Verification Strategy",
+      "level": 2,
+      "parent_id": 26,
+      "children_ids": []
+    },
+    {
+      "id": 31,
+      "title": "1.7.5 Results and Impact",
+      "level": 2,
+      "parent_id": 26,
+      "children_ids": []
+    },
+    {
+      "id": 32,
+      "title": "1.8 Conclusion and Key Principles",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [33, 34]
+    },
+    {
+      "id": 33,
+      "title": "1.8.1 Core Guidelines",
+      "level": 2,
+      "parent_id": 32,
+      "children_ids": []
+    },
+    {
+      "id": 34,
+      "title": "1.8.2 Industry Challenge",
+      "level": 2,
+      "parent_id": 32,
+      "children_ids": []
+    },
+    {
+      "id": 35,
+      "title": "1.9 Q&A Session",
+      "level": 1,
+      "parent_id": 0,
+      "children_ids": [36, 37, 38, 39, 40, 41, 42, 43]
+    },
+    {
+      "id": 36,
+      "title": "1.9.1 Learning and Skill Development",
+      "level": 2,
+      "parent_id": 35,
+      "children_ids": []
+    },
+    {
+      "id": 37,
+      "title": "1.9.2 Planning and Information Balance",
+      "level": 2,
+      "parent_id": 35,
+      "children_ids": []
+    },
+    {
+      "id": 38,
+      "title": "1.9.3 Security Considerations",
+      "level": 2,
+      "parent_id": 35,
+      "children_ids": []
+    },
+    {
+      "id": 39,
+      "title": "1.9.4 Democratization and Safety",
+      "level": 2,
+      "parent_id": 35,
+      "children_ids": []
+    },
+    {
+      "id": 40,
+      "title": "1.9.5 Test-Driven Development",
+      "level": 2,
+      "parent_id": 35,
+      "children_ids": []
+    },
+    {
+      "id": 41,
+      "title": "1.9.6 Understanding Exponential Growth",
+      "level": 2,
+      "parent_id": 35,
+      "children_ids": []
+    },
+    {
+      "id": 42,
+      "title": "1.9.7 Workflow and Tool Management",
+      "level": 2,
+      "parent_id": 35,
+      "children_ids": []
+    },
+    {
+      "id": 43,
+      "title": "1.9.8 Multi-Tool Integration and Codebase Exploration",
+      "level": 2,
+      "parent_id": 35,
+      "children_ids": []
+    }
+  ],
+  "metadata": {
+    "total_sections": 44,
+    "root_node": 0,
+    "leaf_nodes": [1, 3, 4, 5, 7, 8, 10, 11, 12, 14, 15, 16, 17, 19, 20, 21, 23, 24, 25, 27, 28, 29, 30, 31, 33, 34, 36, 37, 38, 39, 40, 41, 42, 43],
+    "internal_nodes": [0, 2, 6, 9, 13, 18, 22, 26, 32, 35],
+    "max_depth": 2,
+    "source_file": "vibe_coding_in_prod_v3.md",
+    "created": "2025-08-11 20:31:24 KST"
+  }
+}

@@ -1,0 +1,118 @@
+# 생성 시간: Tue Sep  2 14:57:29 KST 2025
+# 핵심 내용: 파이프라인 단계별 테스트를 위한 전용 설정 파일 (로그 격리, 빠른 실패, 최소 재시도)
+# 상세 내용:
+#   - extraction (라인 8-32): 기존 추출 작업 설정 (테스트용 최적화)
+#   - providers (라인 34-50): AI 모델별 설정 (타임아웃 단축)
+#   - book_pipeline (라인 52-95): 책 파이프라인 전용 설정 (테스트 최적화)
+#   - unified_node_processor (라인 97-112): 노드 정보 문서 처리 설정 (테스트 로그 경로)
+#   - chapter_toc_generator (라인 114-118): enhanced_chapter_toc.md 생성용 설정
+# 상태: active
+# 주소: test_extraction_config
+# 참조: extraction_config.yaml
+
+# 테스트용 추출 시스템 설정 파일
+# 기존 설정을 바탕으로 테스트 환경에 최적화
+
+# 기존 추출 작업 설정 (테스트용 최적화)
+extraction:
+  ai_provider: "claude"
+  
+  fallback:
+    max_attempts: 2  # 테스트용: 빠른 실패를 위해 재시도 감소
+    retry_delay_base: 0.5  # 테스트용: 빠른 재시도
+    timeout_seconds: 15  # 테스트용: 타임아웃 단축
+    default_language: "korean"
+  
+  tasks:
+    core_content:
+      enabled: true
+      max_sentences: 3
+    detailed_core_content:
+      enabled: true
+      max_words: 300
+    detailed_content:
+      enabled: true
+    main_topics:
+      enabled: true
+      max_items: 5
+    sub_topics:
+      enabled: true
+      max_items: 5
+
+# AI 모델별 설정 (테스트용 최적화)
+providers:
+  claude:
+    max_turns: 1
+    temperature: 0.7
+    allowed_tools: []
+  gemini:
+    api_key_env: "GEMINI_API_KEY"
+    model: "models/gemini-2.0-flash"
+    temperature: 0.7
+    lite_model: "gemini-2.5-flash-lite"
+    experimental_model: "gemini-2.0-flash-exp"
+  openai:
+    api_key_env: "OPENAI_API_KEY" 
+    model: "gpt-4"
+    temperature: 0.7
+
+# 책 파이프라인 전용 설정 (테스트용 최적화)
+book_pipeline:
+  toc_extractor:
+    ai_provider: "claude"
+    max_retries: 1  # 테스트용: 재시도 최소화
+    processing_mode: "hierarchical"
+    
+  chapter_extractor:
+    ai_provider: "gemini"
+    temperature: 0.5
+    max_retries: 1  # 테스트용: 재시도 최소화
+    batch_processing: true
+    
+  content_node_analyzer:
+    ai_provider: "gemini"
+    model: "gemini-2.0-flash-lite"
+    temperature: 0.3
+    max_retries: 1  # 테스트용: 재시도 최소화
+    timeout_seconds: 10  # 테스트용: 타임아웃 단축
+    batch_size: 5
+    
+  content_extractor:
+    ai_provider: "gemini"
+    model: "gemini-2.5-flash-lite"
+    temperature: 0.7
+    max_retries: 1  # 테스트용: 재시도 최소화
+    output_format: "markdown"
+    include_page_numbers: true
+    
+  global:
+    output_base_dir: "./tests/outputs"  # 테스트용: 테스트 폴더 내 출력
+    temp_cleanup: true
+    create_backup: false
+    
+  processing:
+    parallel_chapters: false
+    max_chapter_size_mb: 50
+    extract_images: false
+
+# unified_node_processor_v4.py 설정 (테스트용 로그 경로)
+unified_node_processor:
+  ai_provider: "gemini"
+  model: "models/gemini-2.0-flash"
+  processing_mode: "v5"
+  debug_dir: "./tests/logs"  # 테스트용: 로그 격리
+  nodes_json_path: ""  # 동적 설정
+  node_docs_dir: ""    # 동적 설정
+  
+  parallel:
+    max_concurrent: 2  # 테스트용: 동시 처리 수 감소
+    
+  logging:
+    level: 'INFO'
+    save_logs: true
+
+# chapter_toc_generator.py 설정
+chapter_toc_generator:
+  output_filename_pattern: "enhanced_{title}_toc.md"
+  include_empty_sections: false
+  sort_by_filename: true

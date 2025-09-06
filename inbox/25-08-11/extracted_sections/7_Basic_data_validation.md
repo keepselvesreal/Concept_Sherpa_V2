@@ -1,0 +1,9 @@
+# 7_Basic_data_validation
+
+7_Introduction.md
+7.1_Data_validation_in_DOP.md
+7.2_JSON_Schema_in_a_nutshell.md
+7.3_Schema_flexibility_and_strictness.md
+7.4_Schema_composition.md
+7.5_Details_about_data_validation_failures.md
+Summary.md

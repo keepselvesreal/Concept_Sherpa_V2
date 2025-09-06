@@ -1,0 +1,7 @@
+### 1.9.3 Security Considerations
+
+**Question**: How did you balance effectiveness and cybersecurity? Like there were reports a couple months back of the top 10 vibe coded apps being super vulnerable and a lot of important information was released. Well, not released but proven to be releasable and the person who did it wasn't even like a pro hacker and stuff and so like there's that. How did you balance being able to keep things secure even at a leaf node level and then also being effective because something can be effective but not secure?
+
+**Eric**: Yeah, that's a great question and I think that all comes down to this first point here of being Claude's PM and understanding enough about the context to basically know what is dangerous, know what's safe, and know where you should be careful. And I think yeah, the things that get a lot of press about vibe coding are people that have no business coding at all doing these. And that's fine. That's great for games. That's great for creativity and like having people be able to create. But I think for production systems, you need to know enough about what questions to ask to guide Claude in the right direction. And for our internal case of this example, it was something that's fully offline. And so we knew there weren't any like we were very confident that there was no security problems that could happen into this. In our case it's run in something that's fully offline.
+
+So this is more about people that have no business vibe coding in production for an important system. I will say that.

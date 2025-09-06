@@ -1,0 +1,89 @@
+# 1.2.1 Many relations between classes
+
+**설명:** 1.2.1 Many relations
+**페이지 범위:** 43-44
+**섹션 유형:** subsection
+
+1.2.1 Many relations between classes
+One way to assess the complexity of a class diagram is to look only at the entities and
+their relations, ignoring members and methods, as in figure 1.10. When we design a
+system, we have to define the relations between different pieces of code and data.
+That’s unavoidable.
+C Library
+C Catalog
+* *
+C Book C Librarian
+*
+*
+C Member
+*
+C Author
+C BookItem C User
+Figure 1.10 A class
+diagram overview for
+C BookLending * Klafim’s Library
+Management System
+TIP In OOP, code and data are mixed together in classes: data as members and code as
+methods.
+
+=== PAGE 43 ===
+1.2 Sources of complexity 15
+From a system analysis perspective, the fact that code and data are mixed together
+makes the system complex in the sense that entities tend to be involved in many rela-
+tions. In figure 1.11, we take a closer look at the Member class. Member is involved in five
+relations: two data relations and three code relations.
+ Data relations:
+– Library has many Members.
+– Member has many BookLendings.
+ Code relations:
+– Member extends User.
+– Librarian uses Member.
+– Member uses BookItem.
+C Librarian
+C Library * C Member
+*
+C User C BookLending C BookItem Figure 1.11 The class Member is
+involved in five relations.
+Imagine for a moment that we were able, somehow, to split the Member class into two
+separate entities:
+ MemberCode for the code
+ MemberData for the data
+Instead of a Member class with five relations, we would have the diagram shown in fig-
+ure 1.12 with:
+ A MemberCode entity and three relations.
+ A MemberData entity and two relations.
+C Library C Librarian
+*
+C MemberData C MemberCode
+*
+C BookLending C User C BookItem Figure 1.12 A class diagram where Member
+is split into code and data entities
+
+=== PAGE 44 ===
+16 CHAPTER 1 Complexity of object-orientedprogramming
+The class diagram where Member is split into MemberCode and MemberData is made of
+two independent parts. Each part is easier to understand than the original diagram.
+Let’s split every class of our original class diagram into code and data entities.
+Figure 1.13 shows the resulting diagram. Now the system is made of two indepen-
+dent parts:
+ A part that involves only data entities.
+ A part that involves only code entities.
+C LibraryData * C LibrarianData C CatalogCode
+*
+C MemberData C CatalogData C LibrarianCode
+*
+C BookData C MemberCode C BookLendingCode C BookItemCode
+*
+* *
+C BookItemData C AuthorData C UserCode C BookItem
+*
+C BookLendingData
+Figure 1.13 A class diagram where every class is split into code and data entities
+TIP A system where every class is split into two independent parts, code and data, is
+simpler than a system where code and data are mixed.
+The resulting system, made up of two independent subsystems, is easier to understand
+than the original system. The fact that the two subsystems are independent means that
+each subsystem can be understood separately and in any order. The resulting system
+not simpler by accident; it is a logical consequence of separating code from data.
+TIP A system made of multiple simple independent parts is less complex than a sys-
+tem made of a single complex part.

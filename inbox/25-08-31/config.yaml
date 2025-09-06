@@ -1,0 +1,58 @@
+# 통합 노드 처리 시스템 설정 파일
+# AI 제공자 설정 (기존 방식과 신규 방식 모두 지원)
+ai_provider: 'gemini'  # 전역 기본값
+processing_mode: 'v5'  # v1, v2, v3, v5 선택
+
+# 스크립트별 개별 설정
+script_configs:
+  content_node_extractor:
+    ai_provider: 'claude'  # 이 스크립트는 Claude 사용
+    temperature: 0.5
+  extract_chapters_v2:
+    ai_provider: 'gemini'  # 이 스크립트는 Gemini 사용
+    temperature: 0.7
+  section_extractor:
+    ai_provider: 'claude'  # 섹션 추출은 Claude 사용
+    temperature: 0.3
+    batch_size: 4
+    output_directory: './sections'
+  process_content:
+    ai_provider: 'gemini'  # 노드 처리는 Gemini 사용
+    temperature: 0.7
+    model: 'models/gemini-2.0-flash'  # 지정된 모델 사용
+    batch_size: 3
+    max_retries: 2
+nodes_json_path: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/1_Complexity_of_object_oriented_programming/1_Complexity_of_object_oriented_programming_toc.json'
+node_docs_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/1_Complexity_of_object_oriented_programming/node_info_docs'
+debug_dir: '/home/nadle/projects/Knowledge_Sherpa/v2/25-08-31/test_logs'
+
+# 병렬 처리 설정
+parallel:
+  max_concurrent: 3
+
+# 로깅 설정
+logging:
+  level: 'INFO'
+  save_logs: true
+
+# AI 모델 설정
+models:
+  claude: "claude-3-sonnet-20240229"  # CLI 인증 (Max Plan)
+  gemini: "gemini-2.0-flash-exp"      # API 키 (.env에서 GEMINI_API_KEY)
+  openai: "gpt-4"
+
+# 프로바이더별 상세 설정 (기존 방식 호환)
+providers:
+  gemini:
+    model: 'models/gemini-2.0-flash'
+    temperature: 0.7
+  claude:
+    model: 'claude-3-sonnet'
+  openai:
+    model: 'gpt-4'
+    temperature: 0.7
+
+# 출력 설정 (기존 용도)
+output:
+  directory: "chapters"
+  clean_before_run: true

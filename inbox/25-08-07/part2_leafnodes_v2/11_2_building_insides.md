@@ -1,0 +1,107 @@
+# 11.2 Building the insides like the outsides
+
+11.2 Building the insides like the outsides
+While Theo drinks his macchiato, Joe draws a diagram on a whiteboard. Figure 11.1 shows
+Joe’s diagram.
+Web browser
+Data
+Web server
+Data Data
+Web service Database Figure 11.1 The high-level architecture
+of a modern information system
+Joe Before we dive into the details of the implementation of the book search result
+enrichment, let me give you a brief intro.
+Theo Sure.
+Joe takes a sip of his espresso. He then points to the diagram (figure 11.1) on the whiteboard.
+Joe Does this look familiar to you?
+Theo Of course!
+Joe Can you show me, roughly, the steps in the data flow of a web service?
+Theo Sure.
+Theo moves closer to the whiteboard. He writes a list of steps (see the sidebar) near the
+architecture diagram.
+The steps of the data flow inside a web service
+1 Receive a request from a client.
+2 Apply business logic to the request.
+3 Fetch data from external sources (e.g., database and other web services).
+4 Apply business logic to the responses from external sources.
+5 Send the response to the client.
+Joe Excellent! Now comes an important insight about DOP.
+Theo I’m all ears.
+
+## 페이지 251
+
+11.2 Building the insides like the outsides 223
+Joe We should build the insides of our systems like we build the outsides.
+Theo What do you mean?
+Joe How do components of a system communicate over the wire?
+Theo By sending data.
+Joe Does the data format depend on the programming language of the components?
+Theo No, quite often it’s JSON, for which we have parsers in all programming
+languages.
+Joe What the idiom says is that, inside our program, the inner components of a pro-
+gram should communicate in a way that doesn’t depend on the components.
+Theo I don’t get that.
+Joe Let me explain why traditional OOP breaks this idiom. Perhaps it will be
+clearer then. When data is represented with classes, the inner components of
+a program need to know the internals of the class definitions in order to
+communicate.
+Theo What do you mean?
+Joe In order to be able to access a member in a class, a component needs to import
+the class definition.
+Theo How could it be different?
+Joe In DOP, as we have seen so far, the inner components of a program communi-
+cate via generic data collections. It’s similar to how components of a system
+communicate over the wire.
+TIP We should build the insides of our systems like we build the outsides.
+Theo Why is that so important?
+Joe From a design perspective, it’s important because it means that the inner com-
+ponents of a program are loosely coupled.
+Theo What do you mean by loosely coupled?
+Joe I mean that components need no knowledge about the internals of other com-
+ponents. The only knowledge required is the names of the fields.
+TIP In DOP, the inner components of a program are loosely coupled.
+Theo And from an implementation perspective?
+Joe As you’ll see in a moment, implementing the steps of the data flow that you
+just wrote on the whiteboard is easy. It comes down to expressing the busi-
+ness logic in terms of generic data manipulation functions. Here, let me
+show you a diagram.
+Joe steps up to the whiteboard and sketches the drawing in figure 11.2. As Joe finishes, his
+cell phone rings. He excuses himself and steps outside to take the call.
+
+## 페이지 252
+
+224 CHAPTER 11 Web services
+JSON parse/serialize
+Data
+Business logic
+Data manipulation
+Data
+Figure 11.2 The internals of a
+JSON parse/serialize
+data-oriented web service
+Theo stands alone for a few minutes in front of the whiteboard, meditating about “build-
+ing the insides of our systems like we build the outsides.” Without really noticing it, he
+takes a marker and starts drawing a new diagram (see figure 11.3), which summarizes the
+insights that Joe just shared with him.
+Web browser
+Data
+Web service
+JSON Parser (1) JSON Serializer (6)
+Data Data
+Business Logic
+Data Manipulation (2) Data Manipulation (5)
+Figure 11.3 Building the insides of our
+systems like building the outsides. The inner
+Data Data components of a web service communicate
+with data. As an example, here is a typical
+JSON Serializer (3) JSON Parser (4) flow of a web service handling a client
+request: (1) Parse the client JSON request
+into data. (2) Manipulate data according
+Data Data to business logic. (3) Serialize data into a
+JSON request to a database and another
+Web service. (4) Parse JSON responses into
+data. (5) Manipulate data according to
+Web service Database business logic. (6) Serialize data into a
+JSON response to the client.
+
+## 페이지 253

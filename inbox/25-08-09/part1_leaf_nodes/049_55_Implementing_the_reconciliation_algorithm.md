@@ -1,0 +1,10 @@
+# 5.5 Implementing the reconciliation algorithm
+
+**ID**: 49  
+**Level**: 2  
+**추출 시간**: 2025-08-09 10:09:52 KST
+
+---
+
+<!-- 내용 추출 실패: start_pos=4337, end_pos=908 -->
+

@@ -1,0 +1,945 @@
+{
+  "extraction_info": {
+    "extraction_time": "2025-08-07 10:34 KST",
+    "source_file": "core_toc_with_page_ranges.json",
+    "purpose": "상위 구성 단위와 하위 구성 단위 사이의 누락된 내용 영역 완전 추출"
+  },
+  "validation_summary": {
+    "total_gaps": 37,
+    "same_page_gaps": 15,
+    "page_gaps": 22,
+    "priority_distribution": {
+      "high": 4,
+      "medium": 18,
+      "low": 15
+    },
+    "needs_content_check": 37
+  },
+  "gaps": [
+    {
+      "gap_id": 1,
+      "parent": {
+        "title": "Part 1—Flexibility",
+        "level": 0,
+        "start_page": 29,
+        "end_page": 164,
+        "index": 1
+      },
+      "first_child": {
+        "title": "1 Complexity of object- oriented programming",
+        "level": 1,
+        "start_page": 31,
+        "index": 2
+      },
+      "gap_analysis": {
+        "gap_start_page": 29,
+        "gap_end_page": 31,
+        "page_gap": 2,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "high"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 2,
+      "parent": {
+        "title": "1 Complexity of object- oriented programming",
+        "level": 1,
+        "start_page": 31,
+        "end_page": 53,
+        "index": 2
+      },
+      "first_child": {
+        "title": "1.1 OOP design: Classic or classical?",
+        "level": 2,
+        "start_page": 32,
+        "index": 3
+      },
+      "gap_analysis": {
+        "gap_start_page": 31,
+        "gap_end_page": 32,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 3,
+      "parent": {
+        "title": "1.1 OOP design: Classic or classical?",
+        "level": 2,
+        "start_page": 32,
+        "end_page": 40,
+        "index": 3
+      },
+      "first_child": {
+        "title": "1.1.1 The design phase",
+        "level": 3,
+        "start_page": 32,
+        "index": 4
+      },
+      "gap_analysis": {
+        "gap_start_page": 32,
+        "gap_end_page": 32,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 4,
+      "parent": {
+        "title": "1.2 Sources of complexity",
+        "level": 2,
+        "start_page": 41,
+        "end_page": 51,
+        "index": 8
+      },
+      "first_child": {
+        "title": "1.2.1 Many relations between classes",
+        "level": 3,
+        "start_page": 42,
+        "index": 9
+      },
+      "gap_analysis": {
+        "gap_start_page": 41,
+        "gap_end_page": 42,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 5,
+      "parent": {
+        "title": "2 Separation between code and data",
+        "level": 1,
+        "start_page": 54,
+        "end_page": 70,
+        "index": 14
+      },
+      "first_child": {
+        "title": "2.1 The two parts of a DOP system",
+        "level": 2,
+        "start_page": 55,
+        "index": 15
+      },
+      "gap_analysis": {
+        "gap_start_page": 54,
+        "gap_end_page": 55,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 6,
+      "parent": {
+        "title": "3 Basic data manipulation",
+        "level": 1,
+        "start_page": 71,
+        "end_page": 98,
+        "index": 21
+      },
+      "first_child": {
+        "title": "3.1 Designing a data model",
+        "level": 2,
+        "start_page": 72,
+        "index": 22
+      },
+      "gap_analysis": {
+        "gap_start_page": 71,
+        "gap_end_page": 72,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 7,
+      "parent": {
+        "title": "4 State management",
+        "level": 1,
+        "start_page": 99,
+        "end_page": 118,
+        "index": 28
+      },
+      "first_child": {
+        "title": "4.1 Multiple versions of the system data",
+        "level": 2,
+        "start_page": 100,
+        "index": 29
+      },
+      "gap_analysis": {
+        "gap_start_page": 99,
+        "gap_end_page": 100,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 8,
+      "parent": {
+        "title": "5 Basic concurrency control",
+        "level": 1,
+        "start_page": 119,
+        "end_page": 137,
+        "index": 37
+      },
+      "first_child": {
+        "title": "5.1 Optimistic concurrency control",
+        "level": 2,
+        "start_page": 120,
+        "index": 38
+      },
+      "gap_analysis": {
+        "gap_start_page": 119,
+        "gap_end_page": 120,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 9,
+      "parent": {
+        "title": "6 Unit tests",
+        "level": 1,
+        "start_page": 138,
+        "end_page": 164,
+        "index": 44
+      },
+      "first_child": {
+        "title": "6.1 The simplicity of data-oriented test cases",
+        "level": 2,
+        "start_page": 138,
+        "index": 45
+      },
+      "gap_analysis": {
+        "gap_start_page": 138,
+        "gap_end_page": 138,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 10,
+      "parent": {
+        "title": "6.2 Unit tests for data manipulation code",
+        "level": 2,
+        "start_page": 140,
+        "end_page": 148,
+        "index": 46
+      },
+      "first_child": {
+        "title": "6.2.1 The tree of function calls",
+        "level": 3,
+        "start_page": 141,
+        "index": 47
+      },
+      "gap_analysis": {
+        "gap_start_page": 140,
+        "gap_end_page": 141,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 11,
+      "parent": {
+        "title": "Part 2—Scalability",
+        "level": 0,
+        "start_page": 165,
+        "end_page": 272,
+        "index": 54
+      },
+      "first_child": {
+        "title": "7 Basic data validation",
+        "level": 1,
+        "start_page": 169,
+        "index": 55
+      },
+      "gap_analysis": {
+        "gap_start_page": 165,
+        "gap_end_page": 169,
+        "page_gap": 4,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "high"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 12,
+      "parent": {
+        "title": "7 Basic data validation",
+        "level": 1,
+        "start_page": 169,
+        "end_page": 190,
+        "index": 55
+      },
+      "first_child": {
+        "title": "7.1 Data validation in DOP",
+        "level": 2,
+        "start_page": 170,
+        "index": 56
+      },
+      "gap_analysis": {
+        "gap_start_page": 169,
+        "gap_end_page": 170,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 13,
+      "parent": {
+        "title": "8 Advanced concurrency control",
+        "level": 1,
+        "start_page": 191,
+        "end_page": 202,
+        "index": 62
+      },
+      "first_child": {
+        "title": "8.1 The complexity of locks",
+        "level": 2,
+        "start_page": 192,
+        "index": 63
+      },
+      "gap_analysis": {
+        "gap_start_page": 191,
+        "gap_end_page": 192,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 14,
+      "parent": {
+        "title": "9 Persistent data structures",
+        "level": 1,
+        "start_page": 203,
+        "end_page": 224,
+        "index": 68
+      },
+      "first_child": {
+        "title": "9.1 The need for persistent data structures",
+        "level": 2,
+        "start_page": 203,
+        "index": 69
+      },
+      "gap_analysis": {
+        "gap_start_page": 203,
+        "gap_end_page": 203,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 15,
+      "parent": {
+        "title": "9.3 Persistent data structures libraries",
+        "level": 2,
+        "start_page": 212,
+        "end_page": 215,
+        "index": 71
+      },
+      "first_child": {
+        "title": "9.3.1 Persistent data structures in Java",
+        "level": 3,
+        "start_page": 212,
+        "index": 72
+      },
+      "gap_analysis": {
+        "gap_start_page": 212,
+        "gap_end_page": 212,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 16,
+      "parent": {
+        "title": "9.4 Persistent data structures in action",
+        "level": 2,
+        "start_page": 216,
+        "end_page": 222,
+        "index": 74
+      },
+      "first_child": {
+        "title": "9.4.1 Writing queries with persistent data structures",
+        "level": 3,
+        "start_page": 216,
+        "index": 75
+      },
+      "gap_analysis": {
+        "gap_start_page": 216,
+        "gap_end_page": 216,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 17,
+      "parent": {
+        "title": "10 Database operations",
+        "level": 1,
+        "start_page": 225,
+        "end_page": 247,
+        "index": 80
+      },
+      "first_child": {
+        "title": "10.1 Fetching data from the database",
+        "level": 2,
+        "start_page": 226,
+        "index": 81
+      },
+      "gap_analysis": {
+        "gap_start_page": 225,
+        "gap_end_page": 226,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 18,
+      "parent": {
+        "title": "11 Web services",
+        "level": 1,
+        "start_page": 248,
+        "end_page": 272,
+        "index": 86
+      },
+      "first_child": {
+        "title": "11.1 Another feature request",
+        "level": 2,
+        "start_page": 249,
+        "index": 87
+      },
+      "gap_analysis": {
+        "gap_start_page": 248,
+        "gap_end_page": 249,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 19,
+      "parent": {
+        "title": "Part 3—Maintainability",
+        "level": 0,
+        "start_page": 273,
+        "end_page": 360,
+        "index": 95
+      },
+      "first_child": {
+        "title": "12 Advanced data validation",
+        "level": 1,
+        "start_page": 275,
+        "index": 96
+      },
+      "gap_analysis": {
+        "gap_start_page": 273,
+        "gap_end_page": 275,
+        "page_gap": 2,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "high"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 20,
+      "parent": {
+        "title": "12 Advanced data validation",
+        "level": 1,
+        "start_page": 275,
+        "end_page": 299,
+        "index": 96
+      },
+      "first_child": {
+        "title": "12.1 Function arguments validation",
+        "level": 2,
+        "start_page": 276,
+        "index": 97
+      },
+      "gap_analysis": {
+        "gap_start_page": 275,
+        "gap_end_page": 276,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 21,
+      "parent": {
+        "title": "13 Polymorphism",
+        "level": 1,
+        "start_page": 300,
+        "end_page": 322,
+        "index": 104
+      },
+      "first_child": {
+        "title": "13.1 The essence of polymorphism",
+        "level": 2,
+        "start_page": 301,
+        "index": 105
+      },
+      "gap_analysis": {
+        "gap_start_page": 300,
+        "gap_end_page": 301,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 22,
+      "parent": {
+        "title": "14 Advanced data manipulation",
+        "level": 1,
+        "start_page": 323,
+        "end_page": 338,
+        "index": 111
+      },
+      "first_child": {
+        "title": "14.1 Updating a value in a map with eloquence",
+        "level": 2,
+        "start_page": 324,
+        "index": 112
+      },
+      "gap_analysis": {
+        "gap_start_page": 323,
+        "gap_end_page": 324,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 23,
+      "parent": {
+        "title": "15 Debugging",
+        "level": 1,
+        "start_page": 339,
+        "end_page": 360,
+        "index": 117
+      },
+      "first_child": {
+        "title": "15.1 Determinism in programming",
+        "level": 2,
+        "start_page": 340,
+        "index": 118
+      },
+      "gap_analysis": {
+        "gap_start_page": 339,
+        "gap_end_page": 340,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 24,
+      "parent": {
+        "title": "Appendix A—Principles of data-oriented programming",
+        "level": 0,
+        "start_page": 361,
+        "end_page": 391,
+        "index": 125
+      },
+      "first_child": {
+        "title": "A.1 Principle #1: Separate code from data",
+        "level": 1,
+        "start_page": 363,
+        "index": 126
+      },
+      "gap_analysis": {
+        "gap_start_page": 361,
+        "gap_end_page": 363,
+        "page_gap": 2,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "high"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 25,
+      "parent": {
+        "title": "A.1 Principle #1: Separate code from data",
+        "level": 1,
+        "start_page": 363,
+        "end_page": 372,
+        "index": 126
+      },
+      "first_child": {
+        "title": "A.1.1 Illustration of Principle #1",
+        "level": 2,
+        "start_page": 363,
+        "index": 127
+      },
+      "gap_analysis": {
+        "gap_start_page": 363,
+        "gap_end_page": 363,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 26,
+      "parent": {
+        "title": "A.2 Principle #2: Represent data with generic data structures",
+        "level": 1,
+        "start_page": 373,
+        "end_page": 378,
+        "index": 131
+      },
+      "first_child": {
+        "title": "A.2.1 Illustration of Principle #2",
+        "level": 2,
+        "start_page": 373,
+        "index": 132
+      },
+      "gap_analysis": {
+        "gap_start_page": 373,
+        "gap_end_page": 373,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 27,
+      "parent": {
+        "title": "A.3 Principle #3: Data is immutable",
+        "level": 1,
+        "start_page": 379,
+        "end_page": 382,
+        "index": 136
+      },
+      "first_child": {
+        "title": "A.3.1 Illustration of Principle #3",
+        "level": 2,
+        "start_page": 379,
+        "index": 137
+      },
+      "gap_analysis": {
+        "gap_start_page": 379,
+        "gap_end_page": 379,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 28,
+      "parent": {
+        "title": "A.4 Principle #4: Separate data schema from data representation",
+        "level": 1,
+        "start_page": 383,
+        "end_page": 390,
+        "index": 141
+      },
+      "first_child": {
+        "title": "A.4.1 Illustration of Principle #4",
+        "level": 2,
+        "start_page": 383,
+        "index": 142
+      },
+      "gap_analysis": {
+        "gap_start_page": 383,
+        "gap_end_page": 383,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 29,
+      "parent": {
+        "title": "Appendix B—Generic data access in statically-typed languages",
+        "level": 0,
+        "start_page": 392,
+        "end_page": 408,
+        "index": 147
+      },
+      "first_child": {
+        "title": "B.1 Dynamic getters for string maps",
+        "level": 1,
+        "start_page": 392,
+        "index": 148
+      },
+      "gap_analysis": {
+        "gap_start_page": 392,
+        "gap_end_page": 392,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 30,
+      "parent": {
+        "title": "B.1 Dynamic getters for string maps",
+        "level": 1,
+        "start_page": 392,
+        "end_page": 394,
+        "index": 148
+      },
+      "first_child": {
+        "title": "B.1.1 Accessing non-nested map fields with dynamic getters",
+        "level": 2,
+        "start_page": 393,
+        "index": 149
+      },
+      "gap_analysis": {
+        "gap_start_page": 392,
+        "gap_end_page": 393,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 31,
+      "parent": {
+        "title": "B.2 Value getters for maps",
+        "level": 1,
+        "start_page": 395,
+        "end_page": 397,
+        "index": 151
+      },
+      "first_child": {
+        "title": "B.2.1 Accessing non-nested map fields with value getters",
+        "level": 2,
+        "start_page": 395,
+        "index": 152
+      },
+      "gap_analysis": {
+        "gap_start_page": 395,
+        "gap_end_page": 395,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 32,
+      "parent": {
+        "title": "B.3 Typed getters for maps",
+        "level": 1,
+        "start_page": 398,
+        "end_page": 400,
+        "index": 154
+      },
+      "first_child": {
+        "title": "B.3.1 Accessing non-nested map fields with typed getters",
+        "level": 2,
+        "start_page": 398,
+        "index": 155
+      },
+      "gap_analysis": {
+        "gap_start_page": 398,
+        "gap_end_page": 398,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 33,
+      "parent": {
+        "title": "B.4 Generic access to class members",
+        "level": 1,
+        "start_page": 401,
+        "end_page": 407,
+        "index": 157
+      },
+      "first_child": {
+        "title": "B.4.1 Generic access to non-nested class members",
+        "level": 2,
+        "start_page": 401,
+        "index": 158
+      },
+      "gap_analysis": {
+        "gap_start_page": 401,
+        "gap_end_page": 401,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 34,
+      "parent": {
+        "title": "Appendix C—Data-oriented programming: A link in the chain of programming paradigms",
+        "level": 0,
+        "start_page": 409,
+        "end_page": 414,
+        "index": 162
+      },
+      "first_child": {
+        "title": "C.1 Time line",
+        "level": 1,
+        "start_page": 409,
+        "index": 163
+      },
+      "gap_analysis": {
+        "gap_start_page": 409,
+        "gap_end_page": 409,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 35,
+      "parent": {
+        "title": "C.1 Time line",
+        "level": 1,
+        "start_page": 409,
+        "end_page": 410,
+        "index": 163
+      },
+      "first_child": {
+        "title": "C.1.1 1958: Lisp",
+        "level": 2,
+        "start_page": 409,
+        "index": 164
+      },
+      "gap_analysis": {
+        "gap_start_page": 409,
+        "gap_end_page": 409,
+        "page_gap": 0,
+        "same_page": true,
+        "has_page_gap": false,
+        "priority": "low"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 36,
+      "parent": {
+        "title": "C.2 DOP principles as best practices",
+        "level": 1,
+        "start_page": 411,
+        "end_page": 412,
+        "index": 170
+      },
+      "first_child": {
+        "title": "C.2.1 Principle #1: Separate code from data",
+        "level": 2,
+        "start_page": 412,
+        "index": 171
+      },
+      "gap_analysis": {
+        "gap_start_page": 411,
+        "gap_end_page": 412,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    },
+    {
+      "gap_id": 37,
+      "parent": {
+        "title": "C.3 DOP and other data-related paradigms",
+        "level": 1,
+        "start_page": 413,
+        "end_page": 413,
+        "index": 175
+      },
+      "first_child": {
+        "title": "C.3.1 Data-oriented design",
+        "level": 2,
+        "start_page": 414,
+        "index": 176
+      },
+      "gap_analysis": {
+        "gap_start_page": 413,
+        "gap_end_page": 414,
+        "page_gap": 1,
+        "same_page": false,
+        "has_page_gap": true,
+        "priority": "medium"
+      },
+      "content_check_needed": true
+    }
+  ]
+}
