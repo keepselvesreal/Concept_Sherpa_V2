@@ -1,0 +1,10 @@
+{
+  "query_number": 2,
+  "query": "왜 개발 경험이 있는 사람이 새로운 언어나 api 이해 시 진정한 가치가 발휘돼?",
+  "model_response": "태수야, 참조 문서를 보면 Dave Plummer가 정확히 이 포인트를 짚어주고 있어.\n\n개발 경험이 있는 사람이 새로운 언어나 API 이해할 때 AI의 진정한 가치가 발휘되는 이유는 몇 가지야:\n\n**1. 이미 구조적 사고력을 갖추고 있어서** [01:09-01:13]\nDave가 Python 코드를 보면서 \"It's all pretty self-explanatory once you see it\"라고 한 것처럼, 경험 있는 개발자는 AI가 생성한 코드를 보면 바로 이해할 수 있어. 문법을 일일이 찾아보지 않아도 말이야.\n\n**2. 무엇을 요청해야 할지 알고 있어** [01:22]\n\"to know what to tell it to do next\"라는 표현처럼, 경험자는 AI에게 정확히 무엇을 시켜야 하는지 알고 있어. 초보자는 이 부분에서 막혀.\n\n**3. 생성된 코드의 품질을 판단할 수 있어** [01:22]\n경험이 있으면 AI가 만든 코드를 \"read\"하고 평가할 수 있어. 뭐가 좋고 나쁜지, 어떤 부분을 수정해야 할지 바로 알지.\n\n**4. 학습 도구로 활용 가능** [00:38-00:42]\nDave가 Python을 배울 때처럼, AI 코드를 보면서 새로운 언어의 관용구와 패턴을 익힐 수 있어. 이건 이미 프로그래밍 개념을 아는 사람만 가능한 거야.\n\n반대로 초보자들은 [01:49-01:54] \"creating systems that are not usable in production\"이라고 하듯이 실제로 쓸 수 없는 코드만 만들어내지.\n\n결국 AI는 강력한 도구지만, 그 도구를 제대로 활용하려면 기본기가 있어야 한다는 얘기야. 냉정하게 말하면, 경험 없이 바이브 코딩만으로는 한계가 명확해.",
+  "has_relevant_content": true,
+  "elapsed_time": 28.727296829223633,
+  "timestamp": "2025-09-07T00:28:25.970545",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/inbox/25-08-27/references/00_lev0_Vibe_coding_and_the_future_of_programming_Dave_Plummer_and_Lex_Fridman_info.md",
+  "success": true
+}

@@ -646,17 +646,9 @@
             
             // 파일이 선택된 경우
             const file = fileInput.files[0];
-            if (file) {
-                formData.append('file', file);
-            }
-            
-            // 텍스트 데이터가 있는 경우
             const textValue = textInput.value.trim();
-            if (textValue) {
-                formData.append('text_data', textValue);
-            }
             
-            // 메타정보 추가
+            // 메타정보 수집
             const sourceType = document.querySelector('input[name="source_type"]:checked').value;
             const sourceLanguage = document.querySelector('input[name="source_language"]:checked').value;
             const structureType = document.querySelector('input[name="structure_type"]:checked').value;
@@ -667,8 +659,27 @@
             formData.append('structure_type', structureType);
             formData.append('content_processing', contentProcessing);
             
+            let endpoint = '/upload';
+            
+            // URL인지 파일인지 구분해서 적절한 엔드포인트 선택
+            if (file) {
+                // 파일이 있으면 파일 업로드 엔드포인트
+                formData.append('file', file);
+                endpoint = '/upload';
+            } else if (textValue) {
+                // 파일 없고 텍스트 입력이 있으면 URL 처리 엔드포인트
+                formData.append('text_data', textValue);
+                endpoint = '/process_url';
+            } else {
+                // 파일도 텍스트도 없으면 오류 표시
+                result.className = 'result error';
+                result.style.display = 'block';
+                result.innerHTML = '<p>파일을 선택하거나 URL을 입력해주세요.</p>';
+                return;
+            }
+            
             try {
-                const response = await fetch('/upload', {
+                const response = await fetch(endpoint, {
                     method: 'POST',
                     body: formData
                 });

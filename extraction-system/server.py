@@ -19,7 +19,7 @@ from typing import Union
 # 리팩토링된 파이프라인 임포트
 from pipeline.youtube_pipeline import YouTubePipeline
 from pipeline.md_pipeline import MDPipeline
-from pipeline.book_pipeline import BookPipeline
+# from pipeline.book_pipeline import BookPipeline
 
 app = FastAPI()
 

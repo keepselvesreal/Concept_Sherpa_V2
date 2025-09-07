@@ -1,0 +1,10 @@
+{
+  "query_number": 1,
+  "query": "warp가 뭐야?",
+  "model_response": "태수야, Warp는 기존 AI 코딩 도구들과는 완전히 다른 접근법을 가진 도구야.\n\n**핵심 특징:**\n- ADE(Agentic Development Environment)로, IDE와 터미널을 하나로 통합한 도구 [107]\n- Claude Code처럼 터미널 도구도 아니고, Cursor처럼 VS Code 포크도 아닌, 완전히 새로운 형태 [105]\n- 여러 에이전트를 병렬로 실행할 수 있는 조합 접근법 제공 [105]\n\n**성능 면에서:**\n- GosuCoder의 평가에서 모든 AI 코딩 도구 중 1-2위 차지 [83]\n- Terminal-Bench에서 1위, SWE-bench Verified에서 75.8% 달성 [109]\n\n**실제 활용 능력:**\n저자가 200줄 규모의 Express 백엔드와 바닐라 JS 프론트엔드 태스크 관리 앱으로 테스트한 결과 [129]:\n- 기존 방식으로 30분 걸리던 코드 이해가 30초 만에 완료 [195]\n- 9가지 심각한 문제점을 자동으로 식별하고 해결책 제시 [211]\n- 버그 수정과 에러 핸들링 개선이 5분 만에 완료 [376]\n\n**차별화 포인트:**\n- 코드베이스 전체를 인덱싱해서 파일 간의 관계와 맥락을 이해 [22]\n- 프론트엔드와 백엔드 간의 에러 시나리오까지 파악해서 협조적인 변경사항 생성 [22]\n- 시각적 diff 에디터로 변경사항을 먼저 검토한 후 적용 가능 [35]\n\n솔직히 말하면, 기존 도구들과 비교했을 때 상당히 인상적인 성능을 보여주는 것 같아. 다만 실제로 써봐야 본인 워크플로우에 맞는지 알 수 있을 거야.",
+  "has_relevant_content": true,
+  "elapsed_time": 26.49134635925293,
+  "timestamp": "2025-09-07T00:05:24.636275",
+  "document_path": "/home/nadle/projects/Knowledge_Sherpa/v2/inbox/25-08-27/references/00_lev0_How_Im_Using_Warp_Code_to_Work_in_a_New_Codebase_Its_Truly_Agentic_by_Joe_Njenga_Sep_2025_Medium_info_with_lines.md",
+  "success": true
+}

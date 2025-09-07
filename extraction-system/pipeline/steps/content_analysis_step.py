@@ -35,11 +35,12 @@ class ContentAnalysisStep(PipelineStep):
             
             print(f"📁 대상 폴더: {target_folder_path}")
             
-            # *_info.md 파일들 찾기
+            # *_info.md 파일들 찾기 (하위 폴더 포함 재귀 탐색)
             info_files = []
-            for file in os.listdir(target_folder_path):
-                if file.endswith('_info.md'):
-                    info_files.append(os.path.join(target_folder_path, file))
+            for root, dirs, files in os.walk(target_folder_path):
+                for file in files:
+                    if file.endswith('_info.md'):
+                        info_files.append(os.path.join(root, file))
             
             if not info_files:
                 return StepResult.error_result("노드 정보 문서를 찾을 수 없습니다 (*_info.md)")
