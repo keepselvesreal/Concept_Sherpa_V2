@@ -2,7 +2,7 @@
   "extraction_info": {
     "source_pdf": "2022_Data-Oriented Programming_Manning.pdf",
     "extraction_method": "PyMuPDF complete TOC extraction with hierarchy",
-    "extraction_timestamp": "2025-09-07 22:07:08 KST",
+    "extraction_timestamp": "2025-09-08 16:56:22 KST",
     "total_items": 218,
     "note": "Complete hierarchy extracted using PyMuPDF library"
   },

@@ -79,12 +79,21 @@ class ContentProcessingStage:
             extraction_match = re.search(r'# 추출\n---\n(.*?)(?=\n# |$)', content, re.DOTALL)
             extraction_section = extraction_match.group(1).strip() if extraction_match else ''
             
+            # 속성 섹션에서 process_status 추출
+            process_status = False
+            attributes_match = re.search(r'# 속성\n(.*?)(?=\n# |$)', content, re.DOTALL)
+            if attributes_match:
+                attributes_content = attributes_match.group(1)
+                if 'process_status: true' in attributes_content:
+                    process_status = True
+            
             return {
                 'title': title,
                 'level': level,
                 'composition_section': composition_section,
                 'content_section': content_section,
                 'extraction_section': extraction_section,  # 추가
+                'process_status': process_status,  # 추가
                 'file_path': file_path,
                 'full_content': content
             }
@@ -356,6 +365,62 @@ class ContentProcessingStage:
         except Exception as e:
             self.logger.warning(f"⚠️ 상태 마킹 실패: {file_path} - {e}")
 
+    async def update_process_status(self, file_path: str, status: bool):
+        """📝 속성 섹션의 process_status 업데이트"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            status_value = 'true' if status else 'false'
+            
+            # 속성 섹션이 있는지 확인
+            attributes_pattern = r'(# 속성\n)(.*?)(?=\n# |$)'
+            attributes_match = re.search(attributes_pattern, content, re.DOTALL)
+            
+            if attributes_match:
+                # 기존 속성 섹션 업데이트
+                attributes_content = attributes_match.group(2)
+                
+                # process_status가 이미 있는지 확인
+                if 'process_status:' in attributes_content:
+                    # 기존 process_status 값 업데이트
+                    updated_attributes = re.sub(
+                        r'process_status:\s*(true|false)',
+                        f'process_status: {status_value}',
+                        attributes_content
+                    )
+                else:
+                    # process_status 추가
+                    updated_attributes = attributes_content.strip() + f'\nprocess_status: {status_value}'
+                
+                new_content = re.sub(
+                    attributes_pattern,
+                    f'\\1{updated_attributes}\n',
+                    content,
+                    flags=re.DOTALL
+                )
+            else:
+                # 속성 섹션이 없으면 추가 (# 내용 앞에)
+                content_pattern = r'(\n# 내용)'
+                if re.search(content_pattern, content):
+                    new_content = re.sub(
+                        content_pattern,
+                        f'\n# 속성\nprocess_status: {status_value}\n\\1',
+                        content
+                    )
+                else:
+                    # # 내용 섹션도 없으면 파일 끝에 추가
+                    new_content = content + f'\n\n# 속성\nprocess_status: {status_value}\n'
+            
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+                
+            self.logger.info(f"📝 process_status 업데이트: {Path(file_path).name} - {status_value}")
+                
+        except Exception as e:
+            self.logger.error(f"❌ process_status 업데이트 실패: {file_path} - {e}")
+            raise
+
     async def process(self, book_folder_path: str) -> Dict[str, Any]:
         """🚀 메인 처리 로직"""
         try:
@@ -373,12 +438,20 @@ class ContentProcessingStage:
                 self.logger.info(f"🔄 그룹 {i+1}/{len(sorted_groups)} 처리 시작: {len(group)}개 문서")
                 
                 for doc in group:
-                    # 기본 추출 작업
-                    extraction_result = await self.generate_extract_section(doc)
-                    if extraction_result:
-                        formatted_content = self.format_extraction_content(extraction_result)
-                        await self.update_extraction_section(doc['file_path'], formatted_content)
-                        total_processed += 1
+                    # process_status가 false인 문서에 대해서만 처리
+                    if not doc.get('process_status', False):
+                        # 기본 추출 작업
+                        extraction_result = await self.generate_extract_section(doc)
+                        if extraction_result:
+                            formatted_content = self.format_extraction_content(extraction_result)
+                            await self.update_extraction_section(doc['file_path'], formatted_content)
+                            # process_status를 true로 변경
+                            await self.update_process_status(doc['file_path'], True)
+                            total_processed += 1
+                        else:
+                            self.logger.warning(f"⚠️ 추출 실패로 process_status 유지: {doc.get('title', 'Unknown')}")
+                    else:
+                        self.logger.info(f"⏭️ 이미 처리됨 (process_status: true): {doc.get('title', 'Unknown')}")
                 
                 self.logger.info(f"✅ 그룹 {i+1} 처리 완료")
             
@@ -439,7 +512,7 @@ class ContentProcessingStage:
                 matched_doc = self.find_matching_document(all_docs, toc_item)
                 
                 if matched_doc:
-                    extraction_content = self.extract_core_content_from_doc(matched_doc)
+                    extraction_content = self.get_extracted_information(matched_doc)
                     if extraction_content.strip():
                         enhanced_lines.append(f"{header}\n{extraction_content}")
                         matched_count += 1
@@ -453,7 +526,7 @@ class ContentProcessingStage:
                 enhanced_lines.append("")
             
             # 4. 파일 저장
-            output_file = os.path.join(book_folder_path, f"{chapter_name}_enhanced_toc.md")
+            output_file = os.path.join(book_folder_path, f"{chapter_name}_enhanced_ToC.md")
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.write('\n'.join(enhanced_lines))
             
@@ -524,25 +597,34 @@ class ContentProcessingStage:
         self.logger.warning(f"❌ 매칭 실패: '{toc_title}' (정규화: '{normalized_toc_title}')")
         return None
 
-    def extract_core_content_from_doc(self, doc_data: Dict) -> str:
+    def get_extracted_information(self, doc_data: Dict) -> str:
         """📝 문서에서 핵심 내용 추출"""
         extraction_section = doc_data.get('extraction_section', '').strip()
         
         if not extraction_section or extraction_section == '---':
             return "[추출 내용 없음]"
         
-        # 핵심 내용, 상세 핵심 내용, 상세 정보 섹션만 추출
+        # 모든 추출 섹션 포함 (핵심 내용, 상세 핵심 내용, 상세 정보, 주요 화제, 부차 화제)
         sections = self.parse_extraction_sections(extraction_section)
         
-        core_sections = []
-        for section_name in ['core_content', 'detailed_core_content', 'detailed_content']:
+        selected_information_type = []
+        for section_name in ['core_content', 'detailed_core_content', 'detailed_content', 'main_topics', 'sub_topics']:
             if section_name in sections and sections[section_name].strip():
                 content = sections[section_name].strip()
-                if content.startswith('##'):
-                    core_sections.append(content)
+                # 헤더 추가하여 섹션 구분
+                if section_name == 'core_content':
+                    selected_information_type.append(f"## 핵심 내용\n{content}")
+                elif section_name == 'detailed_core_content':
+                    selected_information_type.append(f"## 상세 핵심 내용\n{content}")
+                elif section_name == 'detailed_content':
+                    selected_information_type.append(f"## 상세 정보\n{content}")
+                elif section_name == 'main_topics':
+                    selected_information_type.append(f"## 주요 화제\n{content}")
+                elif section_name == 'sub_topics':
+                    selected_information_type.append(f"## 부차 화제\n{content}")
         
-        if core_sections:
-            return '\n\n'.join(core_sections)
+        if selected_information_type:
+            return '\n\n'.join(selected_information_type)
         else:
             return extraction_section[:500] + "..." if len(extraction_section) > 500 else extraction_section
 
@@ -557,16 +639,17 @@ class ContentProcessingStage:
             
             # 섹션 헤더 감지 (## 로 시작하는 라인)
             if line.startswith('## '):
-                # 이전 섹션 저장
+                # 이전 섹션 저장 (헤더 제외하고 내용만)
                 if current_section and current_content:
                     sections[current_section] = '\n'.join(current_content).strip()
                 
                 # 새 섹션 시작
                 section_title = line[3:].strip()  # ## 제거
-                if '핵심 내용' in section_title:
-                    current_section = 'core_content'
-                elif '상세 핵심' in section_title:
+                # 더 구체적인 패턴을 먼저 확인
+                if '상세 핵심' in section_title:
                     current_section = 'detailed_core_content'
+                elif '핵심 내용' in section_title:
+                    current_section = 'core_content'
                 elif '상세 정보' in section_title:
                     current_section = 'detailed_content'
                 elif '주요 화제' in section_title:
@@ -576,7 +659,7 @@ class ContentProcessingStage:
                 else:
                     current_section = None
                 
-                current_content = [line]  # 헤더 포함
+                current_content = []  # 헤더는 저장하지 않고 내용만 저장
             elif current_section:
                 current_content.append(line)
         

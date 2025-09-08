@@ -302,15 +302,14 @@ class IntegratedNodeGenerationStage(BaseProcessor):
                 'error': error_msg
             }
     
-    async def integrate_documents(self, chapter_result: Dict[str, Any], 
-                                content_nodes_result: Dict[str, Any], output_dir: str) -> Dict[str, Any]:
+    async def integrate_documents(self, chapter_folder: str) -> Dict[str, Any]:
         """3단계: 문서 통합 (DocumentIntegrator 로직 이관)"""
-        chapter_number = chapter_result.get('chapter_number')
-        chapter_title = chapter_result.get('chapter_title', '')
-        folder_path = chapter_result.get('folder_path', '')
+        
+        folder_name = os.path.basename(chapter_folder)
+        folder_path = chapter_folder
         
         try:
-            self.logger.info(f"장 {chapter_number} 문서 통합 시작: {chapter_title}")
+            self.logger.info(f"문서 통합 시작: {folder_name}")
             
             # 필수 폴더 존재 검증
             if not os.path.exists(folder_path):
@@ -352,20 +351,25 @@ class IntegratedNodeGenerationStage(BaseProcessor):
                 if self._integrate_single_document(node, nodes, content_dir, node_docs_dir):
                     success_count += 1
             
-            self.logger.info(f"장 {chapter_number} 문서 통합 완료: {success_count}/{total_nodes}개 문서")
+            self.logger.info(f"{folder_name} 문서 통합 완료: {success_count}/{total_nodes}개 문서")
             
             return {
                 'success': True,
-                'integrated_count': success_count,
-                'total_nodes': total_nodes,
-                'toc_file_used': toc_file,
-                'chapter_folder': folder_path
+                'data': {
+                    'total_nodes': total_nodes,
+                    'integrated_count': success_count
+                },
+                'error': None
             }
                 
         except Exception as e:
             error_msg = f"문서 통합 중 예외: {str(e)}"
-            self.logger.error(f"장 {chapter_number} {error_msg}")
-            return {'success': False, 'error': error_msg}
+            self.logger.error(f"{folder_name} {error_msg}")
+            return {
+                'success': False,
+                'data': None,
+                'error': error_msg
+            }
     
     def _integrate_single_document(self, node: Dict[str, Any], all_nodes: List[Dict[str, Any]], 
                                   content_dir: str, node_docs_dir: str) -> bool:
