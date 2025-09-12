@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__desktop-commander__list_directory",
+      "Bash(git add:*)",
+      "Bash(mv:*)",
+      "mcp__desktop-commander__move_file"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

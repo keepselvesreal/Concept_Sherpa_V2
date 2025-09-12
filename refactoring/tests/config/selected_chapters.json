@@ -1,0 +1,4 @@
+{
+  "selected_chapter_indices": [0, 1],
+  "description": "테스트할 챕터 인덱스 목록 (0-based). 예: [0, 1]은 1,2장, [0, 5, 8]은 1,6,9장"
+}

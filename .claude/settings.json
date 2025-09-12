@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(uv add:*)",
+      "Bash(source:*)",
+      "Bash(python:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv pip install:*)",
+      "Bash(chmod:*)",
+      "Bash(cp:*)",
+      "Bash(grep:*)",
+      "Bash(uv run:*)",
+      "Bash(rm:*)",
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(uv pip:*)",
+      "Bash(sed:*)",
+      "Bash(timeout:*)",
+      "mcp__desktop-commander__read_file",
+      "mcp__desktop-commander__write_file",
+      "mcp__desktop-commander__edit_block",
+      "mcp__desktop-commander__search_code",
+      "mcp__desktop-commander__start_process",
+      "WebFetch(domain:docs.anthropic.com)",
+      "mcp__desktop-commander__create_directory",
+      "Bash(wc:*)",
+      "Bash(head:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "mcp__desktop-commander__read_process_output",
+      "mcp__sequential-thinking__sequentialthinking"
+    ],
+    "deny": [],
+    "defaultMode": "acceptEdits"
+  },
+  "hooks": {
+  }
+}

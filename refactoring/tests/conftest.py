@@ -50,6 +50,13 @@ def test_logger():
     from utils.logger_v2 import Logger
     return Logger("test_workspace", logs_base_dir="tests/logs")
 
+@pytest.fixture(scope="session")
+def test_data_manager():
+    """TestResultDataManager 공통 픽스처"""
+    from tests.utils.test_data_manager import TestResultDataManager
+    base_path = str(Path(__file__).parent / "data" / "content_processing")
+    return TestResultDataManager(base_path)
+
 def regenerate_test_data():
     """테스트 데이터 자동 재생성"""
     print("🔄 테스트 데이터 재생성 중...")

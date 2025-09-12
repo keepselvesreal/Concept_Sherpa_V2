@@ -64,6 +64,11 @@ class IntegratedNodeGenerationStage(BaseProcessor):
             
             # workspace_result에서 chapters_data 추출
             workspace_data = input_data.get('data', {})
+            
+            # 책 제목 정보 추출
+            book_metadata = workspace_data.get('book_metadata', {})
+            normalized_book_title = book_metadata.get('normalized_title', 'Unknown_Book')
+            
             chapters_analysis = workspace_data.get('chapters_analysis', {})
             chapters_data = chapters_analysis.get('chapters_info', [])
             
@@ -100,19 +105,19 @@ class IntegratedNodeGenerationStage(BaseProcessor):
                 
                 # 1단계: 노드 정보 문서 생성
                 self.logger.info(f"📝 **1단계**: 노드 정보 문서 생성 - {chapter_title}")
-                node_documents = await self.generate_node_documents(chapter_info)
+                node_documents = await self.generate_node_documents(chapter_info, normalized_book_title)
                 all_node_documents.extend(node_documents)
                 self.logger.info(f"✅ 노드 문서 생성 완료: {len(node_documents)}개")
                 
                 # 2단계: 콘텐츠 문서 생성  
                 self.logger.info(f"🔍 **2단계**: 콘텐츠 문서 생성 - {chapter_title}")
-                content_documents = await self.generate_content_documents(chapter_info)
+                content_documents = await self.generate_content_documents(chapter_info, normalized_book_title)
                 all_content_documents.extend(content_documents)
                 self.logger.info(f"✅ 콘텐츠 문서 생성 완료: {len(content_documents)}개")
                 
                 # 3단계: 문서 통합
                 self.logger.info(f"🔗 **3단계**: 문서 통합 - {chapter_title}")
-                unified_documents = await self.integrate_documents(chapter_info, node_documents, content_documents)
+                unified_documents = await self.integrate_documents(chapter_info, node_documents, content_documents, normalized_book_title)
                 all_unified_documents.extend(unified_documents)
                 self.logger.info(f"✅ 문서 통합 완료: {len(unified_documents)}개")
             
@@ -143,7 +148,7 @@ class IntegratedNodeGenerationStage(BaseProcessor):
                 'error': error_msg
             }
     
-    async def generate_node_documents(self, chapter_info: Dict[str, Any]) -> List[Dict[str, str]]:
+    async def generate_node_documents(self, chapter_info: Dict[str, Any], normalized_book_title: str) -> List[Dict[str, str]]:
         """
         1단계: 노드 정보 문서 생성 (NodeDocumentService 사용)
         
@@ -153,6 +158,7 @@ class IntegratedNodeGenerationStage(BaseProcessor):
                 'chapter_toc': List[Dict],
                 'content_text': str
             }
+            normalized_book_title: 정규화된 책 제목
         
         Returns:
             List[Dict]: [{'file_name': str, 'content': str}, ...]
@@ -167,7 +173,7 @@ class IntegratedNodeGenerationStage(BaseProcessor):
             for doc in documents:
                 old_path = doc['file_name']  # "node_info_docs/filename"
                 filename = old_path.replace('node_info_docs/', '')  # "filename"
-                doc['file_name'] = f"{normalized_chapter}/info_docs/{filename}"
+                doc['file_name'] = f"{normalized_book_title}/{normalized_chapter}/info_docs/{filename}"
             
             return documents
             
@@ -175,7 +181,7 @@ class IntegratedNodeGenerationStage(BaseProcessor):
             self.logger.error(f"❌ 노드 문서 생성 중 오류: {str(e)}")
             return []
     
-    async def generate_content_documents(self, chapter_info: Dict[str, Any]) -> List[Dict[str, str]]:
+    async def generate_content_documents(self, chapter_info: Dict[str, Any], normalized_book_title: str) -> List[Dict[str, str]]:
         """
         2단계: AI 기반 콘텐츠 문서 생성 (메모리 내 처리)
         
@@ -185,6 +191,7 @@ class IntegratedNodeGenerationStage(BaseProcessor):
                 'chapter_toc': List[Dict],
                 'content_text': str
             }
+            normalized_book_title: 정규화된 책 제목
         
         Returns:
             List[Dict]: [{'file_name': str, 'content': str}, ...]
@@ -227,7 +234,7 @@ class IntegratedNodeGenerationStage(BaseProcessor):
                     if content:
                         # 파일명 생성
                         normalized_title = normalize_title(section_title)
-                        file_name = f"{normalized_chapter}/sections/{normalized_title}.md"
+                        file_name = f"{normalized_book_title}/{normalized_chapter}/sections/{normalized_title}.md"
                         
                         generated_documents.append({
                             'file_name': file_name,
@@ -244,7 +251,8 @@ class IntegratedNodeGenerationStage(BaseProcessor):
     
     async def integrate_documents(self, chapter_info: Dict[str, Any], 
                                 node_documents: List[Dict[str, str]], 
-                                content_documents: List[Dict[str, str]]) -> List[Dict[str, str]]:
+                                content_documents: List[Dict[str, str]], 
+                                normalized_book_title: str) -> List[Dict[str, str]]:
         """
         3단계: 노드 문서와 콘텐츠 문서 통합 (노드별 매칭하여 통합)
         
@@ -254,6 +262,7 @@ class IntegratedNodeGenerationStage(BaseProcessor):
             chapter_info: 챕터 정보
             node_documents: 1단계 생성된 노드 문서들
             content_documents: 2단계 생성된 콘텐츠 문서들
+            normalized_book_title: 정규화된 책 제목
         
         Returns:
             List[Dict]: [{'file_name': str, 'content': str}, ...]
@@ -341,9 +350,9 @@ class IntegratedNodeGenerationStage(BaseProcessor):
                     
                     integrated_content = '\n'.join(new_lines)
                 
-                # 통합 문서로 저장 ({정규화된장이름}/unified_info_docs/ 폴더에)
+                # 통합 문서로 저장 ({정규화된책제목}/{정규화된장이름}/unified_info_docs/ 폴더에)
                 normalized_chapter = normalize_title(chapter_info.get('chapter_title', 'Unknown'))
-                unified_file_name = f"{normalized_chapter}/unified_info_docs/{base_filename}"
+                unified_file_name = f"{normalized_book_title}/{normalized_chapter}/unified_info_docs/{base_filename}"
                 
                 unified_documents.append({
                     'file_name': unified_file_name,

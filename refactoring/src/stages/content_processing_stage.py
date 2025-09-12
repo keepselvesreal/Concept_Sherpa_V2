@@ -18,7 +18,6 @@ import asyncio
 import logging
 from pathlib import Path
 from typing import Dict, List, Any, Optional
-import yaml
 
 # 실제 구현된 모듈 활용
 import sys
@@ -29,8 +28,15 @@ sys.path.insert(0, refactoring_root)
 sys.path.append('/home/nadle/projects/Knowledge_Sherpa/v2/development/book_pipeline_refactored/src')
 
 from src.utils.text_utils import normalize_title
-
 from src.services.ai_service_v4 import AIService
+
+# content_processing 전용 유틸리티 함수들 import
+from .content_processing_utils import (
+    parse_extraction_response,
+    format_extraction_content,
+    update_file_extraction_section,
+    update_file_process_status
+)
 
 
 class ContentProcessingStage:
@@ -156,13 +162,43 @@ class ContentProcessingStage:
             self.logger.warning(f"⚠️ 추출 섹션 불완전: {title} ({success_count}/5)")
             return False
 
+    async def get_combined_content(self, doc: Dict) -> str:
+        """📖 노드의 통합 콘텐츠 생성 (리프: 자신만, 비리프: 자신+구성노드들)"""
+        base_content = doc.get('content_section', '').strip()
+        composition_files = doc.get('composition_files', [])
+        
+        # 리프 노드인 경우 자신의 콘텐츠만 반환
+        if not composition_files:
+            return base_content
+        
+        # 비리프 노드인 경우: 자신의 내용 + 구성 노드들의 내용 결합
+        combined_content = base_content if base_content else ""
+        
+        self.logger.info(f"🔗 비리프 노드 구성 파일 결합: {len(composition_files)}개 파일")
+        
+        # doc에 이미 구성 노드들의 정보가 포함되어 있는지 확인
+        # composition_section을 파싱해서 각 구성 파일의 내용을 가져올 수 있음
+        composition_section = doc.get('composition_section', '')
+        
+        if composition_section and composition_section.strip() != '---':
+            # composition_section에서 구성 파일들 파싱
+            for comp_file in composition_files:
+                # TODO: 여기서 실제 구성 파일 읽기 또는 full_content에서 추출
+                # 현재는 파일명만 표시
+                combined_content += f"\n\n### 구성 파일: {comp_file}"
+                self.logger.debug(f"  📄 구성 파일 추가: {comp_file}")
+        
+        return combined_content
+
     async def generate_extract_section(self, doc: Dict) -> Dict[str, str]:
         """🤖 engines_v5.py 패턴 활용한 5개 섹션 추출"""
-        content = doc.get('content_section', '')
         title = doc.get('title', '')
         
+        # 통합 콘텐츠 생성 (리프: 자신만, 비리프: 자신+구성노드들)
+        content = await self.get_combined_content(doc)
+        
         if not content.strip():
-            self.logger.warning(f"⚠️ 내용 섹션이 비어있음: {title}")
+            self.logger.warning(f"⚠️ 통합 콘텐츠가 비어있음: {title}")
             return {}
         
         try:
@@ -178,8 +214,8 @@ class ContentProcessingStage:
                 additional_data={'system_prompt': system_prompt}
             )
             
-            # engines_v5.py 파싱 로직 활용
-            sections = self.parse_extraction_response(response)
+            # engines_v5.py 파싱 로직 활용 (utils 함수 사용)
+            sections = parse_extraction_response(response)
             
             # 함수로 분리된 검증 로직
             if self._validate_extraction_sections(sections, title):
@@ -191,51 +227,6 @@ class ContentProcessingStage:
             self.logger.error(f"❌ 추출 실패: {title} - {e}")
             return {}
 
-    def parse_extraction_response(self, response: str) -> Dict[str, str]:
-        """📋 AI 응답을 5개 섹션으로 파싱 (engines_v5.py 로직 활용)"""
-        sections = {
-            'core_content': '',
-            'detailed_core_content': '',
-            'detailed_content': '',
-            'main_topics': '',
-            'sub_topics': ''
-        }
-        
-        # 섹션 헤더 매핑 (engines_v5.py와 동일)
-        section_headers = {
-            '## 핵심 내용': 'core_content',
-            '## 상세 핵심 내용': 'detailed_core_content', 
-            '## 상세 정보': 'detailed_content',
-            '## 주요 화제': 'main_topics',
-            '## 부차 화제': 'sub_topics'
-        }
-        
-        lines = response.split('\n')
-        current_section = None
-        current_content = []
-        
-        for line in lines:
-            line_stripped = line.strip()
-            
-            # 섹션 헤더 확인
-            if line_stripped in section_headers:
-                # 이전 섹션 저장 (헤더 포함)
-                if current_section and current_content:
-                    sections[current_section] = '\n'.join(current_content).strip()
-                
-                # 새 섹션 시작 (헤더부터 시작)
-                current_section = section_headers[line_stripped]
-                current_content = [line_stripped]  # 헤더 포함
-            elif current_section and line.strip():  # 빈 줄이 아닌 경우만 추가
-                current_content.append(line)
-            elif current_section and not line.strip() and current_content:  # 빈 줄도 포함 (단, 시작이 아닌 경우)
-                current_content.append(line)
-        
-        # 마지막 섹션 저장
-        if current_section and current_content:
-            sections[current_section] = '\n'.join(current_content).strip()
-        
-        return sections
 
     async def load_and_sort_documents(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """📚 통합 문서 로드 및 장별 그룹화 - 리프/비리프 분리"""
@@ -324,7 +315,7 @@ class ContentProcessingStage:
         
         for doc in unified_documents:
             file_name = doc.get('file_name', '')
-            if file_name.startswith(f"{normalized_title}/"):
+            if normalized_title in file_name:
                 parsed_doc = await self.parse_unified_document_from_content(doc.get('content', ''), file_name)
                 if parsed_doc:
                     # 장 정보 추가
@@ -337,21 +328,28 @@ class ContentProcessingStage:
         return chapter_documents
     
     def _separate_leaf_and_non_leaf(self, chapter_documents: List[Dict]) -> tuple:
-        """리프 노드와 비리프 노드 분리"""
+        """리프 노드와 비리프 노드 분리 - level별 그룹화"""
         leaf_nodes = []
-        non_leaf_nodes = []
+        non_leaf_groups = {}
         
         for doc in chapter_documents:
             composition_files = doc.get('composition_files', [])
             if not composition_files:  # 빈 배열 = 리프 노드
                 leaf_nodes.append(doc)
             else:  # 배열에 요소 있음 = 비리프 노드
-                non_leaf_nodes.append(doc)
+                level = doc.get('level', 0)
+                level_key = f"level_{level}"
+                
+                if level_key not in non_leaf_groups:
+                    non_leaf_groups[level_key] = []
+                non_leaf_groups[level_key].append(doc)
         
-        # 비리프 노드를 level 내림차순으로 정렬
-        non_leaf_nodes.sort(key=lambda x: x.get('level', 0), reverse=True)
+        # level 내림차순으로 정렬된 딕셔너리 생성
+        sorted_non_leaf_groups = {}
+        for level in sorted(non_leaf_groups.keys(), key=lambda x: int(x.split('_')[1]), reverse=True):
+            sorted_non_leaf_groups[level] = non_leaf_groups[level]
         
-        return leaf_nodes, non_leaf_nodes
+        return leaf_nodes, sorted_non_leaf_groups
         
         self.logger.info(f"📋 장별 그룹화 완료: {len(chapter_groups)}개 장")
         return chapter_groups
@@ -449,65 +447,7 @@ class ContentProcessingStage:
         
         return sorted_groups
 
-    def format_extraction_content(self, extraction_result: Dict[str, str]) -> str:
-        """📝 추출 결과를 마크다운 형식으로 포맷팅"""
-        if not extraction_result:
-            return ""
-        
-        formatted_parts = []
-        
-        # 섹션 순서대로 포맷팅
-        section_keys = ['core_content', 'detailed_core_content', 'detailed_content', 'main_topics', 'sub_topics']
-        
-        for key in section_keys:
-            if key in extraction_result and extraction_result[key].strip():
-                formatted_parts.append(extraction_result[key])
-                formatted_parts.append("")  # 섹션 간 빈 줄
-        
-        return "\n".join(formatted_parts)
 
-    async def update_extraction_section(self, file_path: str, formatted_content: str):
-        """💾 파일의 추출 섹션 업데이트"""
-        if not formatted_content.strip():
-            self.logger.warning(f"⚠️ 업데이트할 내용이 비어있음: {file_path}")
-            return
-        
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-            
-            # 추출 섹션 패턴 찾기
-            extraction_pattern = r'(# 추출\n---\n)(.*?)(?=\n# 내용|$)'
-            
-            if re.search(extraction_pattern, content, re.DOTALL):
-                # 기존 추출 섹션 교체
-                new_content = re.sub(
-                    extraction_pattern,
-                    f'\\1{formatted_content}\n',
-                    content,
-                    flags=re.DOTALL
-                )
-            else:
-                # 추출 섹션이 없으면 추가 (# 내용 앞에)
-                content_pattern = r'(\n# 내용)'
-                if re.search(content_pattern, content):
-                    new_content = re.sub(
-                        content_pattern,
-                        f'\n# 추출\n---\n{formatted_content}\n\\1',
-                        content
-                    )
-                else:
-                    # # 내용 섹션도 없으면 파일 끝에 추가
-                    new_content = content + f'\n\n# 추출\n---\n{formatted_content}\n'
-            
-            with open(file_path, 'w', encoding='utf-8') as f:
-                f.write(new_content)
-                
-            self.logger.info(f"💾 추출 섹션 업데이트 완료: {Path(file_path).name}")
-                
-        except Exception as e:
-            self.logger.error(f"❌ 파일 업데이트 실패: {file_path} - {e}")
-            raise
 
     async def add_update_status_mark(self, file_path: str, mark: str):
         """🏷️ 파일에 상태 마킹 추가 - # 추출 --- 바로 다음 줄에 위치"""
@@ -534,61 +474,6 @@ class ContentProcessingStage:
         except Exception as e:
             self.logger.warning(f"⚠️ 상태 마킹 실패: {file_path} - {e}")
 
-    async def update_process_status(self, file_path: str, status: bool):
-        """📝 속성 섹션의 process_status 업데이트"""
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                content = f.read()
-            
-            status_value = 'true' if status else 'false'
-            
-            # 속성 섹션이 있는지 확인
-            attributes_pattern = r'(# 속성\n)(.*?)(?=\n# |$)'
-            attributes_match = re.search(attributes_pattern, content, re.DOTALL)
-            
-            if attributes_match:
-                # 기존 속성 섹션 업데이트
-                attributes_content = attributes_match.group(2)
-                
-                # process_status가 이미 있는지 확인
-                if 'process_status:' in attributes_content:
-                    # 기존 process_status 값 업데이트
-                    updated_attributes = re.sub(
-                        r'process_status:\s*(true|false)',
-                        f'process_status: {status_value}',
-                        attributes_content
-                    )
-                else:
-                    # process_status 추가
-                    updated_attributes = attributes_content.strip() + f'\nprocess_status: {status_value}'
-                
-                new_content = re.sub(
-                    attributes_pattern,
-                    f'\\1{updated_attributes}\n',
-                    content,
-                    flags=re.DOTALL
-                )
-            else:
-                # 속성 섹션이 없으면 추가 (# 내용 앞에)
-                content_pattern = r'(\n# 내용)'
-                if re.search(content_pattern, content):
-                    new_content = re.sub(
-                        content_pattern,
-                        f'\n# 속성\nprocess_status: {status_value}\n\\1',
-                        content
-                    )
-                else:
-                    # # 내용 섹션도 없으면 파일 끝에 추가
-                    new_content = content + f'\n\n# 속성\nprocess_status: {status_value}\n'
-            
-            with open(file_path, 'w', encoding='utf-8') as f:
-                f.write(new_content)
-                
-            self.logger.info(f"📝 process_status 업데이트: {Path(file_path).name} - {status_value}")
-                
-        except Exception as e:
-            self.logger.error(f"❌ process_status 업데이트 실패: {file_path} - {e}")
-            raise
 
     async def process(self, book_folder_path: str) -> Dict[str, Any]:
         """🚀 메인 처리 로직"""
@@ -612,10 +497,11 @@ class ContentProcessingStage:
                         # 기본 추출 작업
                         extraction_result = await self.generate_extract_section(doc)
                         if extraction_result:
-                            formatted_content = self.format_extraction_content(extraction_result)
-                            await self.update_extraction_section(doc['file_path'], formatted_content)
-                            # process_status를 true로 변경
-                            await self.update_process_status(doc['file_path'], True)
+                            formatted_content = format_extraction_content(extraction_result)
+                            success = update_file_extraction_section(doc['file_path'], formatted_content)
+                            if success:
+                                # process_status를 true로 변경
+                                update_file_process_status(doc['file_path'], True)
                             total_processed += 1
                         else:
                             self.logger.warning(f"⚠️ 추출 실패로 process_status 유지: {doc.get('title', 'Unknown')}")
@@ -837,3 +723,75 @@ class ContentProcessingStage:
             sections[current_section] = '\n'.join(current_content).strip()
         
         return sections
+
+    async def save_extraction_result(self, doc: Dict, extraction_result: Dict[str, str], user_output_path: str):
+        """📁 모든 노드의 추출 결과를 사용자 지정 경로에 저장 (공통 로직)"""
+        if not extraction_result:
+            self.logger.warning(f"⚠️ 저장할 추출 결과가 비어있음: {doc.get('title', 'Unknown')}")
+            return
+        
+        try:
+            # 1. 파일 경로 구성 및 디렉터리 생성
+            doc_title = doc.get('title', 'Unknown')
+            original_file_name = doc.get('file_name', f"{doc_title.replace(' ', '_')}_info.md")
+            
+            # file_name 구조: {책이름}/{장}/{통합문서파일명}
+            # 저장 구조: user_output_path/{책이름}/{장}/{통합문서파일명}
+            if '/' in original_file_name:
+                # 전체 경로 구조 유지 (책이름/장/파일명)
+                relative_path = Path(original_file_name)
+                output_dir = Path(user_output_path) / relative_path.parent
+                output_dir.mkdir(parents=True, exist_ok=True)
+                output_file_path = output_dir / relative_path.name
+            else:
+                # 경로가 없으면 사용자 지정 경로에 직접 저장
+                output_dir = Path(user_output_path)
+                output_dir.mkdir(parents=True, exist_ok=True)
+                output_file_path = output_dir / original_file_name
+            
+            self.logger.info(f"📁 추출 결과 저장 시작: {output_file_path}")
+            
+            # 2. 추출 섹션 포맷팅
+            formatted_content = format_extraction_content(extraction_result)
+            
+            # 3. 기존 문서 내용 가져오기 (doc의 full_content 사용)
+            original_content = doc.get('full_content', '')
+            
+            if original_content:
+                # 기존 추출 섹션이 있으면 교체, 없으면 추가
+                extraction_pattern = r'(# 추출\n---\n)(.*?)(?=\n# |$)'
+                
+                if re.search(extraction_pattern, original_content, re.DOTALL):
+                    # 기존 추출 섹션 교체
+                    new_content = re.sub(
+                        extraction_pattern,
+                        f'\\1{formatted_content}\n',
+                        original_content,
+                        flags=re.DOTALL
+                    )
+                else:
+                    # 추출 섹션이 없으면 # 내용 앞에 추가
+                    content_pattern = r'(\n# 내용)'
+                    if re.search(content_pattern, original_content):
+                        new_content = re.sub(
+                            content_pattern,
+                            f'\n# 추출\n---\n{formatted_content}\n\\1',
+                            original_content
+                        )
+                    else:
+                        # # 내용 섹션도 없으면 파일 끝에 추가
+                        new_content = original_content + f'\n\n# 추출\n---\n{formatted_content}\n'
+            else:
+                # 원본 내용이 없으면 추출 결과만 저장
+                new_content = f'# 추출\n---\n{formatted_content}\n'
+            
+            # 4. 파일 저장
+            with open(output_file_path, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            
+            self.logger.info(f"✅ 추출 결과 저장 완료: {output_file_path.name}")
+            return str(output_file_path)
+            
+        except Exception as e:
+            self.logger.error(f"❌ 추출 결과 저장 실패: {doc.get('title', 'Unknown')} - {e}")
+            raise

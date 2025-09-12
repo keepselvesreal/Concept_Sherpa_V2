@@ -91,5 +91,5 @@ htmlcov/
 # Documentation builds
 docs/_build/
 
-# Claude AI specific
-.claude/
+# Claude AI specific (removed to track project-specific commands)
+# .claude/

@@ -85,10 +85,20 @@ class TestContentProcessingStageLoadAndSort:
             assert "leaf_nodes" in chapter, "leaf_nodes 필드가 있어야 함"
             assert "non_leaf_nodes" in chapter, "non_leaf_nodes 필드가 있어야 함"
             
-            # 리프 노드들 검증
+            # 리프 노드들 검증 (리스트 구조)
+            assert isinstance(chapter["leaf_nodes"], list), "leaf_nodes는 리스트여야 함"
             for doc in chapter["leaf_nodes"]:
                 composition_files = doc.get('composition_files', [])
                 assert len(composition_files) == 0, "리프 노드는 composition_files가 비어있어야 함"
+            
+            # 비리프 노드들 검증 (딕셔너리 구조)
+            assert isinstance(chapter["non_leaf_nodes"], dict), "non_leaf_nodes는 딕셔너리여야 함"
+            for level_key, nodes in chapter["non_leaf_nodes"].items():
+                assert level_key.startswith("level_"), f"level 키는 'level_'로 시작해야 함: {level_key}"
+                assert isinstance(nodes, list), f"{level_key}의 값은 리스트여야 함"
+                for doc in nodes:
+                    composition_files = doc.get('composition_files', [])
+                    assert len(composition_files) > 0, f"비리프 노드는 composition_files가 있어야 함: {doc.get('title', 'Unknown')}"
 
     @pytest.mark.unit
     @pytest.mark.sociable

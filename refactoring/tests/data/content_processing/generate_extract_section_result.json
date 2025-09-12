@@ -1,0 +1,93 @@
+{
+  "extraction_results": [
+    {
+      "test_node_info": {
+        "title": "17 lev3 1.1.1 The design phase",
+        "level": 3,
+        "node_type": "leaf",
+        "chapter_index": 0,
+        "content_length": 3114
+      },
+      "extraction_result": {
+        "core_content": "## 핵심 내용\n이 문서는 객체 지향 프로그래밍(OOP) 설계를 다루며, 도서관 관리 시스템 프로토타입 설계를 예시로 사용한다. 개발자가 시스템을 설계하고, 클래스 다이어그램을 작성하는 과정을 보여주며, 초보 개발자와의 대화를 통해 설계의 중요성을 강조한다.",
+        "detailed_core_content": "## 상세 핵심 내용\nTheo는 Klafim 프로토타입을 구현하기 위해 UML 클래스 다이어그램을 그리는 설계를 시작한다. 그는 객체 지향 프로그래머로서 모든 비즈니스 엔티티를 객체로, 객체를 클래스로 표현한다. 그는 도서관 관리 시스템의 주요 클래스를 식별하고, 요구사항을 분석하여 설계를 진행한다. 설계 과정에서 초보 개발자 Dave와 만나 설계에 대한 대화를 나누며, 설계의 중요성을 강조한다. 이 설계는 초보적인 수준이지만, 코딩을 시작하기에 충분하며, OOP 시스템의 복잡성을 보여주는 데 목적을 둔다. 시스템의 주요 클래스 목록에는 Library, Book, BookItem, BookLending, Member, Librarian, User, Catalog, Author 등이 포함된다.",
+        "detailed_content": "## 상세 정보\n*   **제목:** 1.1.1 The design phase\n*   **페이지:** 32-33\n*   **주요 내용:** 객체 지향 프로그래밍 설계, UML 클래스 다이어그램, 도서관 관리 시스템 설계 예시, 개발자와 초보 개발자의 대화\n*   **등장인물:** Theo (개발자), Dave (초보 개발자)\n*   **주요 클래스:** Library, Book, BookItem, BookLending, Member, Librarian, User, Catalog, Author\n*   **요구사항:**\n    *   두 종류의 사용자: 도서관 회원, 사서\n    *   이메일 및 비밀번호로 로그인\n    *   회원은 책 대여 가능\n    *   회원 및 사서는 제목 또는 저자로 책 검색 가능\n    *   사서는 회원 차단 및 해제 가능\n    *   사서는 회원에게 대여된 책 목록 확인 가능\n    *   책 여러 권 존재 가능\n    *   책은 특정 도서관에 속함\n*   **설계 목적:**\n    *   Theo가 코딩을 시작하기에 충분한 설계\n    *   OOP 시스템의 복잡성을 보여주는 예시",
+        "main_topics": "## 주요 화제\n*   객체 지향 프로그래밍 (OOP) 설계\n*   UML 클래스 다이어그램 작성\n*   도서관 관리 시스템 프로토타입 설계\n*   개발자와 초보 개발자 간의 설계 관련 대화",
+        "sub_topics": "## 부차 화제\n*   설계 패턴 (언급만 됨)\n*   버그 수정 (Dave의 언급)\n*   커피 머신에서의 만남"
+      },
+      "test_summary": {
+        "total_sections_expected": 5,
+        "valid_sections_found": 5,
+        "success": true
+      }
+    },
+    {
+      "test_node_info": {
+        "title": "18 lev3 1.1.2 UML 101",
+        "level": 3,
+        "node_type": "leaf",
+        "chapter_index": 0,
+        "content_length": 4713
+      },
+      "extraction_result": {
+        "core_content": "## 핵심 내용\n이 문서는 객체 지향 프로그래밍(OOP)에서 UML 다이어그램의 구성 요소와 다양한 관계 유형(composition, association, inheritance, usage)을 설명합니다. 도서관 관리 시스템을 예시로 들어 각 관계의 의미와 표현 방법을 구체적으로 제시합니다. UML 다이어그램을 이해하는 데 필요한 용어와 개념을 소개합니다.",
+        "detailed_core_content": "## 상세 핵심 내용\nUML 101에 대한 문서로, 클래스 다이어그램을 통해 OOP 디자인을 설명합니다. 클래스 다이어그램에서 사용되는 주요 화살표 유형은 composition, association, inheritance, usage입니다. Composition은 한 객체가 소멸되면 다른 객체도 함께 소멸되는 관계를 의미하며, plain diamond 모양으로 표현됩니다. Association은 객체들이 독립적인 생명 주기를 가지며, empty diamond 모양으로 표현됩니다. Inheritance는 Member와 User 간의 관계처럼, 일반적인 화살표와 빈 삼각형으로 표현됩니다. Usage는 메서드 호출과 같이, dashed arrow로 나타냅니다.",
+        "detailed_content": "## 상세 정보\n*   **문서 제목:** 18 lev3 1.1.2 UML 101\n*   **문서 내용 요약:** 객체 지향 프로그래밍(OOP)의 UML 다이어그램 이해\n    *   **UML 다이어그램의 주요 관계:**\n        *   Composition: 한 객체가 소멸되면 다른 객체도 함께 소멸되는 관계. plain diamond로 표시.\n            *   One-to-one, one-to-many 관계가 존재함.\n        *   Association: 객체들이 독립적인 생명 주기를 가짐. empty diamond로 표시. many-to-many 관계 예시.\n        *   Inheritance: 일반적인 화살표와 빈 삼각형으로 표현.\n        *   Usage: dashed arrow로 표현. 메서드 호출 등의 관계.\n    *   **도서관 관리 시스템 예시:**\n        *   Librarian, Member, Book, Author, BookItem, BookLending, Catalog, Library, User 클래스 간의 관계를 설명.\n        *   다이어그램 내 각 클래스들의 속성 및 메서드 정의.\n*   **그림:** Figure 1.1, Figure 1.2, Figure 1.3, Figure 1.4, Figure 1.5",
+        "main_topics": "## 주요 화제\n*   UML 다이어그램의 구성 요소\n*   OOP의 관계 유형 (composition, association, inheritance, usage)\n*   클래스 다이어그램 예시 (도서관 관리 시스템)",
+        "sub_topics": "## 부차 화제\n*   OOP 용어"
+      },
+      "test_summary": {
+        "total_sections_expected": 5,
+        "valid_sections_found": 5,
+        "success": true
+      }
+    },
+    {
+      "test_node_info": {
+        "title": "19 lev3 1.1.3 Explaining each piece of the class diagram",
+        "level": 3,
+        "node_type": "leaf",
+        "chapter_index": 0,
+        "content_length": 4801
+      },
+      "extraction_result": {
+        "core_content": "## 핵심 내용\n이 문서는 클래스 다이어그램의 각 부분을 설명하며, 특히 라이브러리 시스템을 구성하는 다양한 클래스(Library, Member, Librarian, Catalog, Book, BookItem)와 그들의 관계를 중점적으로 다룹니다. 각 클래스의 역할, 데이터 멤버, 코드(행동)를 설명하여 객체 지향 프로그래밍(OOP) 디자인의 복잡성을 이해하도록 돕습니다.",
+        "detailed_core_content": "## 상세 핵심 내용\n이 문서는 Library, User, Member, Librarian, Catalog, Book, BookItem 클래스를 중심으로 OOP 설계를 설명합니다. Library 클래스는 시스템의 루트이며, 여러 Member, Librarian, Catalog 객체를 소유합니다. Member와 Librarian은 User 클래스에서 상속받으며, 각자 고유한 기능과 데이터 멤버를 가집니다. Catalog는 책 관리를 담당하고, Book 객체를 소유합니다. BookItem은 책의 개별 복사본을 나타내며, 여러 BookLending 객체를 소유합니다. 각 클래스는 데이터(속성)와 코드(행동)를 가지며, 서로 협력하여 라이브러리 시스템을 구성합니다.",
+        "detailed_content": "## 상세 정보\n*   **Library Class:**\n    *   루트 클래스.\n    *   소유: Member 객체, Librarian 객체, Catalog 객체.\n    *   행동: 다른 객체에 위임.\n*   **User Class:**\n    *   데이터 멤버: id, email, password.\n    *   행동: login().\n*   **Member Class:**\n    *   User 클래스 상속.\n    *   행동: checkout, returnBook, block, unblock, isBlocked.\n    *   소유: BookLending 객체.\n    *   사용: BookItem (checkout 구현).\n*   **Librarian Class:**\n    *   User 클래스 상속.\n    *   행동: blockMember, unblockMember, addBookItem, getBookLendingsOfMember.\n    *   사용: Member (blockMember, unblockMember, getBookLendings 구현), BookItem (addBookItem 구현), BookLending (getBookLendings 구현).\n*   **Catalog Class:**\n    *   행동: search, addBookItem.\n    *   사용: Librarian (addBookItem 구현).\n    *   소유: Book 객체.\n*   **Book Class:**\n    *   데이터 멤버: id, title.\n    *   관계: Author 객체, BookItem 객체.\n*   **BookItem Class:**\n    *   데이터 멤버: id, libId.\n    *   소유: BookLending 객체.\n    *   행동: checkout.",
+        "main_topics": "## 주요 화제\n*   클래스 다이어그램 설명\n*   라이브러리 시스템의 클래스 구조\n*   각 클래스의 역할 및 책임\n*   객체 지향 프로그래밍 개념 (상속, 소유, 위임)",
+        "sub_topics": "## 부차 화제\n*   데이터 멤버와 코드(행동)의 구분\n*   UML(Unified Modeling Language)\n*   OOP 디자인의 복잡성\n*   참조된 Figure들의 내용 (1.5, 1.6, 1.7, 1.8, 1.9)"
+      },
+      "test_summary": {
+        "total_sections_expected": 5,
+        "valid_sections_found": 5,
+        "success": true
+      }
+    },
+    {
+      "test_node_info": {
+        "title": "20 lev3 1.1.4 The implementation phase",
+        "level": 3,
+        "node_type": "leaf",
+        "chapter_index": 0,
+        "content_length": 1011
+      },
+      "extraction_result": {
+        "core_content": "## 핵심 내용\n이 문서는 객체 지향 프로그래밍의 구현 단계에 대한 대화 내용을 담고 있다. 설계 단계의 중요성을 강조하며, 설계 문서의 상세함이 코딩 시간을 절약해준다는 점을 보여준다. 클래스 다이어그램 예시를 통해 구체적인 내용을 제시한다.",
+        "detailed_core_content": "## 상세 핵심 내용\nDave와 Theo의 대화를 통해 설계의 중요성을 강조한다. Theo는 코딩 전에 상세한 설계를 진행하며, 이를 통해 코딩 시간을 절약한다고 말한다. Dave는 설계의 상세함에 감탄하며, Theo가 라떼를 잊을 정도로 열정적으로 다이어그램을 보여준다. Book 클래스 다이어그램을 예시로 제시하여 객체 지향 설계의 구체적인 모습을 보여준다. 다이어그램에는 Book, Author, BookItem, BookLending 클래스가 포함되어 있다. BookLending 클래스는 checkout 및 returnBook 메서드를 가진다.",
+        "detailed_content": "## 상세 정보\n*   문서 제목: 20 lev3 1.1.4 The implementation phase\n*   페이지: 40\n*   주요 내용: 객체 지향 프로그래밍의 구현 단계, 설계의 중요성\n*   등장인물: Dave, Theo\n*   대화 내용 요약:\n    *   Dave는 Theo의 설계에 감탄하며, 상세한 설계를 통해 코딩 시간을 절약할 수 있다는 것을 알게 됨.\n    *   Theo는 항상 상세 설계를 진행하며, 코딩 전에 설계를 완료함.\n    *   Theo는 라떼를 잊을 정도로 Dave에게 클래스 다이어그램을 보여줌.\n*   예시: Book 클래스 다이어그램 (Book, Author, BookItem, BookLending 클래스 포함)",
+        "main_topics": "## 주요 화제\n*   객체 지향 프로그래밍의 구현 단계\n*   설계의 중요성\n*   클래스 다이어그램 예시",
+        "sub_topics": "## 부차 화제\n*   코딩 시간 절약\n*   커피 (라떼)"
+      },
+      "test_summary": {
+        "total_sections_expected": 5,
+        "valid_sections_found": 5,
+        "success": true
+      }
+    }
+  ],
+  "summary": {
+    "total_nodes_processed": 4,
+    "successful_extractions": 4,
+    "success_rate": 1.0
+  }
+}
