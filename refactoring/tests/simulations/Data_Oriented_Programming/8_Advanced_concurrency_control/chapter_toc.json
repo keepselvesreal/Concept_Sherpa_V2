@@ -1,0 +1,82 @@
+{
+  "chapter_title": "8 Advanced concurrency control",
+  "chapter_toc": [
+    {
+      "id": 75,
+      "title": "8 Advanced concurrency control",
+      "level": 1,
+      "page": 191,
+      "parent_id": 67,
+      "children_ids": [
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "start_page": 191,
+      "end_page": 202,
+      "page_count": 12
+    },
+    {
+      "id": 76,
+      "title": "8.1 The complexity of locks",
+      "level": 2,
+      "page": 192,
+      "parent_id": 75,
+      "children_ids": [],
+      "start_page": 192,
+      "end_page": 192,
+      "page_count": 1
+    },
+    {
+      "id": 77,
+      "title": "8.2 Thread-safe counter with atoms",
+      "level": 2,
+      "page": 193,
+      "parent_id": 75,
+      "children_ids": [],
+      "start_page": 193,
+      "end_page": 197,
+      "page_count": 5
+    },
+    {
+      "id": 78,
+      "title": "8.3 Thread-safe cache with atoms",
+      "level": 2,
+      "page": 198,
+      "parent_id": 75,
+      "children_ids": [],
+      "start_page": 198,
+      "end_page": 199,
+      "page_count": 2
+    },
+    {
+      "id": 79,
+      "title": "8.4 State management with atoms",
+      "level": 2,
+      "page": 200,
+      "parent_id": 75,
+      "children_ids": [],
+      "start_page": 200,
+      "end_page": 201,
+      "page_count": 2
+    },
+    {
+      "id": 80,
+      "title": "Summary",
+      "level": 2,
+      "page": 202,
+      "parent_id": 75,
+      "children_ids": [],
+      "start_page": 202,
+      "end_page": 202,
+      "page_count": 1
+    }
+  ],
+  "metadata": {
+    "start_page": 191,
+    "end_page": 202
+  },
+  "generated_at": "2025-09-10T21:04:27.473738"
+}

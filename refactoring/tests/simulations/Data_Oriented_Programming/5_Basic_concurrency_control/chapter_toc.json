@@ -1,0 +1,94 @@
+{
+  "chapter_title": "5 Basic concurrency control",
+  "chapter_toc": [
+    {
+      "id": 50,
+      "title": "5 Basic concurrency control",
+      "level": 1,
+      "page": 119,
+      "parent_id": 14,
+      "children_ids": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "start_page": 119,
+      "end_page": 137,
+      "page_count": 19
+    },
+    {
+      "id": 51,
+      "title": "5.1 Optimistic concurrency control",
+      "level": 2,
+      "page": 120,
+      "parent_id": 50,
+      "children_ids": [],
+      "start_page": 120,
+      "end_page": 121,
+      "page_count": 2
+    },
+    {
+      "id": 52,
+      "title": "5.2 Reconciliation between concurrent mutations",
+      "level": 2,
+      "page": 122,
+      "parent_id": 50,
+      "children_ids": [],
+      "start_page": 122,
+      "end_page": 124,
+      "page_count": 3
+    },
+    {
+      "id": 53,
+      "title": "5.3 Reducing collections",
+      "level": 2,
+      "page": 125,
+      "parent_id": 50,
+      "children_ids": [],
+      "start_page": 125,
+      "end_page": 126,
+      "page_count": 2
+    },
+    {
+      "id": 54,
+      "title": "5.4 Structural difference",
+      "level": 2,
+      "page": 127,
+      "parent_id": 50,
+      "children_ids": [],
+      "start_page": 127,
+      "end_page": 133,
+      "page_count": 7
+    },
+    {
+      "id": 55,
+      "title": "5.5 Implementing the reconciliation algorithm",
+      "level": 2,
+      "page": 134,
+      "parent_id": 50,
+      "children_ids": [],
+      "start_page": 134,
+      "end_page": 135,
+      "page_count": 2
+    },
+    {
+      "id": 56,
+      "title": "Summary",
+      "level": 2,
+      "page": 136,
+      "parent_id": 50,
+      "children_ids": [],
+      "start_page": 136,
+      "end_page": 137,
+      "page_count": 2
+    }
+  ],
+  "metadata": {
+    "start_page": 119,
+    "end_page": 137
+  },
+  "generated_at": "2025-09-10T21:04:27.472135"
+}

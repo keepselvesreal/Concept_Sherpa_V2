@@ -1,0 +1,148 @@
+{
+  "chapter_title": "6 Unit tests",
+  "chapter_toc": [
+    {
+      "id": 57,
+      "title": "6 Unit tests",
+      "level": 1,
+      "page": 138,
+      "parent_id": 14,
+      "children_ids": [
+        58,
+        59,
+        63,
+        64,
+        65,
+        66
+      ],
+      "start_page": 138,
+      "end_page": 164,
+      "page_count": 27
+    },
+    {
+      "id": 58,
+      "title": "6.1 The simplicity of data-oriented test cases",
+      "level": 2,
+      "page": 138,
+      "parent_id": 57,
+      "children_ids": [],
+      "start_page": 138,
+      "end_page": 139,
+      "page_count": 2
+    },
+    {
+      "id": 59,
+      "title": "6.2 Unit tests for data manipulation code",
+      "level": 2,
+      "page": 140,
+      "parent_id": 57,
+      "children_ids": [
+        60,
+        61,
+        62
+      ],
+      "start_page": 140,
+      "end_page": 148,
+      "page_count": 9
+    },
+    {
+      "id": 60,
+      "title": "6.2.1 The tree of function calls",
+      "level": 3,
+      "page": 141,
+      "parent_id": 59,
+      "children_ids": [],
+      "start_page": 141,
+      "end_page": 142,
+      "page_count": 2
+    },
+    {
+      "id": 61,
+      "title": "6.2.2 Unit tests for functions down the tree",
+      "level": 3,
+      "page": 143,
+      "parent_id": 59,
+      "children_ids": [],
+      "start_page": 143,
+      "end_page": 146,
+      "page_count": 4
+    },
+    {
+      "id": 62,
+      "title": "6.2.3 Unit tests for nodes in the tree",
+      "level": 3,
+      "page": 147,
+      "parent_id": 59,
+      "children_ids": [],
+      "start_page": 147,
+      "end_page": 148,
+      "page_count": 2
+    },
+    {
+      "id": 63,
+      "title": "6.3 Unit tests for queries",
+      "level": 2,
+      "page": 149,
+      "parent_id": 57,
+      "children_ids": [],
+      "start_page": 149,
+      "end_page": 153,
+      "page_count": 5
+    },
+    {
+      "id": 64,
+      "title": "6.4 Unit tests for mutations",
+      "level": 2,
+      "page": 154,
+      "parent_id": 57,
+      "children_ids": [],
+      "start_page": 154,
+      "end_page": 161,
+      "page_count": 8
+    },
+    {
+      "id": 65,
+      "title": "Moving forward",
+      "level": 2,
+      "page": 162,
+      "parent_id": 57,
+      "children_ids": [],
+      "start_page": 162,
+      "end_page": 162,
+      "page_count": 1
+    },
+    {
+      "id": 66,
+      "title": "Summary",
+      "level": 2,
+      "page": 162,
+      "parent_id": 57,
+      "children_ids": [],
+      "start_page": 162,
+      "end_page": 164,
+      "page_count": 3
+    },
+    {
+      "id": 67,
+      "title": "Part 2—Scalability",
+      "level": 0,
+      "page": 165,
+      "parent_id": null,
+      "children_ids": [
+        68,
+        75,
+        81,
+        93,
+        99
+      ],
+      "start_page": 165,
+      "end_page": 272,
+      "page_count": 108
+    }
+  ],
+  "metadata": {
+    "start_page": 138,
+    "end_page": 164
+  },
+  "generated_at": "2025-09-10T21:04:27.472663"
+}

@@ -101,17 +101,9 @@ class ContentProcessingStage:
             self.logger.error(f"❌ 문서 파싱 실패: {file_path} - {e}")
             return None
 
-    async def generate_extract_section(self, doc: Dict) -> Dict[str, str]:
-        """🤖 engines_v5.py 패턴 활용한 5개 섹션 추출"""
-        content = doc.get('content_section', '')
-        title = doc.get('title', '')
-        
-        if not content.strip():
-            self.logger.warning(f"⚠️ 내용 섹션이 비어있음: {title}")
-            return {}
-        
-        # engines_v5.py 프롬프트 패턴 활용
-        prompt = f"""다음 문서에서 5가지 정보를 순서대로 추출해주세요.
+    def _build_extraction_prompt(self, content: str, title: str) -> str:
+        """추출용 프롬프트 생성"""
+        return f"""다음 문서에서 5가지 정보를 순서대로 추출해주세요.
 
 문서 제목: {title}
 문서 내용:
@@ -140,7 +132,9 @@ class ContentProcessingStage:
 3. 섹션 내용을 작성할 때 헤더가 필요한 경우에는 반드시 ### (해시 3개) 이상의 헤더만 사용하세요.
 4. ## 헤더는 섹션 제목과 구분하기 위해 절대 중복 사용하지 마세요."""
 
-        system_prompt = """문서 분석 전문가. 주어진 5가지 정보 타입을 순서대로 정확하게 추출하세요.
+    def _get_system_prompt(self) -> str:
+        """시스템 프롬프트 반환"""
+        return """문서 분석 전문가. 주어진 5가지 정보 타입을 순서대로 정확하게 추출하세요.
 - 핵심 내용: 간결하고 정확한 요약
 - 상세 핵심 내용: 상세하면서도 핵심적인 내용
 - 상세 정보: 체계적이고 포괄적인 정리
@@ -148,9 +142,35 @@ class ContentProcessingStage:
 - 부차 화제: 부차적이지만 의미있는 주제들
 
 정확한 형식을 지켜서 출력하세요."""
+
+    def _validate_extraction_sections(self, sections: Dict[str, str], title: str) -> bool:
+        """추출된 섹션들의 유효성 검증"""
+        success_count = sum(1 for content in sections.values() 
+                           if content.strip() and content.startswith('##'))
+        
+        if success_count >= 3:  # engines_v5.py와 동일한 기준
+            self.api_calls_counter += 1
+            self.logger.info(f"✅ 추출 성공: {title} ({success_count}/5 섹션)")
+            return True
+        else:
+            self.logger.warning(f"⚠️ 추출 섹션 불완전: {title} ({success_count}/5)")
+            return False
+
+    async def generate_extract_section(self, doc: Dict) -> Dict[str, str]:
+        """🤖 engines_v5.py 패턴 활용한 5개 섹션 추출"""
+        content = doc.get('content_section', '')
+        title = doc.get('title', '')
+        
+        if not content.strip():
+            self.logger.warning(f"⚠️ 내용 섹션이 비어있음: {title}")
+            return {}
         
         try:
             self.logger.info(f"🤖 AI 추출 시작: {title}")
+            
+            # 함수로 분리된 프롬프트 생성
+            prompt = self._build_extraction_prompt(content, title)
+            system_prompt = self._get_system_prompt()
             
             # AI 서비스 호출 (content_processing 설정 활용)
             response = await self.ai_service.query_single_request(
@@ -161,14 +181,10 @@ class ContentProcessingStage:
             # engines_v5.py 파싱 로직 활용
             sections = self.parse_extraction_response(response)
             
-            # 성공 판정 (5개 모두 추출되었는지 확인)
-            success_count = sum(1 for content in sections.values() if content.strip() and content.startswith('##'))
-            if success_count >= 3:  # engines_v5.py와 동일한 기준
-                self.api_calls_counter += 1
-                self.logger.info(f"✅ 추출 성공: {title} ({success_count}/5 섹션)")
+            # 함수로 분리된 검증 로직
+            if self._validate_extraction_sections(sections, title):
                 return sections
             else:
-                self.logger.warning(f"⚠️ 추출 섹션 불완전: {title} ({success_count}/5)")
                 return {}
                 
         except Exception as e:
@@ -221,27 +237,183 @@ class ContentProcessingStage:
         
         return sections
 
-    async def load_and_sort_documents(self, book_folder_path: str) -> List[List[Dict]]:
-        """📚 문서 로드 및 정렬 - 리프/비리프 분리"""
-        unified_docs_dir = os.path.join(book_folder_path, "unified_info_docs")
+    async def load_and_sort_documents(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+        """📚 통합 문서 로드 및 장별 그룹화 - 리프/비리프 분리"""
+        try:
+            # 입력 데이터 검증
+            processed_chapters, unified_documents = self._extract_input_data(input_data)
+            if not processed_chapters or not unified_documents:
+                return self._create_empty_result()
+            
+            self.logger.info(f"📄 로드된 문서: {len(unified_documents)}개, 장 수: {len(processed_chapters)}")
+            
+            # 장별 처리
+            chapters_result = await self._process_chapters(processed_chapters, unified_documents)
+            
+            self.logger.info(f"📋 장별 그룹화 완료: {len(chapters_result)}개 장")
+            
+            return {
+                "output": {"chapters": chapters_result},
+                "error": None
+            }
+            
+        except Exception as e:
+            return self._create_error_result(e)
+    
+    def _extract_input_data(self, input_data: Dict[str, Any]) -> tuple:
+        """입력 데이터에서 필요한 정보 추출"""
+        processed_chapters = input_data.get('processed_chapters', [])
+        unified_documents = input_data.get('unified_documents', [])
+        return processed_chapters, unified_documents
+    
+    def _create_empty_result(self) -> Dict[str, Any]:
+        """빈 결과 생성"""
+        self.logger.warning("⚠️ 처리할 데이터가 없습니다")
+        return {
+            "output": {"chapters": []},
+            "error": None
+        }
+    
+    def _create_error_result(self, error: Exception) -> Dict[str, Any]:
+        """오류 결과 생성"""
+        error_msg = f"load_and_sort_documents 실행 오류: {str(error)}"
+        self.logger.error(f"❌ {error_msg}")
+        return {
+            "output": {"chapters": []},
+            "error": error_msg
+        }
+    
+    async def _process_chapters(self, processed_chapters: List[Dict], unified_documents: List[Dict]) -> List[Dict]:
+        """장별 문서 처리"""
+        chapters_result = []
         
-        if not os.path.exists(unified_docs_dir):
-            self.logger.error(f"❌ 통합 문서 디렉터리 없음: {unified_docs_dir}")
-            return []
+        for chapter_index, chapter_info in enumerate(processed_chapters):
+            chapter_result = await self._process_single_chapter(
+                chapter_index, chapter_info, unified_documents
+            )
+            if chapter_result:
+                chapters_result.append(chapter_result)
         
-        # *_info.md 파일들 검색
-        documents = []
-        for file_path in glob.glob(f"{unified_docs_dir}/*_info.md"):
-            doc_data = await self.parse_unified_document(file_path)
-            if doc_data:
-                documents.append(doc_data)
+        return chapters_result
+    
+    async def _process_single_chapter(self, chapter_index: int, chapter_info: Dict, unified_documents: List[Dict]) -> Optional[Dict]:
+        """단일 장 처리"""
+        normalized_title = chapter_info.get('normalized_title', '')
+        chapter_title = chapter_info.get('chapter_title', '')
         
-        if not documents:
-            self.logger.warning("⚠️ 처리할 문서가 없습니다")
-            return []
+        # 해당 장의 문서들 찾기
+        chapter_documents = await self._find_chapter_documents(
+            normalized_title, chapter_title, unified_documents
+        )
         
-        self.logger.info(f"📄 로드된 문서: {len(documents)}개")
+        if not chapter_documents:
+            return None
         
+        # 리프/비리프 분리
+        leaf_nodes, non_leaf_nodes = self._separate_leaf_and_non_leaf(chapter_documents)
+        
+        # 결과 구성
+        return {
+            "leaf_nodes": leaf_nodes,
+            "non_leaf_nodes": non_leaf_nodes
+        }
+    
+    async def _find_chapter_documents(self, normalized_title: str, chapter_title: str, unified_documents: List[Dict]) -> List[Dict]:
+        """특정 장의 문서들 찾기 및 파싱"""
+        chapter_documents = []
+        
+        for doc in unified_documents:
+            file_name = doc.get('file_name', '')
+            if file_name.startswith(f"{normalized_title}/"):
+                parsed_doc = await self.parse_unified_document_from_content(doc.get('content', ''), file_name)
+                if parsed_doc:
+                    # 장 정보 추가
+                    parsed_doc['chapter_info'] = {
+                        'chapter_title': chapter_title,
+                        'normalized_title': normalized_title
+                    }
+                    chapter_documents.append(parsed_doc)
+        
+        return chapter_documents
+    
+    def _separate_leaf_and_non_leaf(self, chapter_documents: List[Dict]) -> tuple:
+        """리프 노드와 비리프 노드 분리"""
+        leaf_nodes = []
+        non_leaf_nodes = []
+        
+        for doc in chapter_documents:
+            composition_files = doc.get('composition_files', [])
+            if not composition_files:  # 빈 배열 = 리프 노드
+                leaf_nodes.append(doc)
+            else:  # 배열에 요소 있음 = 비리프 노드
+                non_leaf_nodes.append(doc)
+        
+        # 비리프 노드를 level 내림차순으로 정렬
+        non_leaf_nodes.sort(key=lambda x: x.get('level', 0), reverse=True)
+        
+        return leaf_nodes, non_leaf_nodes
+        
+        self.logger.info(f"📋 장별 그룹화 완료: {len(chapter_groups)}개 장")
+        return chapter_groups
+    
+    async def parse_unified_document_from_content(self, content: str, file_name: str) -> Optional[Dict[str, Any]]:
+        """📄 메모리상 통합 문서 content에서 파싱"""
+        try:
+            # 제목 추출 (파일명 기반)
+            title_match = re.search(r'(\d+_lev\d+_.*?)_info\.md', file_name)
+            title = title_match.group(1).replace('_', ' ') if title_match else file_name
+            
+            # level 추출 
+            level_match = re.search(r'lev(\d+)', file_name)
+            level = int(level_match.group(1)) if level_match else 0
+            
+            # 구성 섹션 추출
+            composition_match = re.search(r'# 구성\n(.*?)(?=\n# |$)', content, re.DOTALL)
+            composition_section = composition_match.group(1).strip() if composition_match else '---'
+            
+            # 내용 섹션 추출
+            content_match = re.search(r'# 내용\n(.*?)(?=\n# |$)', content, re.DOTALL)
+            content_section = content_match.group(1).strip() if content_match else ''
+            
+            # 추출 섹션 추출
+            extraction_match = re.search(r'# 추출\n---\n(.*?)(?=\n# |$)', content, re.DOTALL)
+            extraction_section = extraction_match.group(1).strip() if extraction_match else ''
+            
+            # 속성 섹션에서 process_status 추출
+            process_status = False
+            attributes_match = re.search(r'# 속성\n(.*?)(?=\n# |$)', content, re.DOTALL)
+            if attributes_match:
+                attributes_content = attributes_match.group(1)
+                if 'process_status: true' in attributes_content:
+                    process_status = True
+            
+            # composition_files 생성 (composition_section이 "---"가 아니면 파일 리스트 생성)
+            composition_files = []
+            if composition_section != "---" and composition_section.strip():
+                # 구성 섹션에서 파일명들 추출
+                lines = composition_section.strip().split('\n')
+                for line in lines:
+                    line = line.strip()
+                    if line and line.endswith('.md'):
+                        composition_files.append(line)
+            
+            return {
+                'title': title,
+                'level': level,
+                'composition_section': composition_section,
+                'content_section': content_section,
+                'extraction_section': extraction_section,
+                'process_status': process_status,
+                'file_name': file_name,
+                'full_content': content,
+                'composition_files': composition_files
+            }
+        except Exception as e:
+            self.logger.error(f"❌ 문서 파싱 실패: {file_name} - {e}")
+            return None
+    
+    def sort_documents_by_level(self, documents: List[Dict]) -> List[List[Dict]]:
+        """📊 문서들을 리프/비리프 분리 후 level별 정렬"""
         # 리프/비리프 분리
         leaf_nodes = []
         non_leaf_nodes = []
@@ -259,8 +431,6 @@ class ContentProcessingStage:
                 doc['composition_files'] = []
                 leaf_nodes.append(doc)
         
-        self.logger.info(f"📊 리프 노드: {len(leaf_nodes)}개, 비리프 노드: {len(non_leaf_nodes)}개")
-        
         # level별 그룹화 (비리프 노드들)
         level_groups = {}
         for doc in non_leaf_nodes:
@@ -270,15 +440,14 @@ class ContentProcessingStage:
             level_groups[level].append(doc)
         
         # 최종 정렬된 그룹들 (리프 노드가 먼저, 그다음 level 내림차순)
-        sorted_groups = [leaf_nodes]  # 리프 노드 그룹이 먼저
+        sorted_groups = []
+        if leaf_nodes:
+            sorted_groups.append(leaf_nodes)  # 리프 노드 그룹이 먼저
+        
         for level in sorted(level_groups.keys(), reverse=True):  # level 내림차순
             sorted_groups.append(level_groups[level])
         
-        # 빈 그룹 제거
-        final_groups = [group for group in sorted_groups if group]
-        
-        self.logger.info(f"📋 정렬 완료: {len(final_groups)}개 그룹")
-        return final_groups
+        return sorted_groups
 
     def format_extraction_content(self, extraction_result: Dict[str, str]) -> str:
         """📝 추출 결과를 마크다운 형식으로 포맷팅"""
