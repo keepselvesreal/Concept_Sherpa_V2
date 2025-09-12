@@ -195,25 +195,12 @@ class TestContentProcessingStage:
         
         assert len(test_nodes) > 0, "선택된 테스트 노드가 없습니다"
         
-        # 4단계: 내용이 있는 노드들만 필터링
-        valid_test_nodes = []
-        for node in test_nodes:
-            content_section = node.get('content_section', '').strip()
-            if content_section and content_section != '---':
-                valid_test_nodes.append(node)
-                print(f"✅ 유효한 노드: {node.get('title', 'Unknown')} (Level: {node.get('level')})")
-            else:
-                print(f"⚠️ 내용 없는 노드 제외: {node.get('title', 'Unknown')}")
-        
-        if not valid_test_nodes:
-            pytest.skip("유효한 content_section을 가진 노드가 없음")
-        
-        # 5단계: 🔥 실제 generate_extract_section 호출 (모든 노드에 대해)
+        # 4단계: 🔥 실제 generate_extract_section 호출 (모든 선택된 노드에 대해)
         extraction_results = []
         expected_sections = ['core_content', 'detailed_core_content', 'detailed_content', 'main_topics', 'sub_topics']
         
-        for i, test_node in enumerate(valid_test_nodes):
-            print(f"\n🚀 [{i+1}/{len(valid_test_nodes)}] AI 추출 시작: {test_node.get('title')}")
+        for i, test_node in enumerate(test_nodes):
+            print(f"\n🚀 [{i+1}/{len(test_nodes)}] AI 추출 시작: {test_node.get('title')}")
             
             try:
                 extraction_result = await stage.generate_extract_section(test_node)
