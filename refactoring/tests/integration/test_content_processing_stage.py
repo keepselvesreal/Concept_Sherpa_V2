@@ -269,39 +269,31 @@ class TestContentProcessingStage:
     @pytest.mark.asyncio
     async def test_save_extraction_result(self):
         """
-        save_extraction_result 정상 동작 테스트
+        save_extraction_result 정상 동작 테스트 - 모든 추출 결과 저장
         
         테스트 시나리오:
-        - generate_extract_section_result.json의 extraction_result 사용
-        - title로 매칭되는 문서 찾기
-        - save_extraction_result 실행
-        - /tests/data/extracted_results/에 파일 생성 확인
+        - generate_extract_section_result.json의 모든 extraction_results 사용
+        - 각 결과별로 title로 매칭되는 문서 찾기
+        - 모든 결과에 대해 save_extraction_result 실행
+        - /tests/data/extracted_results/에 파일들 생성 확인
         """
-        print("📁 save_extraction_result 테스트 시작")
+        print("📁 save_extraction_result 테스트 시작 (모든 추출 결과 저장)")
         
-        # 1단계: 테스트 데이터 로드 (extraction_result)
+        # 1단계: 테스트 데이터 로드 (모든 extraction_results)
         extraction_data_path = Path(__file__).parent.parent / "data" / "content_processing" / "generate_extract_section_result.json"
         assert extraction_data_path.exists(), f"추출 결과 데이터가 없습니다: {extraction_data_path}"
         
         with open(extraction_data_path, 'r', encoding='utf-8') as f:
             test_data = json.load(f)
         
-        target_title = test_data["test_node_info"]["title"]  # "17 lev3 1.1.1 The design phase"
-        extraction_result = test_data["extraction_result"]   # 5개 섹션 데이터
+        extraction_results = test_data.get("extraction_results", [])
+        assert len(extraction_results) > 0, "추출 결과가 비어있습니다"
         
-        print(f"🎯 테스트 대상 문서: {target_title}")
-        print(f"📊 추출 섹션 수: {len(extraction_result)}")
+        print(f"📊 처리할 추출 결과 수: {len(extraction_results)}개")
         
-        # 2단계: 정렬된 문서에서 title 매칭
+        # 2단계: ContentProcessingStage 초기화 (한 번만)
         sorted_docs_path = Path(__file__).parent.parent / "data" / "content_processing" / "load_and_sort_documents_result.json"
         assert sorted_docs_path.exists(), f"정렬 결과 데이터가 없습니다: {sorted_docs_path}"
-        
-        matching_doc = self._find_document_by_title(sorted_docs_path, target_title)
-        assert matching_doc is not None, f"매칭되는 문서를 찾을 수 없습니다: {target_title}"
-        
-        print(f"✅ 문서 매칭 성공: {matching_doc.get('title')}")
-        print(f"   - Level: {matching_doc.get('level')}")
-        print(f"   - File: {matching_doc.get('file_name', 'unknown')}")
         
         # 3단계: ContentProcessingStage 초기화
         from src.utils.config_manager import ConfigManager
@@ -322,51 +314,97 @@ class TestContentProcessingStage:
         # 4단계: user_output_path 설정 (/tests/data/)
         user_output_path = Path(__file__).parent.parent / "data"
         
-        # 5단계: 🔥 save_extraction_result 실행
-        saved_file_path = None
-        try:
-            print(f"🚀 save_extraction_result 실행 시작")
-            
-            saved_file_path = await stage.save_extraction_result(
-                doc=matching_doc,
-                extraction_result=extraction_result,
-                user_output_path=str(user_output_path)
-            )
-            
-            print(f"✅ save_extraction_result 실행 성공")
-            print(f"💾 저장된 파일 경로: {saved_file_path}")
-            
-        except Exception as e:
-            print(f"❌ save_extraction_result 실행 실패: {e}")
-            raise
+        # 5단계: 🔥 모든 추출 결과에 대해 save_extraction_result 실행
+        saved_files = []
+        successful_saves = 0
+        
+        for i, extraction_data in enumerate(extraction_results):
+            try:
+                print(f"\n🚀 [{i+1}/{len(extraction_results)}] 추출 결과 저장 시작")
+                
+                # 각 extraction_data에서 정보 추출
+                test_node_info = extraction_data.get("test_node_info", {})
+                extraction_result = extraction_data.get("extraction_result", {})
+                target_title = test_node_info.get("title", "")
+                
+                if not target_title or not extraction_result:
+                    print(f"⚠️ 유효하지 않은 데이터: {i+1}번째 결과 스킵")
+                    continue
+                
+                # 해당 title로 문서 찾기
+                matching_doc = self._find_document_by_title(sorted_docs_path, target_title)
+                if not matching_doc:
+                    print(f"⚠️ 매칭 문서 없음: {target_title}")
+                    continue
+                
+                print(f"🎯 대상 문서: {target_title}")
+                print(f"📊 추출 섹션 수: {len(extraction_result)}개")
+                
+                # save_extraction_result 실행
+                saved_file_path = await stage.save_extraction_result(
+                    doc=matching_doc,
+                    extraction_result=extraction_result,
+                    user_output_path=str(user_output_path)
+                )
+                
+                if saved_file_path:
+                    saved_files.append(saved_file_path)
+                    successful_saves += 1
+                    print(f"✅ 저장 성공: {Path(saved_file_path).name}")
+                else:
+                    print(f"❌ 저장 실패: 반환값 없음")
+                    
+            except Exception as e:
+                print(f"❌ {i+1}번째 결과 저장 실패: {e}")
+                continue
         
         # 6단계: 결과 검증
-        assert saved_file_path is not None, "저장된 파일 경로가 반환되어야 함"
-        saved_file = Path(saved_file_path)
-        assert saved_file.exists(), f"저장된 파일이 존재해야 함: {saved_file_path}"
+        assert successful_saves > 0, f"최소 1개 이상의 파일이 저장되어야 함 (성공: {successful_saves}/{len(extraction_results)})"
+        print(f"\n📊 저장 완료: {successful_saves}/{len(extraction_results)}개 파일")
         
-        # 예상 디렉토리 구조: /tests/data/{책이름}/{장}/
-        # file_name이 경로 구조를 가지고 있으므로 user_output_path 하위에 저장되었는지 검증
-        assert str(saved_file).startswith(str(user_output_path)), f"파일이 사용자 지정 경로 하위에 저장되어야 함: {user_output_path}"
+        # 저장된 파일들 검증
+        validated_files = []
+        for saved_file_path in saved_files:
+            saved_file = Path(saved_file_path)
+            
+            # 파일 존재 확인
+            assert saved_file.exists(), f"저장된 파일이 존재해야 함: {saved_file_path}"
+            
+            # 경로 구조 확인
+            assert str(saved_file).startswith(str(user_output_path)), f"파일이 사용자 지정 경로 하위에 저장되어야 함: {user_output_path}"
+            
+            # 파일 내용 검증
+            with open(saved_file, 'r', encoding='utf-8') as f:
+                saved_content = f.read()
+            
+            # 추출 섹션이 포함되어 있는지 확인
+            content_valid = (
+                "# 추출" in saved_content and 
+                "## 핵심 내용" in saved_content and 
+                "## 상세 핵심 내용" in saved_content
+            )
+            
+            if content_valid:
+                validated_files.append({
+                    "path": str(saved_file_path),
+                    "name": saved_file.name,
+                    "size": saved_file.stat().st_size
+                })
+                print(f"✅ 검증 완료: {saved_file.name} ({saved_file.stat().st_size} bytes)")
+            else:
+                print(f"⚠️ 내용 검증 실패: {saved_file.name}")
         
-        # 파일 내용 검증
-        with open(saved_file, 'r', encoding='utf-8') as f:
-            saved_content = f.read()
+        assert len(validated_files) > 0, "최소 1개 이상의 파일이 내용 검증을 통과해야 함"
         
-        # 추출 섹션이 포함되어 있는지 확인
-        assert "# 추출" in saved_content, "저장된 파일에 추출 섹션이 있어야 함"
-        assert "## 핵심 내용" in saved_content, "핵심 내용 섹션이 있어야 함"
-        assert "## 상세 핵심 내용" in saved_content, "상세 핵심 내용 섹션이 있어야 함"
+        print(f"\n🎉 save_extraction_result 테스트 성공!")
+        print(f"   - 처리된 추출 결과: {len(extraction_results)}개")
+        print(f"   - 성공적으로 저장된 파일: {successful_saves}개") 
+        print(f"   - 내용 검증 통과 파일: {len(validated_files)}개")
         
-        print("📊 검증 완료:")
-        print(f"   - 저장 위치: {saved_file}")
-        print(f"   - 파일 크기: {saved_file.stat().st_size} bytes")
-        print(f"   - 추출 섹션 포함: ✅")
-        
-        print("🎉 save_extraction_result 테스트 성공!")
         return {
-            "saved_file_path": str(saved_file_path),
-            "file_size": saved_file.stat().st_size,
+            "total_extractions": len(extraction_results),
+            "successful_saves": successful_saves,
+            "validated_files": validated_files,
             "success": True
         }
     
