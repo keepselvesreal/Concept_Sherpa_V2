@@ -629,17 +629,16 @@ class ContentProcessingStage:
                 for doc in group:
                     # process_status가 false인 문서에 대해서만 처리
                     if not doc.get('process_status', False):
-                        # 기본 추출 작업
-                        extraction_result = await self.generate_extract_section(doc)
-                        if extraction_result:
-                            formatted_content = combine_extraction_sections(extraction_result)
-                            success = update_extraction_section(doc['file_path'], formatted_content)
-                            if success:
-                                # process_status를 true로 변경
-                                update_file_process_status(doc['file_path'], True)
+                        # 🔥 새로운 통합 처리 로직 사용
+                        result = await self.process_single_document(doc, book_folder_path)
+                        
+                        if result.get('error') is None:
+                            # 성공 시 process_status를 true로 변경
+                            update_file_process_status(doc['file_path'], True)
                             total_processed += 1
+                            self.logger.info(f"✅ 통합 처리 완료: {result['output']['doc_title']}")
                         else:
-                            self.logger.warning(f"⚠️ 추출 실패로 process_status 유지: {doc.get('title', 'Unknown')}")
+                            self.logger.warning(f"⚠️ 통합 처리 실패: {result.get('error')}")
                     else:
                         self.logger.info(f"⏭️ 이미 처리됨 (process_status: true): {doc.get('title', 'Unknown')}")
                 
@@ -1453,4 +1452,101 @@ class ContentProcessingStage:
         
         self.logger.info(f"🔍 최종 파싱 결과: {len(node_sections)}개 노드")
         return node_sections
+
+    async def process_single_document(self, doc: Dict, user_output_path: str) -> Dict[str, Any]:
+        """
+        단일 문서 처리 - 문서 명세서의 통합 로직 구현
+        
+        Args:
+            doc: 문서 정보 (title, level, composition_files, content_section 등)
+            user_output_path: 사용자 지정 저장 경로
+            
+        Returns:
+            Dict: {output: {...}, error: str|None}
+            
+        처리 과정:
+        1. 모든 노드: 추출 작업 수행 (generate_extract_section)
+        2. 모든 노드: 추출 결과 저장 (save_extraction_result)
+        3. 비리프 노드만: 업데이트 과정 
+           - update_current_extraction_section
+           - update_composition_extraction_sections
+        """
+        try:
+            doc_title = doc.get('title', 'Unknown')
+            is_non_leaf = len(doc.get('composition_files', [])) > 0
+            
+            self.logger.info(f"🔄 단일 문서 처리 시작: {doc_title} ({'비리프' if is_non_leaf else '리프'})")
+            
+            # 1단계: 모든 노드에서 추출 작업 수행
+            self.logger.info(f"🤖 추출 작업 시작: {doc_title}")
+            extraction_result = await self.generate_extract_section(doc)
+            
+            if not extraction_result:
+                self.logger.warning(f"⚠️ 추출 실패: {doc_title}")
+                return {
+                    'output': {},
+                    'error': f"추출 실패: {doc_title}"
+                }
+            
+            self.logger.info(f"✅ 추출 성공: {doc_title} ({len(extraction_result)} 섹션)")
+            
+            # 2단계: 모든 노드에서 추출 결과 저장 (공통)
+            self.logger.info(f"💾 추출 결과 저장 시작: {doc_title}")
+            saved_file_path = await self.save_extraction_result(
+                doc=doc,
+                extraction_result=extraction_result,
+                user_output_path=user_output_path
+            )
+            
+            if not saved_file_path:
+                self.logger.warning(f"⚠️ 저장 실패: {doc_title}")
+                return {
+                    'output': {},
+                    'error': f"저장 실패: {doc_title}"
+                }
+            
+            self.logger.info(f"✅ 저장 완료: {doc_title}")
+            
+            # 3단계: 비리프 노드만 업데이트 과정 진행
+            if is_non_leaf:
+                self.logger.info(f"🔄 비리프 노드 업데이트 시작: {doc_title}")
+                
+                # 현재 노드 업데이트 (파일에서 읽어서 처리)
+                updated_extraction, used_composition = await self.update_current_extraction_section(
+                    doc=doc,
+                    user_output_path=user_output_path
+                )
+                
+                self.logger.info(f"✅ 현재 노드 업데이트 완료: {doc_title}")
+                
+                # 구성 노드들 업데이트 (파일에서 읽어서 처리)
+                await self.update_composition_extraction_sections(
+                    parent_doc=doc,
+                    parent_extraction=updated_extraction,
+                    used_composition_extractions=used_composition,
+                    composition_files=doc.get('composition_files', []),
+                    user_output_path=user_output_path
+                )
+                
+                self.logger.info(f"✅ 구성 노드 업데이트 완료: {doc_title}")
+            else:
+                self.logger.info(f"⏭️ 리프 노드로 업데이트 단계 건너뜀: {doc_title}")
+            
+            # 성공 결과 반환
+            self.logger.info(f"🎉 단일 문서 처리 완료: {doc_title}")
+            return {
+                'output': {
+                    'doc_title': doc_title,
+                    'node_type': 'non_leaf' if is_non_leaf else 'leaf',
+                    'composition_files_count': len(doc.get('composition_files', []))
+                },
+                'error': None
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ 단일 문서 처리 실패: {doc.get('title', 'Unknown')} - {e}")
+            return {
+                'output': {},
+                'error': f"처리 실패: {doc.get('title', 'Unknown')} - {str(e)}"
+            }
 

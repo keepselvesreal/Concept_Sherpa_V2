@@ -1,0 +1,60 @@
+{
+  "test_info": {
+    "target_title": "16 lev2 1.1 OOP design Classic or classical",
+    "target_level": 2,
+    "node_type": "non_leaf",
+    "composition_files_count": 4,
+    "user_output_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data",
+    "error_occurred": false
+  },
+  "process_result": {
+    "output": {
+      "doc_title": "16 lev2 1.1 OOP design Classic or classical",
+      "node_type": "non_leaf",
+      "composition_files_count": 4
+    },
+    "error": null
+  },
+  "file_validation": {
+    "file_exists": true,
+    "extraction_section_found": true,
+    "composition_marker_found": true,
+    "file_content_length": 2322
+  },
+  "composition_files_validation": {
+    "total_files": 4,
+    "files_with_parent_marker": 4,
+    "files_with_updated_sections": 0,
+    "detailed_status": [
+      {
+        "file_name": "17_lev3_1.1.1_The_design_phase_info.md",
+        "file_exists": true,
+        "parent_marker_found": true,
+        "updated_sections_found": false
+      },
+      {
+        "file_name": "18_lev3_1.1.2_UML_101_info.md",
+        "file_exists": true,
+        "parent_marker_found": true,
+        "updated_sections_found": false
+      },
+      {
+        "file_name": "19_lev3_1.1.3_Explaining_each_piece_of_the_class_diagram_info.md",
+        "file_exists": true,
+        "parent_marker_found": true,
+        "updated_sections_found": false
+      },
+      {
+        "file_name": "20_lev3_1.1.4_The_implementation_phase_info.md",
+        "file_exists": true,
+        "parent_marker_found": true,
+        "updated_sections_found": false
+      }
+    ]
+  },
+  "success_metrics": {
+    "main_file_processed": true,
+    "composition_files_processed": true,
+    "overall_success": true
+  }
+}
