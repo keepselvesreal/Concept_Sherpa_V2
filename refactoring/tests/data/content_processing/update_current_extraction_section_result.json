@@ -1,0 +1,23 @@
+{
+  "test_info": {
+    "target_title": "16 lev2 1.1 OOP design Classic or classical",
+    "user_output_path": "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data",
+    "composition_files_found": [
+      "17_lev3_1.1.1_The_design_phase_info.md",
+      "18_lev3_1.1.2_UML_101_info.md",
+      "19_lev3_1.1.3_Explaining_each_piece_of_the_class_diagram_info.md",
+      "20_lev3_1.1.4_The_implementation_phase_info.md"
+    ],
+    "total_composition_files": 4,
+    "error_occurred": false,
+    "updated_current_extraction_keys": [
+      "core_content",
+      "detailed_core_content",
+      "detailed_content",
+      "main_topics",
+      "sub_topics"
+    ],
+    "used_composition_extractions_length": 5444,
+    "update_marker_found": true
+  }
+}

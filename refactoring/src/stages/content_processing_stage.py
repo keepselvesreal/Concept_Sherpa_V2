@@ -795,3 +795,243 @@ class ContentProcessingStage:
         except Exception as e:
             self.logger.error(f"❌ 추출 결과 저장 실패: {doc.get('title', 'Unknown')} - {e}")
             raise
+
+    async def update_current_extraction_section(self, doc: Dict, user_output_path: str) -> tuple:
+        """
+        현재 비리프 노드의 추출 섹션을 구성 파일들의 내용을 바탕으로 업데이트
+        
+        Args:
+            doc: 비리프 노드 문서 정보
+            user_output_path: 사용자 지정 출력 경로
+            
+        Returns:
+            tuple: (updated_current_extraction: Dict, used_composition_extractions: str)
+            
+        처리 과정:
+        1. 사용자 지정 경로에서 현재 노드 파일 읽기
+        2. 구성 노드들의 추출 섹션 수집 (파일에서 읽기)
+        3. AI 서비스로 부모 노드 업데이트 수행
+        4. 업데이트된 내용을 파일에 저장
+        5. 명시적으로 두 값 반환
+        """
+        try:
+            self.logger.info(f"🔄 현재 추출 섹션 업데이트 시작: {doc.get('title', 'Unknown')}")
+            
+            # 1. 현재 노드 파일 경로 구성
+            file_name = doc.get('file_name', '')
+            # {user_output_path}/{전체경로}로 구성
+            current_file_path = Path(user_output_path) / file_name
+            
+            if not current_file_path.exists():
+                raise FileNotFoundError(f"현재 노드 파일이 존재하지 않습니다: {current_file_path}")
+            
+            # 2. 현재 노드의 기존 추출 섹션 읽기
+            with open(current_file_path, 'r', encoding='utf-8') as f:
+                current_content = f.read()
+            
+            current_extraction = self._parse_extraction_section_from_content(current_content)
+            self.logger.info(f"📄 현재 추출 섹션 로드: {len(current_extraction)} 섹션")
+            
+            # 3. 구성 노드들의 추출 섹션 수집
+            composition_extractions = []
+            composition_files = doc.get('composition_files', [])
+            
+            # file_name에서 디렉터리 경로 추출 ({책폴더}/{장폴더})
+            file_name = doc.get('file_name', '')
+            file_dir = Path(file_name).parent  # Data_Oriented_Programming/1_Complexity_of_object_oriented_programming/unified_info_docs
+            
+            for comp_file in composition_files:
+                # {user_output_path}/{책폴더}/{장폴더}/{구성파일명}
+                comp_file_path = Path(user_output_path) / file_dir / comp_file
+                if comp_file_path.exists():
+                    with open(comp_file_path, 'r', encoding='utf-8') as f:
+                        comp_content = f.read()
+                    
+                    comp_extraction = self._parse_extraction_section_from_content(comp_content)
+                    if comp_extraction:
+                        # 컴포지션 정보 구성
+                        comp_title = self._extract_title_from_filename(comp_file)
+                        composition_extractions.append({
+                            'title': comp_title,
+                            'extraction': comp_extraction
+                        })
+                        self.logger.info(f"✅ 구성 파일 추출 섹션 로드: {comp_file}")
+                    else:
+                        self.logger.warning(f"⚠️ 구성 파일 추출 섹션 없음: {comp_file}")
+                else:
+                    self.logger.warning(f"⚠️ 구성 파일 없음: {comp_file_path}")
+            
+            if not composition_extractions:
+                raise ValueError("사용할 수 있는 구성 노드 추출 섹션이 없습니다")
+            
+            # 4. AI 서비스로 부모 노드 업데이트 수행 (engines_v5.py 로직 활용)
+            updated_current_extraction = await self._update_parent_with_composition_logic(
+                current_doc=doc,
+                current_extraction=current_extraction,
+                composition_extractions=composition_extractions
+            )
+            
+            # 5. 구성 노드들의 추출 섹션을 문자열로 결합
+            used_composition_extractions = self._combine_composition_extractions(composition_extractions)
+            
+            # 6. 업데이트된 내용을 파일에 저장 (상태 마킹 포함)
+            await self._save_updated_extraction_to_file(current_file_path, updated_current_extraction, "<구성 노드 반영 완료>")
+            
+            self.logger.info(f"✅ 현재 추출 섹션 업데이트 완료: {doc.get('title', 'Unknown')}")
+            
+            return updated_current_extraction, used_composition_extractions
+            
+        except Exception as e:
+            self.logger.error(f"❌ 현재 추출 섹션 업데이트 실패: {doc.get('title', 'Unknown')} - {e}")
+            raise
+
+    def _parse_extraction_section_from_content(self, content: str) -> Dict:
+        """파일 내용에서 추출 섹션을 파싱하여 딕셔너리로 반환"""
+        try:
+            # # 추출 섹션 찾기
+            extraction_match = re.search(r'# 추출\n---\n(.*?)(?=\n# |$)', content, re.DOTALL)
+            if not extraction_match:
+                return {}
+            
+            extraction_content = extraction_match.group(1).strip()
+            if not extraction_content:
+                return {}
+            
+            # engines_v5.py의 parse_extraction_response 로직 활용
+            return parse_extraction_response(extraction_content)
+            
+        except Exception as e:
+            self.logger.warning(f"⚠️ 추출 섹션 파싱 실패: {e}")
+            return {}
+
+    def _extract_title_from_filename(self, filename: str) -> str:
+        """파일명에서 제목 추출"""
+        try:
+            # 예: "17_lev3_1.1.1_The_design_phase_info.md" -> "17 lev3 1.1.1 The design phase"
+            title_match = re.search(r'(\d+_lev\d+_.*?)_info\.md', filename)
+            if title_match:
+                return title_match.group(1).replace('_', ' ')
+            return filename.replace('_info.md', '').replace('_', ' ')
+        except Exception:
+            return filename
+
+    async def _update_parent_with_composition_logic(self, current_doc: Dict, current_extraction: Dict, composition_extractions: List[Dict]) -> Dict:
+        """engines_v5.py의 update_parent_extraction_with_composition 로직 활용하여 부모 노드 업데이트"""
+        try:
+            # 현재 추출 섹션 내용 추출
+            parent_core = current_extraction.get('core_content', '').replace('## 핵심 내용', '').strip()
+            parent_detailed_core = current_extraction.get('detailed_core_content', '').replace('## 상세 핵심 내용', '').strip()
+            parent_detailed_info = current_extraction.get('detailed_content', '').replace('## 상세 정보', '').strip()
+            parent_main_topics = current_extraction.get('main_topics', '').replace('## 주요 화제', '').strip()
+            parent_sub_topics = current_extraction.get('sub_topics', '').replace('## 부차 화제', '').strip()
+            
+            # 구성 정보 포맷팅 (engines_v5.py와 동일)
+            composition_info = []
+            for comp in composition_extractions:
+                comp_sections = comp['extraction']
+                comp_core = comp_sections.get('core_content', '').replace('## 핵심 내용', '').strip()
+                comp_detailed_core = comp_sections.get('detailed_core_content', '').replace('## 상세 핵심 내용', '').strip()
+                comp_detailed_info = comp_sections.get('detailed_content', '').replace('## 상세 정보', '').strip()
+                comp_main_topics = comp_sections.get('main_topics', '').replace('## 주요 화제', '').strip()
+                comp_sub_topics = comp_sections.get('sub_topics', '').replace('## 부차 화제', '').strip()
+                
+                child_info = f"""
+구성노드 ({comp['title']}):
+- 핵심 내용: {comp_core}
+- 상세 핵심 내용: {comp_detailed_core}
+- 상세 정보: {comp_detailed_info}
+- 주요 화제: {comp_main_topics}
+- 부차 화제: {comp_sub_topics}"""
+                
+                composition_info.append(child_info)
+            
+            # engines_v5.py 프롬프트 패턴 사용
+            prompt = f"""다음은 부모 노드의 추출 섹션을 구성 노드들의 내용을 반영하여 업데이트하는 작업입니다.
+
+**부모 노드 ({current_doc.get('title', 'Unknown')})의 현재 내용:**
+핵심 내용: {parent_core}
+상세 핵심 내용: {parent_detailed_core}
+상세 정보: {parent_detailed_info}
+주요 화제: {parent_main_topics}
+부차 화제: {parent_sub_topics}
+
+**구성 노드들의 내용:**
+{chr(10).join(composition_info)}
+
+부모 노드의 각 섹션을 구성 노드들의 내용을 종합적으로 반영하여 개선해주세요. 
+부모 노드는 전체적인 개요와 통합적인 관점을 제공하되, 구성 노드들의 세부 내용이 잘 반영되도록 해주세요.
+
+다음 5개 섹션 형식으로 응답해주세요:
+
+## 핵심 내용
+[개선된 핵심 내용]
+
+## 상세 핵심 내용  
+[개선된 상세 핵심 내용]
+
+## 상세 정보
+[개선된 상세 정보]
+
+## 주요 화제
+[개선된 주요 화제]
+
+## 부차 화제
+[개선된 부차 화제]"""
+            
+            # AI 서비스 호출
+            response = await self.ai_service.query_single_request(prompt)
+            
+            # 응답 파싱
+            parsed_response = parse_extraction_response(response)
+            
+            if len(parsed_response) >= 3:  # 최소한 핵심 3개 섹션은 있어야 함
+                self.logger.info(f"✅ 부모 노드 업데이트 성공: {len(parsed_response)} 섹션")
+                return parsed_response
+            else:
+                self.logger.warning("⚠️ AI 응답 품질 부족, 기존 추출 섹션 유지")
+                return current_extraction
+                
+        except Exception as e:
+            self.logger.error(f"❌ 부모 노드 업데이트 실패: {e}")
+            return current_extraction
+
+    def _combine_composition_extractions(self, composition_extractions: List[Dict]) -> str:
+        """구성 노드들의 추출 섹션을 하나의 문자열로 결합"""
+        try:
+            combined_parts = []
+            for comp in composition_extractions:
+                comp_title = comp['title']
+                comp_sections = comp['extraction']
+                
+                # 각 구성 노드의 추출 섹션을 포맷팅
+                section_text = f"=== {comp_title} ===\n"
+                for section_content in comp_sections.values():
+                    section_text += f"{section_content}\n"
+                
+                combined_parts.append(section_text)
+            
+            return "\n".join(combined_parts)
+            
+        except Exception as e:
+            self.logger.warning(f"⚠️ 구성 추출 섹션 결합 실패: {e}")
+            return ""
+
+    async def _save_updated_extraction_to_file(self, file_path: Path, updated_extraction: Dict, status_marker: str):
+        """업데이트된 추출 섹션을 파일에 저장 (상태 마킹 포함)"""
+        try:
+            # 새로운 추출 섹션 내용 포맷팅 - 상태 마킹 포함
+            formatted_extraction = format_extraction_content(updated_extraction)
+            # 상태 마킹을 추출 섹션 맨 앞에 추가
+            formatted_extraction = f"{status_marker}\n\n{formatted_extraction}"
+            
+            # 기존 추출 섹션 교체 (update_file_extraction_section은 boolean 반환)
+            success = update_file_extraction_section(str(file_path), formatted_extraction)
+            
+            if success:
+                self.logger.info(f"💾 업데이트된 추출 섹션 저장 완료: {file_path.name}")
+            else:
+                raise Exception("추출 섹션 업데이트 함수가 실패를 반환했습니다")
+            
+        except Exception as e:
+            self.logger.error(f"❌ 업데이트된 추출 섹션 저장 실패: {file_path} - {e}")
+            raise
