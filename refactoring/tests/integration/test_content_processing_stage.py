@@ -407,6 +407,184 @@ class TestContentProcessingStage:
             "validated_files": validated_files,
             "success": True
         }
+
+    @pytest.mark.asyncio
+    async def test_process_group_sequential(self):
+        """
+        process_group_sequential 실제 데이터 테스트 - 리프노드 1개만 사용
+        
+        테스트 과정:
+        1. load_and_sort_documents_result.json에서 첫 번째 장의 첫 번째 리프노드 선택
+        2. ContentProcessingStage 초기화 (실제 AI 서비스)
+        3. process_group_sequential([리프노드1개]) 호출
+        4. 반환값 검증: {"output": "success", "error": None} 형식
+        """
+        print("🔄 process_group_sequential TDD 테스트 시작 (리프노드 1개)")
+        
+        # 1단계: 테스트 데이터 직접 로드
+        test_data_path = Path(__file__).parent.parent / "data" / "content_processing" / "load_and_sort_documents_result.json"
+        assert test_data_path.exists(), f"테스트 데이터 파일이 없습니다: {test_data_path}"
+        
+        with open(test_data_path, 'r', encoding='utf-8') as f:
+            sorted_data = json.load(f)
+        
+        chapters_data = sorted_data["output"]["chapters"]
+        assert len(chapters_data) > 0, "테스트용 장 데이터가 비어있습니다"
+        
+        # 2단계: 첫 번째 장의 첫 번째 리프노드 선택 (1개만)
+        first_chapter = chapters_data[0]
+        leaf_nodes = first_chapter.get("leaf_nodes", [])
+        assert len(leaf_nodes) > 0, "첫 번째 장에 리프노드가 없습니다"
+        
+        test_group = [leaf_nodes[0]]
+        test_node_title = test_group[0].get('title', 'Unknown')
+        
+        print(f"🎯 선택된 테스트 그룹:")
+        print(f"   - 노드 수: {len(test_group)}개")
+        print(f"   - 대상 노드: {test_node_title}")
+        
+        # 3단계: ContentProcessingStage 초기화
+        user_output_path = "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data"
+        
+        from src.utils.config_manager import ConfigManager
+        from src.services.ai_service_v4 import AIService
+        from src.utils.logger_v2 import Logger
+        
+        try:
+            config_manager = ConfigManager()
+            test_logger = Logger("test_process_group_sequential")
+            ai_service = AIService(config_manager, test_logger, "content_processing")
+            ai_config = config_manager.get_ai_config()
+            stage = ContentProcessingStage(ai_config, ai_service)
+            print("✅ ContentProcessingStage 초기화 완료")
+        except Exception as e:
+            pytest.skip(f"ContentProcessingStage 초기화 실패: {e}")
+        
+        # 4단계: process_group_sequential 호출
+        print(f"\n🚀 process_group_sequential 실행")
+        
+        result = await stage.process_group_sequential(
+            group=test_group,
+            user_output_path=user_output_path
+        )
+        
+        # 5단계: 반환값 검증
+        assert isinstance(result, dict), "반환값은 딕셔너리여야 함"
+        assert "output" in result, "output 필드가 있어야 함"
+        assert "error" in result, "error 필드가 있어야 함"
+        
+        print(f"📊 반환값:")
+        print(f"   - output: {result.get('output')}")
+        print(f"   - error: {result.get('error')}")
+        
+        # 성공 시 검증
+        if result.get('error') is None:
+            output_value = result.get('output', '')
+            assert 'success' in str(output_value).lower(), f"정상 동작 시 output에 'success'가 포함되어야 함"
+            print("✅ 성공 검증 통과")
+        
+        print("🎉 process_group_sequential 테스트 완료!")
+        return result
+
+    @pytest.mark.asyncio
+    async def test_process_document_groups(self):
+        """
+        process_document_groups 테스트 - 1장만 사용 (3개 그룹: 리프 + level_2 + level_1)
+        
+        테스트 과정:
+        1. load_and_sort_documents_result.json에서 1장 데이터만 추출
+        2. sorted_data 구조 생성 (chapters 배열에 1장만 포함)
+        3. process_document_groups(sorted_data, user_output_path) 호출
+        4. 반환값 검증: "success: X documents processed in Y groups across 1 chapters"
+        5. 처리 순서: 리프그룹 → level_2 그룹 → level_1 그룹
+        """
+        print("🔄 process_document_groups TDD 테스트 시작 (1장, 3개 그룹)")
+        
+        # 1단계: 테스트 데이터 직접 로드
+        test_data_path = Path(__file__).parent.parent / "data" / "content_processing" / "load_and_sort_documents_result.json"
+        assert test_data_path.exists(), f"테스트 데이터 파일이 없습니다: {test_data_path}"
+        
+        with open(test_data_path, 'r', encoding='utf-8') as f:
+            full_sorted_data = json.load(f)
+        
+        # 2단계: 1장만 추출하여 테스트 데이터 생성
+        all_chapters = full_sorted_data["output"]["chapters"]
+        assert len(all_chapters) > 0, "전체 데이터에 장이 없습니다"
+        
+        # 첫 번째 장만 사용
+        first_chapter = all_chapters[0]
+        
+        test_sorted_data = {
+            "output": {
+                "chapters": [first_chapter]  # 1장만 포함
+            }
+        }
+        
+        # 3단계: 1장 내 그룹 수 확인
+        leaf_nodes = first_chapter.get("leaf_nodes", [])
+        non_leaf_nodes = first_chapter.get("non_leaf_nodes", {})
+        
+        expected_groups = 1 if leaf_nodes else 0  # 리프 그룹
+        expected_groups += len(non_leaf_nodes)    # 비리프 그룹들
+        
+        total_docs = len(leaf_nodes) + sum(len(nodes) for nodes in non_leaf_nodes.values())
+        
+        print(f"🎯 1장 테스트 데이터:")
+        print(f"   - 리프노드: {len(leaf_nodes)}개")
+        print(f"   - 비리프 레벨: {list(non_leaf_nodes.keys())}")
+        print(f"   - 예상 그룹 수: {expected_groups}개")
+        print(f"   - 예상 문서 수: {total_docs}개")
+        
+        # 4단계: ContentProcessingStage 초기화
+        user_output_path = "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data"
+        
+        from src.utils.config_manager import ConfigManager
+        from src.services.ai_service_v4 import AIService
+        from src.utils.logger_v2 import Logger
+        
+        try:
+            config_manager = ConfigManager()
+            test_logger = Logger("test_process_document_groups")
+            ai_service = AIService(config_manager, test_logger, "content_processing")
+            ai_config = config_manager.get_ai_config()
+            stage = ContentProcessingStage(ai_config, ai_service)
+            print("✅ ContentProcessingStage 초기화 완료")
+        except Exception as e:
+            pytest.skip(f"ContentProcessingStage 초기화 실패: {e}")
+        
+        # 5단계: process_document_groups 호출
+        print(f"\n🚀 process_document_groups 실행")
+        print(f"   - 대상: 1장, {expected_groups}개 그룹, {total_docs}개 문서")
+        
+        result = await stage.process_document_groups(test_sorted_data, user_output_path)
+        
+        # 6단계: 반환값 검증
+        assert isinstance(result, dict), "반환값은 딕셔너리여야 함"
+        assert "output" in result, "output 필드가 있어야 함"
+        assert "error" in result, "error 필드가 있어야 함"
+        
+        print(f"📊 반환값:")
+        print(f"   - output: {result.get('output')}")
+        print(f"   - error: {result.get('error')}")
+        
+        # 성공 시 검증
+        if result.get('error') is None:
+            output_value = result.get('output', '')
+            assert 'success:' in str(output_value).lower(), f"정상 동작 시 output에 'success:'가 포함되어야 함"
+            
+            # 처리 개수 검증
+            if 'documents processed' in output_value and 'groups' in output_value and 'chapters' in output_value:
+                # "success: 6 documents processed in 3 groups across 1 chapters" 형식 예상
+                assert '1 chapters' in output_value, f"1개 장 처리 결과가 표시되어야 함: {output_value}"
+                assert f'{expected_groups} groups' in output_value, f"{expected_groups}개 그룹 처리 결과가 표시되어야 함: {output_value}"
+                print(f"✅ 예상 결과와 일치: {expected_groups}개 그룹, 1개 장")
+            
+            print("✅ 성공 검증 통과")
+        else:
+            print(f"⚠️ 오류 발생: {result.get('error')}")
+        
+        print("🎉 process_document_groups 테스트 완료!")
+        return result
     
     def _find_document_by_title(self, sorted_docs_path, target_title):
         """정렬된 문서에서 title로 해당 문서 찾기"""

@@ -609,48 +609,154 @@ class ContentProcessingStage:
         except Exception as e:
             self.logger.warning(f"⚠️ 상태 마킹 실패: {file_path} - {e}")
 
+    async def process_group_sequential(self, group: List[Dict], user_output_path: str) -> Dict[str, Any]:
+        """
+        그룹 내 순차 처리 - 단일 그룹의 문서들을 순차적으로 처리
+        
+        Args:
+            group: 처리할 문서 그룹 (리스트)
+            user_output_path: 사용자 지정 출력 경로
+            
+        Returns:
+            {"output": "success", "error": None} 형식의 딕셔너리
+        """
+        try:
+            self.logger.info(f"🔄 그룹 순차 처리 시작: {len(group)}개 문서")
+            
+            processed_count = 0
+            for doc in group:
+                try:
+                    # process_single_document 호출
+                    result = await self.process_single_document(doc, user_output_path)
+                    
+                    if result.get('error') is None:
+                        processed_count += 1
+                        self.logger.info(f"✅ 문서 처리 완료: {doc.get('title', 'Unknown')}")
+                    else:
+                        self.logger.warning(f"⚠️ 문서 처리 실패: {doc.get('title', 'Unknown')} - {result.get('error')}")
+                        
+                except Exception as e:
+                    self.logger.error(f"❌ 문서 처리 중 오류: {doc.get('title', 'Unknown')} - {e}")
+                    continue
+            
+            self.logger.info(f"✅ 그룹 순차 처리 완료: {processed_count}/{len(group)}개 성공")
+            
+            return {
+                "output": f"success: {processed_count}/{len(group)} documents processed",
+                "error": None
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ 그룹 순차 처리 실패: {e}")
+            return {
+                "output": None,
+                "error": str(e)
+            }
+
+    async def process_document_groups(self, sorted_data: Dict, user_output_path: str) -> Dict[str, Any]:
+        """
+        챕터별 그룹 처리 - 각 챕터마다 [리프] -> [레벨3] -> [레벨2] -> [레벨1] 순서
+        
+        Args:
+            sorted_data: load_and_sort_documents 결과 데이터
+            user_output_path: 사용자 지정 출력 경로
+            
+        Returns:
+            {"output": "success", "error": None} 형식의 딕셔너리
+        """
+        try:
+            chapters_data = sorted_data.get('output', {}).get('chapters', [])
+            
+            if not chapters_data:
+                self.logger.warning("⚠️ 처리할 장이 없습니다")
+                return {"output": "success: no chapters to process", "error": None}
+            
+            total_processed = 0
+            total_groups = 0
+            
+            # 장별 순차 처리
+            for chapter_idx, chapter in enumerate(chapters_data):
+                self.logger.info(f"📚 제{chapter_idx + 1}장 처리 시작")
+                
+                # 1. 리프 노드 그룹 처리 (최우선)
+                leaf_nodes = chapter.get('leaf_nodes', [])
+                if leaf_nodes:
+                    self.logger.info(f"  🍃 리프노드 그룹: {len(leaf_nodes)}개 문서 처리")
+                    result = await self.process_group_sequential(leaf_nodes, user_output_path)
+                    total_groups += 1
+                    if result.get('error') is None:
+                        # 처리된 문서 수 추출 (예: "success: 3/3 documents processed")
+                        output_str = result.get('output', '')
+                        if 'success:' in output_str and 'documents processed' in output_str:
+                            processed_part = output_str.split('success:')[1].split('documents processed')[0].strip()
+                            if '/' in processed_part:
+                                processed_count = int(processed_part.split('/')[0])
+                                total_processed += processed_count
+                    self.logger.info(f"  ✅ 리프노드 처리 완료")
+                
+                # 2. 비리프 노드 - 레벨 내림차순 처리
+                non_leaf_nodes = chapter.get('non_leaf_nodes', {})
+                
+                # level_3 -> level_2 -> level_1 순서로 처리
+                for level_key in sorted(non_leaf_nodes.keys(), 
+                                      key=lambda x: int(x.split('_')[1]), 
+                                      reverse=True):
+                    nodes = non_leaf_nodes[level_key]
+                    if nodes:
+                        level_num = level_key.split('_')[1]
+                        self.logger.info(f"  🔢 레벨 {level_num} 그룹: {len(nodes)}개 문서 처리")
+                        result = await self.process_group_sequential(nodes, user_output_path)
+                        total_groups += 1
+                        if result.get('error') is None:
+                            # 처리된 문서 수 추출
+                            output_str = result.get('output', '')
+                            if 'success:' in output_str and 'documents processed' in output_str:
+                                processed_part = output_str.split('success:')[1].split('documents processed')[0].strip()
+                                if '/' in processed_part:
+                                    processed_count = int(processed_part.split('/')[0])
+                                    total_processed += processed_count
+                        self.logger.info(f"  ✅ 레벨 {level_num} 처리 완료")
+                
+                self.logger.info(f"🎯 제{chapter_idx + 1}장 처리 완료")
+            
+            self.logger.info(f"🏆 전체 {len(chapters_data)}개 장, {total_groups}개 그룹 처리 완료! (총 {total_processed}개 문서)")
+            
+            return {
+                "output": f"success: {total_processed} documents processed in {total_groups} groups across {len(chapters_data)} chapters",
+                "error": None
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ 챕터별 문서 처리 실패: {e}")
+            return {
+                "output": None,
+                "error": str(e)
+            }
 
     async def process(self, book_folder_path: str) -> Dict[str, Any]:
-        """🚀 메인 처리 로직"""
+        """🚀 메인 처리 로직 - 새로운 구조 사용"""
         try:
             self.logger.info(f"🚀 ContentProcessingStage 시작: {book_folder_path}")
             
-            # 1. 문서 로드 및 정렬
-            sorted_groups = await self.load_and_sort_documents(book_folder_path)
+            # 1. 문서 로드 및 정렬 (새로운 챕터별 구조)
+            sorted_data = await self.load_and_sort_documents(book_folder_path)
             
-            if not sorted_groups:
+            if not sorted_data or not sorted_data.get('output', {}).get('chapters'):
                 return {'success': False, 'error': '처리할 문서가 없습니다'}
             
-            # 2. 그룹별 가공 처리 (현재는 기본 추출만)
-            total_processed = 0
-            for i, group in enumerate(sorted_groups):
-                self.logger.info(f"🔄 그룹 {i+1}/{len(sorted_groups)} 처리 시작: {len(group)}개 문서")
-                
-                for doc in group:
-                    # process_status가 false인 문서에 대해서만 처리
-                    if not doc.get('process_status', False):
-                        # 🔥 새로운 통합 처리 로직 사용
-                        result = await self.process_single_document(doc, book_folder_path)
-                        
-                        if result.get('error') is None:
-                            # 성공 시 process_status를 true로 변경
-                            update_file_process_status(doc['file_path'], True)
-                            total_processed += 1
-                            self.logger.info(f"✅ 통합 처리 완료: {result['output']['doc_title']}")
-                        else:
-                            self.logger.warning(f"⚠️ 통합 처리 실패: {result.get('error')}")
-                    else:
-                        self.logger.info(f"⏭️ 이미 처리됨 (process_status: true): {doc.get('title', 'Unknown')}")
-                
-                self.logger.info(f"✅ 그룹 {i+1} 처리 완료")
+            # 2. process_document_groups를 사용한 챕터별 그룹 처리
+            result = await self.process_document_groups(sorted_data, book_folder_path)
             
-            self.logger.info(f"🎉 ContentProcessingStage 완료: {total_processed}개 문서 처리, API 호출: {self.api_calls_counter}회")
+            if result.get('error'):
+                self.logger.error(f"❌ 그룹 처리 실패: {result.get('error')}")
+                return {'success': False, 'error': result.get('error')}
+            
+            self.logger.info(f"🎉 ContentProcessingStage 완료: {result.get('output')}")
             
             return {
                 'success': True, 
                 'error': None,
-                'processed_count': total_processed,
-                'api_calls': self.api_calls_counter
+                'result': result.get('output')
             }
             
         except Exception as e:
