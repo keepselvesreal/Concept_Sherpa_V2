@@ -9,6 +9,7 @@
 import asyncio
 import json
 import pytest
+import time
 from pathlib import Path
 from typing import Dict, Any, List, Union, Optional
 from datetime import datetime
@@ -552,11 +553,11 @@ class TestContentProcessingStage:
         except Exception as e:
             pytest.skip(f"ContentProcessingStage 초기화 실패: {e}")
         
-        # 5단계: process_document_groups 호출
-        print(f"\n🚀 process_document_groups 실행")
+        # 5단계: process_document_groups 호출 (순차 처리)
+        print(f"\n🚀 process_document_groups 실행 (순차 처리)")
         print(f"   - 대상: 1장, {expected_groups}개 그룹, {total_docs}개 문서")
         
-        result = await stage.process_document_groups(test_sorted_data, user_output_path)
+        result = await stage.process_document_groups(test_sorted_data, user_output_path, parallel=False)
         
         # 6단계: 반환값 검증
         assert isinstance(result, dict), "반환값은 딕셔너리여야 함"
@@ -584,6 +585,189 @@ class TestContentProcessingStage:
             print(f"⚠️ 오류 발생: {result.get('error')}")
         
         print("🎉 process_document_groups 테스트 완료!")
+        return result
+
+    @pytest.mark.asyncio
+    async def test_process_group_parallel(self):
+        """
+        process_group_parallel 병렬 처리 테스트 - 리프노드 4-5개 사용
+        
+        테스트 과정:
+        1. 첫 번째 장의 리프노드 4-5개 선택
+        2. ContentProcessingStage 초기화 (실제 AI 서비스)
+        3. process_group_parallel 호출
+        4. 병렬 처리 결과 검증
+        """
+        print("🔄 process_group_parallel TDD 테스트 시작 (병렬 처리)")
+        
+        # 1단계: 테스트 데이터 직접 로드
+        test_data_path = Path(__file__).parent.parent / "data" / "content_processing" / "load_and_sort_documents_result.json"
+        assert test_data_path.exists(), f"테스트 데이터 파일이 없습니다: {test_data_path}"
+        
+        with open(test_data_path, 'r', encoding='utf-8') as f:
+            sorted_data = json.load(f)
+        
+        chapters_data = sorted_data["output"]["chapters"]
+        assert len(chapters_data) > 0, "테스트용 장 데이터가 비어있습니다"
+        
+        # 2단계: 첫 번째 장의 리프노드 4-5개 선택
+        first_chapter = chapters_data[0]
+        leaf_nodes = first_chapter.get("leaf_nodes", [])
+        assert len(leaf_nodes) > 0, "첫 번째 장에 리프노드가 없습니다"
+        
+        # 4-5개 리프노드 선택 (병렬 처리 효과 확인용)
+        test_group = leaf_nodes[:min(5, len(leaf_nodes))]
+        
+        print(f"🎯 선택된 테스트 그룹 (병렬 처리용):")
+        print(f"   - 노드 수: {len(test_group)}개")
+        for i, node in enumerate(test_group):
+            print(f"   - 노드 {i+1}: {node.get('title', 'Unknown')}")
+        
+        # 3단계: ContentProcessingStage 초기화
+        user_output_path = "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data"
+        
+        from src.utils.config_manager import ConfigManager
+        from src.services.ai_service_v4 import AIService
+        from src.utils.logger_v2 import Logger
+        
+        try:
+            config_manager = ConfigManager()
+            test_logger = Logger("test_process_group_parallel")
+            ai_service = AIService(config_manager, test_logger, "content_processing")
+            ai_config = config_manager.get_ai_config()
+            stage = ContentProcessingStage(ai_config, ai_service)
+            print("✅ ContentProcessingStage 초기화 완료")
+        except Exception as e:
+            pytest.skip(f"ContentProcessingStage 초기화 실패: {e}")
+        
+        # 4단계: process_group_parallel 호출
+        print(f"\n🚀 process_group_parallel 병렬 실행")
+        
+        result = await stage.process_group_parallel(
+            group=test_group,
+            user_output_path=user_output_path
+        )
+        
+        # 5단계: 반환값 검증
+        assert isinstance(result, dict), "반환값은 딕셔너리여야 함"
+        assert "output" in result, "output 필드가 있어야 함"
+        assert "error" in result, "error 필드가 있어야 함"
+        
+        print(f"📊 병렬 처리 결과:")
+        print(f"   - output: {result.get('output')}")
+        print(f"   - error: {result.get('error')}")
+        
+        # 성공 시 검증
+        if result.get('error') is None:
+            output_value = result.get('output', '')
+            assert 'success' in str(output_value).lower(), f"정상 동작 시 output에 'success'가 포함되어야 함"
+            
+            # 처리된 문서 수 검증
+            if 'documents processed' in output_value:
+                # "success: X/Y documents processed" 형식에서 X/Y 추출
+                processed_info = output_value.split('success: ')[1].split(' documents')[0]
+                processed_count, total_count = processed_info.split('/')
+                
+                assert int(total_count) == len(test_group), f"전체 문서 수가 일치해야 함: 예상 {len(test_group)}, 실제 {total_count}"
+                print(f"✅ 처리 결과: {processed_count}/{total_count}개 문서 완료")
+            
+            print("✅ 병렬 처리 성공 검증 통과")
+        
+        print("🎉 process_group_parallel 테스트 완료!")
+        return result
+
+    @pytest.mark.asyncio
+    async def test_process_document_groups_parallel(self):
+        """
+        process_document_groups 병렬 처리 테스트 - 1장 데이터로 병렬 처리 검증
+        
+        테스트 과정:
+        1. 첫 번째 장 데이터 준비 (기존과 동일)
+        2. process_document_groups(..., parallel=True) 호출
+        3. 병렬 처리 결과 검증
+        """
+        print("🔄 process_document_groups 병렬 처리 테스트 시작")
+        
+        # 1단계: 테스트 데이터 직접 로드 (기존과 동일)
+        test_data_path = Path(__file__).parent.parent / "data" / "content_processing" / "load_and_sort_documents_result.json"
+        assert test_data_path.exists(), f"테스트 데이터 파일이 없습니다: {test_data_path}"
+        
+        with open(test_data_path, 'r', encoding='utf-8') as f:
+            full_sorted_data = json.load(f)
+        
+        # 2단계: 1장만 추출하여 테스트 데이터 생성 (기존과 동일)
+        all_chapters = full_sorted_data["output"]["chapters"]
+        assert len(all_chapters) > 0, "전체 데이터에 장이 없습니다"
+        
+        first_chapter = all_chapters[0]
+        test_sorted_data = {
+            "output": {
+                "chapters": [first_chapter]
+            }
+        }
+        
+        # 3단계: 1장 내 그룹 수 확인 (기존과 동일)
+        leaf_nodes = first_chapter.get("leaf_nodes", [])
+        non_leaf_nodes = first_chapter.get("non_leaf_nodes", {})
+        
+        expected_groups = 1 if leaf_nodes else 0
+        expected_groups += len(non_leaf_nodes)
+        total_docs = len(leaf_nodes) + sum(len(nodes) for nodes in non_leaf_nodes.values())
+        
+        print(f"🎯 1장 병렬 처리 테스트 데이터:")
+        print(f"   - 리프노드: {len(leaf_nodes)}개")
+        print(f"   - 비리프 레벨: {list(non_leaf_nodes.keys())}")
+        print(f"   - 예상 그룹 수: {expected_groups}개")
+        print(f"   - 예상 문서 수: {total_docs}개")
+        
+        # 4단계: ContentProcessingStage 초기화
+        user_output_path = "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data"
+        
+        from src.utils.config_manager import ConfigManager
+        from src.services.ai_service_v4 import AIService
+        from src.utils.logger_v2 import Logger
+        
+        try:
+            config_manager = ConfigManager()
+            test_logger = Logger("test_process_document_groups_parallel")
+            ai_service = AIService(config_manager, test_logger, "content_processing")
+            ai_config = config_manager.get_ai_config()
+            stage = ContentProcessingStage(ai_config, ai_service)
+            print("✅ ContentProcessingStage 초기화 완료")
+        except Exception as e:
+            pytest.skip(f"ContentProcessingStage 초기화 실패: {e}")
+        
+        # 5단계: process_document_groups 병렬 호출
+        print(f"\n🚀 process_document_groups 실행 (병렬 처리)")
+        print(f"   - 대상: 1장, {expected_groups}개 그룹, {total_docs}개 문서")
+        
+        result = await stage.process_document_groups(test_sorted_data, user_output_path, parallel=True)
+        
+        # 6단계: 반환값 검증 (기존과 동일)
+        assert isinstance(result, dict), "반환값은 딕셔너리여야 함"
+        assert "output" in result, "output 필드가 있어야 함"
+        assert "error" in result, "error 필드가 있어야 함"
+        
+        print(f"📊 병렬 처리 결과:")
+        print(f"   - output: {result.get('output')}")
+        print(f"   - error: {result.get('error')}")
+        
+        # 성공 시 검증
+        if result.get('error') is None:
+            output_value = result.get('output', '')
+            assert 'success:' in str(output_value).lower(), f"정상 동작 시 output에 'success:'가 포함되어야 함"
+            
+            # 처리 개수 검증
+            if 'documents processed' in output_value and 'groups' in output_value and 'chapters' in output_value:
+                assert '1 chapters' in output_value, f"1개 장 처리 결과가 표시되어야 함: {output_value}"
+                assert f'{expected_groups} groups' in output_value, f"{expected_groups}개 그룹 처리 결과가 표시되어야 함: {output_value}"
+                print(f"✅ 예상 결과와 일치: {expected_groups}개 그룹, 1개 장")
+            
+            print("✅ 병렬 처리 성공 검증 통과")
+        else:
+            print(f"⚠️ 오류 발생: {result.get('error')}")
+        
+        print("🎉 process_document_groups 병렬 처리 테스트 완료!")
         return result
     
     def _find_document_by_title(self, sorted_docs_path, target_title):
@@ -1294,3 +1478,127 @@ class TestContentProcessingStage:
         print(f"🎉 update_composition_extraction_sections TDD 테스트 완료!")
         
         return final_result
+
+    @pytest.mark.asyncio
+    async def test_process_group_parallel_tracking(self):
+        """process_group_parallel_with_tracking 병렬 처리 검증 테스트 - 동시 실행 태스크 수 추적"""
+        
+        print("🔄 process_group_parallel_tracking 테스트 시작")
+        
+        # 1단계: 테스트 데이터 직접 로드
+        test_data_path = Path(__file__).parent.parent / "data" / "content_processing" / "load_and_sort_documents_result.json"
+        assert test_data_path.exists(), f"테스트 데이터 파일이 없습니다: {test_data_path}"
+        
+        with open(test_data_path, 'r', encoding='utf-8') as f:
+            sorted_data = json.load(f)
+        
+        chapters_data = sorted_data["output"]["chapters"]
+        assert len(chapters_data) > 0, "테스트용 장 데이터가 비어있습니다"
+        
+        # 2단계: 첫 번째 장의 리프노드 4-5개 선택
+        first_chapter = chapters_data[0]
+        leaf_nodes = first_chapter.get("leaf_nodes", [])
+        assert len(leaf_nodes) > 0, "첫 번째 장에 리프노드가 없습니다"
+        
+        # 4-5개 리프노드 선택 (병렬 처리 효과 확인용)
+        test_group = leaf_nodes[:min(5, len(leaf_nodes))]
+        
+        print(f"🎯 선택된 테스트 그룹 (추적용):")
+        print(f"   - 노드 수: {len(test_group)}개")
+        for i, node in enumerate(test_group):
+            print(f"   - 노드 {i+1}: {node.get('title', 'Unknown')}")
+        
+        # 3단계: ContentProcessingStage 초기화
+        user_output_path = "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data"
+        
+        from src.utils.config_manager import ConfigManager
+        from src.services.ai_service_v4 import AIService
+        from src.utils.logger_v2 import Logger
+        
+        try:
+            config_manager = ConfigManager()
+            test_logger = Logger("test_process_group_parallel_tracking")
+            ai_service = AIService(config_manager, test_logger, "content_processing")
+            ai_config = config_manager.get_ai_config()
+            stage = ContentProcessingStage(ai_config, ai_service)
+            print("✅ ContentProcessingStage 초기화 완료")
+        except Exception as e:
+            pytest.fail(f"ContentProcessingStage 초기화 실패: {e}")
+        
+        print(f"\n🔄 병렬 처리 추적 테스트 시작: {len(test_group)}개 문서")
+        print("=" * 60)
+        
+        # 추적 기능이 있는 병렬 처리 실행
+        start_time = time.time()
+        result, tracker = await stage.process_group_parallel_with_tracking(
+            group=test_group, 
+            user_output_path=user_output_path
+        )
+        end_time = time.time()
+        
+        # 결과 검증
+        assert result is not None, "병렬 처리 결과가 None입니다"
+        assert result.get('error') is None, f"병렬 처리 중 오류 발생: {result.get('error')}"
+        
+        # 추적 통계 확인
+        stats = tracker.get_stats()
+        
+        print(f"\n📊 병렬 처리 추적 결과:")
+        print(f"   • 최대 동시 실행: {stats['max_concurrent']}개")
+        print(f"   • 총 태스크 수: {stats['total_tasks']}개")
+        print(f"   • 완료된 태스크: {stats['completed_tasks']}개") 
+        print(f"   • 총 처리 시간: {end_time - start_time:.2f}초")
+        
+        # 병렬성 검증
+        print(f"\n🔍 병렬성 검증:")
+        
+        # 1. 최대 동시 실행 태스크 수가 1보다 큰지 확인 (병렬 처리 여부)
+        assert stats['max_concurrent'] > 1, f"병렬 처리되지 않음: 최대 동시 실행 {stats['max_concurrent']}개"
+        print(f"   ✅ 병렬 처리 확인: 최대 {stats['max_concurrent']}개 동시 실행")
+        
+        # 2. 세마포어 제한 확인 (4개 이하)
+        assert stats['max_concurrent'] <= 4, f"세마포어 한계 초과: {stats['max_concurrent']}개"
+        print(f"   ✅ 세마포어 제한 준수: 최대 {stats['max_concurrent']}개 ≤ 4")
+        
+        # 3. 모든 태스크 완료 확인
+        assert stats['completed_tasks'] == stats['total_tasks'], f"미완료 태스크 존재: {stats['completed_tasks']}/{stats['total_tasks']}"
+        print(f"   ✅ 모든 태스크 완료: {stats['completed_tasks']}/{stats['total_tasks']}")
+        
+        # 4. 태스크 수행 시간 분석
+        if stats['task_durations']:
+            durations = list(stats['task_durations'].values())
+            avg_duration = sum(durations) / len(durations)
+            min_duration = min(durations)
+            max_duration = max(durations)
+            
+            print(f"   • 태스크 수행 시간:")
+            print(f"     - 평균: {avg_duration:.2f}초")
+            print(f"     - 최소: {min_duration:.2f}초") 
+            print(f"     - 최대: {max_duration:.2f}초")
+            
+            # 병렬 처리 효과 검증: 겹치는 실행 시간 확인
+            overlapping_count = 0
+            task_items = list(stats['task_durations'].items())
+            
+            for i, (task1_id, task1_duration) in enumerate(task_items):
+                task1_start = tracker.task_start_times[task1_id]
+                task1_end = tracker.task_end_times[task1_id]
+                
+                for j, (task2_id, task2_duration) in enumerate(task_items[i+1:], i+1):
+                    task2_start = tracker.task_start_times[task2_id]
+                    task2_end = tracker.task_end_times[task2_id]
+                    
+                    # 시간 겹침 확인
+                    if task1_start < task2_end and task2_start < task1_end:
+                        overlapping_count += 1
+            
+            print(f"   • 겹치는 실행 쌍: {overlapping_count}개")
+            if overlapping_count > 0:
+                print(f"   ✅ 병렬 실행 확인: {overlapping_count}개 태스크 쌍이 동시 실행됨")
+            else:
+                print(f"   ⚠️ 순차 실행 의심: 겹치는 실행 시간이 없음")
+        
+        print("=" * 60)
+        print(f"🎉 병렬 처리 추적 테스트 완료!")
+        
+        return result, stats

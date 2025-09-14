@@ -174,6 +174,46 @@ def update_file_process_status(file_path: str, status: bool) -> bool:
         return False
 
 
+class TaskTracker:
+    """병렬 처리 태스크 추적 클래스 - 테스트용"""
+    
+    def __init__(self):
+        self.active_count = 0
+        self.max_concurrent = 0
+        self.task_start_times = {}
+        self.task_end_times = {}
+        self.task_counter = 0
+    
+    def task_start(self, task_id: str = None):
+        """태스크 시작 추적"""
+        if task_id is None:
+            self.task_counter += 1
+            task_id = f"task_{self.task_counter}"
+        
+        self.active_count += 1
+        self.max_concurrent = max(self.max_concurrent, self.active_count)
+        self.task_start_times[task_id] = asyncio.get_event_loop().time()
+        return task_id
+    
+    def task_end(self, task_id: str):
+        """태스크 종료 추적"""
+        self.active_count -= 1
+        self.task_end_times[task_id] = asyncio.get_event_loop().time()
+    
+    def get_stats(self):
+        """추적 통계 반환"""
+        return {
+            'max_concurrent': self.max_concurrent,
+            'total_tasks': self.task_counter,
+            'completed_tasks': len(self.task_end_times),
+            'task_durations': {
+                task_id: self.task_end_times[task_id] - start_time 
+                for task_id, start_time in self.task_start_times.items() 
+                if task_id in self.task_end_times
+            }
+        }
+
+
 class ContentProcessingStage:
     """컨텐츠 가공 단계 - 통합 문서 처리 및 개선된 목차 생성"""
     
@@ -653,16 +693,135 @@ class ContentProcessingStage:
                 "error": str(e)
             }
 
-    async def process_document_groups(self, sorted_data: Dict, user_output_path: str) -> Dict[str, Any]:
+    async def process_group_parallel(self, group: List[Dict], user_output_path: str) -> Dict[str, Any]:
+        """
+        그룹 내 병렬 처리 - 단일 그룹의 문서들을 병렬로 처리
+        
+        Args:
+            group: 처리할 문서 그룹 (리스트)
+            user_output_path: 사용자 지정 출력 경로
+            
+        Returns:
+            {"output": "success: X/Y documents processed", "error": None} 형식의 딕셔너리
+        """
+        try:
+            self.logger.info(f"🔄 그룹 병렬 처리 시작: {len(group)}개 문서")
+            
+            # 세마포어로 동시 처리 개수 제한 (max_parallel 기본값: 4)
+            semaphore = asyncio.Semaphore(self.max_parallel)
+            
+            async def process_single_doc(doc):
+                async with semaphore:
+                    return await self.process_single_document(doc, user_output_path)
+            
+            # 모든 문서 병렬 처리
+            tasks = [process_single_doc(doc) for doc in group]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            
+            # 결과 집계
+            processed_count = 0
+            for i, result in enumerate(results):
+                if isinstance(result, Exception):
+                    self.logger.error(f"❌ 문서 처리 중 예외: {group[i].get('title', 'Unknown')} - {result}")
+                    continue
+                elif result and result.get('error') is None:
+                    processed_count += 1
+                    self.logger.info(f"✅ 문서 처리 완료: {group[i].get('title', 'Unknown')}")
+                else:
+                    self.logger.warning(f"⚠️ 문서 처리 실패: {group[i].get('title', 'Unknown')} - {result.get('error') if result else 'Unknown error'}")
+            
+            self.logger.info(f"✅ 그룹 병렬 처리 완료: {processed_count}/{len(group)}개 성공")
+            
+            return {
+                "output": f"success: {processed_count}/{len(group)} documents processed",
+                "error": None
+            }
+            
+        except Exception as e:
+            self.logger.error(f"❌ 그룹 병렬 처리 실패: {e}")
+            return {
+                "output": None,
+                "error": str(e)
+            }
+
+    async def process_group_parallel_with_tracking(self, group: List[Dict], user_output_path: str) -> tuple[Dict[str, Any], TaskTracker]:
+        """
+        테스트용 - 태스크 추적 기능이 있는 병렬 처리
+        
+        Args:
+            group: 처리할 문서 그룹 (리스트)
+            user_output_path: 사용자 지정 출력 경로
+            
+        Returns:
+            (result, tracker): 처리 결과와 태스크 추적 정보
+        """
+        tracker = TaskTracker()
+        
+        try:
+            self.logger.info(f"🔄 그룹 병렬 처리 시작 (추적 모드): {len(group)}개 문서")
+            
+            # 세마포어로 동시 처리 개수 제한 (max_parallel 기본값: 4)
+            semaphore = asyncio.Semaphore(self.max_parallel)
+            
+            async def process_single_doc_tracked(doc):
+                task_id = tracker.task_start(f"doc_{doc.get('title', 'unknown')}")
+                async with semaphore:
+                    try:
+                        # 현재 활성 태스크 수 로깅
+                        self.logger.info(f"🔄 활성 태스크 수: {tracker.active_count} (최대: {tracker.max_concurrent})")
+                        result = await self.process_single_document(doc, user_output_path)
+                        return result
+                    finally:
+                        tracker.task_end(task_id)
+            
+            # 모든 문서 병렬 처리
+            tasks = [process_single_doc_tracked(doc) for doc in group]
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            
+            # 결과 집계
+            processed_count = 0
+            for i, result in enumerate(results):
+                if isinstance(result, Exception):
+                    self.logger.error(f"❌ 문서 처리 중 예외: {group[i].get('title', 'Unknown')} - {result}")
+                    continue
+                elif result and result.get('error') is None:
+                    processed_count += 1
+                    self.logger.info(f"✅ 문서 처리 완료: {group[i].get('title', 'Unknown')}")
+                else:
+                    self.logger.warning(f"⚠️ 문서 처리 실패: {group[i].get('title', 'Unknown')} - {result.get('error') if result else 'Unknown error'}")
+            
+            # 추적 통계 로깅
+            stats = tracker.get_stats()
+            self.logger.info(f"📊 병렬 처리 통계: 최대 동시 실행 {stats['max_concurrent']}개, 완료 {stats['completed_tasks']}/{stats['total_tasks']}개")
+            
+            self.logger.info(f"✅ 그룹 병렬 처리 완료: {processed_count}/{len(group)}개 성공")
+            
+            result = {
+                "output": f"success: {processed_count}/{len(group)} documents processed",
+                "error": None
+            }
+            
+            return result, tracker
+            
+        except Exception as e:
+            self.logger.error(f"❌ 그룹 병렬 처리 실패: {e}")
+            result = {
+                "output": None,
+                "error": str(e)
+            }
+            return result, tracker
+
+    async def process_document_groups(self, sorted_data: Dict, user_output_path: str, parallel: bool = False) -> Dict[str, Any]:
         """
         챕터별 그룹 처리 - 각 챕터마다 [리프] -> [레벨3] -> [레벨2] -> [레벨1] 순서
         
         Args:
             sorted_data: load_and_sort_documents 결과 데이터
             user_output_path: 사용자 지정 출력 경로
+            parallel: True면 그룹 내 병렬 처리, False면 순차 처리 (기본값)
             
         Returns:
-            {"output": "success", "error": None} 형식의 딕셔너리
+            {"output": "success: X documents processed in Y groups across Z chapters", "error": None} 형식의 딕셔너리
         """
         try:
             chapters_data = sorted_data.get('output', {}).get('chapters', [])
@@ -682,7 +841,10 @@ class ContentProcessingStage:
                 leaf_nodes = chapter.get('leaf_nodes', [])
                 if leaf_nodes:
                     self.logger.info(f"  🍃 리프노드 그룹: {len(leaf_nodes)}개 문서 처리")
-                    result = await self.process_group_sequential(leaf_nodes, user_output_path)
+                    if parallel:
+                        result = await self.process_group_parallel(leaf_nodes, user_output_path)
+                    else:
+                        result = await self.process_group_sequential(leaf_nodes, user_output_path)
                     total_groups += 1
                     if result.get('error') is None:
                         # 처리된 문서 수 추출 (예: "success: 3/3 documents processed")
@@ -705,7 +867,10 @@ class ContentProcessingStage:
                     if nodes:
                         level_num = level_key.split('_')[1]
                         self.logger.info(f"  🔢 레벨 {level_num} 그룹: {len(nodes)}개 문서 처리")
-                        result = await self.process_group_sequential(nodes, user_output_path)
+                        if parallel:
+                            result = await self.process_group_parallel(nodes, user_output_path)
+                        else:
+                            result = await self.process_group_sequential(nodes, user_output_path)
                         total_groups += 1
                         if result.get('error') is None:
                             # 처리된 문서 수 추출
