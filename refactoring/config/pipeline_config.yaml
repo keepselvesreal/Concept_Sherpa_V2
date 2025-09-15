@@ -9,32 +9,20 @@
 #   - global (라인 56-60): 전역 설정 - refactoring 폴더 기준
 # 상태: active
 
-# 테스트 모드 설정 (개선: selected_chapters 방식)
-test_mode:
-  enabled: false
-  selected_chapters: []  # 특정 장만 처리 (예: [1, 3, 5] 또는 [] for all chapters)
-  debug_verbose: true
-  skip_on_error: false
-
 # 1단계: 기본 작업 준비
 workspace_preparation:
   toc_extraction:
     method: "PyMuPDF"
     hierarchy_enabled: true
   
-  folder_structure:
-    base_path: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/output"
-    chapter_naming: "normalized_title"
-    create_subdirs: true
+  chapter_selection:
+    mode: "partial"  # "all" (전체 선택) 또는 "partial" (일부 선택)
+    selected_chapters: [1, 2]  # mode가 "partial"일 때만 사용
   
   ai_analysis:
     enabled: true
     provider: "gemini"
     fallback_on_failure: true
-  
-  chapter_selection:
-    mode: "partial"  # "all" (전체 선택) 또는 "partial" (일부 선택)
-    selected_chapters: [1, 2]  # mode가 "partial"일 때만 사용
 
 # 2단계: 통합 노드 정보 문서 생성
 information_integration:
@@ -47,12 +35,9 @@ information_integration:
 
 # 3단계: 가공 작업 (핵심 단계)
 content_processing:
-  unified_processor:
-    enabled: true
-    config_template: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/config/extraction_config.yaml"
+  output_paths:
+    user_output_path: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data"
   parallel_processing: false
-  validation:
-    enabled: true
 
 # 4단계: 목차 생성
 toc_generation:

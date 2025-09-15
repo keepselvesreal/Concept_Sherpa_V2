@@ -224,14 +224,20 @@ class ContentProcessingStage:
         self.max_parallel = config.get('max_parallel', 4)
         self.api_calls_counter = 0
         
-        # 로깅 설정
-        self.logger = logging.getLogger(self.__class__.__name__)
-        if not self.logger.handlers:
-            handler = logging.StreamHandler()
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-            handler.setFormatter(formatter)
-            self.logger.addHandler(handler)
-            self.logger.setLevel(logging.INFO)
+        # config_manager 초기화
+        from src.utils.config_manager import ConfigManager
+        self.config_manager = ConfigManager()
+        
+        # logger_v2 사용
+        from src.utils.logger_v2 import Logger
+        self.logger = Logger(self.__class__.__name__)
+    
+    def get_user_output_path(self) -> str:
+        """Config Manager를 통해 사용자 출력 경로 가져오기"""
+        return self.config_manager.get(
+            'content_processing.output_paths.user_output_path', 
+            '/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data'
+        )
 
     async def parse_unified_document(self, file_path: str) -> Optional[Dict[str, Any]]:
         """📄 통합 문서 파싱"""
@@ -480,6 +486,7 @@ class ContentProcessingStage:
         
         # 결과 구성
         return {
+            "chapter_title": normalized_title,  # normalized_title 사용
             "leaf_nodes": leaf_nodes,
             "non_leaf_nodes": non_leaf_nodes
         }
@@ -897,36 +904,66 @@ class ContentProcessingStage:
                 "output": None,
                 "error": str(e)
             }
-
-    async def process(self, book_folder_path: str) -> Dict[str, Any]:
-        """🚀 메인 처리 로직 - 새로운 구조 사용"""
-        try:
-            self.logger.info(f"🚀 ContentProcessingStage 시작: {book_folder_path}")
+    
+    def _extract_chapter_files(self, sorted_data: Dict[str, Any]) -> Dict[str, Any]:
+        """장별로 파일명만 그룹화해서 반환"""
+        chapter_files = {}
+        
+        chapters = sorted_data.get('output', {}).get('chapters', [])
+        
+        for chapter in chapters:
+            chapter_title = chapter.get('chapter_title', 'Unknown')
             
-            # 1. 문서 로드 및 정렬 (새로운 챕터별 구조)
-            sorted_data = await self.load_and_sort_documents(book_folder_path)
+            # 리프 노드와 비리프 노드의 모든 문서에서 파일명 추출
+            file_names = []
+            
+            # 리프 노드 처리
+            for doc in chapter.get('leaf_nodes', []):
+                if 'file_name' in doc:
+                    # 파일명 원본 그대로 사용
+                    file_names.append(doc['file_name'])
+            
+            # 비리프 노드 처리
+            for doc in chapter.get('non_leaf_nodes', []):
+                if 'file_name' in doc:
+                    # 파일명 원본 그대로 사용
+                    file_names.append(doc['file_name'])
+            
+            chapter_files[chapter_title] = file_names
+        
+        return chapter_files
+
+    async def process(self, prev_stage_result: Dict[str, Any]) -> Dict[str, Any]:
+        """🚀 메인 처리 로직 - prev_stage_result 기반"""
+        try:
+            self.logger.info("🚀 ContentProcessingStage 시작")
+            
+            # 1. 가독성을 위한 변수 추출
+            unified_documents = prev_stage_result['data']
+            
+            # 2. 문서 로드 및 정렬 
+            sorted_data = await self.load_and_sort_documents(unified_documents)
             
             if not sorted_data or not sorted_data.get('output', {}).get('chapters'):
-                return {'success': False, 'error': '처리할 문서가 없습니다'}
+                return {'data': {}, 'error': '처리할 문서가 없습니다'}
             
-            # 2. process_document_groups를 사용한 챕터별 그룹 처리
-            result = await self.process_document_groups(sorted_data, book_folder_path)
+            # 3. config_manager 기반 경로 사용
+            result = await self.process_document_groups(sorted_data, self.get_user_output_path())
             
             if result.get('error'):
                 self.logger.error(f"❌ 그룹 처리 실패: {result.get('error')}")
-                return {'success': False, 'error': result.get('error')}
+                return {'data': {}, 'error': result.get('error')}
             
-            self.logger.info(f"🎉 ContentProcessingStage 완료: {result.get('output')}")
+            # 4. 장별 파일명 그룹화
+            chapter_files = self._extract_chapter_files(sorted_data)
             
-            return {
-                'success': True, 
-                'error': None,
-                'result': result.get('output')
-            }
+            self.logger.info(f"🎉 ContentProcessingStage 완료")
+            
+            return {'data': chapter_files, 'error': None}
             
         except Exception as e:
             self.logger.error(f"❌ ContentProcessingStage 실패: {e}")
-            return {'success': False, 'error': str(e)}
+            return {'data': {}, 'error': str(e)}
 
     async def generate_enhanced_toc_file(self, book_folder_path: str) -> bool:
         """📖 개선된 목차 MD 파일 생성"""

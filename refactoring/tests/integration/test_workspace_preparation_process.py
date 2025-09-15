@@ -66,7 +66,7 @@ async def test_workspace_preparation_process():
         
         # 테스트 결과 저장
         test_data_manager = TestResultDataManager()
-        test_data_manager.save_test_result("process", result, "workspace_preparation")
+        test_data_manager.save_test_result("process", result, "workspace_preparation_stage")
         
         print("🎉 workspace_preparation process 테스트 성공!")
         return True

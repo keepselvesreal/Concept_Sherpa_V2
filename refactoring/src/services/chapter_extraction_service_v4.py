@@ -138,16 +138,15 @@ JSON만 응답:"""
                 result_data = json.loads(json_text)
                 
                 if 'chapters' in result_data and isinstance(result_data['chapters'], list):
-                    chapters_info = result_data['chapters']
-                    chapter_titles = [chapter['title'] for chapter in chapters_info]
+                    individual_chapter_information = result_data['chapters']
+                    chapter_titles = [chapter['title'] for chapter in individual_chapter_information]
                     
-                    self.logger.info(f"장 분석 완료: 총 {len(chapters_info)}개 장 발견")
+                    self.logger.info(f"장 분석 완료: 총 {len(individual_chapter_information)}개 장 발견")
                     
                     return {
                         'success': True,
-                        'total_chapters': len(chapters_info),
                         'chapter_titles': chapter_titles,
-                        'chapters_info': chapters_info,
+                        'individual_chapter_information': individual_chapter_information,
                         'raw_response': response_text,
                         'ai_provider': self.ai_service.get_name()
                     }
@@ -180,19 +179,37 @@ JSON만 응답:"""
             }
 
     def find_chapter_items(self, toc_structure: List[Dict], chapter_start_id: int, next_chapter_start_id: Optional[int]) -> List[Dict]:
-        """각 장에 속하는 목차 항목들을 찾는 함수"""
+        """각 장에 속하는 목차 항목들을 찾는 함수 - 마지막 장 페이지 범위 제한"""
         chapter_items = []
         
-        # 장 시작 ID부터 다음 장 시작 ID 이전까지의 항목들을 찾기
+        # 마지막 장일 경우에만 페이지 범위 찾기
+        chapter_end_page = None
+        if not next_chapter_start_id:
+            for item in toc_structure:
+                if item.get('id') == chapter_start_id:
+                    chapter_end_page = item.get('end_page')
+                    break
+        
         for item in toc_structure:
             item_id = item.get('id')
-            
             if item_id is None:
                 continue
                 
-            # 현재 장의 범위에 속하는지 확인
-            if chapter_start_id <= item_id < (next_chapter_start_id or float('inf')):
-                chapter_items.append(item)
+            # 기본 ID 범위 체크
+            if item_id < chapter_start_id:
+                continue
+                
+            # 다음 장이 있으면 ID로 제한
+            if next_chapter_start_id and item_id >= next_chapter_start_id:
+                break
+                
+            # 마지막 장이면 페이지 범위로 제한
+            if not next_chapter_start_id and chapter_end_page:
+                item_start_page = item.get('start_page')
+                if item_start_page and item_start_page > chapter_end_page:
+                    break
+            
+            chapter_items.append(item)
                 
         return chapter_items
 

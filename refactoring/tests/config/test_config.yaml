@@ -1,0 +1,12 @@
+# 생성 시간: Wed Jan 15 22:05:23 KST 2025
+# 핵심 내용: 테스트 설정 파일 (테스트 데이터 매니저 기본 경로 설정)
+# 상세 내용:
+#   - test_data_manager (라인 8-10): 테스트 데이터 저장 경로 설정
+# 상태: active
+
+# 테스트 데이터 매니저 설정
+test_data_manager:
+  base_path: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data"
+  folders:
+    workspace_preparation_stage: "workspace_preparation_stage"
+    integrated_node_generation_stage: "integrated_node_generation_stage"

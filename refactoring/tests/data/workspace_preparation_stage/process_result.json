@@ -1,0 +1,2913 @@
+{
+  "data": {
+    "book_information": {
+      "title": "Data-Oriented Programming",
+      "normalized_title": "Data_Oriented_Programming",
+      "chapter_titles": [
+        "1 Complexity of object- oriented programming",
+        "2 Separation between code and data"
+      ]
+    },
+    "raw_toc_data": {
+      "extraction_info": {
+        "source_pdf": "2022_Data-Oriented Programming_Manning.pdf",
+        "extraction_method": "PyMuPDF complete TOC extraction with hierarchy",
+        "extraction_timestamp": "2025-09-15 17:18:36 KST",
+        "total_items": 218,
+        "note": "Complete hierarchy extracted using PyMuPDF library"
+      },
+      "toc_structure": [
+        {
+          "id": 0,
+          "title": "Data-Oriented Programming",
+          "level": 0,
+          "page": 1,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 1,
+          "end_page": 7,
+          "page_count": 7
+        },
+        {
+          "id": 1,
+          "title": "brief contents",
+          "level": 0,
+          "page": 8,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 8,
+          "end_page": 9,
+          "page_count": 2
+        },
+        {
+          "id": 2,
+          "title": "contents",
+          "level": 0,
+          "page": 10,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 10,
+          "end_page": 14,
+          "page_count": 5
+        },
+        {
+          "id": 3,
+          "title": "forewords",
+          "level": 0,
+          "page": 15,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 15,
+          "end_page": 18,
+          "page_count": 4
+        },
+        {
+          "id": 4,
+          "title": "preface",
+          "level": 0,
+          "page": 19,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 19,
+          "end_page": 19,
+          "page_count": 1
+        },
+        {
+          "id": 5,
+          "title": "acknowledgments",
+          "level": 0,
+          "page": 20,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 20,
+          "end_page": 21,
+          "page_count": 2
+        },
+        {
+          "id": 6,
+          "title": "about this book",
+          "level": 0,
+          "page": 22,
+          "parent_id": null,
+          "children_ids": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "start_page": 22,
+          "end_page": 25,
+          "page_count": 4
+        },
+        {
+          "id": 7,
+          "title": "Who should read this book?",
+          "level": 1,
+          "page": 22,
+          "parent_id": 6,
+          "children_ids": [],
+          "start_page": 22,
+          "end_page": 22,
+          "page_count": 1
+        },
+        {
+          "id": 8,
+          "title": "How this book is organized: A road map",
+          "level": 1,
+          "page": 22,
+          "parent_id": 6,
+          "children_ids": [],
+          "start_page": 22,
+          "end_page": 24,
+          "page_count": 3
+        },
+        {
+          "id": 9,
+          "title": "About the code",
+          "level": 1,
+          "page": 25,
+          "parent_id": 6,
+          "children_ids": [],
+          "start_page": 25,
+          "end_page": 25,
+          "page_count": 1
+        },
+        {
+          "id": 10,
+          "title": "liveBook discussion forum",
+          "level": 1,
+          "page": 25,
+          "parent_id": 6,
+          "children_ids": [],
+          "start_page": 25,
+          "end_page": 25,
+          "page_count": 1
+        },
+        {
+          "id": 11,
+          "title": "about the author",
+          "level": 0,
+          "page": 26,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 26,
+          "end_page": 26,
+          "page_count": 1
+        },
+        {
+          "id": 12,
+          "title": "about the cover illustration",
+          "level": 0,
+          "page": 27,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 27,
+          "end_page": 27,
+          "page_count": 1
+        },
+        {
+          "id": 13,
+          "title": "dramatis personae",
+          "level": 0,
+          "page": 28,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 28,
+          "end_page": 28,
+          "page_count": 1
+        },
+        {
+          "id": 14,
+          "title": "Part 1—Flexibility",
+          "level": 0,
+          "page": 29,
+          "parent_id": null,
+          "children_ids": [
+            15,
+            27,
+            34,
+            41,
+            50,
+            57
+          ],
+          "start_page": 29,
+          "end_page": 164,
+          "page_count": 136
+        },
+        {
+          "id": 15,
+          "title": "1 Complexity of object- oriented programming",
+          "level": 1,
+          "page": 31,
+          "parent_id": 14,
+          "children_ids": [
+            16,
+            21,
+            26
+          ],
+          "start_page": 31,
+          "end_page": 53,
+          "page_count": 23
+        },
+        {
+          "id": 16,
+          "title": "1.1 OOP design: Classic or classical?",
+          "level": 2,
+          "page": 32,
+          "parent_id": 15,
+          "children_ids": [
+            17,
+            18,
+            19,
+            20
+          ],
+          "start_page": 32,
+          "end_page": 40,
+          "page_count": 9
+        },
+        {
+          "id": 17,
+          "title": "1.1.1 The design phase",
+          "level": 3,
+          "page": 32,
+          "parent_id": 16,
+          "children_ids": [],
+          "start_page": 32,
+          "end_page": 33,
+          "page_count": 2
+        },
+        {
+          "id": 18,
+          "title": "1.1.2 UML 101",
+          "level": 3,
+          "page": 34,
+          "parent_id": 16,
+          "children_ids": [],
+          "start_page": 34,
+          "end_page": 36,
+          "page_count": 3
+        },
+        {
+          "id": 19,
+          "title": "1.1.3 Explaining each piece of the class diagram",
+          "level": 3,
+          "page": 37,
+          "parent_id": 16,
+          "children_ids": [],
+          "start_page": 37,
+          "end_page": 39,
+          "page_count": 3
+        },
+        {
+          "id": 20,
+          "title": "1.1.4 The implementation phase",
+          "level": 3,
+          "page": 40,
+          "parent_id": 16,
+          "children_ids": [],
+          "start_page": 40,
+          "end_page": 40,
+          "page_count": 1
+        },
+        {
+          "id": 21,
+          "title": "1.2 Sources of complexity",
+          "level": 2,
+          "page": 41,
+          "parent_id": 15,
+          "children_ids": [
+            22,
+            23,
+            24,
+            25
+          ],
+          "start_page": 41,
+          "end_page": 51,
+          "page_count": 11
+        },
+        {
+          "id": 22,
+          "title": "1.2.1 Many relations between classes",
+          "level": 3,
+          "page": 42,
+          "parent_id": 21,
+          "children_ids": [],
+          "start_page": 42,
+          "end_page": 43,
+          "page_count": 2
+        },
+        {
+          "id": 23,
+          "title": "1.2.2 Unpredictable code behavior",
+          "level": 3,
+          "page": 44,
+          "parent_id": 21,
+          "children_ids": [],
+          "start_page": 44,
+          "end_page": 45,
+          "page_count": 2
+        },
+        {
+          "id": 24,
+          "title": "1.2.3 Not trivial data serialization",
+          "level": 3,
+          "page": 46,
+          "parent_id": 21,
+          "children_ids": [],
+          "start_page": 46,
+          "end_page": 47,
+          "page_count": 2
+        },
+        {
+          "id": 25,
+          "title": "1.2.4 Complex class hierarchies",
+          "level": 3,
+          "page": 48,
+          "parent_id": 21,
+          "children_ids": [],
+          "start_page": 48,
+          "end_page": 51,
+          "page_count": 4
+        },
+        {
+          "id": 26,
+          "title": "Summary",
+          "level": 2,
+          "page": 52,
+          "parent_id": 15,
+          "children_ids": [],
+          "start_page": 52,
+          "end_page": 53,
+          "page_count": 2
+        },
+        {
+          "id": 27,
+          "title": "2 Separation between code and data",
+          "level": 1,
+          "page": 54,
+          "parent_id": 14,
+          "children_ids": [
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "start_page": 54,
+          "end_page": 70,
+          "page_count": 17
+        },
+        {
+          "id": 28,
+          "title": "2.1 The two parts of a DOP system",
+          "level": 2,
+          "page": 55,
+          "parent_id": 27,
+          "children_ids": [],
+          "start_page": 55,
+          "end_page": 56,
+          "page_count": 2
+        },
+        {
+          "id": 29,
+          "title": "2.2 Data entities",
+          "level": 2,
+          "page": 57,
+          "parent_id": 27,
+          "children_ids": [],
+          "start_page": 57,
+          "end_page": 58,
+          "page_count": 2
+        },
+        {
+          "id": 30,
+          "title": "2.3 Code modules",
+          "level": 2,
+          "page": 59,
+          "parent_id": 27,
+          "children_ids": [],
+          "start_page": 59,
+          "end_page": 63,
+          "page_count": 5
+        },
+        {
+          "id": 31,
+          "title": "2.4 DOP systems are easy to understand",
+          "level": 2,
+          "page": 64,
+          "parent_id": 27,
+          "children_ids": [],
+          "start_page": 64,
+          "end_page": 65,
+          "page_count": 2
+        },
+        {
+          "id": 32,
+          "title": "2.5 DOP systems are flexible",
+          "level": 2,
+          "page": 66,
+          "parent_id": 27,
+          "children_ids": [],
+          "start_page": 66,
+          "end_page": 69,
+          "page_count": 4
+        },
+        {
+          "id": 33,
+          "title": "Summary",
+          "level": 2,
+          "page": 70,
+          "parent_id": 27,
+          "children_ids": [],
+          "start_page": 70,
+          "end_page": 70,
+          "page_count": 1
+        },
+        {
+          "id": 34,
+          "title": "3 Basic data manipulation",
+          "level": 1,
+          "page": 71,
+          "parent_id": 14,
+          "children_ids": [
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "start_page": 71,
+          "end_page": 98,
+          "page_count": 28
+        },
+        {
+          "id": 35,
+          "title": "3.1 Designing a data model",
+          "level": 2,
+          "page": 72,
+          "parent_id": 34,
+          "children_ids": [],
+          "start_page": 72,
+          "end_page": 75,
+          "page_count": 4
+        },
+        {
+          "id": 36,
+          "title": "3.2 Representing records as maps",
+          "level": 2,
+          "page": 76,
+          "parent_id": 34,
+          "children_ids": [],
+          "start_page": 76,
+          "end_page": 81,
+          "page_count": 6
+        },
+        {
+          "id": 37,
+          "title": "3.3 Manipulating data with generic functions",
+          "level": 2,
+          "page": 82,
+          "parent_id": 34,
+          "children_ids": [],
+          "start_page": 82,
+          "end_page": 85,
+          "page_count": 4
+        },
+        {
+          "id": 38,
+          "title": "3.4 Calculating search results",
+          "level": 2,
+          "page": 86,
+          "parent_id": 34,
+          "children_ids": [],
+          "start_page": 86,
+          "end_page": 92,
+          "page_count": 7
+        },
+        {
+          "id": 39,
+          "title": "3.5 Handling records of different types",
+          "level": 2,
+          "page": 93,
+          "parent_id": 34,
+          "children_ids": [],
+          "start_page": 93,
+          "end_page": 96,
+          "page_count": 4
+        },
+        {
+          "id": 40,
+          "title": "Summary",
+          "level": 2,
+          "page": 97,
+          "parent_id": 34,
+          "children_ids": [],
+          "start_page": 97,
+          "end_page": 98,
+          "page_count": 2
+        },
+        {
+          "id": 41,
+          "title": "4 State management",
+          "level": 1,
+          "page": 99,
+          "parent_id": 14,
+          "children_ids": [
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49
+          ],
+          "start_page": 99,
+          "end_page": 118,
+          "page_count": 20
+        },
+        {
+          "id": 42,
+          "title": "4.1 Multiple versions of the system data",
+          "level": 2,
+          "page": 100,
+          "parent_id": 41,
+          "children_ids": [],
+          "start_page": 100,
+          "end_page": 101,
+          "page_count": 2
+        },
+        {
+          "id": 43,
+          "title": "4.2 Structural sharing",
+          "level": 2,
+          "page": 102,
+          "parent_id": 41,
+          "children_ids": [],
+          "start_page": 102,
+          "end_page": 107,
+          "page_count": 6
+        },
+        {
+          "id": 44,
+          "title": "4.3 Implementing structural sharing",
+          "level": 2,
+          "page": 108,
+          "parent_id": 41,
+          "children_ids": [],
+          "start_page": 108,
+          "end_page": 109,
+          "page_count": 2
+        },
+        {
+          "id": 45,
+          "title": "4.4 Data safety",
+          "level": 2,
+          "page": 110,
+          "parent_id": 41,
+          "children_ids": [],
+          "start_page": 110,
+          "end_page": 110,
+          "page_count": 1
+        },
+        {
+          "id": 46,
+          "title": "4.5 The commit phase of a mutation",
+          "level": 2,
+          "page": 111,
+          "parent_id": 41,
+          "children_ids": [],
+          "start_page": 111,
+          "end_page": 112,
+          "page_count": 2
+        },
+        {
+          "id": 47,
+          "title": "4.6 Ensuring system state integrity",
+          "level": 2,
+          "page": 113,
+          "parent_id": 41,
+          "children_ids": [],
+          "start_page": 113,
+          "end_page": 113,
+          "page_count": 1
+        },
+        {
+          "id": 48,
+          "title": "4.7 Restoring previous states",
+          "level": 2,
+          "page": 114,
+          "parent_id": 41,
+          "children_ids": [],
+          "start_page": 114,
+          "end_page": 116,
+          "page_count": 3
+        },
+        {
+          "id": 49,
+          "title": "Summary",
+          "level": 2,
+          "page": 117,
+          "parent_id": 41,
+          "children_ids": [],
+          "start_page": 117,
+          "end_page": 118,
+          "page_count": 2
+        },
+        {
+          "id": 50,
+          "title": "5 Basic concurrency control",
+          "level": 1,
+          "page": 119,
+          "parent_id": 14,
+          "children_ids": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "start_page": 119,
+          "end_page": 137,
+          "page_count": 19
+        },
+        {
+          "id": 51,
+          "title": "5.1 Optimistic concurrency control",
+          "level": 2,
+          "page": 120,
+          "parent_id": 50,
+          "children_ids": [],
+          "start_page": 120,
+          "end_page": 121,
+          "page_count": 2
+        },
+        {
+          "id": 52,
+          "title": "5.2 Reconciliation between concurrent mutations",
+          "level": 2,
+          "page": 122,
+          "parent_id": 50,
+          "children_ids": [],
+          "start_page": 122,
+          "end_page": 124,
+          "page_count": 3
+        },
+        {
+          "id": 53,
+          "title": "5.3 Reducing collections",
+          "level": 2,
+          "page": 125,
+          "parent_id": 50,
+          "children_ids": [],
+          "start_page": 125,
+          "end_page": 126,
+          "page_count": 2
+        },
+        {
+          "id": 54,
+          "title": "5.4 Structural difference",
+          "level": 2,
+          "page": 127,
+          "parent_id": 50,
+          "children_ids": [],
+          "start_page": 127,
+          "end_page": 133,
+          "page_count": 7
+        },
+        {
+          "id": 55,
+          "title": "5.5 Implementing the reconciliation algorithm",
+          "level": 2,
+          "page": 134,
+          "parent_id": 50,
+          "children_ids": [],
+          "start_page": 134,
+          "end_page": 135,
+          "page_count": 2
+        },
+        {
+          "id": 56,
+          "title": "Summary",
+          "level": 2,
+          "page": 136,
+          "parent_id": 50,
+          "children_ids": [],
+          "start_page": 136,
+          "end_page": 137,
+          "page_count": 2
+        },
+        {
+          "id": 57,
+          "title": "6 Unit tests",
+          "level": 1,
+          "page": 138,
+          "parent_id": 14,
+          "children_ids": [
+            58,
+            59,
+            63,
+            64,
+            65,
+            66
+          ],
+          "start_page": 138,
+          "end_page": 164,
+          "page_count": 27
+        },
+        {
+          "id": 58,
+          "title": "6.1 The simplicity of data-oriented test cases",
+          "level": 2,
+          "page": 138,
+          "parent_id": 57,
+          "children_ids": [],
+          "start_page": 138,
+          "end_page": 139,
+          "page_count": 2
+        },
+        {
+          "id": 59,
+          "title": "6.2 Unit tests for data manipulation code",
+          "level": 2,
+          "page": 140,
+          "parent_id": 57,
+          "children_ids": [
+            60,
+            61,
+            62
+          ],
+          "start_page": 140,
+          "end_page": 148,
+          "page_count": 9
+        },
+        {
+          "id": 60,
+          "title": "6.2.1 The tree of function calls",
+          "level": 3,
+          "page": 141,
+          "parent_id": 59,
+          "children_ids": [],
+          "start_page": 141,
+          "end_page": 142,
+          "page_count": 2
+        },
+        {
+          "id": 61,
+          "title": "6.2.2 Unit tests for functions down the tree",
+          "level": 3,
+          "page": 143,
+          "parent_id": 59,
+          "children_ids": [],
+          "start_page": 143,
+          "end_page": 146,
+          "page_count": 4
+        },
+        {
+          "id": 62,
+          "title": "6.2.3 Unit tests for nodes in the tree",
+          "level": 3,
+          "page": 147,
+          "parent_id": 59,
+          "children_ids": [],
+          "start_page": 147,
+          "end_page": 148,
+          "page_count": 2
+        },
+        {
+          "id": 63,
+          "title": "6.3 Unit tests for queries",
+          "level": 2,
+          "page": 149,
+          "parent_id": 57,
+          "children_ids": [],
+          "start_page": 149,
+          "end_page": 153,
+          "page_count": 5
+        },
+        {
+          "id": 64,
+          "title": "6.4 Unit tests for mutations",
+          "level": 2,
+          "page": 154,
+          "parent_id": 57,
+          "children_ids": [],
+          "start_page": 154,
+          "end_page": 161,
+          "page_count": 8
+        },
+        {
+          "id": 65,
+          "title": "Moving forward",
+          "level": 2,
+          "page": 162,
+          "parent_id": 57,
+          "children_ids": [],
+          "start_page": 162,
+          "end_page": 162,
+          "page_count": 1
+        },
+        {
+          "id": 66,
+          "title": "Summary",
+          "level": 2,
+          "page": 162,
+          "parent_id": 57,
+          "children_ids": [],
+          "start_page": 162,
+          "end_page": 164,
+          "page_count": 3
+        },
+        {
+          "id": 67,
+          "title": "Part 2—Scalability",
+          "level": 0,
+          "page": 165,
+          "parent_id": null,
+          "children_ids": [
+            68,
+            75,
+            81,
+            93,
+            99
+          ],
+          "start_page": 165,
+          "end_page": 272,
+          "page_count": 108
+        },
+        {
+          "id": 68,
+          "title": "7 Basic data validation",
+          "level": 1,
+          "page": 169,
+          "parent_id": 67,
+          "children_ids": [
+            69,
+            70,
+            71,
+            72,
+            73,
+            74
+          ],
+          "start_page": 169,
+          "end_page": 190,
+          "page_count": 22
+        },
+        {
+          "id": 69,
+          "title": "7.1 Data validation in DOP",
+          "level": 2,
+          "page": 170,
+          "parent_id": 68,
+          "children_ids": [],
+          "start_page": 170,
+          "end_page": 170,
+          "page_count": 1
+        },
+        {
+          "id": 70,
+          "title": "7.2 JSON Schema in a nutshell",
+          "level": 2,
+          "page": 171,
+          "parent_id": 68,
+          "children_ids": [],
+          "start_page": 171,
+          "end_page": 176,
+          "page_count": 6
+        },
+        {
+          "id": 71,
+          "title": "7.3 Schema flexibility and strictness",
+          "level": 2,
+          "page": 177,
+          "parent_id": 68,
+          "children_ids": [],
+          "start_page": 177,
+          "end_page": 181,
+          "page_count": 5
+        },
+        {
+          "id": 72,
+          "title": "7.4 Schema composition",
+          "level": 2,
+          "page": 182,
+          "parent_id": 68,
+          "children_ids": [],
+          "start_page": 182,
+          "end_page": 185,
+          "page_count": 4
+        },
+        {
+          "id": 73,
+          "title": "7.5 Details about data validation failures",
+          "level": 2,
+          "page": 186,
+          "parent_id": 68,
+          "children_ids": [],
+          "start_page": 186,
+          "end_page": 188,
+          "page_count": 3
+        },
+        {
+          "id": 74,
+          "title": "Summary",
+          "level": 2,
+          "page": 189,
+          "parent_id": 68,
+          "children_ids": [],
+          "start_page": 189,
+          "end_page": 190,
+          "page_count": 2
+        },
+        {
+          "id": 75,
+          "title": "8 Advanced concurrency control",
+          "level": 1,
+          "page": 191,
+          "parent_id": 67,
+          "children_ids": [
+            76,
+            77,
+            78,
+            79,
+            80
+          ],
+          "start_page": 191,
+          "end_page": 202,
+          "page_count": 12
+        },
+        {
+          "id": 76,
+          "title": "8.1 The complexity of locks",
+          "level": 2,
+          "page": 192,
+          "parent_id": 75,
+          "children_ids": [],
+          "start_page": 192,
+          "end_page": 192,
+          "page_count": 1
+        },
+        {
+          "id": 77,
+          "title": "8.2 Thread-safe counter with atoms",
+          "level": 2,
+          "page": 193,
+          "parent_id": 75,
+          "children_ids": [],
+          "start_page": 193,
+          "end_page": 197,
+          "page_count": 5
+        },
+        {
+          "id": 78,
+          "title": "8.3 Thread-safe cache with atoms",
+          "level": 2,
+          "page": 198,
+          "parent_id": 75,
+          "children_ids": [],
+          "start_page": 198,
+          "end_page": 199,
+          "page_count": 2
+        },
+        {
+          "id": 79,
+          "title": "8.4 State management with atoms",
+          "level": 2,
+          "page": 200,
+          "parent_id": 75,
+          "children_ids": [],
+          "start_page": 200,
+          "end_page": 201,
+          "page_count": 2
+        },
+        {
+          "id": 80,
+          "title": "Summary",
+          "level": 2,
+          "page": 202,
+          "parent_id": 75,
+          "children_ids": [],
+          "start_page": 202,
+          "end_page": 202,
+          "page_count": 1
+        },
+        {
+          "id": 81,
+          "title": "9 Persistent data structures",
+          "level": 1,
+          "page": 203,
+          "parent_id": 67,
+          "children_ids": [
+            82,
+            83,
+            84,
+            87,
+            92
+          ],
+          "start_page": 203,
+          "end_page": 224,
+          "page_count": 22
+        },
+        {
+          "id": 82,
+          "title": "9.1 The need for persistent data structures",
+          "level": 2,
+          "page": 203,
+          "parent_id": 81,
+          "children_ids": [],
+          "start_page": 203,
+          "end_page": 205,
+          "page_count": 3
+        },
+        {
+          "id": 83,
+          "title": "9.2 The efficiency of persistent data structures",
+          "level": 2,
+          "page": 206,
+          "parent_id": 81,
+          "children_ids": [],
+          "start_page": 206,
+          "end_page": 211,
+          "page_count": 6
+        },
+        {
+          "id": 84,
+          "title": "9.3 Persistent data structures libraries",
+          "level": 2,
+          "page": 212,
+          "parent_id": 81,
+          "children_ids": [
+            85,
+            86
+          ],
+          "start_page": 212,
+          "end_page": 215,
+          "page_count": 4
+        },
+        {
+          "id": 85,
+          "title": "9.3.1 Persistent data structures in Java",
+          "level": 3,
+          "page": 212,
+          "parent_id": 84,
+          "children_ids": [],
+          "start_page": 212,
+          "end_page": 213,
+          "page_count": 2
+        },
+        {
+          "id": 86,
+          "title": "9.3.2 Persistent data structures in JavaScript",
+          "level": 3,
+          "page": 214,
+          "parent_id": 84,
+          "children_ids": [],
+          "start_page": 214,
+          "end_page": 215,
+          "page_count": 2
+        },
+        {
+          "id": 87,
+          "title": "9.4 Persistent data structures in action",
+          "level": 2,
+          "page": 216,
+          "parent_id": 81,
+          "children_ids": [
+            88,
+            89,
+            90,
+            91
+          ],
+          "start_page": 216,
+          "end_page": 222,
+          "page_count": 7
+        },
+        {
+          "id": 88,
+          "title": "9.4.1 Writing queries with persistent data structures",
+          "level": 3,
+          "page": 216,
+          "parent_id": 87,
+          "children_ids": [],
+          "start_page": 216,
+          "end_page": 218,
+          "page_count": 3
+        },
+        {
+          "id": 89,
+          "title": "9.4.2 Writing mutations with persistent data structures",
+          "level": 3,
+          "page": 219,
+          "parent_id": 87,
+          "children_ids": [],
+          "start_page": 219,
+          "end_page": 219,
+          "page_count": 1
+        },
+        {
+          "id": 90,
+          "title": "9.4.3 Serialization and deserialization",
+          "level": 3,
+          "page": 220,
+          "parent_id": 87,
+          "children_ids": [],
+          "start_page": 220,
+          "end_page": 220,
+          "page_count": 1
+        },
+        {
+          "id": 91,
+          "title": "9.4.4 Structural diff",
+          "level": 3,
+          "page": 221,
+          "parent_id": 87,
+          "children_ids": [],
+          "start_page": 221,
+          "end_page": 222,
+          "page_count": 2
+        },
+        {
+          "id": 92,
+          "title": "Summary",
+          "level": 2,
+          "page": 223,
+          "parent_id": 81,
+          "children_ids": [],
+          "start_page": 223,
+          "end_page": 224,
+          "page_count": 2
+        },
+        {
+          "id": 93,
+          "title": "10 Database operations",
+          "level": 1,
+          "page": 225,
+          "parent_id": 67,
+          "children_ids": [
+            94,
+            95,
+            96,
+            97,
+            98
+          ],
+          "start_page": 225,
+          "end_page": 247,
+          "page_count": 23
+        },
+        {
+          "id": 94,
+          "title": "10.1 Fetching data from the database",
+          "level": 2,
+          "page": 226,
+          "parent_id": 93,
+          "children_ids": [],
+          "start_page": 226,
+          "end_page": 231,
+          "page_count": 6
+        },
+        {
+          "id": 95,
+          "title": "10.2 Storing data in the database",
+          "level": 2,
+          "page": 232,
+          "parent_id": 93,
+          "children_ids": [],
+          "start_page": 232,
+          "end_page": 234,
+          "page_count": 3
+        },
+        {
+          "id": 96,
+          "title": "10.3 Simple data manipulation",
+          "level": 2,
+          "page": 235,
+          "parent_id": 93,
+          "children_ids": [],
+          "start_page": 235,
+          "end_page": 238,
+          "page_count": 4
+        },
+        {
+          "id": 97,
+          "title": "10.4 Advanced data manipulation",
+          "level": 2,
+          "page": 239,
+          "parent_id": 93,
+          "children_ids": [],
+          "start_page": 239,
+          "end_page": 245,
+          "page_count": 7
+        },
+        {
+          "id": 98,
+          "title": "Summary",
+          "level": 2,
+          "page": 246,
+          "parent_id": 93,
+          "children_ids": [],
+          "start_page": 246,
+          "end_page": 247,
+          "page_count": 2
+        },
+        {
+          "id": 99,
+          "title": "11 Web services",
+          "level": 1,
+          "page": 248,
+          "parent_id": 67,
+          "children_ids": [
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107
+          ],
+          "start_page": 248,
+          "end_page": 272,
+          "page_count": 25
+        },
+        {
+          "id": 100,
+          "title": "11.1 Another feature request",
+          "level": 2,
+          "page": 249,
+          "parent_id": 99,
+          "children_ids": [],
+          "start_page": 249,
+          "end_page": 249,
+          "page_count": 1
+        },
+        {
+          "id": 101,
+          "title": "11.2 Building the insides like the outsides",
+          "level": 2,
+          "page": 250,
+          "parent_id": 99,
+          "children_ids": [],
+          "start_page": 250,
+          "end_page": 252,
+          "page_count": 3
+        },
+        {
+          "id": 102,
+          "title": "11.3 Representing a client request as a map",
+          "level": 2,
+          "page": 253,
+          "parent_id": 99,
+          "children_ids": [],
+          "start_page": 253,
+          "end_page": 254,
+          "page_count": 2
+        },
+        {
+          "id": 103,
+          "title": "11.4 Representing a server response as a map",
+          "level": 2,
+          "page": 255,
+          "parent_id": 99,
+          "children_ids": [],
+          "start_page": 255,
+          "end_page": 258,
+          "page_count": 4
+        },
+        {
+          "id": 104,
+          "title": "11.5 Passing information forward",
+          "level": 2,
+          "page": 259,
+          "parent_id": 99,
+          "children_ids": [],
+          "start_page": 259,
+          "end_page": 261,
+          "page_count": 3
+        },
+        {
+          "id": 105,
+          "title": "11.6 Search result enrichment in action",
+          "level": 2,
+          "page": 262,
+          "parent_id": 99,
+          "children_ids": [],
+          "start_page": 262,
+          "end_page": 271,
+          "page_count": 10
+        },
+        {
+          "id": 106,
+          "title": "Delivering on time",
+          "level": 2,
+          "page": 272,
+          "parent_id": 99,
+          "children_ids": [],
+          "start_page": 272,
+          "end_page": 272,
+          "page_count": 1
+        },
+        {
+          "id": 107,
+          "title": "Summary",
+          "level": 2,
+          "page": 272,
+          "parent_id": 99,
+          "children_ids": [],
+          "start_page": 272,
+          "end_page": 272,
+          "page_count": 1
+        },
+        {
+          "id": 108,
+          "title": "Part 3—Maintainability",
+          "level": 0,
+          "page": 273,
+          "parent_id": null,
+          "children_ids": [
+            109,
+            117,
+            124,
+            130
+          ],
+          "start_page": 273,
+          "end_page": 360,
+          "page_count": 88
+        },
+        {
+          "id": 109,
+          "title": "12 Advanced data validation",
+          "level": 1,
+          "page": 275,
+          "parent_id": 108,
+          "children_ids": [
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116
+          ],
+          "start_page": 275,
+          "end_page": 299,
+          "page_count": 25
+        },
+        {
+          "id": 110,
+          "title": "12.1 Function arguments validation",
+          "level": 2,
+          "page": 276,
+          "parent_id": 109,
+          "children_ids": [],
+          "start_page": 276,
+          "end_page": 282,
+          "page_count": 7
+        },
+        {
+          "id": 111,
+          "title": "12.2 Return value validation",
+          "level": 2,
+          "page": 283,
+          "parent_id": 109,
+          "children_ids": [],
+          "start_page": 283,
+          "end_page": 284,
+          "page_count": 2
+        },
+        {
+          "id": 112,
+          "title": "12.3 Advanced data validation",
+          "level": 2,
+          "page": 285,
+          "parent_id": 109,
+          "children_ids": [],
+          "start_page": 285,
+          "end_page": 287,
+          "page_count": 3
+        },
+        {
+          "id": 113,
+          "title": "12.4 Automatic generation of data model diagrams",
+          "level": 2,
+          "page": 288,
+          "parent_id": 109,
+          "children_ids": [],
+          "start_page": 288,
+          "end_page": 289,
+          "page_count": 2
+        },
+        {
+          "id": 114,
+          "title": "12.5 Automatic generation of schema-based unit tests",
+          "level": 2,
+          "page": 290,
+          "parent_id": 109,
+          "children_ids": [],
+          "start_page": 290,
+          "end_page": 296,
+          "page_count": 7
+        },
+        {
+          "id": 115,
+          "title": "12.6 A new gift",
+          "level": 2,
+          "page": 297,
+          "parent_id": 109,
+          "children_ids": [],
+          "start_page": 297,
+          "end_page": 297,
+          "page_count": 1
+        },
+        {
+          "id": 116,
+          "title": "Summary",
+          "level": 2,
+          "page": 298,
+          "parent_id": 109,
+          "children_ids": [],
+          "start_page": 298,
+          "end_page": 299,
+          "page_count": 2
+        },
+        {
+          "id": 117,
+          "title": "13 Polymorphism",
+          "level": 1,
+          "page": 300,
+          "parent_id": 108,
+          "children_ids": [
+            118,
+            119,
+            120,
+            121,
+            122,
+            123
+          ],
+          "start_page": 300,
+          "end_page": 322,
+          "page_count": 23
+        },
+        {
+          "id": 118,
+          "title": "13.1 The essence of polymorphism",
+          "level": 2,
+          "page": 301,
+          "parent_id": 117,
+          "children_ids": [],
+          "start_page": 301,
+          "end_page": 304,
+          "page_count": 4
+        },
+        {
+          "id": 119,
+          "title": "13.2 Multimethods with single dispatch",
+          "level": 2,
+          "page": 305,
+          "parent_id": 117,
+          "children_ids": [],
+          "start_page": 305,
+          "end_page": 308,
+          "page_count": 4
+        },
+        {
+          "id": 120,
+          "title": "13.3 Multimethods with multiple dispatch",
+          "level": 2,
+          "page": 309,
+          "parent_id": 117,
+          "children_ids": [],
+          "start_page": 309,
+          "end_page": 313,
+          "page_count": 5
+        },
+        {
+          "id": 121,
+          "title": "13.4 Multimethods with dynamic dispatch",
+          "level": 2,
+          "page": 314,
+          "parent_id": 117,
+          "children_ids": [],
+          "start_page": 314,
+          "end_page": 316,
+          "page_count": 3
+        },
+        {
+          "id": 122,
+          "title": "13.5 Integrating multimethods in a production system",
+          "level": 2,
+          "page": 317,
+          "parent_id": 117,
+          "children_ids": [],
+          "start_page": 317,
+          "end_page": 321,
+          "page_count": 5
+        },
+        {
+          "id": 123,
+          "title": "Summary",
+          "level": 2,
+          "page": 322,
+          "parent_id": 117,
+          "children_ids": [],
+          "start_page": 322,
+          "end_page": 322,
+          "page_count": 1
+        },
+        {
+          "id": 124,
+          "title": "14 Advanced data manipulation",
+          "level": 1,
+          "page": 323,
+          "parent_id": 108,
+          "children_ids": [
+            125,
+            126,
+            127,
+            128,
+            129
+          ],
+          "start_page": 323,
+          "end_page": 338,
+          "page_count": 16
+        },
+        {
+          "id": 125,
+          "title": "14.1 Updating a value in a map with eloquence",
+          "level": 2,
+          "page": 324,
+          "parent_id": 124,
+          "children_ids": [],
+          "start_page": 324,
+          "end_page": 326,
+          "page_count": 3
+        },
+        {
+          "id": 126,
+          "title": "14.2 Manipulating nested data",
+          "level": 2,
+          "page": 327,
+          "parent_id": 124,
+          "children_ids": [],
+          "start_page": 327,
+          "end_page": 328,
+          "page_count": 2
+        },
+        {
+          "id": 127,
+          "title": "14.3 Using the best tool for the job",
+          "level": 2,
+          "page": 329,
+          "parent_id": 124,
+          "children_ids": [],
+          "start_page": 329,
+          "end_page": 332,
+          "page_count": 4
+        },
+        {
+          "id": 128,
+          "title": "14.4 Unwinding at ease",
+          "level": 2,
+          "page": 333,
+          "parent_id": 124,
+          "children_ids": [],
+          "start_page": 333,
+          "end_page": 337,
+          "page_count": 5
+        },
+        {
+          "id": 129,
+          "title": "Summary",
+          "level": 2,
+          "page": 338,
+          "parent_id": 124,
+          "children_ids": [],
+          "start_page": 338,
+          "end_page": 338,
+          "page_count": 1
+        },
+        {
+          "id": 130,
+          "title": "15 Debugging",
+          "level": 1,
+          "page": 339,
+          "parent_id": 108,
+          "children_ids": [
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137
+          ],
+          "start_page": 339,
+          "end_page": 360,
+          "page_count": 22
+        },
+        {
+          "id": 131,
+          "title": "15.1 Determinism in programming",
+          "level": 2,
+          "page": 340,
+          "parent_id": 130,
+          "children_ids": [],
+          "start_page": 340,
+          "end_page": 341,
+          "page_count": 2
+        },
+        {
+          "id": 132,
+          "title": "15.2 Reproducibility with numbers and strings",
+          "level": 2,
+          "page": 342,
+          "parent_id": 130,
+          "children_ids": [],
+          "start_page": 342,
+          "end_page": 345,
+          "page_count": 4
+        },
+        {
+          "id": 133,
+          "title": "15.3 Reproducibility with any data",
+          "level": 2,
+          "page": 346,
+          "parent_id": 130,
+          "children_ids": [],
+          "start_page": 346,
+          "end_page": 348,
+          "page_count": 3
+        },
+        {
+          "id": 134,
+          "title": "15.4 Unit tests",
+          "level": 2,
+          "page": 349,
+          "parent_id": 130,
+          "children_ids": [],
+          "start_page": 349,
+          "end_page": 356,
+          "page_count": 8
+        },
+        {
+          "id": 135,
+          "title": "15.5 Dealing with external data sources",
+          "level": 2,
+          "page": 357,
+          "parent_id": 130,
+          "children_ids": [],
+          "start_page": 357,
+          "end_page": 357,
+          "page_count": 1
+        },
+        {
+          "id": 136,
+          "title": "Farewell",
+          "level": 2,
+          "page": 358,
+          "parent_id": 130,
+          "children_ids": [],
+          "start_page": 358,
+          "end_page": 358,
+          "page_count": 1
+        },
+        {
+          "id": 137,
+          "title": "Summary",
+          "level": 2,
+          "page": 359,
+          "parent_id": 130,
+          "children_ids": [],
+          "start_page": 359,
+          "end_page": 360,
+          "page_count": 2
+        },
+        {
+          "id": 138,
+          "title": "Appendix A—Principles of data-oriented programming",
+          "level": 0,
+          "page": 361,
+          "parent_id": null,
+          "children_ids": [
+            139,
+            144,
+            149,
+            154,
+            159
+          ],
+          "start_page": 361,
+          "end_page": 391,
+          "page_count": 31
+        },
+        {
+          "id": 139,
+          "title": "A.1 Principle #1: Separate code from data",
+          "level": 1,
+          "page": 363,
+          "parent_id": 138,
+          "children_ids": [
+            140,
+            141,
+            142,
+            143
+          ],
+          "start_page": 363,
+          "end_page": 372,
+          "page_count": 10
+        },
+        {
+          "id": 140,
+          "title": "A.1.1 Illustration of Principle #1",
+          "level": 2,
+          "page": 363,
+          "parent_id": 139,
+          "children_ids": [],
+          "start_page": 363,
+          "end_page": 364,
+          "page_count": 2
+        },
+        {
+          "id": 141,
+          "title": "A.1.2 Benefits of Principle #1",
+          "level": 2,
+          "page": 365,
+          "parent_id": 139,
+          "children_ids": [],
+          "start_page": 365,
+          "end_page": 370,
+          "page_count": 6
+        },
+        {
+          "id": 142,
+          "title": "A.1.3 Cost for Principle #1",
+          "level": 2,
+          "page": 371,
+          "parent_id": 139,
+          "children_ids": [],
+          "start_page": 371,
+          "end_page": 371,
+          "page_count": 1
+        },
+        {
+          "id": 143,
+          "title": "A.1.4 Summary of Principle #1",
+          "level": 2,
+          "page": 372,
+          "parent_id": 139,
+          "children_ids": [],
+          "start_page": 372,
+          "end_page": 372,
+          "page_count": 1
+        },
+        {
+          "id": 144,
+          "title": "A.2 Principle #2: Represent data with generic data structures",
+          "level": 1,
+          "page": 373,
+          "parent_id": 138,
+          "children_ids": [
+            145,
+            146,
+            147,
+            148
+          ],
+          "start_page": 373,
+          "end_page": 378,
+          "page_count": 6
+        },
+        {
+          "id": 145,
+          "title": "A.2.1 Illustration of Principle #2",
+          "level": 2,
+          "page": 373,
+          "parent_id": 144,
+          "children_ids": [],
+          "start_page": 373,
+          "end_page": 373,
+          "page_count": 1
+        },
+        {
+          "id": 146,
+          "title": "A.2.2 Benefits of Principle #2",
+          "level": 2,
+          "page": 374,
+          "parent_id": 144,
+          "children_ids": [],
+          "start_page": 374,
+          "end_page": 374,
+          "page_count": 1
+        },
+        {
+          "id": 147,
+          "title": "A.2.3 Cost for Principle #2",
+          "level": 2,
+          "page": 375,
+          "parent_id": 144,
+          "children_ids": [],
+          "start_page": 375,
+          "end_page": 377,
+          "page_count": 3
+        },
+        {
+          "id": 148,
+          "title": "A.2.4 Summary of Principle #2",
+          "level": 2,
+          "page": 378,
+          "parent_id": 144,
+          "children_ids": [],
+          "start_page": 378,
+          "end_page": 378,
+          "page_count": 1
+        },
+        {
+          "id": 149,
+          "title": "A.3 Principle #3: Data is immutable",
+          "level": 1,
+          "page": 379,
+          "parent_id": 138,
+          "children_ids": [
+            150,
+            151,
+            152,
+            153
+          ],
+          "start_page": 379,
+          "end_page": 382,
+          "page_count": 4
+        },
+        {
+          "id": 150,
+          "title": "A.3.1 Illustration of Principle #3",
+          "level": 2,
+          "page": 379,
+          "parent_id": 149,
+          "children_ids": [],
+          "start_page": 379,
+          "end_page": 379,
+          "page_count": 1
+        },
+        {
+          "id": 151,
+          "title": "A.3.2 Benefits of Principle #3",
+          "level": 2,
+          "page": 380,
+          "parent_id": 149,
+          "children_ids": [],
+          "start_page": 380,
+          "end_page": 381,
+          "page_count": 2
+        },
+        {
+          "id": 152,
+          "title": "A.3.3 Cost for Principle #3",
+          "level": 2,
+          "page": 382,
+          "parent_id": 149,
+          "children_ids": [],
+          "start_page": 382,
+          "end_page": 382,
+          "page_count": 1
+        },
+        {
+          "id": 153,
+          "title": "A.3.4 Summary of Principle #3",
+          "level": 2,
+          "page": 382,
+          "parent_id": 149,
+          "children_ids": [],
+          "start_page": 382,
+          "end_page": 382,
+          "page_count": 1
+        },
+        {
+          "id": 154,
+          "title": "A.4 Principle #4: Separate data schema from data representation",
+          "level": 1,
+          "page": 383,
+          "parent_id": 138,
+          "children_ids": [
+            155,
+            156,
+            157,
+            158
+          ],
+          "start_page": 383,
+          "end_page": 390,
+          "page_count": 8
+        },
+        {
+          "id": 155,
+          "title": "A.4.1 Illustration of Principle #4",
+          "level": 2,
+          "page": 383,
+          "parent_id": 154,
+          "children_ids": [],
+          "start_page": 383,
+          "end_page": 384,
+          "page_count": 2
+        },
+        {
+          "id": 156,
+          "title": "A.4.2 Benefits of Principle #4",
+          "level": 2,
+          "page": 385,
+          "parent_id": 154,
+          "children_ids": [],
+          "start_page": 385,
+          "end_page": 388,
+          "page_count": 4
+        },
+        {
+          "id": 157,
+          "title": "A.4.3 Cost for Principle #4",
+          "level": 2,
+          "page": 389,
+          "parent_id": 154,
+          "children_ids": [],
+          "start_page": 389,
+          "end_page": 389,
+          "page_count": 1
+        },
+        {
+          "id": 158,
+          "title": "A.4.4 Summary of Principle #4",
+          "level": 2,
+          "page": 390,
+          "parent_id": 154,
+          "children_ids": [],
+          "start_page": 390,
+          "end_page": 390,
+          "page_count": 1
+        },
+        {
+          "id": 159,
+          "title": "Conclusion",
+          "level": 1,
+          "page": 391,
+          "parent_id": 138,
+          "children_ids": [],
+          "start_page": 391,
+          "end_page": 391,
+          "page_count": 1
+        },
+        {
+          "id": 160,
+          "title": "Appendix B—Generic data access in statically-typed languages",
+          "level": 0,
+          "page": 392,
+          "parent_id": null,
+          "children_ids": [
+            161,
+            164,
+            167,
+            170,
+            174
+          ],
+          "start_page": 392,
+          "end_page": 408,
+          "page_count": 17
+        },
+        {
+          "id": 161,
+          "title": "B.1 Dynamic getters for string maps",
+          "level": 1,
+          "page": 392,
+          "parent_id": 160,
+          "children_ids": [
+            162,
+            163
+          ],
+          "start_page": 392,
+          "end_page": 394,
+          "page_count": 3
+        },
+        {
+          "id": 162,
+          "title": "B.1.1 Accessing non-nested map fields with dynamic getters",
+          "level": 2,
+          "page": 393,
+          "parent_id": 161,
+          "children_ids": [],
+          "start_page": 393,
+          "end_page": 393,
+          "page_count": 1
+        },
+        {
+          "id": 163,
+          "title": "B.1.2 Accessing nested map fields with dynamic getters",
+          "level": 2,
+          "page": 394,
+          "parent_id": 161,
+          "children_ids": [],
+          "start_page": 394,
+          "end_page": 394,
+          "page_count": 1
+        },
+        {
+          "id": 164,
+          "title": "B.2 Value getters for maps",
+          "level": 1,
+          "page": 395,
+          "parent_id": 160,
+          "children_ids": [
+            165,
+            166
+          ],
+          "start_page": 395,
+          "end_page": 397,
+          "page_count": 3
+        },
+        {
+          "id": 165,
+          "title": "B.2.1 Accessing non-nested map fields with value getters",
+          "level": 2,
+          "page": 395,
+          "parent_id": 164,
+          "children_ids": [],
+          "start_page": 395,
+          "end_page": 395,
+          "page_count": 1
+        },
+        {
+          "id": 166,
+          "title": "B.2.2 Accessing nested map fields with value getters",
+          "level": 2,
+          "page": 396,
+          "parent_id": 164,
+          "children_ids": [],
+          "start_page": 396,
+          "end_page": 397,
+          "page_count": 2
+        },
+        {
+          "id": 167,
+          "title": "B.3 Typed getters for maps",
+          "level": 1,
+          "page": 398,
+          "parent_id": 160,
+          "children_ids": [
+            168,
+            169
+          ],
+          "start_page": 398,
+          "end_page": 400,
+          "page_count": 3
+        },
+        {
+          "id": 168,
+          "title": "B.3.1 Accessing non-nested map fields with typed getters",
+          "level": 2,
+          "page": 398,
+          "parent_id": 167,
+          "children_ids": [],
+          "start_page": 398,
+          "end_page": 398,
+          "page_count": 1
+        },
+        {
+          "id": 169,
+          "title": "B.3.2 Accessing nested map fields with typed getters",
+          "level": 2,
+          "page": 399,
+          "parent_id": 167,
+          "children_ids": [],
+          "start_page": 399,
+          "end_page": 400,
+          "page_count": 2
+        },
+        {
+          "id": 170,
+          "title": "B.4 Generic access to class members",
+          "level": 1,
+          "page": 401,
+          "parent_id": 160,
+          "children_ids": [
+            171,
+            172,
+            173
+          ],
+          "start_page": 401,
+          "end_page": 407,
+          "page_count": 7
+        },
+        {
+          "id": 171,
+          "title": "B.4.1 Generic access to non-nested class members",
+          "level": 2,
+          "page": 401,
+          "parent_id": 170,
+          "children_ids": [],
+          "start_page": 401,
+          "end_page": 403,
+          "page_count": 3
+        },
+        {
+          "id": 172,
+          "title": "B.4.2 Generic access to nested class members",
+          "level": 2,
+          "page": 404,
+          "parent_id": 170,
+          "children_ids": [],
+          "start_page": 404,
+          "end_page": 405,
+          "page_count": 2
+        },
+        {
+          "id": 173,
+          "title": "B.4.3 Automatic JSON serialization of objects",
+          "level": 2,
+          "page": 406,
+          "parent_id": 170,
+          "children_ids": [],
+          "start_page": 406,
+          "end_page": 407,
+          "page_count": 2
+        },
+        {
+          "id": 174,
+          "title": "Summary",
+          "level": 1,
+          "page": 408,
+          "parent_id": 160,
+          "children_ids": [],
+          "start_page": 408,
+          "end_page": 408,
+          "page_count": 1
+        },
+        {
+          "id": 175,
+          "title": "Appendix C—Data-oriented programming: A link in the chain of programming paradigms",
+          "level": 0,
+          "page": 409,
+          "parent_id": null,
+          "children_ids": [
+            176,
+            183,
+            188,
+            192
+          ],
+          "start_page": 409,
+          "end_page": 414,
+          "page_count": 6
+        },
+        {
+          "id": 176,
+          "title": "C.1 Time line",
+          "level": 1,
+          "page": 409,
+          "parent_id": 175,
+          "children_ids": [
+            177,
+            178,
+            179,
+            180,
+            181,
+            182
+          ],
+          "start_page": 409,
+          "end_page": 410,
+          "page_count": 2
+        },
+        {
+          "id": 177,
+          "title": "C.1.1 1958: Lisp",
+          "level": 2,
+          "page": 409,
+          "parent_id": 176,
+          "children_ids": [],
+          "start_page": 409,
+          "end_page": 409,
+          "page_count": 1
+        },
+        {
+          "id": 178,
+          "title": "C.1.2 1981: Values and objects",
+          "level": 2,
+          "page": 410,
+          "parent_id": 176,
+          "children_ids": [],
+          "start_page": 410,
+          "end_page": 410,
+          "page_count": 1
+        },
+        {
+          "id": 179,
+          "title": "C.1.3 2000: Ideal hash trees",
+          "level": 2,
+          "page": 411,
+          "parent_id": 176,
+          "children_ids": [],
+          "start_page": 411,
+          "end_page": 411,
+          "page_count": 1
+        },
+        {
+          "id": 180,
+          "title": "C.1.4 2006: Out of the Tar Pit",
+          "level": 2,
+          "page": 411,
+          "parent_id": 176,
+          "children_ids": [],
+          "start_page": 411,
+          "end_page": 411,
+          "page_count": 1
+        },
+        {
+          "id": 181,
+          "title": "C.1.5 2007: Clojure",
+          "level": 2,
+          "page": 411,
+          "parent_id": 176,
+          "children_ids": [],
+          "start_page": 411,
+          "end_page": 411,
+          "page_count": 1
+        },
+        {
+          "id": 182,
+          "title": "C.1.6 2009: Immutability for all",
+          "level": 2,
+          "page": 411,
+          "parent_id": 176,
+          "children_ids": [],
+          "start_page": 411,
+          "end_page": 411,
+          "page_count": 1
+        },
+        {
+          "id": 183,
+          "title": "C.2 DOP principles as best practices",
+          "level": 1,
+          "page": 411,
+          "parent_id": 175,
+          "children_ids": [
+            184,
+            185,
+            186,
+            187
+          ],
+          "start_page": 411,
+          "end_page": 412,
+          "page_count": 2
+        },
+        {
+          "id": 184,
+          "title": "C.2.1 Principle #1: Separate code from data",
+          "level": 2,
+          "page": 412,
+          "parent_id": 183,
+          "children_ids": [],
+          "start_page": 412,
+          "end_page": 412,
+          "page_count": 1
+        },
+        {
+          "id": 185,
+          "title": "C.2.2 Principle #2: Represent data with generic data structures",
+          "level": 2,
+          "page": 412,
+          "parent_id": 183,
+          "children_ids": [],
+          "start_page": 412,
+          "end_page": 412,
+          "page_count": 1
+        },
+        {
+          "id": 186,
+          "title": "C.2.3 Principle #3: Data is immutable",
+          "level": 2,
+          "page": 412,
+          "parent_id": 183,
+          "children_ids": [],
+          "start_page": 412,
+          "end_page": 412,
+          "page_count": 1
+        },
+        {
+          "id": 187,
+          "title": "C.2.4 Principle #4: Separate data schema from data representation",
+          "level": 2,
+          "page": 413,
+          "parent_id": 183,
+          "children_ids": [],
+          "start_page": 413,
+          "end_page": 413,
+          "page_count": 1
+        },
+        {
+          "id": 188,
+          "title": "C.3 DOP and other data-related paradigms",
+          "level": 1,
+          "page": 413,
+          "parent_id": 175,
+          "children_ids": [
+            189,
+            190,
+            191
+          ],
+          "start_page": 413,
+          "end_page": 413,
+          "page_count": 1
+        },
+        {
+          "id": 189,
+          "title": "C.3.1 Data-oriented design",
+          "level": 2,
+          "page": 414,
+          "parent_id": 188,
+          "children_ids": [],
+          "start_page": 414,
+          "end_page": 414,
+          "page_count": 1
+        },
+        {
+          "id": 190,
+          "title": "C.3.2 Data-driven programming",
+          "level": 2,
+          "page": 414,
+          "parent_id": 188,
+          "children_ids": [],
+          "start_page": 414,
+          "end_page": 414,
+          "page_count": 1
+        },
+        {
+          "id": 191,
+          "title": "C.3.3 Data-oriented programming (DOP)",
+          "level": 2,
+          "page": 414,
+          "parent_id": 188,
+          "children_ids": [],
+          "start_page": 414,
+          "end_page": 414,
+          "page_count": 1
+        },
+        {
+          "id": 192,
+          "title": "Summary",
+          "level": 1,
+          "page": 414,
+          "parent_id": 175,
+          "children_ids": [],
+          "start_page": 414,
+          "end_page": 414,
+          "page_count": 1
+        },
+        {
+          "id": 193,
+          "title": "Appendix D—Lodash reference",
+          "level": 0,
+          "page": 415,
+          "parent_id": null,
+          "children_ids": [],
+          "start_page": 415,
+          "end_page": 418,
+          "page_count": 4
+        },
+        {
+          "id": 194,
+          "title": "index",
+          "level": 0,
+          "page": 419,
+          "parent_id": null,
+          "children_ids": [
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            207,
+            208,
+            209,
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217
+          ],
+          "start_page": 419,
+          "end_page": 469,
+          "page_count": 51
+        },
+        {
+          "id": 195,
+          "title": "A",
+          "level": 1,
+          "page": 419,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 419,
+          "end_page": 419,
+          "page_count": 1
+        },
+        {
+          "id": 196,
+          "title": "B",
+          "level": 1,
+          "page": 419,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 419,
+          "end_page": 419,
+          "page_count": 1
+        },
+        {
+          "id": 197,
+          "title": "C",
+          "level": 1,
+          "page": 419,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 419,
+          "end_page": 419,
+          "page_count": 1
+        },
+        {
+          "id": 198,
+          "title": "D",
+          "level": 1,
+          "page": 420,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 420,
+          "end_page": 420,
+          "page_count": 1
+        },
+        {
+          "id": 199,
+          "title": "E",
+          "level": 1,
+          "page": 421,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 421,
+          "end_page": 421,
+          "page_count": 1
+        },
+        {
+          "id": 200,
+          "title": "F",
+          "level": 1,
+          "page": 421,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 421,
+          "end_page": 421,
+          "page_count": 1
+        },
+        {
+          "id": 201,
+          "title": "G",
+          "level": 1,
+          "page": 421,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 421,
+          "end_page": 421,
+          "page_count": 1
+        },
+        {
+          "id": 202,
+          "title": "H",
+          "level": 1,
+          "page": 421,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 421,
+          "end_page": 421,
+          "page_count": 1
+        },
+        {
+          "id": 203,
+          "title": "I",
+          "level": 1,
+          "page": 421,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 421,
+          "end_page": 421,
+          "page_count": 1
+        },
+        {
+          "id": 204,
+          "title": "J",
+          "level": 1,
+          "page": 421,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 421,
+          "end_page": 421,
+          "page_count": 1
+        },
+        {
+          "id": 205,
+          "title": "K",
+          "level": 1,
+          "page": 421,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 421,
+          "end_page": 421,
+          "page_count": 1
+        },
+        {
+          "id": 206,
+          "title": "L",
+          "level": 1,
+          "page": 421,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 421,
+          "end_page": 421,
+          "page_count": 1
+        },
+        {
+          "id": 207,
+          "title": "M",
+          "level": 1,
+          "page": 422,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 422,
+          "end_page": 422,
+          "page_count": 1
+        },
+        {
+          "id": 208,
+          "title": "N",
+          "level": 1,
+          "page": 422,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 422,
+          "end_page": 422,
+          "page_count": 1
+        },
+        {
+          "id": 209,
+          "title": "O",
+          "level": 1,
+          "page": 422,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 422,
+          "end_page": 422,
+          "page_count": 1
+        },
+        {
+          "id": 210,
+          "title": "P",
+          "level": 1,
+          "page": 423,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 423,
+          "end_page": 423,
+          "page_count": 1
+        },
+        {
+          "id": 211,
+          "title": "Q",
+          "level": 1,
+          "page": 423,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 423,
+          "end_page": 423,
+          "page_count": 1
+        },
+        {
+          "id": 212,
+          "title": "R",
+          "level": 1,
+          "page": 423,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 423,
+          "end_page": 423,
+          "page_count": 1
+        },
+        {
+          "id": 213,
+          "title": "S",
+          "level": 1,
+          "page": 423,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 423,
+          "end_page": 423,
+          "page_count": 1
+        },
+        {
+          "id": 214,
+          "title": "T",
+          "level": 1,
+          "page": 423,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 423,
+          "end_page": 423,
+          "page_count": 1
+        },
+        {
+          "id": 215,
+          "title": "U",
+          "level": 1,
+          "page": 424,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 424,
+          "end_page": 424,
+          "page_count": 1
+        },
+        {
+          "id": 216,
+          "title": "V",
+          "level": 1,
+          "page": 424,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 424,
+          "end_page": 424,
+          "page_count": 1
+        },
+        {
+          "id": 217,
+          "title": "W",
+          "level": 1,
+          "page": 424,
+          "parent_id": 194,
+          "children_ids": [],
+          "start_page": 424,
+          "end_page": 426,
+          "page_count": 3
+        }
+      ]
+    },
+    "chapters_data": [
+      {
+        "chapter_title": "1 Complexity of object- oriented programming",
+        "chapter_toc": [
+          {
+            "id": 15,
+            "title": "1 Complexity of object- oriented programming",
+            "level": 1,
+            "page": 31,
+            "parent_id": 14,
+            "children_ids": [
+              16,
+              21,
+              26
+            ],
+            "start_page": 31,
+            "end_page": 53,
+            "page_count": 23
+          },
+          {
+            "id": 16,
+            "title": "1.1 OOP design: Classic or classical?",
+            "level": 2,
+            "page": 32,
+            "parent_id": 15,
+            "children_ids": [
+              17,
+              18,
+              19,
+              20
+            ],
+            "start_page": 32,
+            "end_page": 40,
+            "page_count": 9
+          },
+          {
+            "id": 17,
+            "title": "1.1.1 The design phase",
+            "level": 3,
+            "page": 32,
+            "parent_id": 16,
+            "children_ids": [],
+            "start_page": 32,
+            "end_page": 33,
+            "page_count": 2
+          },
+          {
+            "id": 18,
+            "title": "1.1.2 UML 101",
+            "level": 3,
+            "page": 34,
+            "parent_id": 16,
+            "children_ids": [],
+            "start_page": 34,
+            "end_page": 36,
+            "page_count": 3
+          },
+          {
+            "id": 19,
+            "title": "1.1.3 Explaining each piece of the class diagram",
+            "level": 3,
+            "page": 37,
+            "parent_id": 16,
+            "children_ids": [],
+            "start_page": 37,
+            "end_page": 39,
+            "page_count": 3
+          },
+          {
+            "id": 20,
+            "title": "1.1.4 The implementation phase",
+            "level": 3,
+            "page": 40,
+            "parent_id": 16,
+            "children_ids": [],
+            "start_page": 40,
+            "end_page": 40,
+            "page_count": 1
+          },
+          {
+            "id": 21,
+            "title": "1.2 Sources of complexity",
+            "level": 2,
+            "page": 41,
+            "parent_id": 15,
+            "children_ids": [
+              22,
+              23,
+              24,
+              25
+            ],
+            "start_page": 41,
+            "end_page": 51,
+            "page_count": 11
+          },
+          {
+            "id": 22,
+            "title": "1.2.1 Many relations between classes",
+            "level": 3,
+            "page": 42,
+            "parent_id": 21,
+            "children_ids": [],
+            "start_page": 42,
+            "end_page": 43,
+            "page_count": 2
+          },
+          {
+            "id": 23,
+            "title": "1.2.2 Unpredictable code behavior",
+            "level": 3,
+            "page": 44,
+            "parent_id": 21,
+            "children_ids": [],
+            "start_page": 44,
+            "end_page": 45,
+            "page_count": 2
+          },
+          {
+            "id": 24,
+            "title": "1.2.3 Not trivial data serialization",
+            "level": 3,
+            "page": 46,
+            "parent_id": 21,
+            "children_ids": [],
+            "start_page": 46,
+            "end_page": 47,
+            "page_count": 2
+          },
+          {
+            "id": 25,
+            "title": "1.2.4 Complex class hierarchies",
+            "level": 3,
+            "page": 48,
+            "parent_id": 21,
+            "children_ids": [],
+            "start_page": 48,
+            "end_page": 51,
+            "page_count": 4
+          },
+          {
+            "id": 26,
+            "title": "Summary",
+            "level": 2,
+            "page": 52,
+            "parent_id": 15,
+            "children_ids": [],
+            "start_page": 52,
+            "end_page": 53,
+            "page_count": 2
+          }
+        ],
+        "content_text": "\n--- 페이지 31 ---\n3\nComplexity of object-\noriented programming\nA capricious entrepreneur\nIn this chapter, we’ll explore why object-oriented programming (OOP) systems tend to\nbe complex. This complexity is not related to the syntax or the semantics of a specific\nOOP language. It is something that is inherent to OOP’s fundamental insight—\nprograms should be composed from objects, which consist of some state, together\nwith methods for accessing and manipulating that state.\n Over the years, OOP ecosystems have alleviated this complexity by adding new\nfeatures to the language (e.g., anonymous classes and anonymous functions) and\nby developing frameworks that hide some of this complexity, providing a simpler\ninterface for developers (e.g., Spring and Jackson in Java). Internally, the frame-\nworks rely on the advanced features of the language such as reflection and custom\nannotations.\n \nThis chapter covers\nThe tendency of OOP to increase system \ncomplexity\nWhat makes OOP systems hard to understand\nThe cost of mixing code and data together into \nobjects\n\n--- 페이지 32 ---\n4\nCHAPTER 1\nComplexity of object-oriented programming\n This chapter is not meant to be read as a critical analysis of OOP. Its purpose is to\nraise your awareness of the tendency towards OOP’s increased complexity as a pro-\ngramming paradigm. Hopefully, it will motivate you to discover a different program-\nming paradigm, where system complexity tends to be reduced. This paradigm is\nknown as data-oriented programming (DOP). \n1.1\nOOP design: Classic or classical?\n NOTE\nTheo, Nancy, and their new project were introduced in the opener for part 1.\nTake a moment to read the opener if you missed it.\nTheo gets back to the office with Nancy’s napkin in his pocket and a lot of anxiety in his\nheart because he knows he has committed to a tough deadline. But he had no choice! Last\nweek, Monica, his boss, told him quite clearly that he had to close the deal with Nancy no\nmatter what.\nAlbatross, where Theo works, is a software consulting company with customers all over\nthe world. It originally had lots of customers among startups. Over the last year, however,\nmany projects were badly managed, and the Startup department lost the trust of its cus-\ntomers. That’s why management moved Theo from the Enterprise department to the\nStartup department as a Senior Tech lead. His job is to close deals and to deliver on time.\n1.1.1\nThe design phase\nBefore rushing to his laptop to code the system, Theo grabs a sheet of paper, much big-\nger than a napkin, and starts to draw a UML class diagram of the system that will imple-\nment the Klafim prototype. Theo is an object-oriented programmer. For him, there is no\nquestion—every business entity is represented by an object, and every object is made\nfrom a class.\nTheo spends some time thinking about the organization of the system. He identifies the\nmain classes for the Klafim Global Library Management System.\nThe requirements for the Klafim prototype\nThere are two kinds of users: library members and librarians.\nUsers log in to the system via email and password.\nMembers can borrow books.\nMembers and librarians can search books by title or by author.\nLibrarians can block and unblock members (e.g., when they are late in return-\ning a book).\nLibrarians can list the books currently lent to a member.\nThere can be several copies of a book.\nA book belongs to a physical library.\n\n--- 페이지 33 ---\n5\n1.1\nOOP design: Classic or classical?\nThat was the easy part. Now comes the difficult part: the relations between the classes.\nAfter two hours or so, Theo comes up with a first draft of a design for the Global Library\nManagement System. It looks like the diagram in figure 1.1.\n NOTE\nThe design presented here doesn’t pretend to be the smartest OOP design:\nexperienced OOP developers would probably use a couple of design patterns to sug-\ngest a much better design. This design is meant to be naive and by no means covers all\nthe features of the system. It serves two purposes:\nFor Theo, the developer, it is rich enough to start coding.\nFor me, the author of the book, it is rich enough to illustrate the complexity of a\ntypical OOP system.\nTheo feels proud of himself and of the design diagram he just produced. He definitely\ndeserves a cup of coffee!\nNear the coffee machine, Theo meets Dave, a junior software developer who joined\nAlbatross a couple of weeks ago. Theo and Dave appreciate each other, as Dave’s curiosity\nleads him to ask challenging questions. Meetings near the coffee machine often turn into\ninteresting discussions about programming.\nTheo\nHey Dave! How’s it going?\n Dave\nToday? Not great. I’m trying to fix a bug in my code! I can’t understand why\nthe state of my objects always changes. I’ll figure it out though, I’m sure. How’s\nyour day going?\nTheo\nI just finished the design of a system for a new customer.\nDave\nCool! Would it be OK for me to see it? I’m trying to improve my design skills.\nTheo\nSure! I have the diagram on my desk. We can take a look now if you like. \nThe main classes of the library management system\n\nLibrary—The central part of the system design.\n\nBook—A book.\n\nBookItem—A book can have multiple copies, and each copy is considered as\na book item.\n\nBookLending—When a book is lent, a book lending object is created.\n\nMember—A member of the library.\n\nLibrarian—A librarian.\n\nUser—A base class for Librarian and Member.\n\nCatalog—Contains a list of books.\n\nAuthor—A book author.\n\n--- 페이지 34 ---\n6\nCHAPTER 1\nComplexity of object-oriented programming\n1.1.2\nUML 101\nLatte in hand, Dave follows Theo to his desk. Theo proudly shows Dave his piece of art: the\nUML diagram for the Library Management System (figure 1.1). Dave seems really excited.\nDave\nWow! Such a detailed class diagram.\nTheo\nYeah. I’m pretty happy with it.\nLibrarian\nC\nblockMember(member: Member) : Bool\nunblockMember(member: Member) : Bool\naddBookItem(bookItem: BookItem) : BookItem\ngetBookLendingsOfMember(member: Member) : List<BookLending>\nMember\nC\nisBlocked() : Bool\nblock() : Bool\nunblock() : Bool\nreturnBook(bookLending: BookLending) : Bool\ncheckout(bookItem: BookItem) : BookLending\nCatalog\nC\nsearch(searchCriteria, queryStr) : List<Book>\naddBookItem(librarian: Librarian, bookItem: BookItem) : BookItem\nLibrary\nC\nname : String\naddress : String\nBook\nC\nid : String\ntitle : String\nAuthor\nC\nid : String\nfullName: String\nBookItem\nC\nid : String\nlibId: String\ncheckout(member: Member) : BookLending\nBookLending\nC\nid : String\nlendingDate : date\ndueDate : date\nisLate() : Bool\nreturnBook() : Bool\nUser\nC\nid : String\nemail : String\npassword : String\nlogin() : Bool\n*\n*\n*\n*\n*\n*\n*\nFigure 1.1\nA class diagram for Klafim’s Global Library Management System\n\n--- 페이지 35 ---\n7\n1.1\nOOP design: Classic or classical?\nDave\nThe thing is that I can never remember the meaning of the different arrows.\nTheo\nThere are four types of arrows in my class diagram: composition, association,\ninheritance, and usage.\nDave\nWhat’s the difference between composition and association?\n NOTE\nDon’t worry if you’re not familiar with OOP jargon. We’re going to leave it\naside in the next chapter.\nTheo\nIt’s all about whether the objects can live without each other. With composi-\ntion, when one object dies, the other one dies too. While in an association rela-\ntion, each object has an independent life.\nTIP\nIn a composition relation, when one object dies, the other one also dies. While\nin an association relation, each object has an independent life cycle.\nIn the class diagram, there are two kinds of composition symbolized by an arrow with\na plain diamond at one edge and an optional star at the other edge. Figure 1.2 shows\nthe relation between:\nA Library that owns a Catalog—A one-to-one composition. If a Library object\ndies, then its Catalog object dies with it.\nA Library that owns many Members—A one-to-many composition. If a Library\nobject dies, then all its Member objects die with it.\nTIP\nA composition relation is represented by a plain diamond at one edge and an\noptional star at the other edge.\nDave\nDo you have association relations in your diagram?\nTheo\nTake a look at the arrow between Book and Author. It has an empty diamond\nand a star at both edges, so it’s a many-to-many association relation.\nA book can be written by multiple authors, and an author can write multiple books.\nMoreover, Book and Author objects can live independently. The relation between\nbooks and authors is a many-to-many association (figure 1.3).\nCatalog\nC\nList<Book> search(searchCriteria, queryStr)\nBookItem addBookItem(librarian: Librarian, bookItem: BookItem)\nLibrary\nC\nname : String\naddress : String\nMember\nC\n*\nFigure 1.2\nThe two kinds of \ncomposition: one-to-one and \none-to-many. In both cases, \nwhen an object dies, the \ncomposed object dies with it.\n\n--- 페이지 36 ---\n8\nCHAPTER 1\nComplexity of object-oriented programming\nTIP\nA many-to-many association relation is represented by an empty diamond and a\nstar at both edges.\nDave\nI also see a bunch of dashed arrows in your diagram.\nTheo\nDashed arrows are for usage relations: when a class uses a method of another\nclass. Consider, for example, the Librarian::blockMember method. It calls\nMember::block.\nTIP\nDashed arrows indicate usage relations (figure 1.4), for instance, when a class\nuses a method of another class.\nDave\nI see. And I guess a plain arrow with an empty triangle, like the one between\nMember and User, represents inheritance.\nTheo\nAbsolutely!\nTIP\nPlain arrows with empty triangles represent class inheritance (figure 1.5), where\nthe arrow points towards the superclass. \nBook\nC\nid : String\ntitle : String\nAuthor\nC\nid : String\nfullName: String\n*\n*\nFigure 1.3\nMany-to-many association relation: \neach object lives independently.\nC Librarian\nBool isBlocked()\nBool block()\nBool unblock()\nBool returnBook(bookLending: BookLending)\nBookLending checkout(bookItem: BookItem)\nC Member\nBool blockMember(member: Member)\nBool unblockMember(member: Member)\nBookItem addBookItem(bookItem: BookItem)\nList<BookLending> getBookLendingsOfMember(member: Member)\nFigure 1.4\nUsage relation: a class \nuses a method of another class.\n\n--- 페이지 37 ---\n9\n1.1\nOOP design: Classic or classical?\n1.1.3\nExplaining each piece of the class diagram\nDave\nThanks for the UML refresher! Now I think I can remember what the different\narrows mean.\nTheo\nMy pleasure. Want to see how it all fits together?\nDave\nWhat class should we look at first?\nTheo\nI think we should start with Library.\nTHE LIBRARY CLASS\nThe Library is the root class of the library system. Figure 1.6 shows the system structure.\nC Member\nisBlocked() : Bool\nblock() : Bool\nunblock() : Bool\ncheckout(bookItem: BookItem) : BookLending\nreturnBook(bookLending : BookLending) : Bool\nUser\nC\nid : String\nemail : String\npassword : String\nlogin() : Bool\nFigure 1.5\nInheritance relation: a class \nderives from another class.\n*\n*\nname : String\naddress : String\nC Library\nC Member\nBool isBlocked()\nBool block()\nBool unblock()\nBool returnBook(bookLending: BookLending)\nBookLending checkout(bookItem: BookItem)\nC Catalog\nList<Book> search(searchCriteria, queryStr)\nBookItem addBookItem(librarian: Librarian,\nbookItem: BookItem)\nC Librarian\nBool blockMember(member: Member)\nBool unblockMember(member: Member)\nBookItem addBookItem(bookItem: BookItem)\nList<BookLending> getBookLendingsOfMember\n(member: Member)\nFigure 1.6\nThe Library class\n\n--- 페이지 38 ---\n10\nCHAPTER 1\nComplexity of object-oriented programming\nIn terms of code (behavior), a Library object does nothing on its own. It delegates\neverything to the objects it owns. In terms of data, a Library object owns\nMultiple Member objects\nMultiple Librarian objects\nA single Catalog object\n NOTE\nIn this book, we use the terms code and behavior interchangeably. \nLIBRARIAN, MEMBER, AND USER CLASSES\nLibrarian and Member both derive from User. Figure 1.7 shows this relation.\nThe User class represents a user of the library:\nIn terms of data members, it sticks to the bare minimum: it has an id, email,\nand password (with no security and encryption for now).\nIn terms of code, it can log in via login.\nThe Member class represents a member of the library:\nIt inherits from User.\nIn terms of data members, it has nothing more than User.\nIn terms of code, it can\n– Check out a book via checkout.\n– Return a book via returnBook.\n– Block itself via block.\n– Unblock itself via unblock.\n– Answer if it is blocked via isBlocked.\nIt owns multiple BookLending objects.\nIt uses BookItem in order to implement checkout.\nC Member\nisBlocked() : Bool\nblock() : Bool\nunblock() : Bool\nreturnBook(bookLending : BookLending) : Bool\ncheckout(bookItem: BookItem) : BookLending\nC Librarian\nblockMember(member: Member) :  Bool\nunblockMember(member: Member) : Bool\naddBookItem(bookItem: BookItem) : BookItem\n: Member) :\nC User\nid : String\nemail : String\npassword : String\nlogin() : Bool\nFigure 1.7\nLibrarian and Member derive from User.\n\n--- 페이지 39 ---\n11\n1.1\nOOP design: Classic or classical?\nThe Librarian class represents a librarian:\nIt derives from User.\nIn terms of data members, it has nothing more than User.\nIn terms of code, it can\n– Block and unblock a Member.\n– List the member’s book lendings via getBookLendings.\n– Add book items to the library via addBookItem.\nIt uses Member to implement blockMember, unblockMember, and getBook-\nLendings.\nIt uses BookItem to implement checkout.\nIt uses BookLending to implement getBookLendings. \nTHE CATALOG CLASS\nThe Catalog class is responsible for the management of the books. Figure 1.8 shows\nthe relation among the Catalog, Librarian, and Book classes. In terms of code, a\nCatalog object can\nSearch books via search.\nAdd book items to the library via addBookItem.\nA Catalog object uses Librarian in order to implement addBookItem. In terms of\ndata, a Catalog owns multiple Book objects. \nTHE BOOK CLASS\nFigure 1.9 presents the Book class. In terms of data, a Book object\nShould have as its bare minimum an id and a title.\nIs associated with multiple Author objects (a book might have multiple authors).\nOwns multiple BookItem objects, one for each copy of the book. \n*\nBool blockMember(member: Member)\nBool unblockMember(member: Member)\nC Librarian\nBookItem addBookItem(bookItem: BookItem)\nList<BookLending> getBookLendingsOfMember (member: Member)\nC Catalog\nList<Book> search(searchCriteria, queryStr)\nBookItem addBookItem(librarian: Librarian, bookItem: BookItem)\nBook\nC\nid : String\ntitle : String\nFigure 1.8\nThe Catalog class\n\n--- 페이지 40 ---\n12\nCHAPTER 1\nComplexity of object-oriented programming\nTHE BOOKITEM CLASS\nThe BookItem class represents a book copy, and a book could have many copies. In\nterms of data, a BookItem object\nShould have as its bare minimum data for members: an id and a libId (for its\nphysical library ID).\nOwns multiple BookLending objects, one for each time the book is lent.\nIn terms of code, a BookItem object can be checked out via checkout. \n1.1.4\nThe implementation phase\nAfter this detailed investigation of Theo’s diagrams, Dave lets it sink in as he slowly sips his\ncoffee. He then expresses his admiration to Theo.\nDave\nWow! That’s amazing!\nTheo\nThank you.\nDave\nI didn’t realize people were really spending the time to write down their design\nin such detail before coding.\nTheo\nI always do that. It saves me lot of time during the coding phase.\nDave\nWhen will you start coding?\nTheo\nWhen I finish my latte.\nTheo grabs his coffee mug and notices that his hot latte has become an iced latte. He was\nso excited to show his class diagram to Dave that he forgot to drink it!\n*\n*\n*\nBook\nC\nid : String\ntitle : String\nAuthor\nC\nid : String\nfullName: String\nBookItem\nC\nid : String\nIibld: String\nBookLending checkout(member: Member)\nBookLending\nC\nid : String\nlendingDate : date\ndueDate : date\nBool isLate()\nBool returnBook()\nFigure 1.9\nThe Book class\n\n--- 페이지 41 ---\n13\n1.2\nSources of complexity\n1.2\nSources of complexity\nWhile Theo is getting himself another cup of coffee (a cappuccino this time), I\nwould like to challenge his design. It might look beautiful and clear on the paper,\nbut I claim that this design makes the system hard to understand. It’s not that Theo\npicked the wrong classes or that he misunderstood the relations among the classes.\nIt goes much deeper:\nIt’s about the programming paradigm he chose to implement the system.\nIt’s about the object-oriented paradigm.\nIt’s about the tendency of OOP to increase the complexity of a system.\nTIP\nOOP has a tendency to create complex systems.\nThroughout this book, the type of complexity I refer to is that which makes systems\nhard to understand as defined in the paper, “Out of the Tar Pit,” by Ben Moseley\nand Peter Marks (2006), available at http://mng.bz/enzq. It has nothing to do with\nthe type of complexity that deals with the amount of resources consumed by a pro-\ngram. Similarly, when I refer to simplicity, I mean not complex (in other words, easy\nto understand).\n Keep in mind that complexity and simplicity (like hard and easy) are not absolute\nbut relative concepts. We can compare the complexity of two systems and determine\nwhether system A is more complex (or simpler) than system B.\n NOTE\nComplexity in the context of this book means hard to understand.\nAs mentioned in the introduction of this chapter, there are many ways in OOP to\nalleviate complexity. The purpose of this book is not be critical of OOP, but rather\nto present a programming paradigm called data-oriented programming (DOP) that\ntends to build systems that are less complex. In fact, the DOP paradigm is compati-\nble with OOP.\n If one chooses to build an OOP system that adheres to DOP principles, the system\nwill be less complex. According to DOP, the main sources of complexity in Theo’s sys-\ntem (and of many traditional OOP systems) are that\nCode and data are mixed.\nObjects are mutable.\nData is locked in objects as members.\nCode is locked into classes as methods.\nThis analysis is similar to what functional programming (FP) thinks about traditional\nOOP. However, as we will see throughout the book, the data approach that DOP takes\nin order to reduce system complexity differs from the FP approach. In appendix A, we\nillustrate how to apply DOP principles both in OOP and in FP styles.\nTIP\nDOP is compatible both with OOP and FP.\n\n--- 페이지 42 ---\n14\nCHAPTER 1\nComplexity of object-oriented programming\nIn the remaining sections of this chapter, we will illustrate each of the previous\naspects, summarized in table 1.1. We’ll look at this in the context of the Klafim project\nand explain in what sense these aspects are a source of complexity.\n1.2.1\nMany relations between classes\nOne way to assess the complexity of a class diagram is to look only at the entities and\ntheir relations, ignoring members and methods, as in figure 1.10. When we design a\nsystem, we have to define the relations between different pieces of code and data.\nThat’s unavoidable.\nTIP\nIn OOP, code and data are mixed together in classes: data as members and code as\nmethods.\nTable 1.1\nAspects of OOP and their impact on system complexity\nAspect\nImpact on complexity\nCode and data are mixed.\nClasses tend to be involved in many relations.\nObjects are mutable.\nExtra thinking is needed when reading code.\nObjects are mutable.\nExplicit synchronization is required on multi-threaded environments.\nData is locked in objects.\nData serialization is not trivial.\nCode is locked in classes.\nClass hierarchies are complex.\n*\n*\n*\n*\n*\n*\nLibrarian\nC\nBook\nC\nAuthor\nC\nBookItem\nC\nCatalog\nC\nBookLending\nC\nLibrary\nC\nMember\nC\nUser\nC\nFigure 1.10\nA class \ndiagram overview for \nKlafim’s Library \nManagement System\n\n--- 페이지 43 ---\n15\n1.2\nSources of complexity\nFrom a system analysis perspective, the fact that code and data are mixed together\nmakes the system complex in the sense that entities tend to be involved in many rela-\ntions. In figure 1.11, we take a closer look at the Member class. Member is involved in five\nrelations: two data relations and three code relations.\nData relations:\n– Library has many Members.\n– Member has many BookLendings.\nCode relations:\n– Member extends User.\n– Librarian uses Member.\n– Member uses BookItem.\nImagine for a moment that we were able, somehow, to split the Member class into two\nseparate entities:\n\nMemberCode for the code\n\nMemberData for the data\nInstead of a Member class with five relations, we would have the diagram shown in fig-\nure 1.12 with:\nA MemberCode entity and three relations.\nA MemberData entity and two relations.\nLibrary\nC\nLibrarian\nC\nBookItem\nC\nBookLending\nC\nUser\nC\nMember\nC\n*\n*\nFigure 1.11\nThe class Member is \ninvolved in five relations.\nLibrarian\nC\nBookItem\nC\nUser\nC\nMemberCode\nC\nLibrary\nC\nBookLending\nC\nMemberData\nC\n*\n*\nFigure 1.12\nA class diagram where Member \nis split into code and data entities\n\n--- 페이지 44 ---\n16\nCHAPTER 1\nComplexity of object-oriented programming\nThe class diagram where Member is split into MemberCode and MemberData is made of\ntwo independent parts. Each part is easier to understand than the original diagram.\n Let’s split every class of our original class diagram into code and data entities.\nFigure 1.13 shows the resulting diagram. Now the system is made of two indepen-\ndent parts:\nA part that involves only data entities.\nA part that involves only code entities.\nTIP\nA system where every class is split into two independent parts, code and data, is\nsimpler than a system where code and data are mixed.\nThe resulting system, made up of two independent subsystems, is easier to understand\nthan the original system. The fact that the two subsystems are independent means that\neach subsystem can be understood separately and in any order. The resulting system\nnot simpler by accident; it is a logical consequence of separating code from data.\nTIP\nA system made of multiple simple independent parts is less complex than a sys-\ntem made of a single complex part. \n1.2.2\nUnpredictable code behavior\nYou might be a bit tired after the system-level analysis that we presented in the previ-\nous section. Let’s get refreshed and look at some code.\n Take a look at the code in listing 1.1, where we get the blocked status of a member\nand display it twice. If I tell you that when I called displayBlockedStatusTwice, the\nprogram displayed true on the first console.log call, can you tell me what the pro-\ngram displayed on the second console.log call?\nAuthorData\nC\nLibrarianData\nC\nCatalogCode\nC\nLibrarianCode\nC\nMemberCode\nC\nUserCode\nC\nBookItem\nC\nBookItemCode\nC\n*\n*\n*\n*\n*\n*\n*\nBookData\nC\nBookItemData\nC\nBookLendingData\nC\nBookLendingCode\nC\nLibraryData\nC\nCatalogData\nC\nMemberData\nC\nFigure 1.13\nA class diagram where every class is split into code and data entities\n\n--- 페이지 45 ---\n17\n1.2\nSources of complexity\nclass Member {\n  isBlocked;\n  displayBlockedStatusTwice() {\n    var isBlocked = this.isBlocked;\n    console.log(isBlocked);\n    console.log(isBlocked);\n  }\n}\nmember.displayBlockedStatusTwice();\n“Of course, it displayed true again,” you say. And you are right!\n Now, take a look at a slightly different pseudocode as shown in listing 1.2. Here we\ndisplay, twice, the blocked status of a member without assigning a variable. Same ques-\ntion as before: if I tell you that when I called displayBlockedStatusTwice, the pro-\ngram displayed true on the first console.log call, can you tell me what the program\ndisplayed on the second console.log call?\nclass Member {\n  isBlocked;\n  displayBlockedStatusTwice() {\n    console.log(this.isBlocked);\n    console.log(this.isBlocked);\n  }\n}\nmember.displayBlockedStatusTwice();\nThe correct answer is . . . in a single-threaded environment, it displays true, while in a\nmulti-threaded environment, it’s unpredictable. Indeed, in a multi-threaded environ-\nment between the two console.log calls, there could be a context switch that changes\nthe state of the object (e.g., a librarian unblocked the member). In fact, with a slight\nmodification, the same kind of code unpredictability could occur even in a single-\nthreaded environment like JavaScript, when data is modified via asynchronous code\n(see the section about Principle #3 in appendix A). The difference between the two\ncode snippets is that\nIn the first listing (listing 1.1), we access a Boolean value twice , which is a prim-\nitive value.\nIn the second listing (listing 1.2), we access a member of an object twice.\nTIP\nWhen data is mutable, code is unpredictable.\nListing 1.1\nReally simple code\nListing 1.2\nApparently simple code\n\n--- 페이지 46 ---\n18\nCHAPTER 1\nComplexity of object-oriented programming\nThis unpredictable behavior of the second listing is one of the annoying conse-\nquences of OOP. Unlike primitive types, which are usually immutable, object mem-\nbers are mutable. One way to solve this problem in OOP is to protect sensitive code\nwith concurrency safety mechanisms like mutexes, but that introduces issues like a\nperformance hit and a risk of deadlocks.\n We will see later in the book that DOP treats every piece of data in the same way:\nboth primitive types and collection types are immutable values. This value treatment for\nall citizens brings serenity to DOP developers’ minds, and more brain cells are avail-\nable to handle the interesting pieces of the applications they build.\nTIP\nData immutability brings serenity to DOP developers’ minds. \n1.2.3\nNot trivial data serialization\nTheo is really tired, and he falls asleep at his desk. He’s having dream. In his dream, Nancy\nasks him to make Klafim’s Library Management System accessible via a REST API using\nJSON as a transport layer. Theo has to implement a /search endpoint that receives a\nquery in JSON format and returns the results in JSON format. Listing 1.3 shows an input\nexample of the /search endpoint, and listing 1.4 shows an output example of the /search\nendpoint.\n{\n  \"searchCriteria\": \"author\",\n  \"query\": \"albert\"\n}\n[\n  {\n    \"title\": \"The world as I see it\",\n    \"authors\": [\n      {\n        \"fullName\": \"Albert Einstein\"\n      }\n    ]\n  },\n  {\n    \"title\": \"The Stranger\",\n    \"authors\": [\n      {\n        \"fullName\": \"Albert Camus\"\n      }\n    ]\n  }\n]\nListing 1.3\nA JSON input of the /search endpoint\nListing 1.4\nA JSON output of the /search endpoint\n\n--- 페이지 47 ---\n19\n1.2\nSources of complexity\nTheo would probably implement the /search endpoint by creating three classes simi-\nlarly to what is shown in the following list and in figure 1.14. (Not surprisingly, every-\nthing in OOP has to be wrapped in a class. Right?)\n\nSearchController is responsible for handling the query.\n\nSearchQuery converts the JSON query string into data.\n\nSearchResult converts the search result data into a JSON string.\nThe SearchController (see figure 1.14) would have a single handle method with the\nfollowing flow:\nCreates a SearchQuery object from the JSON query string.\nRetrieves searchCriteria and queryStr from the SearchQuery object.\nCalls the search method of the catalog:Catalog with searchCriteria and\nqueryStr and receives books:List<Book>.\nCreates a SearchResult object with books.\nConverts the SearchResult object to a JSON string.\nWhat about other endpoints, for instance, those allowing librarians to add book items\nthrough /add-book-item? Theo would have to repeat the exact same process and cre-\nate three classes:\n\nAddBookItemController to handle the query\n\nBookItemQuery to convert the JSON query string into data\n\nBookItemResult to convert the search result data into a JSON string\nThe code that deals with JSON deserialization that Theo wrote previously in Search-\nQuery would have to be rewritten in BookItemQuery. Same thing for the code that\ndeals with JSON serialization he wrote previously in SearchResult; it would have to be\nrewritten in BookItemResult.\nList<Book> search(searchCriteria, queryStr)\nC Catalog\nC\nSearchController\nString handle(searchQuery: String)\n*\n*\nBook\nC\nid : String\ntitle : String\nC SearchResult\nSearchResult(books: List<Book>)\nString toJSON()\nC SearchQuery\nsearchCriteria: String\nquery: String\nSearchQuery(jsonString: String)\nFigure 1.14\nThe class diagram for SearchController\n\n--- 페이지 48 ---\n20\nCHAPTER 1\nComplexity of object-oriented programming\n The bad news is that Theo would have to repeat the same process for every end-\npoint of the system. Each time he encounters a new kind of JSON input or output,\nhe would have to create a new class and write code. Theo’s dream is turning into a\nnightmare!\nSuddenly, his phone rings, next to where he was resting his head on the desk. As Theo\nwakes up, he realizes that Nancy never asked for JSON. It was all a dream . . . a really bad\ndream!\nTIP\nIn OOP, data serialization is difficult.\nIt’s quite frustrating that handling JSON serialization and deserialization in OOP\nrequires the addition of so many classes and writing so much code—again and again!\nThe frustration grows when you consider that serializing a search query, a book item\nquery, or any query is quite similar. It comes down to\nGoing over data fields.\nConcatenating the name of the data fields and the value of the data fields, sepa-\nrated by a comma.\nWhy is such a simple thing so hard to achieve in OOP? In OOP, data has to follow a\nrigid shape defined in classes, which means that data is locked in members. There is\nno simple way to access data generically.\nTIP\nIn OOP, data is locked in classes as members.\nWe will refine later what we mean by generic access to the data, and we will see how\nDOP provides a generic way to handle JSON serialization and deserialization. Until\nthen, you will have to continue suffering. But at least you are starting to become aware\nof this suffering, and you know that it is avoidable.\n NOTE\nMost OOP programming languages alleviate a bit of the difficulty involved\nin the conversion from and to JSON. It either involves reflection, which is definitely a\ncomplex thing, or code verbosity. \n1.2.4\nComplex class hierarchies\nOne way to avoid writing the same code twice in OOP involves class inheritance. Indeed,\nwhen every requirement of the system is known up front, you design your class hier-\narchy is such a way that classes with common behavior derive from a base class.\n Figure 1.15 shows an example of this pattern that focuses on the part of our class\ndiagram that deals with members and librarians. Both Librarians and Members need\nthe ability to log in, and they inherit this ability from the User class.\nSo far, so good, but when new requirements are introduced after the system is imple-\nmented, it’s a completely different story. Fast forward to Monday, March 29th, at 11:00 AM,\nwhere two days are left before the deadline (Wednesday at midnight).\n\n--- 페이지 49 ---\n21\n1.2\nSources of complexity\nNancy calls Theo with an urgent request. Theo is not sure if it’s a dream or reality. He\npinches himself and he can feel the jolt. It’s definitely reality!\nNancy\nHow is the project doing?\nTheo\nFine, Nancy. We’re on schedule to meet the deadline. We’re running our last\nround of regression tests now.\nNancy\nFantastic! It means we have time for adding a tiny feature to the system, right?\nTheo\nDepends what you mean by “tiny.”\nNancy\nWe need to add VIP members to the system.\nTheo\nWhat do you mean by VIP members?\nNancy\nVIP members are allowed to add book items to the library by themselves.\nTheo\nHmm . . .\nNancy\nWhat?\nTheo\nThat’s not a tiny change!\nNancy\nWhy?\nI’ll ask you the same question Nancy asked Theo: why is adding VIP members to our\nsystem not a tiny task? After all, Theo has already written the code that allows librari-\nans to add book items to the library (it’s in Librarian::addBookItem). What prevents\nhim from reusing this code for VIP members? The reason is that, in OOP, the code is\nlocked into classes as methods.\nTIP\nIn OOP, code is locked into classes.\nVIP members are members that are allowed to add book items to the library by them-\nselves. Theo decomposes the customer requirements into two pieces:\nC Member\nisBlocked() : Bool\ncheckout(bookItem: BookItem) : BookLending\nreturnBook(bookLending : BookLending) : Bool\nUser\nC\nid : String\nemail : String\npassword : String\nlogin() : Bool\nC Librarian\nblockMember(member: Member) : Bool\nunblockMember(member: Member) : Bool\naddBookItem(bookItem: BookItem) : BookItem\ngetBookLendingsOfMember(member: Member) : List<BookLending>\nFigure 1.15\nThe part of the \nclass diagram that deals with \nmembers and librarians\n\n--- 페이지 50 ---\n22\nCHAPTER 1\nComplexity of object-oriented programming\nVIP members are library members.\nVIP members are allowed to add book items to the library by themselves.\nTheo then decides that he needs a new class, VIPMember. For the first requirement\n(VIP members are library members), it seems reasonable to make VIPMember derive\nfrom Member. However, handling the second requirement (VIP members are allowed\nto add book items) is more complex. He cannot make a VIPMember derive from\nLibrarian because the relation between VIPMember and Librarian is not linear:\nOn one hand, VIP members are like librarians in that they are allowed to add\nbook items.\nOn the other hand, VIP members are not like librarians in that they are not\nallowed to block members or list the books lent to a member.\nThe problem is that the code that adds book items is locked in the Librarian class.\nThere is no way for the VIPMember class to use this code.\n Figure 1.16 shows one possible solution that makes the code of Librarian::add-\nBookItem available to both Librarian and VIPMember classes. Here are the changes to\nthe previous class diagram:\nA base class UserWithBookItemRight extends User.\n\naddBookItem moves from Librarian to UserWithBookItemRight.\nBoth VIPMember and Librarian extend UserWithBookItemRight.\nIt wasn’t easy, but Theo manages to handle the change on time, thanks to an all nighter\ncoding on his laptop. He was even able to add new tests to the system and run the regres-\nsion tests again. However, he was so excited that he didn’t pay attention to the diamond\nC Member\nisBlocked() : Bool\ncheckout(bookItem: BookItem) : BookLending\nreturnBook(bookLending : BookLending) : Bool\nC UserWithBookItemRight\naddBookItem(bookItem: BookItem) : BookItem\nUser\nC\nid : String\nemail : String\npassword : String\nlogin() : Bool\nC Librarian\nblockMember(member: Member) : Bool\nunblockMember(member: Member) : Bool\ngetBookLendingsOfMember(member: Member) : List<BookLending>\nVIPMember\nC\nFigure 1.16\nA class diagram for a system with VIP members\n\n--- 페이지 51 ---\n23\n1.2\nSources of complexity\nproblem VIPMember introduced in his class diagram due to multiple inheritance: VIPMember\nextends both Member and UserWithBookItemRight, which both extend User.\nWednesday, March 31, at 10:00 AM (14 hours before the deadline), Theo calls Nancy to\ntell her the good news.\nTheo\nWe were able to add VIP members to the system on time, Nancy.\nNancy\nFantastic! I told you it was a tiny feature.\nTheo\nYeah, well . . .\nNancy\nLook, I was going to call you anyway. I just finished a meeting with my business\npartner, and we realized that we need another tiny feature before the launch.\nWill you be able to handle it before the deadline?\nTheo\nAgain, it depends what you mean by “tiny.”\nNancy\nWe need to add Super members to the system.\nTheo\nWhat do you mean by Super members?\nNancy\nSuper members are allowed to list the books lent to other members.\nTheo\nErr . . .\nNancy\nWhat?\nTheo\nThat’s not a tiny change!\nNancy\nWhy?\nAs with VIP members, adding Super members to the system requires changes to Theo’s\nclass hierarchy. Figure 1.17 shows the solution Theo has in mind.\nThe addition of Super members has made the system really complex. Theo suddenly\nnotices that he has three diamonds in his class diagram—not gemstones but three “Deadly\nUser\nC\nid : String\nemail : String\npassword : String\nlogin() : Bool\nC Member\nisBlocked() : Bool\ncheckout(bookItem: BookItem) : BookLending\nreturnBook(bookLending : BookLending) : Bool\nC UserWithBlockMemberRight\nblockMember(member: Member) : Bool\nunblockMember(member: Member) : Bool\nC UserWithBookItemRight\naddBookItem(bookItem: BookItem) : BookItem\nC Librarian\ngetBookLendingsOfMember(member: Member) : List<BookLending>\nVIPMember\nC\nSuperMember\nC\nFigure 1.17\nA class diagram for a system with Super and VIP members\n\n--- 페이지 52 ---\n24\nCHAPTER 1\nComplexity of object-oriented programming\nDiamonds of Death” as OOP developers sometimes name the ambiguity that arises when a\nclass D inherits from two classes B and C, where both inherit from class A!\nHe tries to avoid the diamonds by transforming the User class into an interface and\nusing the composition over inheritance design pattern. But with the stress of the deadline\nlooming, he isn’t able to use all of his brain cells. In fact, the system has become so com-\nplex, he’s unable to deliver the system by the deadline. Theo tells himself that he should\nhave used composition instead of class inheritance. But, it’s too late now.\nTIP\nIn OOP, prefer composition over class inheritance.\nAt 10:00 PM, two hours before the deadline, Theo calls Nancy to explain the situation.\nTheo\nLook Nancy, we really did our best, but we won’t be able to add Super mem-\nbers to the system before the deadline.\nNancy\nNo worries, my business partner and I decided to omit this feature for now.\nWe’ll add it later.\nWith mixed feelings of anger and relief, Theo stops pacing around his office. He realizes\nhe will be spending tonight in his own bed, rather than plowing away on his computer at\nthe office. That should make his wife happy.\nTheo\nI guess that means we’re ready for the launch tomorrow morning.\nNancy\nYes. We’ll offer this new product for a month or so, and if we get good market\ntraction, we’ll move forward with a bigger project.\nTheo\nCool. Let’s be in touch in a month then. Good luck on the launch!\nSummary\nComplexity in the context of this book means hard to understand.\nWe use the terms code and behavior interchangeably.\nDOP stands for data-oriented programming.\nOOP stands for object-oriented programming.\nFP stands for functional programming.\nIn a composition relation, when one object dies, the other one also dies.\nA composition relation is represented by a plain diamond at one edge and an\noptional star at the other edge.\nIn an association relation, each object has an independent life cycle.\nA many-to-many association relation is represented by an empty diamond and a\nstar at both edges.\nDashed arrows indicate a usage relation; for instance, when a class uses a method\nof another class.\nPlain arrows with empty triangles represent class inheritance, where the arrow\npoints towards the superclass.\nThe design presented in this chapter doesn’t pretend to be the smartest OOP\ndesign. Experienced OOP developers would probably use a couple of design\npatterns and suggest a much better diagram.\n\n--- 페이지 53 ---\n25\nSummary\nTraditional OOP systems tend to increase system complexity, in the sense that\nOOP systems are hard to understand.\nIn traditional OOP, code and data are mixed together in classes: data as mem-\nbers and code as methods.\nIn traditional OOP, data is mutable.\nThe root cause of the increase in complexity is related to the mixing of code\nand data together into objects.\nWhen code and data are mixed, classes tend to be involved in many relations.\nWhen objects are mutable, extra thinking is required in order to understand\nhow the code behaves.\nWhen objects are mutable, explicit synchronization mechanisms are required\non multi-threaded environments.\nWhen data is locked in objects, data serialization is not trivial.\nWhen code is locked in classes, class hierarchies tend to be complex.\nA system where every class is split into two independent parts, code and data, is\nsimpler than a system where code and data are mixed.\nA system made of multiple simple independent parts is less complex than a sys-\ntem made of a single complex part.\nWhen data is mutable, code is unpredictable.\nA strategic use of design patterns can help mitigate complexity in traditional\nOOP to some degree.\nData immutability brings serenity to DOP developers’ minds.\nMost OOP programming languages alleviate slightly the difficulty involved the\nconversion from and to JSON. It either involves reflection, which is definitely a\ncomplex thing, or code verbosity.\nIn traditional OOP, data serialization is difficult.\nIn traditional OOP, data is locked in classes as members.\nIn traditional OOP, code is locked into classes.\nDOP reduces complexity by rethinking data.\nDOP is compatible both with OOP and FP.\n",
+        "metadata": {
+          "start_page": 31,
+          "end_page": 53
+        }
+      },
+      {
+        "chapter_title": "2 Separation between code and data",
+        "chapter_toc": [
+          {
+            "id": 27,
+            "title": "2 Separation between code and data",
+            "level": 1,
+            "page": 54,
+            "parent_id": 14,
+            "children_ids": [
+              28,
+              29,
+              30,
+              31,
+              32,
+              33
+            ],
+            "start_page": 54,
+            "end_page": 70,
+            "page_count": 17
+          },
+          {
+            "id": 28,
+            "title": "2.1 The two parts of a DOP system",
+            "level": 2,
+            "page": 55,
+            "parent_id": 27,
+            "children_ids": [],
+            "start_page": 55,
+            "end_page": 56,
+            "page_count": 2
+          },
+          {
+            "id": 29,
+            "title": "2.2 Data entities",
+            "level": 2,
+            "page": 57,
+            "parent_id": 27,
+            "children_ids": [],
+            "start_page": 57,
+            "end_page": 58,
+            "page_count": 2
+          },
+          {
+            "id": 30,
+            "title": "2.3 Code modules",
+            "level": 2,
+            "page": 59,
+            "parent_id": 27,
+            "children_ids": [],
+            "start_page": 59,
+            "end_page": 63,
+            "page_count": 5
+          },
+          {
+            "id": 31,
+            "title": "2.4 DOP systems are easy to understand",
+            "level": 2,
+            "page": 64,
+            "parent_id": 27,
+            "children_ids": [],
+            "start_page": 64,
+            "end_page": 65,
+            "page_count": 2
+          },
+          {
+            "id": 32,
+            "title": "2.5 DOP systems are flexible",
+            "level": 2,
+            "page": 66,
+            "parent_id": 27,
+            "children_ids": [],
+            "start_page": 66,
+            "end_page": 69,
+            "page_count": 4
+          },
+          {
+            "id": 33,
+            "title": "Summary",
+            "level": 2,
+            "page": 70,
+            "parent_id": 27,
+            "children_ids": [],
+            "start_page": 70,
+            "end_page": 70,
+            "page_count": 1
+          }
+        ],
+        "content_text": "\n--- 페이지 54 ---\n26\nSeparation between\ncode and data\nA whole new world\nThe first insight of DOP is that we can decrease the complexity of our systems by\nseparating code from data. Indeed, when code is separated from data, our systems\nare made of two main pieces that can be thought about separately: data entities and\ncode modules. This chapter is a deep dive in the first principle of DOP (summa-\nrized in figure 2.1).\nThis chapter covers\nThe benefits of separating code from data\nDesigning a system where code and data are \nseparate\nImplementing a system that respects the \nseparation between code and data\nPRINCIPLE #1\nSeparate code from data such that the code resides in functions,\nwhose behavior doesn’t depend on data that is somehow encapsulated in the func-\ntion’s context.\n\n--- 페이지 55 ---\n27\n2.1\nThe two parts of a DOP system\nIn this chapter, we’ll illustrate the separation between code and data in the context of\nKlafim’s Library Management System that we introduced in chapter 1. We’ll also unveil\nthe benefits that this separation brings to the system:\nThe system is simple. It is easy to understand.\nThe system is flexible and extensible. Quite often, it requires no design changes to\nadapt to changing requirements.\nThis chapter focuses on the design of the code in a system where code and data are\nseparate. In the next chapter, we’ll focus on the design of the data. As we progress in\nthe book, we’ll discover other benefits of separating code from data. \n2.1\nThe two parts of a DOP system\nWhile Theo is driving home after delivering the prototype, he asks himself whether the\nKlafim project was a success or not. Sure, he was able to satisfy the customer, but it was\nmore luck than brains. He wouldn’t have made it on time if Nancy had decided to keep\nthe Super members feature. Why was it so complicated to add tiny features to the system?\nWhy was the system he built so complex? He thought there should be a way to build more\nflexible systems!\nThe next morning, Theo asks on Hacker News and on Reddit for ways to reduce system\ncomplexity and build flexible systems. Some folks mention using different programming\nlanguages, while others talk about advanced design patterns. Finally, Theo’s attention gets\ncaptured by a comment from a user named Joe. He mentions data-oriented programming and\nclaims that its main goal is to reduce system complexity. Theo has never heard this term\nbefore. Out of curiosity, he decides to contact Joe by email. What a coincidence! Joe lives\nin San Francisco too. Theo invites him to a meeting in his office.\nJoe is a 40-year-old developer. He was a Java developer for nearly a decade before adopt-\ning Clojure around 7 years ago. When Theo tells Joe about the Library Management System\nSeparate code from data\nCode modules\nFunctions\nStateless (static)\nData as ﬁrst argument\nRelations\nUsage\nNo inheritance\nData entities\nOnly members\nNo code\nRelations\nAssociation\nComposition\nFigure 2.1\nDOP principle #1 summarized: Separate code from data.\n\n--- 페이지 56 ---\n28\nCHAPTER 2\nSeparation between code and data\nhe designed and built, and about his struggles to adapt to changing requirements, Joe is\nnot surprised.\nJoe tells Theo that the systems that he and his team have built in Clojure over the last 7\nyears are less complex and more flexible than the systems he used to build in Java. Accord-\ning to Joe, the systems they build now tend to be much simpler because they follow the\nprinciples of DOP.\nTheo\nI’ve never heard of data-oriented programming. Is it a new concept?\nJoe\nYes and no. Most of the foundational ideas of data-oriented programming, or\nDOP as we like to call it, are well known to programmers as best practices. The\nnovelty of DOP, however, is that it combines best practices into a cohesive\nwhole.\nTheo\nThat’s a bit abstract for me. Can you give me an example?\nJoe\nSure! Take, for instance, the first insight of DOP. It’s about the relations between\ncode and data.\nTheo\nYou mean the encapsulation of data in objects?\nJoe\nActually, DOP is against data encapsulation.\nTheo\nWhy is that? I thought data encapsulation was a positive programming paradigm.\nJoe\nData encapsulation has both merits and drawbacks. Think about the way you\ndesigned the Library Management System. According to DOP, the main cause\nof complexity and inflexibility in systems is that code and data are mixed\ntogether in objects.\nTIP\nDOP is against data encapsulation.\nTheo\nIt sounds similar to what I’ve heard about functional programming. So, if I\nwant to adopt DOP, do I need to get rid of object-oriented programming and\nlearn functional programming?\nJoe\nNo, DOP principles are language-agnostic. They can be applied in both object-\noriented and functional programming languages.\nTheo\nThat’s a relief! I was afraid that you were going to teach me about monads,\nalgebraic data types, and higher order functions.\nJoe\nNo, none of that is required in DOP.\nTIP\nDOP principles are language-agnostic.\nTheo\nWhat does the separation between code and data look like in DOP then?\nJoe\nData is represented by data entities that only hold members. Code is aggre-\ngated into modules where all functions are stateless.\nTheo\nWhat do you mean by stateless functions?\nJoe\nInstead of having the state encapsulated in the object, the data entity is passed\nas an argument.\nTheo\nI don’t get that.\nJoe\nHere, let’s make it visual.\n\n--- 페이지 57 ---\n29\n2.2\nData entities\nJoe steps up to a whiteboard and quickly draws a diagram to illustrate his comment. Fig-\nure 2.2 shows Joe’s drawing.\nTheo\nIt’s still not clear.\nJoe\nIt will become clearer when I show you how it looks in the context of your\nLibrary Management System.\nTheo\nOK. Shall we start with code or with data?\nJoe\nWell, it’s data-oriented programming, so let’s start with data. \n2.2\nData entities\nIn DOP, we start the design process by discovering the data entities of our system.\nHere’s what Joe and Theo have to say about data entities.\nJoe\nWhat are the data entities of your system?\nTheo\nWhat do you mean by data entities?\nJoe\nI mean the parts of your system that hold information.\n NOTE\nData entities are the parts of your system that hold information.\nTheo\nWell, it’s a Library Management System, so we have books and members.\nJoe\nOf course, but there are more. One way to discover the data entities of a system\nis to look for nouns and noun phrases in the requirements of the system.\nTheo looks at Nancy’s requirement napkin. He highlights the nouns and noun phrases\nthat seem to represent data entities.\nHighlighting terms in the requirements that correspond to data entities\nThere are two kinds of users: library members and librarians.\nUsers log in to the system via email and password.\nMembers can borrow books.\nMembers and librarians can search books by title or by author.\nLibrarians can block and unblock members (e.g., when they are late in return-\ning a book).\nLibrarians can list the books currently lent to a member.\nThere could be several copies of a book.\nSeparate code from data\nCode modules\nStateless functions\nData entities\nOnly members\nFigure 2.2\nThe separation between code and data\n\n--- 페이지 58 ---\n30\nCHAPTER 2\nSeparation between code and data\nJoe\nExcellent. Can you see a natural way to group these entities?\nTheo\nNot sure, but it seems to me that users, members, and librarians form one\ngroup, whereas books, authors, and book copies form another group.\nJoe\nSounds good to me. What would you call each group?\nTheo\nProbably user management for the first group and catalog for the second\ngroup.\nTheo\nI’m not sure about the relations between books and authors. Should it be asso-\nciation or composition?\nJoe\nDon’t worry too much about the details for the moment. We’ll refine our data\nentity design later. For now, let’s visualize the two groups in a mind map.\nTheo and Joe confer for a bit. Figure 2.3 shows the mind map they come up with.\nThe data entities of the system organized in a nested list\nThe catalog data\n–\nData about books\n–\nData about authors\n–\nData about book items\n–\nData about book lendings\nThe user management data\n–\nData about users\n–\nData about members\n–\nData about librarians\nLibrary data\nCatalog\nBooks\nAuthors\nBook items\nBook lendings\nUser management\nUsers\nMembers\nLibrarians\nFigure 2.3\nThe data entities of the \nsystem organized in a mind map\n\n--- 페이지 59 ---\n31\n2.3\nCode modules\nThe most precise way to visualize the data entities of a DOP system is to draw a data\nentity diagram with different arrows for association and composition. We will come\nback to data entity diagrams later.\nTIP\nDiscover the data entities of your system and then sort them into high-level\ngroups, either as a nested list or as a mind map.\nWe will dive deeper into the design and representation of data entities in the next\nchapter. For now, let’s simplify things and say that the data of our library system is\nmade of two high-level groups: user management and catalog. \n2.3\nCode modules\nThe second step of the design process in DOP is to define the code modules. Let’s lis-\nten in on Joe and Theo again.\nJoe\nNow that you have identified the data entities of your system and have\narranged them into high-level groups, it’s time to think about the code part of\nyour system.\nTheo\nWhat do you mean by the code part?\nJoe\nOne way to think about that is to identity the functionality of your system.\nTheo looks again at Nancy’s requirements. This time he highlights the verb phrases that\nrepresent functionality.\nIn addition, it’s obvious to Theo that members can also return a book. Moreover, there\nshould be a way to detect whether a user is a librarian or not. He adds those to the require-\nments and then lists the functionality of the system.\nHighlighting terms in the requirements that correspond to functionality\nThere are two kinds of users: library members and librarians.\nUsers log in to the system via email and password.\nMembers can borrow books.\nMembers and librarians can search books by title or by author.\nLibrarians can block and unblock members (e.g., when they are late in return-\ning a book).\nLibrarians can list the books currently lent to a member.\nThere could be several copies of a book.\nThe functionality of the library system\nSearch for a book.\nAdd a book item.\nBlock a member.\n\n--- 페이지 60 ---\n32\nCHAPTER 2\nSeparation between code and data\nJoe\nExcellent! Now, tell me what functionality needs to be exposed to the outside\nworld?\nTheo\nWhat do you mean by exposed to the outside world?\nJoe\nImagine that the Library Management System exposes an API over HTTP.\nWhat functionality would be exposed by the HTTP endpoints?\nTheo\nWell, all system functionality would be exposed except checking to see if a user\nis a librarian.\nJoe\nOK. Now give each exposed function a short name and gather them together\nin a module box called Library.\nThat takes Theo less than a minute. Figure 2.4 shows the module that contains the\nexposed functions of the library devised by Theo.\nTIP\nThe first step in designing the code part of a DOP system is to aggregate the\nexposed functions into a single module.\nJoe\nBeautiful! You just created your first code module.\nTheo\nTo me it looks like a class. What’s the difference between a module and a class?\nJoe\nA module is an aggregation of functions. In OOP, a module is represented\nby a class, but in other programming languages, it might be a package or a\nnamespace.\nTheo\nI see.\nJoe\nThe important thing about DOP code modules is that they contain only state-\nless functions.\nTheo\nYou mean like static methods in Java?\nJoe\nYes, and the classes of these static methods should not have any data members.\n(continued)\nUnblock a member.\nLog a user into the system.\nList the books currently lent to a member.\nBorrow a book.\nReturn a book.\nCheck whether a user is a librarian.\nsearchBook()\naddBookItem()\nblockMember()\nunblockMember()\ngetBookLendings()\ncheckoutBook()\nreturnBook()\nC Library\nFigure 2.4\nThe Library module \ncontains the exposed functions of the \nLibrary Management System.\n\n--- 페이지 61 ---\n33\n2.3\nCode modules\nTheo\nSo, how do the functions know what piece of information they operate on?\nJoe\nEasy. We pass that as the first argument to the function.\nTheo\nOK. Can you give me an example?\nJoe, biting his nails, takes a look at the list of functions of the Library module in figure 2.4.\nHe spots a likely candidate.\nJoe\nLet’s take, for example, getBookLendings. In classic OOP, what would its\narguments be?\nTheo\nA librarian ID and a member ID.\nJoe\nSo, in traditional OOP, getBookLendings would be a method of a Library\nclass that receives two arguments: librarianId and memberId.\nTheo\nYep.\nJoe\nNow comes the subtle part. In DOP, getBookLendings is part of the Library\nmodule, and it receives the LibraryData as an argument.\nTheo\nCould you show me what you mean?\nJoe\nSure.\nJoe goes over to Theo’s keyboard and starts typing. He enters an example of what a class\nmethod looks like in OOP:\nclass Library {\n  catalog \n  userManagement\n  getBookLendings(userId, memberId) {\n    // accesses library state via this.catalog and this.userManagement\n  }\n}\nTheo\nRight! The method accesses the state of the object (in our case, the library\ndata) via this.\nJoe\nWould you say that the object’s state is an argument of the object’s methods?\nTheo\nI’d say that the object’s state is an implicit argument to the object’s methods.\nTIP\nIn traditional OOP, the state of the object is an implicit argument to the meth-\nods of the object.\nJoe\nWell, in DOP, we pass data as an explicit argument. The signature of getBook-\nLendings would look like this.\nclass Library {\n  static getBookLendings(libraryData, userId, memberId) {\n  }\n}\nListing 2.1\nThe signature of getBookLendings\n\n--- 페이지 62 ---\n34\nCHAPTER 2\nSeparation between code and data\nJoe\nThe state of the library is stored in libraryData, and libraryData is passed\nto the getBookLendings static method as an explicit argument.\nTheo\nIs that a general rule?\nJoe\nAbsolutely! The same rule applies to the other functions of the Library mod-\nule and to other modules as well. All of the modules are stateless—they receive\nthe library data that they manipulate as an argument.\nTIP\nIn DOP, functions of a code module are stateless. They receive the data that they\nmanipulate as an explicit argument, which is usually the first argument.\n NOTE\nA module is an aggregation of functions. In DOP, the module functions are\nstateless.\nTheo\nIt reminds me of Python and the way the self argument appears in method\nsignatures. Here, let me show you an example.\nclass Library:\n  catalog = {}\n  userManagement = {}\n  def getBookLendings(self, userId, memberId):\n  # accesses library state via self.catalog and self.userManagement\nJoe\nIndeed, but the difference I’m talking about is much deeper than a syntax\nchange. It’s about the fact that data lives outside the modules.\nTheo\nI got that. As you said, module functions are stateless.\nJoe\nExactly! Would you like to try and apply this principle across the whole\nLibrary module?\nTheo\nSure.\nTheo refines the design of the Library module by including the details about the func-\ntions’ arguments. He presents the diagram in figure 2.5 to Joe.\nJoe\nPerfect. Now, we’re ready to tackle the high-level design of our system.\nTheo\nWhat’s a high-level design in DOP?\nListing 2.2\nA Python object as an explicit argument in method signatures\nC Library\nsearchBook(libraryData, searchQuery)\naddBookItem(libraryData, bookItemInfo)\nblockMember(libraryData, memberId)\nunblockMember(libraryData, memberId)\nlogin(libraryData, loginInfo)\ngetBookLendings(libraryData, userId)\ncheckoutBook(libraryData, userId, bookItemId)\nreturnBook(libraryData, userId, bookItemId)\nFigure 2.5\nThe Library module \nwith the functions’ arguments\n\n--- 페이지 63 ---\n35\n2.3\nCode modules\nJoe\nA high-level design in DOP is the definition of modules and the interaction\nbetween them.\nTheo\nI see. Are there any guidelines to help me define the modules?\nJoe\nDefinitely. The high-level modules of the system correspond to the high-level\ndata entities.\nTheo\nYou mean the data entities that appear in the data mind map?\nJoe\nExactly!\nTheo looks again at the data mind map (figure 2.6). He focuses on the high-level data enti-\nties library, catalog, and user management. This means that in the system, besides the\nLibrary module, we have two high-level modules:\nThe Catalog module deals with catalog data.\nThe UserManagement module deals with user management data.\nTheo then draws the high-level design of the Library Management System with the Catalog\nand UserManagement modules. Figure 2.7 shows the addition of these modules, where:\nFunctions of Catalog receive catalogData as their first argument.\nFunctions of UserManagement receive userManagementData as their first argument.\nLibrary data\nCatalog\nUser management\nFigure 2.6\nA mind map of the high-\nlevel data entities of the Library \nManagement System\nC UserManagement\nC Catalog\nsearchBook(catalogData, searchQuery)\naddBookItem(catalogData, bookItemInfo)\ncheckoutBook(catalogData, bookItemId)\nreturnBook(catalogData, bookItemId)\ngetBookLendings(catalogData, userId)\nC Library\nsearchBook(libraryData, searchQuery)\naddBookItem(libraryData, bookItemInfo)\nblockMember(libraryData, memberId)\nunblockMember(libraryData, memberId)\nlogin(libraryData, loginInfo)\ngetBookLendings(libraryData, userId)\ncheckoutBook(libraryData, userId, bookItemId)\nreturnBook(libraryData, userId, bookItemId)\nblockMember(userManagementData, memberId)\nunblockMember(userManagementData, memberId)\nlogin(userManagementData, loginInfo)\nisLibrarian(userManagementData, userId)\nFigure 2.7\nThe modules of the Library Management System with their functions’ arguments\n\n--- 페이지 64 ---\n36\nCHAPTER 2\nSeparation between code and data\nIt’s not 100% clear for Theo at this point how the data entities get passed between mod-\nules. For the moment, he thinks of libraryData as a class with two members:\n\ncatalog holds the catalog data.\n\nuserManagement holds the user management data.\nTheo also sees that the functions of Library share a common pattern. (Later on in this\nchapter, we’ll see the code for some functions of the Library module.)\nThey receive libraryData as an argument.\nThey pass libraryData.catalog to the functions of Catalog.\nThey pass libraryData.userManagement to the functions of UserManagement.\nTIP\nThe high-level modules of a DOP system correspond to the high-level data enti-\nties. \n2.4\nDOP systems are easy to understand\nTheo takes a look at the two diagrams that represent the high-level design of his system:\nThe data entities in the data mind map in figure 2.8\nThe code modules in the module diagram in figure 2.9\nA bit perplexed, Theo asks Joe:\nTheo\nI’m not sure that this system is better than a traditional OOP system where\nobjects encapsulate data.\nJoe\nThe main benefit of a DOP system over a traditional OOP system is that it’s eas-\nier to understand.\nTheo\nWhat makes it easier to understand?\nJoe\nThe fact that the system is split cleanly into code modules and data entities.\nTheo\nHow does that help?\nJoe\nWhen you try to understand the data entities of the system, you don’t have to\nthink about the details of the code that manipulates the data entities.\nTheo\nSo, when I look at the data mind map of my Library Management System, I can\nunderstand it on its own?\nJoe\nExactly, and similarly, when you try to understand the code modules of the sys-\ntem, you don’t have to think about the details of the data entities manipulated\nby the code. There is a clear separation of concerns between the code and the\ndata.\nTheo looks again at the data mind map in figure 2.8. He has kind of an Aha! moment:\nData lives on its own!\n NOTE\nA DOP system is easier to understand because the system is split into two\nparts: data entities and code modules.\n\n--- 페이지 65 ---\n37\n2.4\nDOP systems are easy to understand\nNow, Theo looks at the module diagram in figure 2.9. He feels a bit confused and asks Joe\nfor clarification:\nOn one hand, the module diagram looks similar to the class diagrams from classic\nOOP, boxes for classes and arrows for relations between classes.\nOn the other hand, the code module diagram looks much simpler than the class\ndiagrams from classic OOP, but he cannot explain why.\nTheo\nThe module diagram seems much simpler than the class diagrams I am used to\nin OOP. I feel it, but I can’t put it into words.\nJoe\nThe reason is that module diagrams have constraints.\nLibrary data\nCatalog\nBooks\nAuthors\nBook items\nBook lendings\nUser management\nUsers\nMembers\nLibrarians\nFigure 2.8\nA data mind map of the \nLibrary Management System\nC UserManagement\nC Catalog\nsearchBook(catalogData, searchQuery)\naddBookItem(catalogData, bookItemInfo)\ncheckoutBook(catalogData, bookItemId)\nreturnBook(catalogData, bookItemId)\ngetBookLendings(catalogData, userId)\nC Library\nsearchBook(libraryData, searchQuery)\naddBookItem(libraryData, bookItemInfo)\nblockMember(libraryData, memberId)\nunblockMember(libraryData, memberId)\nlogin(libraryData, loginInfo)\ngetBookLendings(libraryData, userId)\ncheckoutBook(libraryData, userId, bookItemId)\nreturnBook(libraryData, userId, bookItemId)\nblockMember(userManagementData, memberId)\nunblockMember(userManagementData, memberId)\nlogin(userManagementData, loginInfo)\nisLibrarian(userManagementData, userId)\nFigure 2.9\nThe modules of the Library Management System with the function arguments\n\n--- 페이지 66 ---\n38\nCHAPTER 2\nSeparation between code and data\nTheo\nWhat kind of constraints?\nJoe\nConstraints on the functions we saw before. All the functions are static (or\nstateless), but there’s also constraints on the relations between the modules.\nTIP\nAll the functions in a DOP module are stateless.\nTheo\nIn what way are the relations between modules constrained?\nJoe\nThere is a single kind of relation between DOP modules—the usage relation. A\nmodule uses code from another module. There’s no association, no composi-\ntion, and no inheritance between modules. That’s what makes a DOP module\ndiagram easy to understand.\nTheo\nI understand why there is no association and no composition between DOP\nmodules. After all, association and composition are data relations. But why no\ninheritance relation? Does that mean that DOP is against polymorphism?\nJoe\nThat’s a great question! The quick answer is that in DOP, we achieve polymor-\nphism with a different mechanism than class inheritance. We will talk about it\nsome day.\n NOTE\nFor a discussion of polymorphism in DOP, see chapter 13.\nTheo\nNow, you’ve piqued my curiosity. I thought inheritance was the only way to\nachieve polymorphism.\nTheo looks again at the module diagram in figure 2.9. Now he not only feels that this dia-\ngram is simpler than traditional OOP class diagrams, he understands why it’s simpler: all\nthe functions are static, and all the relations between modules are of type usage. Table 2.1\nsummarizes Theo’s perception.\nTIP\nThe only kind of relation between DOP modules is the usage relation.\nTIP\nEach part of a DOP system is easy to understand because it provides constraints. \n2.5\nDOP systems are flexible\nTheo\nI see how a sharp separation between code and data makes DOP systems easier\nto understand than classic OOP systems. But what about adapting to changes\nin requirements?\nJoe\nAnother benefit of DOP systems is that it is easy to extend them and to adapt to\nchanging requirements.\nTable 2.1\nWhat makes each part of a DOP system easy to understand\nSystem part\nConstraint on entities\nConstraints on relations\nData entities\nMembers only (no code)\nAssociation and composition\nCode modules\nStateless functions (no members)\nUsage (no inheritance)\n\n--- 페이지 67 ---\n39\n2.5\nDOP systems are flexible\nTheo\nI remember that, when Nancy asked me to add Super members and VIP mem-\nbers to the system, it was hard to adapt my OOP system. I had to introduce a\nfew base classes, and the class hierarchy became really complex.\nJoe\nI know exactly what you mean. I’ve experienced the same kind of struggle so\nmany times. Describe the changes in the requirements for Super members and\nVIP members, and I’m quite sure that you’ll see how easy it would be to extend\nyour DOP system.\nTheo opens his IDE and starts to code the getBookLendings function of the Library\nmodule (see listing 2.3), first without addressing the requirements for Super members.\nTheo remembers what Joe told him about module functions in DOP:\nFunctions are stateless.\nFunctions receive the data they manipulate as their first argument.\nIn terms of functionality, getBookLendings has two parts:\nChecks that the user is a librarian.\nRetrieves the book lendings from the catalog.\nBasically, the code of getBookLendings has two parts as well:\nCalls the isLibrarian function from the UserManagement module and passes it\nthe UserManagementData.\nCalls the getBookLendings function from the Catalog module and passes it the\nCatalogData.\nclass Library {\n  static getBookLendings(libraryData, userId, memberId) {\n    if(UserManagement.isLibrarian(libraryData.userManagement, userId)) {\n      return Catalog.getBookLendings(libraryData.catalog, memberId);\n    } else {\n      throw \"Not allowed to get book lendings\";    \n    }\n  }\n}\nclass UserManagement {\n  static isLibrarian(userManagementData, userId) {\n    // will be implemented later     \n  }\n}\nThe requirements for Super members and VIP members\nSuper members are members that are allowed to list the book lendings to\nother members.\nVIP members are members that are allowed to add book items to the library.\nListing 2.3\nGetting the book lendings of a member\nThere are other \nways to manage \nerrors.\nIn chapter 3, we will see how \nto manage permissions with \ngeneric data collections.\n\n--- 페이지 68 ---\n40\nCHAPTER 2\nSeparation between code and data\nclass Catalog {\n  static getBookLendings(catalogData, memberId) {\n    // will be implemented later    \n  }\n}\nIt’s Theo’s first piece of DOP code and passing around all those data objects—library-\nData, libraryData.userManagement, and libraryData.catalog—feels a bit awkward.\nBut he did it! Joe looks at Theo’s code and seems satisfied.\nJoe\nNow, how would you adapt your code to Super members?\nTheo\nI would add a function isSuperMember to the UserManagement module and\ncall it from Library.getBookLendings.\nJoe\nExactly! It’s as simple as that.\nTheo types the code on his laptop so that he can show it to Joe. Here’s how Theo adapts\nhis code for Super members.\nclass Library {\n  static getBookLendings(libraryData, userId, memberId) {\n    if(Usermanagement.isLibrarian(libraryData.userManagement, userId) ||\n      Usermanagement.isSuperMember(libraryData.userManagement, userId)) {\n      return Catalog.getBookLendings(libraryData.catalog, memberId);\n    } else {\n      throw \"Not allowed to get book lendings\";  \n    }\n  }\n}\nclass UserManagement {\n  static isLibrarian(userManagementData, userId) {\n    // will be implemented later                    \n  }\n  static isSuperMember(userManagementData, userId) {\n    // will be implemented later                    \n  }\n}\nclass Catalog {\n  static getBookLendings(catalogData, memberId) {\n    // will be implemented later    \n  }\n}\nNow, the awkward feeling caused by passing around all those data objects is dominated by\na feeling of relief. Adapting to this change in requirements takes only a few lines of code\nand requires no changes in the system design. Once again, Joe seems satisfied.\nTIP\nDOP systems are flexible. Quite often they adapt to changing requirements with-\nout changing the system design.\nListing 2.4\nAllowing Super members to get the book lendings of a member\nIn chapter 3, we will see how \nto query data with generic \ndata collections.\nThere are other \nways to manage \nerrors.\nIn chapter 3, we will see how \nto manage permissions with \ngeneric data collections.\nIn chapter 3, we will see how \nto query data with generic \ndata collections.\n\n--- 페이지 69 ---\n41\n2.5\nDOP systems are flexible\nTheo starts coding addBookItem. He looks at the signature of Library.addBookItem,\nand the meaning of the third argument bookItemInfo isn’t clear to him. He asks Joe for\nclarification.\nclass Library {\n  static addBookItem(libraryData, userId, bookItemInfo) {\n  }\n}\nTheo\nWhat is bookItemInfo?\nJoe\nLet’s call it the book item information. Imagine we have a way to represent this\ninformation in a data entity named bookItemInfo.\nTheo\nYou mean an object?\nJoe\nFor now, it’s OK to think about bookItemInfo as an object. Later on, I will\nshow you how to we represent data in DOP.\nBesides this subtlety about how the book item information is represented by book-\nItemInfo, the code for Library.addBookItem in listing 2.6 is quite similar to the code\nTheo wrote for Library.getBookLendings in listing 2.4. Once again, Theo is amazed by\nthe fact that adding support for VIP members requires no design change.\nclass Library {\n  static addBookItem(libraryData, userId, bookItemInfo) {\n    if(UserManagement.isLibrarian(libraryData.userManagement, userId) ||\n      UserManagement.isVIPMember(libraryData.userManagement, userId)) {\n      return Catalog.addBookItem(libraryData.catalog, bookItemInfo);\n    } else {\n      throw \"Not allowed to add a book item\";   \n    }\n  }\n}\nclass UserManagement {\n  static isLibrarian(userManagementData, userId) {\n    // will be implemented later                     \n  }\n  static isVIPMember(userManagementData, userId) {\n    // will be implemented later                     \n  }\n}\nclass Catalog {\n  static addBookItem(catalogData, memberId) {\n    // will be implemented later    \n  }\n}\nListing 2.5\nThe signature of Library.addBookItem\nListing 2.6\nAllowing VIP members to add a book item to the library\nThere are other \nways to manage \nerrors.\nIn chapter 3, we will see how \nto manage permissions with \ngeneric data collections.\nIn chapter 4, we will see how \nto manage state of the system \nwith immutable data.\n\n--- 페이지 70 ---\n42\nCHAPTER 2\nSeparation between code and data\nTheo\nIt takes a big mindset shift to learn how to separate code from data!\nJoe\nWhat was the most challenging thing to accept?\nTheo\nThe fact that data is not encapsulated in objects.\nJoe\nIt was the same for me when I switched from OOP to DOP.\nNow it’s time to eat! Theo takes Joe for lunch at Simple, a nice, small restaurant near the\noffice. \nSummary\nDOP principles are language-agnostic.\nDOP principle #1 is to separate code from data.\nThe separation between code and data in DOP systems makes them simpler\n(easier to understand) than traditional OOP systems.\nData entities are the parts of your system that hold information.\nDOP is against data encapsulation.\nThe more flexible a system is, the easier it is to adapt to changing requirements.\nThe separation between code and data in DOP systems makes them more flexi-\nble than traditional OOP systems.\nWhen code is separated from data, we have the freedom to design code and\ndata in isolation.\nWe represent data as data entities.\nWe discover the data entities of our system and sort them into high-level groups,\neither as a nested list or as a mind map.\nA DOP system is easier to understand than a traditional OOP system because\nthe system is split into two parts: data entities and code modules.\nIn DOP, a code module is an aggregation of stateless functions.\nDOP systems are flexible. Quite often they adapt to changing requirements\nwithout changing the system design.\nIn traditional OOP, the state of the object is an implicit argument to the meth-\nods of the object.\nStateless functions receive data they manipulate as an explicit argument.\nThe high-level modules of a DOP system correspond to high-level data entities.\nThe only kind of relation between code modules is the usage relation.\nThe only kinds of relation between data entities are the association and the compo-\nsition relation.\nFor a discussion of polymorphism in DOP, see chapter 13.\n",
+        "metadata": {
+          "start_page": 54,
+          "end_page": 70
+        }
+      }
+    ]
+  },
+  "error": null
+}
