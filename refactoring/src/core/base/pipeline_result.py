@@ -16,7 +16,6 @@ from dataclasses import dataclass, field
 class StageResult:
     """단계별 실행 결과"""
     stage_name: str
-    success: bool = False
     error: Optional[str] = None
     data: Dict[str, Any] = field(default_factory=dict)
     start_time: Optional[datetime] = None
@@ -27,10 +26,9 @@ class StageResult:
         if self.start_time is None:
             self.start_time = datetime.now()
     
-    def complete(self, success: bool = True, error: str = None, data: Dict[str, Any] = None):
+    def complete(self, error: str = None, data: Dict[str, Any] = None):
         """단계 완료 처리"""
         self.end_time = datetime.now()
-        self.success = success
         self.error = error
         if data:
             self.data.update(data)
@@ -42,13 +40,10 @@ class PipelineResult:
     """전체 파이프라인 실행 결과"""
     
     def __init__(self, total_stages: int = 4):
-        self.is_success = False
         self.error = None
-        self.data = {}
-        self.stage_results: List[StageResult] = []
+        self.stage_results: List[StageResult] = []  # StageResult 리스트로 변경
         self.total_stages = total_stages
         self.completed_stages = 0
-        self.progress_percent = 0
         self.start_time = datetime.now()
         self.end_time = None
         
@@ -61,7 +56,7 @@ class PipelineResult:
         """단계 결과 추가"""
         self.stage_results.append(stage_result)
         
-        if stage_result.success:
+        if stage_result.error is None:
             self.completed_stages += 1
             
         self.update_progress()
@@ -79,3 +74,22 @@ class PipelineResult:
         if success:
             self.progress_percent = 100
             self.completed_stages = self.total_stages
+    
+    def to_dict(self):
+        """JSON 직렬화를 위한 딕셔너리 변환"""
+        return {
+            'total_stages': self.total_stages,
+            'completed_stages': self.completed_stages,
+            'error': self.error,
+            'stage_results': [
+                {
+                    'stage_name': sr.stage_name,
+                    'error': sr.error,
+                    'data': sr.data,
+                    'duration_seconds': sr.duration_seconds,
+                    'start_time': sr.start_time.isoformat() if sr.start_time else None,
+                    'end_time': sr.end_time.isoformat() if sr.end_time else None
+                }
+                for sr in self.stage_results
+            ]
+        }

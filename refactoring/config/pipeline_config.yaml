@@ -31,6 +31,10 @@ workspace_preparation:
     enabled: true
     provider: "gemini"
     fallback_on_failure: true
+  
+  chapter_selection:
+    mode: "partial"  # "all" (전체 선택) 또는 "partial" (일부 선택)
+    selected_chapters: [1, 2]  # mode가 "partial"일 때만 사용
 
 # 2단계: 통합 노드 정보 문서 생성
 information_integration:

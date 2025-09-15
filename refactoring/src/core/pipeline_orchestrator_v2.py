@@ -21,7 +21,7 @@ from utils.config_manager import ConfigManager
 from utils.logger_v2 import Logger
 
 # 최신 단계별 프로세서 임포트
-from stages.workspace_preparation_v2 import WorkspacePreparationStage
+from stages.workspace_preparation_v3 import WorkspacePreparationStage
 # TODO: 나머지 단계들도 구현되면 임포트
 # from ..stages.integrated_node_generation_stage_v2 import IntegratedNodeGenerationStage
 # from ..stages.content_processing_v2 import ContentProcessingStage
@@ -30,26 +30,15 @@ from stages.workspace_preparation_v2 import WorkspacePreparationStage
 class BookPipelineOrchestrator:
     """메인 파이프라인 오케스트레이터 v2 (최신 구조 반영)"""
     
-    def __init__(self, config_dir: str = None, test_mode: bool = False, selected_chapters: list = None):
+    def __init__(self, config_dir: str = None):
         """
         Args:
             config_dir: 설정 파일 디렉토리 경로
-            test_mode: 테스트 모드 활성화
-            selected_chapters: 테스트할 장 번호 목록 (예: [1, 3, 5])
         """
         # 설정 관리자 초기화
         if config_dir is None:
             config_dir = Path(__file__).parent.parent.parent / "config"
         self.config_manager = ConfigManager(config_dir)
-        
-        # 테스트 모드 설정 (설정 파일보다 매개변수 우선)
-        if test_mode or selected_chapters:
-            self.config_manager.pipeline_config['test_mode'] = {
-                'enabled': True,
-                'selected_chapters': selected_chapters or [],
-                'debug_verbose': True,
-                'skip_on_error': False
-            }
         
         # 메인 로거 (임시, 책별 로거는 1단계에서 생성)
         self.main_logger = None
@@ -61,20 +50,19 @@ class BookPipelineOrchestrator:
         """단계별 프로세서 초기화 (v2 버전 사용)"""
         # v2 버전의 workspace preparation 사용
         # logger_factory 대신 None 전달 (각 단계에서 개별 로거 생성)
-        self.stage_1 = WorkspacePreparationStage(self.config_manager, None)
+        self.workspace_preparation_stage = WorkspacePreparationStage(self.config_manager, None)
         
         # TODO: 나머지 단계들 초기화
-        # self.stage_2 = IntegratedNodeGenerationStage(self.config_manager, None)
-        # self.stage_3 = ContentProcessingStage(self.config_manager, None)  
-        # self.stage_4 = TocGenerationStage(self.config_manager, None)
+        # self.integrated_node_generation_stage = IntegratedNodeGenerationStage(self.config_manager, None)
+        # self.content_processing_stage = ContentProcessingStage(self.config_manager, None)  
+        # self.toc_generation_stage = TocGenerationStage(self.config_manager, None)
         
-    async def execute(self, pdf_path: str, metadata_info: Dict[str, Any] = None) -> PipelineResult:
+    async def execute(self, pdf_path: str) -> PipelineResult:
         """
         파이프라인 실행 메인 메서드
         
         Args:
             pdf_path: 처리할 PDF 파일 경로
-            metadata_info: 메타데이터 정보 (선택사항)
             
         Returns:
             PipelineResult: 파이프라인 실행 결과
@@ -91,58 +79,50 @@ class BookPipelineOrchestrator:
             self._log_pipeline_start(pdf_path)
             
             # 1단계: 기본 작업 준비 (워크스페이스 생성) - v2 사용
-            stage1_result = StageResult("workspace_preparation_v2")
+            stage1_result = StageResult("workspace_preparation_stage")
             try:
-                stage1_data = await self.stage_1.process({'pdf_path': pdf_path})
+                stage1_output = await self.workspace_preparation_stage.process({'data': {'pdf_path': pdf_path}, 'error': None})
                 
-                if stage1_data.get('success'):
-                    stage1_result.complete(success=True, data=stage1_data)
-                    # stage_1의 logger를 메인 로거로 설정
-                    if hasattr(self.stage_1, 'logger') and self.stage_1.logger:
-                        self.main_logger = self.stage_1.logger
+                if stage1_output.get('error') is None:
+                    stage1_result.complete(error=None, data=stage1_output.get('data', {}))
+                    # workspace_preparation_stage의 logger를 메인 로거로 설정
+                    if hasattr(self.workspace_preparation_stage, 'logger') and self.workspace_preparation_stage.logger:
+                        self.main_logger = self.workspace_preparation_stage.logger
                 else:
-                    stage1_result.complete(success=False, error=stage1_data.get('error', '알 수 없는 오류'))
+                    stage1_result.complete(error=stage1_output.get('error', '알 수 없는 오류'))
                     
             except Exception as e:
-                stage1_result.complete(success=False, error=str(e))
+                stage1_result.complete(error=str(e))
                 
             result.add_stage_result(stage1_result)
             
-            if not stage1_result.success:
+            if stage1_result.error is not None:
                 result.set_success(False, f"1단계 v2 실패: {stage1_result.error}")
                 return result
             
             # 2단계: 통합 노드 정보 문서 생성 (v2)
             # TODO: 구현 예정
-            stage2_result = StageResult("integrated_node_generation_v2")
-            stage2_result.complete(success=True, data={'status': 'TODO - v2 구현 예정'})
+            stage2_result = StageResult("integrated_node_generation_stage")
+            stage2_result.complete(error=None, data={'status': 'TODO - v2 구현 예정'})
             result.add_stage_result(stage2_result)
             
             # 3단계: 가공 작업 (v2)
             # TODO: 구현 예정  
-            stage3_result = StageResult("content_processing_v2")
-            stage3_result.complete(success=True, data={'status': 'TODO - v2 구현 예정'})
+            stage3_result = StageResult("content_processing_stage")
+            stage3_result.complete(error=None, data={'status': 'TODO - v2 구현 예정'})
             result.add_stage_result(stage3_result)
             
             # 4단계: 목차 생성 (v2)
             # TODO: 구현 예정
-            stage4_result = StageResult("toc_generation_v2")
-            stage4_result.complete(success=True, data={'status': 'TODO - v2 구현 예정'})
+            stage4_result = StageResult("toc_generation_stage")
+            stage4_result.complete(error=None, data={'status': 'TODO - v2 구현 예정'})
             result.add_stage_result(stage4_result)
             
             # 성공 완료
             result.set_success(True)
-            result.data = {
-                'workspace_info': stage1_data,
-                'pipeline_version': 'refactored_v2',
-                'test_mode': self.config_manager.get_test_config(),
-                'total_stages_completed': result.completed_stages,
-                'book_title': stage1_data.get('book_title'),
-                'output_directory': stage1_data.get('output_directory')
-            }
             
             # 완료 로그
-            self._log_pipeline_completion(result, stage1_data)
+            self._log_pipeline_completion(result, stage1_output)
             
             return result
             

@@ -35,21 +35,28 @@ class WorkspacePreparationStage(BaseProcessor):
         self.book_title = None
         self.normalized_book_title = None
         
-    async def process(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def process(self, stage_input: Dict[str, Any]) -> Dict[str, Any]:
         """
         메모리 기반 워크스페이스 준비 처리
         
         Args:
-            input_data: {'pdf_path': str}
+            stage_input: {'data': {'pdf_path': str}, 'error': str}
             
         Returns:
-            Dict: {'success': bool, 'data': dict, 'error': str}
+            Dict: {'data': dict, 'error': str}
         """
         try:
+            # 입력 데이터에서 error 체크
+            if stage_input.get('error'):
+                return {
+                    'data': None,
+                    'error': stage_input['error']
+                }
+            
+            input_data = stage_input.get('data', {})
             pdf_path = input_data.get('pdf_path')
             if not pdf_path or not os.path.exists(pdf_path):
                 return {
-                    'success': False,
                     'data': None,
                     'error': "유효하지 않은 PDF 경로"
                 }
@@ -61,7 +68,6 @@ class WorkspacePreparationStage(BaseProcessor):
             toc_data = await self.extract_toc_from_pdf(pdf_path)
             if not toc_data.get('success'):
                 return {
-                    'success': False,
                     'data': None,
                     'error': toc_data.get('error', '목차 추출 실패')
                 }
@@ -75,20 +81,35 @@ class WorkspacePreparationStage(BaseProcessor):
             
             # 🟢 Step 2: AI 기반 장 분석 (실제 목차 데이터 전달)
             self.log_step("🤖 AI 기반 장 분석 중...")
-            chapters_analysis = await self.analyze_chapters_with_ai(toc_data['data'])
-            if not chapters_analysis.get('success'):
+            chapters_analysis_result = await self.analyze_chapters_with_ai(toc_data['data'])
+            if not chapters_analysis_result.get('success'):
                 return {
-                    'success': False,
                     'data': None,
-                    'error': chapters_analysis.get('error', 'AI 분석 실패')
+                    'error': chapters_analysis_result.get('error', 'AI 분석 실패')
                 }
             
             # 🟢 Step 3: 장별 콘텐츠 추출 (메모리에 저장)
-            self.log_step("📄 장별 콘텐츠 추출 중...")
-            chapters_data = []
-            chapters_info = chapters_analysis['chapters_info']
+            # 장 선택 설정 확인 및 필터링
+            chapter_selection_config = self.config_manager.pipeline_config.get('workspace_preparation', {}).get('chapter_selection', {})
+            selection_mode = chapter_selection_config.get('mode', 'all')
+            selected_chapters = chapter_selection_config.get('selected_chapters', [])
             
-            for i, chapter_info in enumerate(chapters_info):
+            individual_chapter_information = chapters_analysis_result['individual_chapter_information']
+            
+            # 장 선택에 따른 필터링
+            if selection_mode == 'partial' and selected_chapters:
+                # 선택된 장만 필터링 (1-based index를 0-based로 변환)
+                individual_chapter_information = [
+                    chapter_info for i, chapter_info in enumerate(individual_chapter_information)
+                    if (i + 1) in selected_chapters
+                ]
+                self.log_step(f"📄 선택된 장 콘텐츠 추출 중... (장 {selected_chapters})")
+            else:
+                self.log_step("📄 장별 콘텐츠 추출 중...")
+            
+            chapters_data = []
+            
+            for i, chapter_info in enumerate(individual_chapter_information):
                 chapter_title = chapter_info['title']
                 
                 content_text = self.chapter_extraction_service.extract_pdf_content(
@@ -99,7 +120,7 @@ class WorkspacePreparationStage(BaseProcessor):
                 chapter_toc = self._extract_chapter_toc_items(
                     toc_data['data']['toc_structure'], 
                     chapter_title,
-                    chapters_info,
+                    individual_chapter_information,
                     i
                 )
                 
@@ -116,19 +137,20 @@ class WorkspacePreparationStage(BaseProcessor):
                     }
                 })
             
-            self.log_step(f"✅ 메모리 기반 워크스페이스 준비 완료: {len(chapters_data)}개 장")
+            if selection_mode == 'partial' and selected_chapters:
+                self.log_step(f"✅ 메모리 기반 워크스페이스 준비 완료: {len(chapters_data)}개 장 (선택: {selected_chapters})")
+            else:
+                self.log_step(f"✅ 메모리 기반 워크스페이스 준비 완료: {len(chapters_data)}개 장")
             
             return {
-                'success': True,
                 'data': {
-                    'book_metadata': {
-                        'title': self.book_title,  # 🟢 추가: 원본 책 제목
+                    'book_information': {
+                        'title': self.book_title,
                         'normalized_title': self.normalized_book_title,
-                        'total_chapters': len(chapters_analysis['chapters_info'])
+                        'chapter_titles': [chapter['title'] for chapter in individual_chapter_information]
                     },
-                    'chapters_analysis': chapters_analysis,  # 🟢 추가: AI 분석 결과
-                    'chapters_data': chapters_data,
-                    'raw_toc_data': toc_data['data']
+                    'raw_toc_data': toc_data['data'],
+                    'chapters_data': chapters_data
                 },
                 'error': None
             }
@@ -136,7 +158,6 @@ class WorkspacePreparationStage(BaseProcessor):
         except Exception as e:
             self.logger.error(f"워크스페이스 준비 실패: {str(e)}")
             return {
-                'success': False,
                 'data': None,
                 'error': str(e)
             }
