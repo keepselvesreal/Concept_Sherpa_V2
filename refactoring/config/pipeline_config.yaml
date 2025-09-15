@@ -41,10 +41,7 @@ content_processing:
 
 # 4단계: 목차 생성
 toc_generation:
-  enhanced_toc:
-    enabled: true
-    combine_extracts: true
-  output_format: "markdown"
+  base_dir: "/home/nadle/projects/Knowledge_Sherpa/v2/refactoring/tests/data"
 
 # 전역 설정 (refactoring 폴더 기준)
 global:
