@@ -1,13 +1,17 @@
 {
   "data": {
-    "2_Separation_between_code_and_data": [
-      "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/28_lev2_2.1_The_two_parts_of_a_DOP_system_info.md",
-      "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/29_lev2_2.2_Data_entities_info.md",
-      "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/30_lev2_2.3_Code_modules_info.md",
-      "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/31_lev2_2.4_DOP_systems_are_easy_to_understand_info.md",
-      "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/32_lev2_2.5_DOP_systems_are_flexible_info.md",
-      "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/33_lev2_Summary_info.md"
-    ]
+    "book_title": "Data-Oriented Programming",
+    "chapter_info_docs": {
+      "2 Separation between code and data": [
+        "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/27_lev1_2_Separation_between_code_and_data_info.md",
+        "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/28_lev2_2.1_The_two_parts_of_a_DOP_system_info.md",
+        "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/29_lev2_2.2_Data_entities_info.md",
+        "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/30_lev2_2.3_Code_modules_info.md",
+        "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/31_lev2_2.4_DOP_systems_are_easy_to_understand_info.md",
+        "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/32_lev2_2.5_DOP_systems_are_flexible_info.md",
+        "Data_Oriented_Programming/2_Separation_between_code_and_data/unified_info_docs/33_lev2_Summary_info.md"
+      ]
+    }
   },
   "error": null
 }

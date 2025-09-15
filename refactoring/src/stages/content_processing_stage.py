@@ -905,30 +905,27 @@ class ContentProcessingStage:
                 "error": str(e)
             }
     
-    def _extract_chapter_files(self, sorted_data: Dict[str, Any]) -> Dict[str, Any]:
-        """장별로 파일명만 그룹화해서 반환"""
+    def _extract_chapter_files_from_prev_result(self, prev_stage_result: Dict[str, Any]) -> Dict[str, Any]:
+        """prev_stage_result에서 장별로 파일명 그룹화해서 반환"""
         chapter_files = {}
         
-        chapters = sorted_data.get('output', {}).get('chapters', [])
+        data = prev_stage_result.get('data', {})
+        processed_chapters = data.get('processed_chapters', [])
+        unified_documents = data.get('unified_documents', [])
         
-        for chapter in chapters:
+        # 각 장별로 처리
+        for chapter in processed_chapters:
+            normalized_title = chapter.get('normalized_title', '')
             chapter_title = chapter.get('chapter_title', 'Unknown')
             
-            # 리프 노드와 비리프 노드의 모든 문서에서 파일명 추출
+            # 해당 장의 문서들 찾기 (normalized_title로 매칭)
             file_names = []
+            for doc in unified_documents:
+                file_name = doc.get('file_name', '')
+                if normalized_title in file_name:
+                    file_names.append(file_name)
             
-            # 리프 노드 처리
-            for doc in chapter.get('leaf_nodes', []):
-                if 'file_name' in doc:
-                    # 파일명 원본 그대로 사용
-                    file_names.append(doc['file_name'])
-            
-            # 비리프 노드 처리
-            for doc in chapter.get('non_leaf_nodes', []):
-                if 'file_name' in doc:
-                    # 파일명 원본 그대로 사용
-                    file_names.append(doc['file_name'])
-            
+            # chapter_title을 키로 사용
             chapter_files[chapter_title] = file_names
         
         return chapter_files
@@ -954,12 +951,22 @@ class ContentProcessingStage:
                 self.logger.error(f"❌ 그룹 처리 실패: {result.get('error')}")
                 return {'data': {}, 'error': result.get('error')}
             
-            # 4. 장별 파일명 그룹화
-            chapter_files = self._extract_chapter_files(sorted_data)
+            # 4. prev_stage_result에서 직접 장별 파일명 그룹화
+            chapter_files = self._extract_chapter_files_from_prev_result(prev_stage_result)
+            
+            # 5. book_title 정보 추가
+            book_information = prev_stage_result.get('data', {}).get('book_information', {})
+            book_title = book_information.get('title', 'Unknown Book')
             
             self.logger.info(f"🎉 ContentProcessingStage 완료")
             
-            return {'data': chapter_files, 'error': None}
+            return {
+                'data': {
+                    'book_title': book_title,
+                    'chapter_info_docs': chapter_files
+                }, 
+                'error': None
+            }
             
         except Exception as e:
             self.logger.error(f"❌ ContentProcessingStage 실패: {e}")

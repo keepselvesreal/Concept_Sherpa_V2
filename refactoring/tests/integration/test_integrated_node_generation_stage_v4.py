@@ -337,32 +337,44 @@ class TestIntegratedNodeGenerationStageV4:
         # 2. 에러 없는지 확인
         assert result['error'] is None, f"에러가 발생했습니다: {result['error']}"
         
-        # 3. data 구조 검증 - 장별 파일명 그룹화
+        # 3. data 구조 검증 - 새로운 구조 (book_title + chapter_info_docs)
         data = result["data"]
         assert isinstance(data, dict), "data는 딕셔너리여야 함"
         
-        # 4. 장별 파일명 구조 확인 (normalized_title 형식) - 2장만
+        # 4. 새로운 구조 검증: book_title과 chapter_info_docs
+        assert 'book_title' in data, "data에 'book_title' 키가 있어야 함"
+        assert 'chapter_info_docs' in data, "data에 'chapter_info_docs' 키가 있어야 함"
+        
+        book_title = data['book_title']
+        chapter_info_docs = data['chapter_info_docs']
+        
+        assert isinstance(book_title, str), "book_title은 문자열이어야 함"
+        assert isinstance(chapter_info_docs, dict), "chapter_info_docs는 딕셔너리여야 함"
+        assert len(chapter_info_docs) > 0, "chapter_info_docs는 비어있지 않아야 함"
+        
+        # 5. 장별 파일명 구조 확인 (chapter_title 형식) - 2장만
         expected_chapters = [
-            "2_Separation_between_code_and_data"
+            "2 Separation between code and data"
         ]
         
-        for chapter_title, file_names in data.items():
+        for chapter_title, file_names in chapter_info_docs.items():
             assert isinstance(chapter_title, str), f"장 제목은 문자열이어야 함: {chapter_title}"
-            assert isinstance(file_names, list), f"파일명 리스트는 리스트여야 함: {file_names}"
+            assert isinstance(file_names, list), f"파일명 리스트는 리스트여야 함: {chapter_title}"
             
             # 파일명들이 문자열인지 확인
             for file_name in file_names:
                 assert isinstance(file_name, str), f"파일명은 문자열이어야 함: {file_name}"
         
-        # 5. 예상되는 장들이 있는지 확인
+        # 6. 예상되는 장들이 있는지 확인
         for expected_chapter in expected_chapters:
-            assert expected_chapter in data, f"예상된 장이 없습니다: {expected_chapter}"
-            assert len(data[expected_chapter]) > 0, f"장에 파일이 없습니다: {expected_chapter}"
+            assert expected_chapter in chapter_info_docs, f"예상된 장이 없습니다: {expected_chapter}"
+            assert len(chapter_info_docs[expected_chapter]) > 0, f"장에 파일이 없습니다: {expected_chapter}"
         
         print(f"✅ 모든 출력 구조 검증 통과")
         print(f"📊 검증 결과:")
-        print(f"   - 처리된 장 수: {len(data)}")
-        for chapter_title, file_names in data.items():
+        print(f"   - 책 제목: {book_title}")
+        print(f"   - 처리된 장 수: {len(chapter_info_docs)}")
+        for chapter_title, file_names in chapter_info_docs.items():
             print(f"   - {chapter_title}: {len(file_names)}개 파일")
         print(f"   - error: {result.get('error')}")
         
