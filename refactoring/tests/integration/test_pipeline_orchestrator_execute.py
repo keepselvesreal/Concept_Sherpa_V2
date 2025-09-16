@@ -7,6 +7,7 @@
 # 상태: active
 
 import asyncio
+import pytest
 import sys
 from pathlib import Path
 
@@ -21,6 +22,7 @@ test_utils_path = Path(__file__).parent.parent / "utils"
 sys.path.append(str(test_utils_path))
 from test_data_manager import TestResultDataManager
 
+@pytest.mark.asyncio
 async def test_pipeline_orchestrator_execute():
     """pipeline_orchestrator.execute 메서드 정상 동작 테스트"""
     

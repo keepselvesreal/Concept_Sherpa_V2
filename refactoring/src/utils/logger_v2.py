@@ -40,12 +40,12 @@ class Logger:
         self.normalized_name = normalize_title(project_name)
         
         # 디렉토리 설정
-        self.results_dir = Path(base_dir or "./results") / self.normalized_name
         self.logs_dir = Path(logs_base_dir or "./logs") / self.normalized_name
+        self.artifact_dir = self.logs_dir / "artifacts"
         
         # 디렉토리 생성
-        self.results_dir.mkdir(parents=True, exist_ok=True)
         self.logs_dir.mkdir(parents=True, exist_ok=True)
+        self.artifact_dir.mkdir(parents=True, exist_ok=True)
         
         # 로거 설정
         self.logger = logging.getLogger(f'logger_{self.normalized_name}')
@@ -108,14 +108,14 @@ class Logger:
         """
         normalized_name = normalize_title(result_name)
         
-        # 사용자 정의 디렉토리가 있으면 사용, 없으면 기본 results_dir 사용
+        # 사용자 정의 디렉토리가 있으면 사용, 없으면 기본 artifact_dir 사용
         if custom_dir:
             save_dir = Path(custom_dir)
             save_dir.mkdir(parents=True, exist_ok=True)
             # 사용자 정의 디렉토리 사용 시 타임스탬프 제거
             file_name = normalized_name
         else:
-            save_dir = self.results_dir
+            save_dir = self.artifact_dir
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
             # 기본 디렉토리 사용 시 타임스탬프 포함
             file_name = f"{normalized_name}_{timestamp}"

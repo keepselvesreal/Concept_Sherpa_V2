@@ -22,8 +22,8 @@ from utils.logger_v2 import Logger
 
 # 최신 단계별 프로세서 임포트
 from stages.workspace_preparation_v3 import WorkspacePreparationStage
+from stages.integrated_node_generation_stage_v4 import IntegratedNodeGenerationStage
 # TODO: 나머지 단계들도 구현되면 임포트
-# from ..stages.integrated_node_generation_stage_v2 import IntegratedNodeGenerationStage
 # from ..stages.content_processing_v2 import ContentProcessingStage
 # from ..stages.toc_generation_v2 import TocGenerationStage
 
@@ -40,20 +40,30 @@ class BookPipelineOrchestrator:
             config_dir = Path(__file__).parent.parent.parent / "config"
         self.config_manager = ConfigManager(config_dir)
         
-        # 메인 로거 (임시, 책별 로거는 1단계에서 생성)
-        self.main_logger = None
+        # 통합 파이프라인 로거 생성
+        self.main_logger = Logger(
+            project_name="book_pipeline_v2",
+            logs_base_dir="./logs"
+        )
         
         # 단계별 프로세서 초기화
         self._initialize_stages()
         
     def _initialize_stages(self):
-        """단계별 프로세서 초기화 (v2 버전 사용)"""
-        # v2 버전의 workspace preparation 사용
-        # logger_factory 대신 None 전달 (각 단계에서 개별 로거 생성)
-        self.workspace_preparation_stage = WorkspacePreparationStage(self.config_manager, None)
+        """단계별 프로세서 초기화 (통합 로거 사용)"""
+        # 1단계: 기본 작업 준비 (워크스페이스 생성)
+        self.workspace_preparation_stage = WorkspacePreparationStage(
+            self.config_manager,
+            logger_factory=None  # 통합 로거 사용 예정
+        )
+        
+        # 2단계: 통합 노드 정보 문서 생성
+        self.integrated_node_generation_stage = IntegratedNodeGenerationStage(
+            self.config_manager,
+            logger_factory=None  # 통합 로거 사용 예정
+        )
         
         # TODO: 나머지 단계들 초기화
-        # self.integrated_node_generation_stage = IntegratedNodeGenerationStage(self.config_manager, None)
         # self.content_processing_stage = ContentProcessingStage(self.config_manager, None)  
         # self.toc_generation_stage = TocGenerationStage(self.config_manager, None)
         
@@ -79,32 +89,22 @@ class BookPipelineOrchestrator:
             self._log_pipeline_start(pdf_path)
             
             # 1단계: 기본 작업 준비 (워크스페이스 생성) - v2 사용
-            stage1_result = StageResult("workspace_preparation_stage")
             try:
                 stage1_output = await self.workspace_preparation_stage.process({'data': {'pdf_path': pdf_path}, 'error': None})
-                
-                if stage1_output.get('error') is None:
-                    stage1_result.complete(error=None, data=stage1_output.get('data', {}))
-                    # workspace_preparation_stage의 logger를 메인 로거로 설정
-                    if hasattr(self.workspace_preparation_stage, 'logger') and self.workspace_preparation_stage.logger:
-                        self.main_logger = self.workspace_preparation_stage.logger
-                else:
-                    stage1_result.complete(error=stage1_output.get('error', '알 수 없는 오류'))
-                    
             except Exception as e:
-                stage1_result.complete(error=str(e))
-                
-            result.add_stage_result(stage1_result)
+                stage1_output = {'data': {}, 'error': str(e)}
             
-            if stage1_result.error is not None:
-                result.set_success(False, f"1단계 v2 실패: {stage1_result.error}")
+            if not self._handle_stage_result(stage1_output, "workspace_preparation_stage", 1, result):
                 return result
             
-            # 2단계: 통합 노드 정보 문서 생성 (v2)
-            # TODO: 구현 예정
-            stage2_result = StageResult("integrated_node_generation_stage")
-            stage2_result.complete(error=None, data={'status': 'TODO - v2 구현 예정'})
-            result.add_stage_result(stage2_result)
+            # 2단계: 통합 노드 정보 문서 생성 (v4)
+            try:
+                stage2_output = await self.integrated_node_generation_stage.process(stage1_output)
+            except Exception as e:
+                stage2_output = {'data': {}, 'error': str(e)}
+            
+            if not self._handle_stage_result(stage2_output, "integrated_node_generation_stage", 2, result):
+                return result
             
             # 3단계: 가공 작업 (v2)
             # TODO: 구현 예정  
@@ -136,6 +136,35 @@ class BookPipelineOrchestrator:
                 print(f"❌ {error_msg}")
                 
             return result
+    
+    def _handle_stage_result(self, stage_output: Dict[str, Any], stage_name: str, 
+                           step_number: int, result: PipelineResult) -> bool:
+        """
+        스테이지 결과 처리 및 StageResult 생성
+        
+        Args:
+            stage_output: 스테이지 실행 결과
+            stage_name: 스테이지명
+            step_number: 단계 번호
+            result: PipelineResult 객체
+        
+        Returns:
+            bool: 성공 여부 (False면 파이프라인 중단해야 함)
+        """
+        stage_result = StageResult(stage_name)
+        
+        if stage_output.get('error') is None:
+            stage_result.complete(error=None, data=stage_output.get('data', {}))
+        else:
+            stage_result.complete(error=stage_output.get('error', '알 수 없는 오류'))
+        
+        result.add_stage_result(stage_result)
+        
+        if stage_result.error is not None:
+            result.set_success(False, f"{step_number}단계 실패: {stage_result.error}")
+            return False
+        
+        return True
             
     def _log_pipeline_start(self, pdf_path: str):
         """파이프라인 시작 로그"""

@@ -42,17 +42,17 @@ class IntegratedNodeGenerationStage(BaseProcessor):
         self.content_document_service = ContentDocumentService(config_manager, self.logger)
         self.node_document_service = NodeDocumentService(config_manager, self.logger)
         
-    async def process(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
+    async def process(self, prev_stage_result: Dict[str, Any]) -> Dict[str, Any]:
         """
         메인 통합 노드 생성 처리 - workspace_result의 chapters_data 기반 처리
         
         Args:
-            input_data: {'data': workspace_result}
+            prev_stage_result: 이전 단계(workspace_preparation_stage)의 출력 결과
         
         Returns:
             Dict: {
-                'success': bool,
                 'data': {
+                    'book_information': Dict,             # 책 메타데이터 정보
                     'processed_chapters': List[Dict],  # 처리된 장들의 정보 (chapter_title + normalized_title)
                     'unified_documents': List[Dict]    # 생성된 통합 문서들
                 },
@@ -62,22 +62,21 @@ class IntegratedNodeGenerationStage(BaseProcessor):
         try:
             self.logger.info("🚀 **통합 노드 정보 문서 생성 단계 시작** (데이터 기반 처리)")
             
-            # workspace_result에서 chapters_data 추출
-            workspace_data = input_data.get('data', {})
+            # 이전 단계 결과에서 데이터 추출
+            workspace_data = prev_stage_result.get('data', {})
             
-            # 책 제목 정보 추출
-            book_metadata = workspace_data.get('book_metadata', {})
-            normalized_book_title = book_metadata.get('normalized_title', 'Unknown_Book')
+            # 책 정보 추출
+            book_information = workspace_data.get('book_information', {})
+            normalized_book_title = book_information.get('normalized_title', 'Unknown_Book')
             
-            chapters_analysis = workspace_data.get('chapters_analysis', {})
-            chapters_data = chapters_analysis.get('chapters_info', [])
+            chapters_data = workspace_data.get('chapters_data', [])
             
             if not chapters_data:
-                error_msg = "chapters_info 데이터가 없습니다"
+                error_msg = "chapters_data 데이터가 없습니다"
                 self.logger.error(f"❌ {error_msg}")
                 return {
-                    'success': False,
                     'data': {
+                        'book_information': book_information,
                         'processed_chapters': [],
                         'unified_documents': []
                     },
@@ -128,8 +127,8 @@ class IntegratedNodeGenerationStage(BaseProcessor):
             self.logger.info(f"   - 통합 문서: {len(all_unified_documents)}개")
             
             return {
-                'success': True,
                 'data': {
+                    'book_information': book_information,
                     'processed_chapters': processed_chapters,
                     'unified_documents': all_unified_documents
                 },
@@ -140,8 +139,8 @@ class IntegratedNodeGenerationStage(BaseProcessor):
             error_msg = f"통합 노드 생성 처리 중 예외: {str(e)}"
             self.logger.error(f"❌ {error_msg}")
             return {
-                'success': False,
                 'data': {
+                    'book_information': {},
                     'processed_chapters': [],
                     'unified_documents': []
                 },
