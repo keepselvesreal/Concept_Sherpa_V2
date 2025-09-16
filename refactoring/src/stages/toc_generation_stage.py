@@ -143,7 +143,7 @@ class ToCGenerationStage(BaseProcessor):
             chapter_dir = self.base_dir / normalized_book_title / normalized_chapter_name
             chapter_dir.mkdir(parents=True, exist_ok=True)
             
-            toc_file_path = chapter_dir / f"{normalized_chapter_name}_toc.md"
+            toc_file_path = chapter_dir / "chapter_toc.md"
             
             # 파일 저장
             with open(toc_file_path, 'w', encoding='utf-8') as f:
@@ -184,15 +184,17 @@ class ToCGenerationStage(BaseProcessor):
                 lowest_level_docs = self.get_lowest_level_docs(chapter_files)
                 
                 if lowest_level_docs:
-                    # 가장 낮은 레벨 문서에서 추출 섹션 가져오기
+                    # 정규화된 장 제목을 헤더로 사용 (헤더 바로 밑에 간격 없이)
+                    normalized_chapter_name = normalize_title(chapter_name)
+                    book_toc_content += f"## {normalized_chapter_name}\n"
+                    
+                    # 해당 장의 가장 낮은 레벨 문서에서 추출 섹션 가져오기
                     for file_path in lowest_level_docs:
                         full_file_path = self.base_dir / file_path
                         if full_file_path.exists():
                             section_content = self.extract_section_from_file(full_file_path)
                             if section_content:
-                                # 파일명만 추출하여 헤더로 사용 (헤더 바로 밑에 내용, 섹션 간 2줄 간격)
-                                file_name = Path(file_path).name
-                                book_toc_content += f"## {file_name}\n{section_content}\n\n\n"
+                                book_toc_content += f"{section_content}\n\n\n"
                         else:
                             self.logger.warning(f"파일을 찾을 수 없음: {full_file_path}")
             
@@ -200,7 +202,7 @@ class ToCGenerationStage(BaseProcessor):
             book_dir = self.base_dir / normalized_book_title
             book_dir.mkdir(parents=True, exist_ok=True)
             
-            book_toc_file_path = book_dir / f"{normalized_book_title}_toc.md"
+            book_toc_file_path = book_dir / "book_toc.md"
             
             # 파일 저장
             with open(book_toc_file_path, 'w', encoding='utf-8') as f:

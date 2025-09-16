@@ -17,6 +17,7 @@ sys.path.append(str(project_root / "src"))
 
 from stages.toc_generation_stage import ToCGenerationStage
 from utils.config_manager import ConfigManager
+from utils.text_utils import normalize_title
 
 @pytest.fixture
 def toc_stage():
@@ -68,7 +69,10 @@ async def test_generate_chapter_toc(toc_stage, test_data):
         content = f.read()
     
     assert len(content) > 0, "생성된 목차 파일이 비어있음"
-    assert first_chapter_name in content, "장 제목이 목차에 포함되지 않음"
+    # 파일명이 헤더로 사용되므로, 해당 장의 파일명이 포함되어 있는지 확인
+    chapter_files = test_data['data']['chapter_info_docs'][first_chapter_name]
+    chapter_file_found = any(Path(file_path).name in content for file_path in chapter_files)
+    assert chapter_file_found, "장 관련 파일명이 목차에 포함되지 않음"
     
     print(f"✅ 장 목차 생성 성공: {toc_file_path}")
     print(f"✅ 추출된 섹션 수: {result['sections_count']}")
@@ -107,9 +111,10 @@ async def test_generate_book_toc(toc_stage, test_data):
     assert len(content) > 0, "생성된 목차 파일이 비어있음"
     assert book_title in content, "책 제목이 목차에 포함되지 않음"
     
-    # 각 장이 목차에 포함되는지 확인
+    # 각 장의 정규화된 제목이 목차에 포함되는지 확인 (정규화된 장 제목이 헤더로 사용됨)
     for chapter_name in chapter_info_docs.keys():
-        assert chapter_name in content, f"장 '{chapter_name}'이 책 목차에 포함되지 않음"
+        normalized_chapter_name = normalize_title(chapter_name)
+        assert normalized_chapter_name in content, f"장 '{chapter_name}'의 정규화된 제목 '{normalized_chapter_name}'이 책 목차에 포함되지 않음"
     
     print(f"✅ 책 목차 생성 성공: {toc_file_path}")
     print(f"✅ 처리된 장 개수: {result['chapters_count']}")
