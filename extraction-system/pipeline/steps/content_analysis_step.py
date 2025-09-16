@@ -1,10 +1,10 @@
 # 생성 시간: 2025-08-27 15:20 KST
-# 핵심 내용: 콘텐츠 분석 단계 - 통합된 노드 문서들의 추출 섹션 생성
+# 핵심 내용: 콘텐츠 분석 단계 - 통합된 노드 문서들의 추출 섹션 생성 (재귀 탐색 제거)
 # 상세 내용:
-#   - ContentAnalysisStep (라인 18-90): 통합된 노드 문서들을 분석하는 파이프라인 단계
-#   - execute() (라인 22-70): 각 노드 문서의 내용 섹션을 분석해서 추출 섹션 업데이트
-#   - _extract_content_section() (라인 72-88): 노드 문서에서 내용 섹션 추출
-#   - _update_extraction_section() (라인 90-108): 추출 섹션을 파일에 업데이트
+#   - ContentAnalysisStep (라인 20-92): 통합된 노드 문서들을 분석하는 파이프라인 단계
+#   - execute() (라인 26-87): 특정 폴더의 노드 문서만 분석 (재귀 탐색 제거)
+#   - _extract_content_section() (라인 94-113): 노드 문서에서 내용 섹션 추출
+#   - _update_extraction_section() (라인 115-130): 추출 섹션을 파일에 업데이트
 # 상태: active
 # 주소: pipeline/steps/content_analysis_step
 # 참조: modules/content_analyzer.py 모듈 사용 (리팩토링 전 방식 적용)
@@ -34,13 +34,15 @@ class ContentAnalysisStep(PipelineStep):
                 return StepResult.error_result("대상 폴더를 찾을 수 없습니다")
             
             print(f"📁 대상 폴더: {target_folder_path}")
+            print(f"🔍 컨텍스트 키들: {list(context.keys())}")  # 디버깅용
             
-            # *_info.md 파일들 찾기 (하위 폴더 포함 재귀 탐색)
+            # *_info.md 파일들 찾기 (해당 폴더만 탐색, 재귀 제거)
             info_files = []
-            for root, dirs, files in os.walk(target_folder_path):
+            if os.path.exists(target_folder_path):
+                files = os.listdir(target_folder_path)
                 for file in files:
                     if file.endswith('_info.md'):
-                        info_files.append(os.path.join(root, file))
+                        info_files.append(os.path.join(target_folder_path, file))
             
             if not info_files:
                 return StepResult.error_result("노드 정보 문서를 찾을 수 없습니다 (*_info.md)")
@@ -155,13 +157,22 @@ class ContentAnalysisStep(PipelineStep):
             # 컨텍스트에서 메타데이터 추출 (여러 가능성 고려)
             metadata = None
             
+            # YouTube 파이프라인에서 온 경우 - video_folder_path 우선 사용
+            if 'video_folder_path' in context:
+                print(f"🔍 video_folder_path 사용: {context['video_folder_path']}")
+                return context['video_folder_path']
+            
             # MD 파이프라인에서 온 경우 - 직접 folder_path 사용
             if 'folder_path' in context:
+                print(f"🔍 folder_path 사용: {context['folder_path']}")
                 return context['folder_path']
             
-            # YouTube 파이프라인에서 온 경우 - video_folder_path 사용
-            if 'video_folder_path' in context:
-                return context['video_folder_path']
+            # 6단계에서 전달된 integration_updated_file에서 폴더 경로 추출
+            if 'integration_updated_file' in context:
+                import os
+                folder_path = os.path.dirname(context['integration_updated_file'])
+                print(f"🔍 integration_updated_file에서 추출: {folder_path}")
+                return folder_path
             
             # metadata에서 직접 추출하는 경우
             if 'metadata' in context:
