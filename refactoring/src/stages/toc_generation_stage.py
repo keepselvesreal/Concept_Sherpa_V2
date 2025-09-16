@@ -112,16 +112,9 @@ class ToCGenerationStage(BaseProcessor):
             # 정규화된 장 이름
             normalized_chapter_name = normalize_title(chapter_name)
             
-            # 장 헤더 생성 (레벨에 따른 # 개수 결정)
-            # 첫 번째 파일에서 레벨 파싱하여 헤더 레벨 결정
-            first_file_level = 1  # 기본값
-            if chapter_files:
-                first_file_level = self.parse_level_from_filename(chapter_files[0])
+            chapter_toc_content = ""
             
-            header_prefix = "#" * first_file_level
-            chapter_toc_content = f"{header_prefix} {chapter_name}\n\n"
-            
-            # 각 파일에서 추출 섹션 수집
+            # 각 파일에서 추출 섹션 수집 및 개별 헤더 생성
             extracted_sections = []
             for file_path in chapter_files:
                 self.logger.debug(f"파일 처리 중: {file_path}")
@@ -130,13 +123,21 @@ class ToCGenerationStage(BaseProcessor):
                 if full_file_path.exists():
                     section_content = self.extract_section_from_file(full_file_path)
                     if section_content:
-                        extracted_sections.append(section_content)
+                        # 파일명에서 레벨 파싱
+                        file_level = self.parse_level_from_filename(file_path)
+                        # 파일명만 추출 (경로 제거)
+                        file_name = Path(file_path).name
+                        header_prefix = "#" * file_level
+                        
+                        # 개별 문서 헤더와 추출 섹션 결합 (헤더 바로 밑에 내용)
+                        section_with_header = f"{header_prefix} {file_name}\n{section_content}"
+                        extracted_sections.append(section_with_header)
                 else:
                     self.logger.warning(f"파일을 찾을 수 없음: {full_file_path}")
             
-            # 추출된 섹션들을 결합
+            # 추출된 섹션들을 결합 (섹션 간 2줄 간격)
             if extracted_sections:
-                chapter_toc_content += "\n\n".join(extracted_sections)
+                chapter_toc_content = "\n\n\n".join(extracted_sections)
             
             # 파일 저장 경로 생성
             chapter_dir = self.base_dir / normalized_book_title / normalized_chapter_name
@@ -183,16 +184,15 @@ class ToCGenerationStage(BaseProcessor):
                 lowest_level_docs = self.get_lowest_level_docs(chapter_files)
                 
                 if lowest_level_docs:
-                    # 장 헤더 추가
-                    book_toc_content += f"## {chapter_name}\n\n"
-                    
                     # 가장 낮은 레벨 문서에서 추출 섹션 가져오기
                     for file_path in lowest_level_docs:
                         full_file_path = self.base_dir / file_path
                         if full_file_path.exists():
                             section_content = self.extract_section_from_file(full_file_path)
                             if section_content:
-                                book_toc_content += section_content + "\n\n"
+                                # 파일명만 추출하여 헤더로 사용 (헤더 바로 밑에 내용, 섹션 간 2줄 간격)
+                                file_name = Path(file_path).name
+                                book_toc_content += f"## {file_name}\n{section_content}\n\n\n"
                         else:
                             self.logger.warning(f"파일을 찾을 수 없음: {full_file_path}")
             

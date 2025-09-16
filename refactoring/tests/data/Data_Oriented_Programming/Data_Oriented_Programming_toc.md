@@ -1,7 +1,6 @@
 # Data-Oriented Programming
 
-## 2 Separation between code and data
-
+## 27_lev1_2_Separation_between_code_and_data_info.md
 <구성 노드 반영 완료>
 
 ## Core 내용
@@ -39,4 +38,5 @@
 *   에러 관리 (챕터 3)
 *   데이터 쿼리 (챕터 3)
 *   시스템 상태 관리 (챕터 4)
+
 

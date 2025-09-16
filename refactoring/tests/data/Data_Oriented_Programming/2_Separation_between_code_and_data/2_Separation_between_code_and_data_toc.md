@@ -1,5 +1,4 @@
-# 2 Separation between code and data
-
+# 27_lev1_2_Separation_between_code_and_data_info.md
 <구성 노드 반영 완료>
 
 ## Core 내용
@@ -38,6 +37,8 @@
 *   데이터 쿼리 (챕터 3)
 *   시스템 상태 관리 (챕터 4)
 
+
+## 28_lev2_2.1_The_two_parts_of_a_DOP_system_info.md
 <부모 노드 반영 완료>
 
 ## Core 내용
@@ -61,6 +62,8 @@ DOP는 데이터 엔티티와 코드 모듈의 분리를 통해 시스템의 이
 *   함수형 프로그래밍(FP)과의 관계
 *   Theo와 Joe의 대화 형식
 
+
+## 29_lev2_2.2_Data_entities_info.md
 <부모 노드 반영 완료>
 
 ## Core 내용
@@ -82,6 +85,8 @@ DOP에서 데이터 엔티티는 시스템의 정보를 표현하며, 시스템�
 *   데이터 엔티티 관계 (연관 또는 구성)에 대한 간략한 언급
 *   데이터 엔티티 디자인의 반복적 성격 (초기 단계에서는 세부 사항에 너무 신경 쓰지 않음)
 
+
+## 30_lev2_2.3_Code_modules_info.md
 <부모 노드 반영 완료>
 
 ## Core 내용
@@ -105,6 +110,8 @@ DOP에서 코드 모듈은 시스템의 기능을 나타내는 함수들을 포�
 *   Python에서의 self와 DOP의 데이터 전달 방식 비교
 *   Library Management System의 예시
 
+
+## 31_lev2_2.4_DOP_systems_are_easy_to_understand_info.md
 <부모 노드 반영 완료>
 
 ## Core 내용
@@ -130,6 +137,8 @@ DOP 시스템은 코드와 데이터의 분리를 통해 이해 용이성을 확
 *   모듈 간의 관계 제약 조건
 *   DOP에서의 polymorphism 구현 방식
 
+
+## 32_lev2_2.5_DOP_systems_are_flexible_info.md
 <부모 노드 반영 완료>
 
 ## Core 내용
@@ -153,6 +162,8 @@ DOP 시스템은 코드와 데이터의 분리를 통해 요구 사항 변경에
 *   데이터 쿼리 (챕터 3에서 다룸)
 *   시스템 상태 관리 (챕터 4에서 다룸)
 
+
+## 33_lev2_Summary_info.md
 <부모 노드 반영 완료>
 
 ## Core 내용
