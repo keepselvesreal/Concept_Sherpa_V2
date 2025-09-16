@@ -1,10 +1,10 @@
 # 생성 시간: 2025-08-27 12:12 KST
 # 핵심 내용: YouTube 처리 파이프라인 메인 클래스
 # 상세 내용:
-#   - YouTubePipeline (라인 18-95): 7단계 파이프라인 오케스트레이션 클래스
-#   - _setup_steps() (라인 97-115): 단계별 클래스 초기화
-#   - get_progress() (라인 117-125): 진행 상황 조회 메서드
-#   - _handle_step_failure() (라인 127-135): 실패 처리 메서드
+#   - YouTubePipeline (라인 27-95): 8단계 파이프라인 오케스트레이션 클래스
+#   - _setup_steps() (라인 128-140): 단계별 클래스 초기화 + LineNumberStep 추가
+#   - get_progress() (라인 142-148): 진행 상황 조회 메서드
+#   - _handle_step_failure() (라인 150-161): 실패 처리 메서드
 # 상태: active
 # 주소: pipeline/youtube_pipeline
 # 참조: 단순화된 에러 처리와 비동기 통일 적용
@@ -21,10 +21,11 @@ from .steps.docs_creation_step import NodeDocsCreationStep
 from .steps.docs_integration_step import NodeDocsIntegrationStep
 from .steps.content_extraction_step import NodeContentExtractionStep
 from .steps.content_analysis_step import ContentAnalysisStep
+from .steps.line_number_step import LineNumberStep
 
 
 class YouTubePipeline:
-    """YouTube 처리 7단계 파이프라인"""
+    """YouTube 처리 8단계 파이프라인"""
     
     def __init__(self):
         self.steps: List[PipelineStep] = []
@@ -48,7 +49,7 @@ class YouTubePipeline:
             for i, step in enumerate(self.steps):
                 self.current_step_index = i + 1
                 
-                print(f"🔄 {self.current_step_index}/7단계: {step.name}")
+                print(f"🔄 {self.current_step_index}/8단계: {step.name}")
                 
                 # 단계 실행
                 step_result = await step.execute(self.context)
@@ -133,7 +134,8 @@ class YouTubePipeline:
             NodeGenerationStep(),             # 4단계: 노드 생성
             NodeDocsCreationStep(),           # 5단계: 노드 문서 생성 (빈 템플릿)
             NodeDocsIntegrationStep(),        # 6단계: 노드 문서 통합 (메타데이터+내용)
-            ContentAnalysisStep()             # 7단계: 콘텐츠 분석 (통합된 노드 문서 분석)
+            ContentAnalysisStep(),            # 7단계: 콘텐츠 분석 (통합된 노드 문서 분석)
+            LineNumberStep()                  # 8단계: 라인 번호 추가 (content.md에 Line X: 형식 추가)
             # NodeContentExtractionStep()     # 더 이상 사용하지 않음 (ContentAnalysisStep으로 대체)
         ]
     
