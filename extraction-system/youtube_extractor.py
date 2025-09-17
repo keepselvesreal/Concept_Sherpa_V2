@@ -90,21 +90,134 @@ def get_transcript(video_id, language_codes=['ko', 'en']):
         tuple: (transcript_data, language_used)
     """
     try:
-        api = YouTubeTranscriptApi()
+        # 인스턴스 생성 (새로운 API 방식)
+        ytt_api = YouTubeTranscriptApi()
         
+        # 먼저 사용 가능한 언어 목록을 확인
         try:
-            fetched_transcript = api.fetch(video_id, languages=language_codes)
-            used_language = fetched_transcript.language_code
+            transcript_list = ytt_api.list(video_id)
+            available_languages = []
             
-            transcript_data = []
-            for snippet in fetched_transcript.snippets:
-                transcript_data.append({
-                    'text': snippet.text,
-                    'start': snippet.start,
-                    'duration': snippet.duration
-                })
+            # 수동 생성된 자막 우선
+            for transcript in transcript_list:
+                if not transcript.is_generated:
+                    available_languages.append(transcript.language_code)
             
-            return transcript_data, used_language
+            # 자동 생성된 자막 추가
+            for transcript in transcript_list:
+                if transcript.is_generated and transcript.language_code not in available_languages:
+                    available_languages.append(transcript.language_code)
+                    
+            # 번역 가능한 자막 추가 (영어 우선)
+            for transcript in transcript_list:
+                if transcript.is_translatable:
+                    if 'en' not in available_languages:
+                        available_languages.append('en')
+                    break
+                        
+            print(f"🔍 사용 가능한 자막 언어: {available_languages}")
+            
+            # 요청한 언어 중 사용 가능한 것 찾기
+            target_language = None
+            for lang in language_codes:
+                if lang in available_languages:
+                    target_language = lang
+                    break
+            
+            # 요청한 언어가 없으면 첫 번째 사용 가능한 언어 사용
+            if not target_language and available_languages:
+                target_language = available_languages[0]
+                print(f"⚠️ 요청 언어({language_codes})를 찾을 수 없어서 {target_language}를 사용합니다.")
+            
+            if not target_language:
+                print("❌ 사용 가능한 자막이 없습니다.")
+                return None, None
+                
+        except Exception as e:
+            print(f"❌ 자막 목록 확인 중 오류: {str(e)}")
+            # 목록 확인 실패 시 직접 시도
+            target_language = language_codes[0]
+        
+        # 자막 다운로드
+        try:
+            # 선택된 언어로 자막 가져오기
+            try:
+                print(f"🔄 {target_language} 자막 가져오는 중...")
+                fetched_transcript = ytt_api.fetch(video_id, languages=[target_language])
+                
+                transcript_data = []
+                for snippet in fetched_transcript.snippets:
+                    transcript_data.append({
+                        'text': snippet.text,
+                        'start': snippet.start,
+                        'duration': snippet.duration
+                    })
+                
+                print(f"✅ 자막 추출 완료: {target_language} ({len(transcript_data)}개 세그먼트)")
+                return transcript_data, target_language
+                
+            except Exception as e:
+                print(f"⚠️ {target_language} 자막 직접 가져오기 실패: {str(e)}")
+                
+                # 번역 시도
+                if target_language != 'en':
+                    try:
+                        print("🔄 영어로 번역 시도 중...")
+                        transcript_list = ytt_api.list(video_id)
+                        
+                        # 번역 가능한 자막 찾기
+                        for transcript in transcript_list:
+                            if transcript.is_translatable:
+                                print(f"🔄 {transcript.language_code}에서 영어로 번역 중...")
+                                translated = transcript.translate('en')
+                                fetched_transcript = translated.fetch()
+                                
+                                transcript_data = []
+                                for snippet in fetched_transcript.snippets:
+                                    transcript_data.append({
+                                        'text': snippet.text,
+                                        'start': snippet.start,
+                                        'duration': snippet.duration
+                                    })
+                                
+                                print(f"✅ 자막 번역 완료: {transcript.language_code}→en ({len(transcript_data)}개 세그먼트)")
+                                return transcript_data, 'en'
+                        
+                        print("❌ 번역 가능한 자막을 찾을 수 없습니다.")
+                        
+                    except Exception as e2:
+                        print(f"❌ 번역 시도 실패: {str(e2)}")
+                
+                # 최후 수단: 사용 가능한 첫 번째 언어로 시도
+                try:
+                    print("🔄 사용 가능한 첫 번째 언어로 시도...")
+                    transcript_list = ytt_api.list(video_id)
+                    
+                    for transcript in transcript_list:
+                        try:
+                            print(f"🔄 {transcript.language_code} 자막 시도...")
+                            fetched_transcript = transcript.fetch()
+                            
+                            transcript_data = []
+                            for snippet in fetched_transcript.snippets:
+                                transcript_data.append({
+                                    'text': snippet.text,
+                                    'start': snippet.start,
+                                    'duration': snippet.duration
+                                })
+                            
+                            print(f"✅ 자막 추출 완료: {transcript.language_code} ({len(transcript_data)}개 세그먼트)")
+                            return transcript_data, transcript.language_code
+                            
+                        except:
+                            continue
+                    
+                    print("❌ 모든 언어 시도 실패")
+                    return None, None
+                    
+                except Exception as e3:
+                    print(f"❌ 최종 시도 실패: {str(e3)}")
+                    return None, None
             
         except Exception as e:
             print(f"❌ 대본 추출 중 오류 발생: {str(e)}")
