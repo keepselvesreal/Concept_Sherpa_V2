@@ -1,0 +1,646 @@
+{
+  "1.1": {
+    "title": "Software Development as a Learning Process",
+    "path": "scouting/growing-object-oriented-software/chapter-1/software-development-as-a-learning-process.md"
+  },
+  "1.2": {
+    "title": "Feedback Is the Fundamental Tool",
+    "path": "scouting/growing-object-oriented-software/chapter-1/feedback-is-the-fundamental-tool.md"
+  },
+  "1.3": {
+    "title": "Practices That Support Change",
+    "path": "scouting/growing-object-oriented-software/chapter-1/practices-that-support-change.md"
+  },
+  "1.4": {
+    "title": "Test-Driven Development in a Nutshell",
+    "path": "scouting/growing-object-oriented-software/chapter-1/test-driven-development-in-a-nutshell.md"
+  },
+  "1.5": {
+    "title": "The Bigger Picture",
+    "path": "scouting/growing-object-oriented-software/chapter-1/the-bigger-picture.md"
+  },
+  "1.6": {
+    "title": "Testing End-to-End",
+    "path": "scouting/growing-object-oriented-software/chapter-1/testing-end-to-end.md"
+  },
+  "1.7": {
+    "title": "Levels of Testing",
+    "path": "scouting/growing-object-oriented-software/chapter-1/levels-of-testing.md"
+  },
+  "1.8": {
+    "title": "External and Internal Quality",
+    "path": "scouting/growing-object-oriented-software/chapter-1/external-and-internal-quality.md"
+  },
+  "2.1": {
+    "title": "A Web of Objects",
+    "path": "scouting/growing-object-oriented-software/chapter-2/a-web-of-objects.md"
+  },
+  "2.2": {
+    "title": "Values and Objects",
+    "path": "scouting/growing-object-oriented-software/chapter-2/values-and-objects.md"
+  },
+  "2.3": {
+    "title": "Follow the Messages",
+    "path": "scouting/growing-object-oriented-software/chapter-2/follow-the-messages.md"
+  },
+  "2.4": {
+    "title": "Tell, Don't Ask",
+    "path": "scouting/growing-object-oriented-software/chapter-2/tell-dont-ask.md"
+  },
+  "2.5": {
+    "title": "But Sometimes Ask",
+    "path": "scouting/growing-object-oriented-software/chapter-2/but-sometimes-ask.md"
+  },
+  "2.6": {
+    "title": "Unit-Testing the Collaborating Objects",
+    "path": "scouting/growing-object-oriented-software/chapter-2/unit-testing-the-collaborating-objects.md"
+  },
+  "2.7": {
+    "title": "Support for TDD with Mock Objects",
+    "path": "scouting/growing-object-oriented-software/chapter-2/support-for-tdd-with-mock-objects.md"
+  },
+  "3.1": {
+    "title": "Stop Me If You've Heard This One Before",
+    "path": "scouting/growing-object-oriented-software/chapter-3/stop-me-if-youve-heard-this-one-before.md"
+  },
+  "3.2": {
+    "title": "A Minimal Introduction to JUnit 4",
+    "path": "scouting/growing-object-oriented-software/chapter-3/a-minimal-introduction-to-junit-4.md"
+  },
+  "3.3": {
+    "title": "Hamcrest Matchers and assertThat()",
+    "path": "scouting/growing-object-oriented-software/chapter-3/hamcrest-matchers-and-assertthat.md"
+  },
+  "3.4": {
+    "title": "jMock2: Mock Objects",
+    "path": "scouting/growing-object-oriented-software/chapter-3/jmock2-mock-objects.md"
+  },
+  "4.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-4/introduction.md"
+  },
+  "4.2": {
+    "title": "First, Test a Walking Skeleton",
+    "path": "scouting/growing-object-oriented-software/chapter-4/first-test-a-walking-skeleton.md"
+  },
+  "4.3": {
+    "title": "Deciding the Shape of the Walking Skeleton",
+    "path": "scouting/growing-object-oriented-software/chapter-4/deciding-the-shape-of-the-walking-skeleton.md"
+  },
+  "4.4": {
+    "title": "Build Sources of Feedback",
+    "path": "scouting/growing-object-oriented-software/chapter-4/build-sources-of-feedback.md"
+  },
+  "4.5": {
+    "title": "Expose Uncertainty Early",
+    "path": "scouting/growing-object-oriented-software/chapter-4/expose-uncertainty-early.md"
+  },
+  "5.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-5/introduction.md"
+  },
+  "5.2": {
+    "title": "Start Each Feature with an Acceptance Test",
+    "path": "scouting/growing-object-oriented-software/chapter-5/start-each-feature-with-an-acceptance-test.md"
+  },
+  "5.3": {
+    "title": "Separate Tests That Measure Progress from Those That Catch Regressions",
+    "path": "scouting/growing-object-oriented-software/chapter-5/separate-tests-that-measure-progress-from-those-that-catch-regressions.md"
+  },
+  "5.4": {
+    "title": "Start Testing with the Simplest Success Case",
+    "path": "scouting/growing-object-oriented-software/chapter-5/start-testing-with-the-simplest-success-case.md"
+  },
+  "5.5": {
+    "title": "Write the Test That You'd Want to Read",
+    "path": "scouting/growing-object-oriented-software/chapter-5/write-the-test-that-youd-want-to-read.md"
+  },
+  "5.6": {
+    "title": "Watch the Test Fail",
+    "path": "scouting/growing-object-oriented-software/chapter-5/watch-the-test-fail.md"
+  },
+  "5.7": {
+    "title": "Develop from the Inputs to the Outputs",
+    "path": "scouting/growing-object-oriented-software/chapter-5/develop-from-the-inputs-to-the-outputs.md"
+  },
+  "5.8": {
+    "title": "Unit-Test Behavior, Not Methods",
+    "path": "scouting/growing-object-oriented-software/chapter-5/unit-test-behavior-not-methods.md"
+  },
+  "5.9": {
+    "title": "Listen to the Tests",
+    "path": "scouting/growing-object-oriented-software/chapter-5/listen-to-the-tests.md"
+  },
+  "5.10": {
+    "title": "Tuning the Cycle",
+    "path": "scouting/growing-object-oriented-software/chapter-5/tuning-the-cycle.md"
+  },
+  "6.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-6/introduction.md"
+  },
+  "6.2": {
+    "title": "Designing for Maintainability",
+    "path": "scouting/growing-object-oriented-software/chapter-6/designing-for-maintainability.md"
+  },
+  "6.3": {
+    "title": "Internals vs. Peers",
+    "path": "scouting/growing-object-oriented-software/chapter-6/internals-vs-peers.md"
+  },
+  "6.4": {
+    "title": "No And's, Or's, or But's",
+    "path": "scouting/growing-object-oriented-software/chapter-6/no-ands-ors-or-buts.md"
+  },
+  "6.5": {
+    "title": "Object Peer Stereotypes",
+    "path": "scouting/growing-object-oriented-software/chapter-6/object-peer-stereotypes.md"
+  },
+  "6.6": {
+    "title": "Composite Simpler Than the Sum of Its Parts",
+    "path": "scouting/growing-object-oriented-software/chapter-6/composite-simpler-than-the-sum-of-its-parts.md"
+  },
+  "6.7": {
+    "title": "Context Independence",
+    "path": "scouting/growing-object-oriented-software/chapter-6/context-independence.md"
+  },
+  "6.8": {
+    "title": "Hiding the Right Information",
+    "path": "scouting/growing-object-oriented-software/chapter-6/hiding-the-right-information.md"
+  },
+  "6.9": {
+    "title": "An Opinionated View",
+    "path": "scouting/growing-object-oriented-software/chapter-6/an-opinionated-view.md"
+  },
+  "7.1": {
+    "title": "How Writing a Test First Helps the Design",
+    "path": "scouting/growing-object-oriented-software/chapter-7/how-writing-a-test-first-helps-the-design.md"
+  },
+  "7.2": {
+    "title": "Communication over Classification",
+    "path": "scouting/growing-object-oriented-software/chapter-7/communication-over-classification.md"
+  },
+  "7.3": {
+    "title": "Value Types",
+    "path": "scouting/growing-object-oriented-software/chapter-7/value-types.md"
+  },
+  "7.4": {
+    "title": "Where Do Objects Come From?",
+    "path": "scouting/growing-object-oriented-software/chapter-7/where-do-objects-come-from.md"
+  },
+  "7.5": {
+    "title": "Identify Relationships with Interfaces",
+    "path": "scouting/growing-object-oriented-software/chapter-7/identify-relationships-with-interfaces.md"
+  },
+  "7.6": {
+    "title": "Refactor Interfaces Too",
+    "path": "scouting/growing-object-oriented-software/chapter-7/refactor-interfaces-too.md"
+  },
+  "7.7": {
+    "title": "Compose Objects to Describe System Behavior",
+    "path": "scouting/growing-object-oriented-software/chapter-7/compose-objects-to-describe-system-behavior.md"
+  },
+  "7.8": {
+    "title": "Building Up to Higher-Level Programming",
+    "path": "scouting/growing-object-oriented-software/chapter-7/building-up-to-higher-level-programming.md"
+  },
+  "7.9": {
+    "title": "And What about Classes?",
+    "path": "scouting/growing-object-oriented-software/chapter-7/and-what-about-classes.md"
+  },
+  "8.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-8/introduction.md"
+  },
+  "8.2": {
+    "title": "Only Mock Types That You Own",
+    "path": "scouting/growing-object-oriented-software/chapter-8/only-mock-types-that-you-own.md"
+  },
+  "8.3": {
+    "title": "Mock Application Objects in Integration Tests",
+    "path": "scouting/growing-object-oriented-software/chapter-8/mock-application-objects-in-integration-tests.md"
+  },
+  "9.1": {
+    "title": "To Begin at the Beginning",
+    "path": "scouting/growing-object-oriented-software/chapter-9/to-begin-at-the-beginning.md"
+  },
+  "9.2": {
+    "title": "Communicating with an Auction",
+    "path": "scouting/growing-object-oriented-software/chapter-9/communicating-with-an-auction.md"
+  },
+  "9.3": {
+    "title": "Getting There Safely",
+    "path": "scouting/growing-object-oriented-software/chapter-9/getting-there-safely.md"
+  },
+  "9.4": {
+    "title": "This Isn't Real",
+    "path": "scouting/growing-object-oriented-software/chapter-9/this-isnt-real.md"
+  },
+  "10.1": {
+    "title": "Get the Skeleton out of the Closet",
+    "path": "scouting/growing-object-oriented-software/chapter-10/get-the-skeleton-out-of-the-closet.md"
+  },
+  "10.2": {
+    "title": "Our Very First Test",
+    "path": "scouting/growing-object-oriented-software/chapter-10/our-very-first-test.md"
+  },
+  "10.3": {
+    "title": "Some Initial Choices",
+    "path": "scouting/growing-object-oriented-software/chapter-10/some-initial-choices.md"
+  },
+  "11.1": {
+    "title": "Building the Test Rig",
+    "path": "scouting/growing-object-oriented-software/chapter-11/building-the-test-rig.md"
+  },
+  "11.2": {
+    "title": "Failing and Passing the Test",
+    "path": "scouting/growing-object-oriented-software/chapter-11/failing-and-passing-the-test.md"
+  },
+  "11.3": {
+    "title": "The Necessary Minimum",
+    "path": "scouting/growing-object-oriented-software/chapter-11/the-necessary-minimum.md"
+  },
+  "12.1": {
+    "title": "An Introduction to the Market",
+    "path": "scouting/growing-object-oriented-software/chapter-12/an-introduction-to-the-market.md"
+  },
+  "12.2": {
+    "title": "A Test for Bidding",
+    "path": "scouting/growing-object-oriented-software/chapter-12/a-test-for-bidding.md"
+  },
+  "12.3": {
+    "title": "The AuctionMessageTranslator",
+    "path": "scouting/growing-object-oriented-software/chapter-12/the-auctionmessagetranslator.md"
+  },
+  "12.4": {
+    "title": "Unpacking a Price Message",
+    "path": "scouting/growing-object-oriented-software/chapter-12/unpacking-a-price-message.md"
+  },
+  "12.5": {
+    "title": "Finish the Job",
+    "path": "scouting/growing-object-oriented-software/chapter-12/finish-the-job.md"
+  },
+  "13.1": {
+    "title": "Introducing AuctionSniper",
+    "path": "scouting/growing-object-oriented-software/chapter-13/introducing-auctionsniper.md"
+  },
+  "13.2": {
+    "title": "Sending a Bid",
+    "path": "scouting/growing-object-oriented-software/chapter-13/sending-a-bid.md"
+  },
+  "13.3": {
+    "title": "Tidying Up the Implementation",
+    "path": "scouting/growing-object-oriented-software/chapter-13/tidying-up-the-implementation.md"
+  },
+  "13.4": {
+    "title": "Defer Decisions",
+    "path": "scouting/growing-object-oriented-software/chapter-13/defer-decisions.md"
+  },
+  "13.5": {
+    "title": "Emergent Design",
+    "path": "scouting/growing-object-oriented-software/chapter-13/emergent-design.md"
+  },
+  "14.1": {
+    "title": "First, a Failing Test",
+    "path": "scouting/growing-object-oriented-software/chapter-14/first-a-failing-test.md"
+  },
+  "14.2": {
+    "title": "Who Knows about Bidders?",
+    "path": "scouting/growing-object-oriented-software/chapter-14/who-knows-about-bidders.md"
+  },
+  "14.3": {
+    "title": "The Sniper Has More to Say",
+    "path": "scouting/growing-object-oriented-software/chapter-14/the-sniper-has-more-to-say.md"
+  },
+  "14.4": {
+    "title": "The Sniper Acquires Some State",
+    "path": "scouting/growing-object-oriented-software/chapter-14/the-sniper-acquires-some-state.md"
+  },
+  "14.5": {
+    "title": "The Sniper Wins",
+    "path": "scouting/growing-object-oriented-software/chapter-14/the-sniper-wins.md"
+  },
+  "14.6": {
+    "title": "Making Steady Progress",
+    "path": "scouting/growing-object-oriented-software/chapter-14/making-steady-progress.md"
+  },
+  "15.1": {
+    "title": "A More Realistic Implementation",
+    "path": "scouting/growing-object-oriented-software/chapter-15/a-more-realistic-implementation.md"
+  },
+  "15.2": {
+    "title": "Displaying Price Details",
+    "path": "scouting/growing-object-oriented-software/chapter-15/displaying-price-details.md"
+  },
+  "15.3": {
+    "title": "Simplifying Sniper Events",
+    "path": "scouting/growing-object-oriented-software/chapter-15/simplifying-sniper-events.md"
+  },
+  "15.4": {
+    "title": "Follow Through",
+    "path": "scouting/growing-object-oriented-software/chapter-15/follow-through.md"
+  },
+  "15.5": {
+    "title": "Final Polish",
+    "path": "scouting/growing-object-oriented-software/chapter-15/final-polish.md"
+  },
+  "15.6": {
+    "title": "Observations",
+    "path": "scouting/growing-object-oriented-software/chapter-15/observations.md"
+  },
+  "16.1": {
+    "title": "Testing for Multiple Items",
+    "path": "scouting/growing-object-oriented-software/chapter-16/testing-for-multiple-items.md"
+  },
+  "16.2": {
+    "title": "Adding Items through the User Interface",
+    "path": "scouting/growing-object-oriented-software/chapter-16/adding-items-through-the-user-interface.md"
+  },
+  "16.3": {
+    "title": "Observations",
+    "path": "scouting/growing-object-oriented-software/chapter-16/observations.md"
+  },
+  "17.1": {
+    "title": "Finding a Role",
+    "path": "scouting/growing-object-oriented-software/chapter-17/finding-a-role.md"
+  },
+  "17.2": {
+    "title": "Extracting the Chat",
+    "path": "scouting/growing-object-oriented-software/chapter-17/extracting-the-chat.md"
+  },
+  "17.3": {
+    "title": "Extracting the Connection",
+    "path": "scouting/growing-object-oriented-software/chapter-17/extracting-the-connection.md"
+  },
+  "17.4": {
+    "title": "Extracting the SnipersTableModel",
+    "path": "scouting/growing-object-oriented-software/chapter-17/extracting-the-sniperstablemodel.md"
+  },
+  "17.5": {
+    "title": "Observations",
+    "path": "scouting/growing-object-oriented-software/chapter-17/observations.md"
+  },
+  "18.1": {
+    "title": "A More Useful Application",
+    "path": "scouting/growing-object-oriented-software/chapter-18/a-more-useful-application.md"
+  },
+  "18.2": {
+    "title": "Stop When We've Had Enough",
+    "path": "scouting/growing-object-oriented-software/chapter-18/stop-when-weve-had-enough.md"
+  },
+  "18.3": {
+    "title": "Observations",
+    "path": "scouting/growing-object-oriented-software/chapter-18/observations.md"
+  },
+  "19.1": {
+    "title": "What If It Doesn't Work?",
+    "path": "scouting/growing-object-oriented-software/chapter-19/what-if-it-doesnt-work.md"
+  },
+  "19.2": {
+    "title": "Detecting the Failure",
+    "path": "scouting/growing-object-oriented-software/chapter-19/detecting-the-failure.md"
+  },
+  "19.3": {
+    "title": "Displaying the Failure",
+    "path": "scouting/growing-object-oriented-software/chapter-19/displaying-the-failure.md"
+  },
+  "19.4": {
+    "title": "Disconnecting the Sniper",
+    "path": "scouting/growing-object-oriented-software/chapter-19/disconnecting-the-sniper.md"
+  },
+  "19.5": {
+    "title": "Recording the Failure",
+    "path": "scouting/growing-object-oriented-software/chapter-19/recording-the-failure.md"
+  },
+  "19.6": {
+    "title": "Observations",
+    "path": "scouting/growing-object-oriented-software/chapter-19/observations.md"
+  },
+  "20.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-20/introduction.md"
+  },
+  "20.2": {
+    "title": "I Need to Mock an Object I Can't Replace (without Magic)",
+    "path": "scouting/growing-object-oriented-software/chapter-20/i-need-to-mock-an-object-i-cant-replace-without-magic.md"
+  },
+  "20.3": {
+    "title": "Logging Is a Feature",
+    "path": "scouting/growing-object-oriented-software/chapter-20/logging-is-a-feature.md"
+  },
+  "20.4": {
+    "title": "Mocking Concrete Classes",
+    "path": "scouting/growing-object-oriented-software/chapter-20/mocking-concrete-classes.md"
+  },
+  "20.5": {
+    "title": "Don't Mock Values",
+    "path": "scouting/growing-object-oriented-software/chapter-20/dont-mock-values.md"
+  },
+  "20.6": {
+    "title": "Bloated Constructor",
+    "path": "scouting/growing-object-oriented-software/chapter-20/bloated-constructor.md"
+  },
+  "20.7": {
+    "title": "Confused Object",
+    "path": "scouting/growing-object-oriented-software/chapter-20/confused-object.md"
+  },
+  "20.8": {
+    "title": "Too Many Dependencies",
+    "path": "scouting/growing-object-oriented-software/chapter-20/too-many-dependencies.md"
+  },
+  "20.9": {
+    "title": "Too Many Expectations",
+    "path": "scouting/growing-object-oriented-software/chapter-20/too-many-expectations.md"
+  },
+  "20.10": {
+    "title": "What the Tests Will Tell Us (If We're Listening)",
+    "path": "scouting/growing-object-oriented-software/chapter-20/what-the-tests-will-tell-us-if-were-listening.md"
+  },
+  "21.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-21/introduction.md"
+  },
+  "21.2": {
+    "title": "Test Names Describe Features",
+    "path": "scouting/growing-object-oriented-software/chapter-21/test-names-describe-features.md"
+  },
+  "21.3": {
+    "title": "Canonical Test Structure",
+    "path": "scouting/growing-object-oriented-software/chapter-21/canonical-test-structure.md"
+  },
+  "21.4": {
+    "title": "Streamline the Test Code",
+    "path": "scouting/growing-object-oriented-software/chapter-21/streamline-the-test-code.md"
+  },
+  "21.5": {
+    "title": "Assertions and Expectations",
+    "path": "scouting/growing-object-oriented-software/chapter-21/assertions-and-expectations.md"
+  },
+  "21.6": {
+    "title": "Literals and Variables",
+    "path": "scouting/growing-object-oriented-software/chapter-21/literals-and-variables.md"
+  },
+  "22.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-22/introduction.md"
+  },
+  "22.2": {
+    "title": "Test Data Builders",
+    "path": "scouting/growing-object-oriented-software/chapter-22/test-data-builders.md"
+  },
+  "22.3": {
+    "title": "Creating Similar Objects",
+    "path": "scouting/growing-object-oriented-software/chapter-22/creating-similar-objects.md"
+  },
+  "22.4": {
+    "title": "Combining Builders",
+    "path": "scouting/growing-object-oriented-software/chapter-22/combining-builders.md"
+  },
+  "22.5": {
+    "title": "Emphasizing the Domain Model with Factory Methods",
+    "path": "scouting/growing-object-oriented-software/chapter-22/emphasizing-the-domain-model-with-factory-methods.md"
+  },
+  "22.6": {
+    "title": "Removing Duplication at the Point of Use",
+    "path": "scouting/growing-object-oriented-software/chapter-22/removing-duplication-at-the-point-of-use.md"
+  },
+  "22.7": {
+    "title": "Communication First",
+    "path": "scouting/growing-object-oriented-software/chapter-22/communication-first.md"
+  },
+  "23.1": {
+    "title": "Design to Fail",
+    "path": "scouting/growing-object-oriented-software/chapter-23/design-to-fail.md"
+  },
+  "23.2": {
+    "title": "Small, Focused, Well-Named Tests",
+    "path": "scouting/growing-object-oriented-software/chapter-23/small-focused-well-named-tests.md"
+  },
+  "23.3": {
+    "title": "Explanatory Assertion Messages",
+    "path": "scouting/growing-object-oriented-software/chapter-23/explanatory-assertion-messages.md"
+  },
+  "23.4": {
+    "title": "Highlight Detail with Matchers",
+    "path": "scouting/growing-object-oriented-software/chapter-23/highlight-detail-with-matchers.md"
+  },
+  "23.5": {
+    "title": "Self-Describing Value",
+    "path": "scouting/growing-object-oriented-software/chapter-23/self-describing-value.md"
+  },
+  "23.6": {
+    "title": "Obviously Canned Value",
+    "path": "scouting/growing-object-oriented-software/chapter-23/obviously-canned-value.md"
+  },
+  "23.7": {
+    "title": "Tracer Object",
+    "path": "scouting/growing-object-oriented-software/chapter-23/tracer-object.md"
+  },
+  "23.8": {
+    "title": "Explicitly Assert That Expectations Were Satisfied",
+    "path": "scouting/growing-object-oriented-software/chapter-23/explicitly-assert-that-expectations-were-satisfied.md"
+  },
+  "23.9": {
+    "title": "Diagnostics Are a First-Class Feature",
+    "path": "scouting/growing-object-oriented-software/chapter-23/diagnostics-are-a-first-class-feature.md"
+  },
+  "24.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-24/introduction.md"
+  },
+  "24.2": {
+    "title": "Test for Information, Not Representation",
+    "path": "scouting/growing-object-oriented-software/chapter-24/test-for-information-not-representation.md"
+  },
+  "24.3": {
+    "title": "Precise Assertions",
+    "path": "scouting/growing-object-oriented-software/chapter-24/precise-assertions.md"
+  },
+  "24.4": {
+    "title": "Precise Expectations",
+    "path": "scouting/growing-object-oriented-software/chapter-24/precise-expectations.md"
+  },
+  "24.5": {
+    "title": "\"Guinea Pig\" Objects",
+    "path": "scouting/growing-object-oriented-software/chapter-24/guinea-pig-objects.md"
+  },
+  "25.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-25/introduction.md"
+  },
+  "25.2": {
+    "title": "Isolate Tests That Affect Persistent State",
+    "path": "scouting/growing-object-oriented-software/chapter-25/isolate-tests-that-affect-persistent-state.md"
+  },
+  "25.3": {
+    "title": "Make Tests Transaction Boundaries Explicit",
+    "path": "scouting/growing-object-oriented-software/chapter-25/make-tests-transaction-boundaries-explicit.md"
+  },
+  "25.4": {
+    "title": "Testing an Object That Performs Persistence Operations",
+    "path": "scouting/growing-object-oriented-software/chapter-25/testing-an-object-that-performs-persistence-operations.md"
+  },
+  "25.5": {
+    "title": "Testing That Objects Can Be Persisted",
+    "path": "scouting/growing-object-oriented-software/chapter-25/testing-that-objects-can-be-persisted.md"
+  },
+  "25.6": {
+    "title": "But Database Tests Are S-l-o-w!",
+    "path": "scouting/growing-object-oriented-software/chapter-25/but-database-tests-are-s-l-o-w.md"
+  },
+  "26.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-26/introduction.md"
+  },
+  "26.2": {
+    "title": "Separating Functionality and Concurrency Policy",
+    "path": "scouting/growing-object-oriented-software/chapter-26/separating-functionality-and-concurrency-policy.md"
+  },
+  "26.3": {
+    "title": "Unit-Testing Synchronization",
+    "path": "scouting/growing-object-oriented-software/chapter-26/unit-testing-synchronization.md"
+  },
+  "26.4": {
+    "title": "Stress-Testing Passive Objects",
+    "path": "scouting/growing-object-oriented-software/chapter-26/stress-testing-passive-objects.md"
+  },
+  "26.5": {
+    "title": "Synchronizing the Test Thread with Background Threads",
+    "path": "scouting/growing-object-oriented-software/chapter-26/synchronizing-the-test-thread-with-background-threads.md"
+  },
+  "26.6": {
+    "title": "The Limitations of Unit Stress Tests",
+    "path": "scouting/growing-object-oriented-software/chapter-26/the-limitations-of-unit-stress-tests.md"
+  },
+  "27.1": {
+    "title": "Introduction",
+    "path": "scouting/growing-object-oriented-software/chapter-27/introduction.md"
+  },
+  "27.2": {
+    "title": "Sampling or Listening",
+    "path": "scouting/growing-object-oriented-software/chapter-27/sampling-or-listening.md"
+  },
+  "27.3": {
+    "title": "Two Implementations",
+    "path": "scouting/growing-object-oriented-software/chapter-27/two-implementations.md"
+  },
+  "27.4": {
+    "title": "Runaway Tests",
+    "path": "scouting/growing-object-oriented-software/chapter-27/runaway-tests.md"
+  },
+  "27.5": {
+    "title": "Lost Updates",
+    "path": "scouting/growing-object-oriented-software/chapter-27/lost-updates.md"
+  },
+  "27.6": {
+    "title": "Testing That an Action Has No Effect",
+    "path": "scouting/growing-object-oriented-software/chapter-27/testing-that-an-action-has-no-effect.md"
+  },
+  "27.7": {
+    "title": "Distinguish Synchronizations and Assertions",
+    "path": "scouting/growing-object-oriented-software/chapter-27/distinguish-synchronizations-and-assertions.md"
+  },
+  "27.8": {
+    "title": "Externalize Event Sources",
+    "path": "scouting/growing-object-oriented-software/chapter-27/externalize-event-sources.md"
+  }
+}
